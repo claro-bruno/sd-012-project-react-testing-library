@@ -37,10 +37,16 @@ describe('Testando o componente Pokedex', () => {
     expect(nextPokemonButton).toBeInTheDocument();
     const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
+    const pokemonWeight = screen.getByTestId('pokemon-weight');
+    const detailsButton = screen.getByText('More details');
     // Matcher -toHaveTextContent- visto no link shorturl.at/antT2;
-    data.forEach(({ name, type }) => {
+    data.forEach(({ name, type, averageWeight: { value, measurementUnit } }) => {
       expect(pokemonName).toHaveTextContent(name);
       expect(pokemonType).toHaveTextContent(type);
+      expect(pokemonWeight).toHaveTextContent(
+        `Average weight: ${value} ${measurementUnit}`,
+      );
+      expect(detailsButton).toBeInTheDocument();
       userEvent.click(nextPokemonButton);
     });
   });
