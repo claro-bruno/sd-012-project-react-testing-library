@@ -3,8 +3,8 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
 
-describe('Testa o componente FavoritePokemons.js', () => {
-  it('Testa a renderização sem pokemons favoritados', () => {
+describe('Testa o componente NotFound.js', () => {
+  it('Testa a renderização de NotFound', () => {
     renderWithRouter(<NotFound />);
     const notFound = screen.getByRole('heading', { name: /Page requested not found/i });
     const image = screen.getByAltText(/Pikachu crying/i);

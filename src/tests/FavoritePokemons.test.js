@@ -9,7 +9,7 @@ describe('Testa o componente FavoritePokemons.js', () => {
     expect(screen.getByText('No favorite pokemon found')).toBeDefined();
   });
 
-  it('Testa a renderização sem pokemons favoritados', () => {
+  it('Testa a renderização com pokemons favoritados', () => {
     const pokemonTest = {
       id: 25,
       name: 'Pikachu',
