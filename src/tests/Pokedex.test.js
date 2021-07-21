@@ -16,6 +16,7 @@ test('Se é exibido o próximo pokémon quando clica', () => {
   const firstPoke = screen.getByText(/Pikachu/);
   expect(firstPoke).toBeInTheDocument();
   const nextButton = screen.getByTestId(/next-pokemon/);
+  expect(nextButton).toHaveTextContent('Próximo pokémon');
   userEvent.click(nextButton);
   const nextPoke = screen.getByText(/Charmander/);
   expect(nextPoke).toBeInTheDocument();
