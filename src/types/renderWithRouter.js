@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
-  return({
+  return ({
     ...render(<Router history={ history }>{component}</Router>), history,
   });
 };
