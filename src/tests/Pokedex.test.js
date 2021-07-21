@@ -62,13 +62,22 @@ describe('Test all `Pokédex` component', () => {
 
     const pokemonTypes = [...new Set(pokemons.map(({ type }) => type))];
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    const nextButton = screen.getByTestId('next-pokemon');
 
     pokemonTypes.forEach((pokemonType, i) => {
       fireEvent.click(typeButtons[i]);
       const filteredPokemons = pokemons.filter(({ type }) => type === pokemonType);
 
       if (filteredPokemons.length !== 1) {
-        expect(filteredPokemons.every(({ type }) => type === pokemonType));
+        expect(filteredPokemons.every(({ type }) => type === pokemonType)).toBeTruthy();
+
+        filteredPokemons.forEach((pokemon) => {
+          const typeText = screen.getAllByText(pokemon.type);
+          expect(typeText[0].textContent).toBe(pokemonType);
+          fireEvent.click(nextButton);
+        });
+      } else {
+        expect(nextButton.disabled).toBeTruthy();
       }
     });
   });
