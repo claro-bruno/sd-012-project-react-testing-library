@@ -29,7 +29,7 @@ describe('Testa componente About', () => {
   test('Teste se a página contém a seguinte imagem de uma Pokédex:', () => {
     renderWithRouter(<About />);
     const img = screen.getByAltText('Pokédex');
-    expect(img[Object.keys(img)[0]].pendingProps.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
     expect(img).toBeInTheDocument();
   });
 });
