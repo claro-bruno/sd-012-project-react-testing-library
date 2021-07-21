@@ -7,7 +7,6 @@ import renderWithRouter from './renderWithRouter';
 describe('testa o componente App.js', () => {
   it('testa link Home', () => {
     const { history } = renderWithRouter(<App />);
-
     const homeLink = screen.getByRole('link', { name: /Home/i });
     expect(homeLink).toBeInTheDocument();
     userEvent.click(homeLink);
@@ -17,7 +16,6 @@ describe('testa o componente App.js', () => {
 
   it('testa link About', () => {
     const { history } = renderWithRouter(<App />);
-
     const aboutLink = screen.getByRole('link', { name: /About/i });
     expect(aboutLink).toBeInTheDocument();
     userEvent.click(aboutLink);
@@ -27,7 +25,6 @@ describe('testa o componente App.js', () => {
 
   it('testa link Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
-
     const favoriteLink = screen.getByRole('link', { name: /Favorite Pokémons/i });
     expect(favoriteLink).toBeInTheDocument();
     userEvent.click(favoriteLink);
@@ -37,7 +34,6 @@ describe('testa o componente App.js', () => {
 
   it('testa url desconhecida', () => {
     const { history } = renderWithRouter(<App />);
-
     history.push('/xablau');
     const noMatch = screen.getByRole('heading', { name: /Page requested not found/i });
     expect(noMatch).toBeInTheDocument();
