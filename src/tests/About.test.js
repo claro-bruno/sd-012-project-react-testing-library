@@ -11,4 +11,16 @@ describe('Testa todo About.js', () => {
     expect(headingAbout).toBeVisible();
   });
 
+  it('renderiza dois parágrafos', () => {
+    renderWithRouter(<About />);
+
+    const firstText = /This application simulates a Pokédex/i;
+    const secondText = /One can filter Pokémons by type/i;
+
+    const firstParagraph = screen.getByText(firstText);
+    expect(firstParagraph).toBeVisible();
+
+    const secondParagraph = screen.getByText(secondText);
+    expect(secondParagraph).toBeInTheDocument();
+  });
 });
