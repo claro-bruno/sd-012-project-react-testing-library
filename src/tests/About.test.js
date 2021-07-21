@@ -1,3 +1,18 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
 import About from '../components/About';
 import renderWithRouter from '../renderWithRouter';
+
+describe('Testes sobre o componente About', () => {
+  beforeEach(() => {
+    renderWithRouter(<About />);
+  });
+  it('Testa se a página contém todas as informações sobre a Pokédex', () => {
+    const aboutHeader = screen.getByRole('heading', { level: 2 });
+    expect(aboutHeader.innerHTML).toBe('About Pokédex');
+  });
+  it('Verifica se a página contém 2 parágrafos com textos sobre', () => {
+    const allParagraphs = screen.getAllByText(/pokémons/i);
+    expect(allParagraphs.length).toBe(2);
+  });
+});
