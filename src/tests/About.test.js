@@ -4,7 +4,7 @@ import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
 
 describe('Testa About', () => {
-  test('Testa se há informações sobre a Pokédex', async () => {
+  test('Testa se há informações sobre a Pokédex', () => {
     renderWithRouter(<About />);
     const aboutPokedex = screen.getByRole('heading');
     expect(aboutPokedex).toHaveTextContent('About Pokédex');
