@@ -22,6 +22,7 @@ describe('Testes para componente Pokedex', () => {
 
   it('Verifica se mostra o proximo pokemon da lista ao clicar em next', () => {
     const nextButton = screen.getByTestId('next-pokemon');
+    expect(nextButton).toHaveTextContent(/Próximo pokémon/i);
     pokemons.forEach((pokemon, index) => {
       const poke = screen.getByText(pokemon.name);
       expect(poke).toBeInTheDocument();
