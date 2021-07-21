@@ -30,8 +30,6 @@ describe('Testa o redirecionamento dos links', () => {
     fireEvent.click(links[0]);
     const pathName = history.location.pathname;
     expect(pathName).toBe('/');
-    const text = screen.getAllByText(/Encountered pokémons/i);
-    expect(text[0]).toBeInTheDocument();
   });
 
   test('Testa se a aplicação é redirecionada para a página About', () => {
@@ -40,8 +38,6 @@ describe('Testa o redirecionamento dos links', () => {
     fireEvent.click(links[1]);
     const pathName = history.location.pathname;
     expect(pathName).toBe('/about');
-    const text = screen.getByText(/About Pokédex/i);
-    expect(text).toBeInTheDocument();
   });
 
   test('Testa se a aplicação é redirecionada para a página Pokémons Favoritados', () => {
@@ -50,8 +46,6 @@ describe('Testa o redirecionamento dos links', () => {
     fireEvent.click(links[1]);
     const pathName = history.location.pathname;
     expect(pathName).toBe('/favorites');
-    const text = screen.getAllByText(/Favorite pokémons/i);
-    expect(text[0]).toBeInTheDocument();
   });
 
   test('Teste se a aplicação é redirecionada para a página Not Found', () => {
