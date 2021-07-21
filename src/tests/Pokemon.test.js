@@ -22,9 +22,11 @@ describe('Teste componente <Pokemon />', () => {
 
     const name = screen.getByTestId('pokemon-name');
     expect(name).toBeInTheDocument();
+    expect(name).toHaveTextContent(`${pokemon.name}`);
 
     const type = screen.getByTestId('pokemon-type');
     expect(type).toBeInTheDocument();
+    expect(type).toHaveTextContent(`${pokemon.type}`);
 
     const weigth = screen.getByTestId('pokemon-weight');
     expect(weigth).toBeInTheDocument();
