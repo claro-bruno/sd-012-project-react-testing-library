@@ -1,21 +1,21 @@
 import React from 'react';
-import renderWithRouter from './renderWithRouter';
 import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('requisito 1- Testa componente App', () => {
-
   it('App possui 3 Links fixos: Home, About, Favorite Pokémons', () => {
-    const { getAllByRole } = renderWithRouter(<App />);
-    const linkList = getAllByRole('link');
+    renderWithRouter(<App />);
+    const linkList = screen.getAllByRole('link');
     expect(linkList[0].innerHTML).toBe('Home');
     expect(linkList[1].innerHTML).toBe('About');
     expect(linkList[2].innerHTML).toBe('Favorite Pokémons');
   });
 
   it('Link Home redireciona para o path / ', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const linkHome = getByText('Home');
+    const { history } = renderWithRouter(<App />);
+    const linkHome = screen.getByText('Home');
 
     userEvent.click(linkHome);
 
@@ -25,8 +25,8 @@ describe('requisito 1- Testa componente App', () => {
   });
 
   it('Link About redireciona para o path /about ', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const linkAbout = getByText('About');
+    const { history } = renderWithRouter(<App />);
+    const linkAbout = screen.getByText('About');
 
     userEvent.click(linkAbout);
 
@@ -36,8 +36,8 @@ describe('requisito 1- Testa componente App', () => {
   });
 
   it('Link Favorite Pokémons redireciona para o path /favorites ', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const linkFavorites = getByText('Favorite Pokémons');
+    const { history } = renderWithRouter(<App />);
+    const linkFavorites = screen.getByText('Favorite Pokémons');
 
     userEvent.click(linkFavorites);
 
@@ -47,9 +47,9 @@ describe('requisito 1- Testa componente App', () => {
   });
 
   it('Redireciona para pagina not found quando path não existe', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/fofis');
-    const noPathMsg = getByText('Page requested not found');
+    const noPathMsg = screen.getByText('Page requested not found');
     expect(noPathMsg).toBeInTheDocument();
   });
-})
+});
