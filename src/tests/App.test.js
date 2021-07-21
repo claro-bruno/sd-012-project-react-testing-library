@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
@@ -60,5 +61,14 @@ describe('Testa todo o App.js', () => {
 
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
+  });
+
+  it('endereço inválido', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/endereço-invalido');
+
+    const emoji = screen.getByLabelText('Crying emoji');
+    expect(emoji).toBeInTheDocument();
   });
 });
