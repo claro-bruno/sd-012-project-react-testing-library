@@ -42,4 +42,13 @@ describe('Testa todo o App.js', () => {
 
     expect(history.location.pathname).toBe('/');
   });
+
+  it('clicando no link "About"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const aboutLink = screen.getByText(/About/i);
+    userEvent.click(aboutLink);
+
+    expect(history.location.pathname).toBe('/about');
+  });
 });
