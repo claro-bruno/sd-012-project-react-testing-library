@@ -42,4 +42,25 @@ describe('Testa o componente App', () => {
     expect(header).toBeInTheDocument();
     expect(history.location.pathname).toBe('/about');
   });
+
+  it('Testa se é redirecionado ao Favorites ao clicar no link Favorite Pokémons.', () => {
+    const { history } = renderWithRouter(<App />);
+    expect(history.location.pathname).toBe('/');
+
+    const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    expect(favoriteLink).toBeInTheDocument();
+    userEvent.click(favoriteLink);
+
+    const header = screen.getByRole('heading', { name: 'Favorite pokémons' });
+    expect(header).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/favorites');
+  });
+
+  it('Testa se é direcionado para a pagina notfound caso a url não exista', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/trybe');
+    const imageText = { name: 'Pikachu crying because the page requested was not found' };
+    const image = screen.getByRole('img', imageText);
+    expect(image).toBeInTheDocument();
+  });
 });
