@@ -9,11 +9,10 @@ import pokemons from '../data';
 const match = { params: { id: 25 } };
 const favoritePokemon = { 25: true };
 const pokemonSelected = pokemons
-    .find((pokemon) => pokemon.id === match.params.id);
+  .find((pokemon) => pokemon.id === match.params.id);
 const { name, summary, foundAt } = pokemonSelected;
 
 describe('Testes para o componente PokemonDetails', () => {
-  
   it('Verifica se aparecem as informacoes detalhes na tela', () => {
     renderWithRouter(
       <PokemonDetails
