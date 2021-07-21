@@ -21,5 +21,6 @@ describe('Testando component About', () => {
   it('contem uma imagem específica', () => {
     const png = screen.getByAltText('Pokédex');
     expect(png.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(png).toBeInTheDocument();
   });
 });
