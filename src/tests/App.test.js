@@ -32,5 +32,8 @@ describe('Verifica se o topo da aplicação contém um conjunto fixo de links', 
     const firstLink = screen.getAllByRole('link');
     expect(firstLink[0].innerHTML).toBe('Home');
   });
-  
+  it('O terceiro Link deve possuir o texto "Favorite Pokémons"', () => {
+    const thirdLink = screen.getAllByRole('link');
+    expect(thirdLink[2].innerHTML).toBe('Favorite Pokémons');
+  });
 });
