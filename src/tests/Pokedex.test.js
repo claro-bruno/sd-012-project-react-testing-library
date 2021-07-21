@@ -18,15 +18,16 @@ describe('Testa o componente Pokedex.js', () => {
   });
   it('Testa se a Pokédex tem os botões de filtro.', () => {
     renderWithRouter(<App />);
-    const buttons = screen.getAllByRole('button');
-    expect(buttons[0]).toHaveTextContent('All');
-    expect(buttons[1]).toHaveTextContent('Electric');
-    expect(buttons[2]).toHaveTextContent('Fire');
-    expect(buttons[3]).toHaveTextContent('Bug');
-    expect(buttons[4]).toHaveTextContent('Poison');
-    expect(buttons[5]).toHaveTextContent('Psychic');
-    expect(buttons[6]).toHaveTextContent('Normal');
-    expect(buttons[7]).toHaveTextContent('Dragon');
+    const normalButton = screen.getByRole('button', { name: 'All' });
+    const buttons = screen.getAllByTestId('pokemon-type-button');
+    expect(normalButton).toBeInTheDocument();
+    expect(buttons[0]).toHaveTextContent('Electric');
+    expect(buttons[1]).toHaveTextContent('Fire');
+    expect(buttons[2]).toHaveTextContent('Bug');
+    expect(buttons[3]).toHaveTextContent('Poison');
+    expect(buttons[4]).toHaveTextContent('Psychic');
+    expect(buttons[5]).toHaveTextContent('Normal');
+    expect(buttons[6]).toHaveTextContent('Dragon');
   });
   it('Testa se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
