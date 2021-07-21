@@ -10,4 +10,13 @@ describe('Testa todo o NotFound.js', () => {
     const heading = screen.getByRole('heading', { name: /Page requested not found/i });
     expect(heading).toBeVisible();
   });
+
+  it('renderiza imagem', () => {
+    renderWithRouter(<NotFound />);
+
+    const IMG_URL = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+
+    const image = screen.getAllByRole('img');
+    expect(image[1]).toHaveAttribute('src', IMG_URL);
+  });
 });
