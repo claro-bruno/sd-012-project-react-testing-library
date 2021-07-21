@@ -7,8 +7,7 @@ import renderWithRouter from '../renderWithRouter';
 describe('Testando componente PokemonDetails', () => {
   const pokeMock = data[0];
 
-  const { id, name, type, averageWeight, image, summary, foundAt } = pokeMock;
-  const { value, measurementUnit } = averageWeight;
+  const { name, summary, foundAt } = pokeMock;
   it('Testa se a página de detalhes renderiza com as informações corretas', () => {
     renderWithRouter(<App />);
 

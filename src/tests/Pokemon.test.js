@@ -2,18 +2,10 @@ import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
+import data from '../data';
 
 describe('Testando componente Pokémon', () => {
-  const pokeMock = {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  };
+  const pokeMock = data[0];
   const { id, name, type, averageWeight, image } = pokeMock;
   const { value, measurementUnit } = averageWeight;
 
