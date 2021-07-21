@@ -4,7 +4,7 @@ import NotFound from '../components/NotFound';
 import renderWithRouter from './renderWithRouter';
 
 describe('testa o componente NotFound.js', () => {
-  it('testa se a tela exibe No favorite pokemon found, se nao tiver favoritos', () => {
+  it('testa se página contém um heading h2 com o texto Page requested not found', () => {
     renderWithRouter(<NotFound />);
 
     const title = screen.getByRole('heading', { name: /Page requested not found/i });
