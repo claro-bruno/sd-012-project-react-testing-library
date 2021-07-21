@@ -19,4 +19,3 @@ describe('Testa o component <About />', () => {
     expect(image).toHaveProperty('src', imageSrc);
   });
 });
-
