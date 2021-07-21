@@ -5,10 +5,10 @@ import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
 
 const isPokemonFavoriteById = {
-  4: true,
+  4: false,
   10: false,
   23: false,
-  25: true,
+  25: false,
   65: false,
   78: false,
   143: false,
