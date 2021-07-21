@@ -51,4 +51,14 @@ describe('Testa todo o App.js', () => {
 
     expect(history.location.pathname).toBe('/about');
   });
+
+  it('clicando no link "Favorite Pokémons"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const favoriteLink = screen.getByText(/Favorite Pokémons/i);
+    userEvent.click(favoriteLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
 });
