@@ -4,9 +4,11 @@ import { NotFound } from '../components';
 import renderWithRouter from './renderWithRouter';
 
 describe('Testa o componente <NotFound />', () => {
+  beforeEach(() => {
+    renderWithRouter(<NotFound />);
+  });
   it('Testa se o component possui um H2 com o texto "Page requested not found"',
     () => {
-      renderWithRouter(<NotFound />);
       const h2 = screen.getByRole('heading',
         { name: /Page requested not found/i });
 
@@ -15,7 +17,6 @@ describe('Testa o componente <NotFound />', () => {
     });
 
   it('Testa se a página mostra uma imagem', () => {
-    renderWithRouter(<NotFound />);
     const img = screen.getAllByRole('img')[1];
 
     expect(img).toHaveProperty('src',
