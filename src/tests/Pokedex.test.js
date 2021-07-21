@@ -41,6 +41,16 @@ describe('Testa o componente Pokedex.js', () => {
     expect(shownPoke.length).toBe(1);
   });
 
+  test('Testa se existe os botões de filtro', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ favoritesPoke() }
+    />);
+    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(filterButtons[0]).toBeVisible();
+    expect(filterButtons[filterButtons.length - 1]).toBeVisible();
+  });
+
   test('Testa se existe um botão para resetar o filtro', () => {
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
