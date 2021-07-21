@@ -15,9 +15,9 @@ describe('Testa o componente NotFound', () => {
 
   test('Testa se página mostra a imagem', () => {
     const imgUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const alt = 'Pikachu crying because the page requested was not found';
+    const imgAlt = 'Pikachu crying because the page requested was not found';
 
-    const image = screen.getByAltText(alt);
+    const image = screen.getByAltText(imgAlt);
     expect(image).toHaveProperty('src', imgUrl);
   });
 });
