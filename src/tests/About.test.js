@@ -18,7 +18,6 @@ describe('Testando o about', () => {
     const info2Heper = 'and see more details for each one of them';
     const info1 = screen.getByText(`This application simulates a Pokédex, ${info1Heper}`);
     const info2 = screen.getByText(`One can filter Pokémons by type, ${info2Heper}`);
-    // const info2 = screen.getByText('a digital encyclopedia containing all Pokémons');
     expect(info1).toBeInTheDocument();
     expect(info2).toBeInTheDocument();
   });
