@@ -3,7 +3,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('testes dos componentes App', () => {
+describe('testes do componente App', () => {
   it('Testa se o topo da aplicação possui três links de navegação', () => {
     renderWithRouter(<App />);
     const homeLink = screen.getByText('Home');
