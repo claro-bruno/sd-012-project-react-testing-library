@@ -22,6 +22,7 @@ describe('Testa renderização da página FavoritePokemons', () => {
     const linkToFavoritesPage = screen.getByText('Favorite Pokémons');
     userEvent.click(linkToFavoritesPage);
     const favoritePokemon = screen.getByAltText(/is marked as favorite/i);
+    // faz a checagem a partir do alt text de acordo com dica da colega Adriana Biberg
     expect(favoritePokemon).toBeDefined();
   });
 });
