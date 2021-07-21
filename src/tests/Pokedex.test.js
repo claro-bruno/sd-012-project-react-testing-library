@@ -32,4 +32,30 @@ describe('Testa o componente Pokedex', () => {
     const pokeId = screen.getAllByTestId('pokemon-name');
     expect(pokeId).toHaveLength(1);
   });
+
+  it('Testa os filtros do pokémon', () => {
+    renderWithRouter(<App />);
+
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+
+    data.forEach((item) => {
+      const button = screen.getByRole('button', { name: item.type });
+      expect(button).toBeDefined();
+      expect(buttonAll).toBeDefined();
+    });
+  });
+
+  it('Testa se reseta o filtro', () => {
+    renderWithRouter(<App />);
+    const noFilter = screen.getByText('Pikachu');
+    expect(noFilter).toBeDefined();
+
+    userEvent.click(screen.getByRole('button', { name: 'Fire' }));
+    expect(screen.getByText('Charmander')).toBeDefined();
+    userEvent.click(screen.getByRole('button', { name: /Próximo Pokémon/i }));
+    expect(screen.getByText('Rapidash')).toBeDefined();
+
+    userEvent.click(screen.getByRole('button', { name: 'All' }));
+    expect(noFilter).toBeDefined();
+  });
 });
