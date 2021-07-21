@@ -3,11 +3,12 @@ import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
+const moreDetails = 'More details';
+
 describe('Verifica se as informações dos pokemons estão corretas', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
   });
-  const moreDetails = 'More details';
 
   it('Verifica se o tipo do pokémon está correto', () => {
     const enteringPokeDetails = screen.getByText(moreDetails);
@@ -36,8 +37,6 @@ describe('Verifica se as informações dos pokemons estão corretas', () => {
 });
 
 describe('Verificações a respeito do rotaemento ', () => {
-  const moreDetails = 'More details';
-
   it('Verifica se a URL contém informações do id e um padrão especifico', () => {
     const { history } = renderWithRouter(<App />);
     const enteringPokeDetails = screen.getByText(moreDetails);
@@ -50,7 +49,6 @@ describe('Testes em torno de pokemóns favoritados', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
   });
-  const moreDetails = 'More details';
 
   it('Quando clicado em favorito, deve exibir uma estrela ao lado da imagem', () => {
     const enteringPokeDetails = screen.getByText(moreDetails);
