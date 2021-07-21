@@ -1,18 +1,36 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from '../App';
+import { Pokedex } from '../components';
 import data from '../data';
 import renderWithRouter from './renderWithRouter';
 
+const favoritesPkmn = {
+  4: false,
+  10: false,
+  23: false,
+  25: false,
+  65: true,
+  78: false,
+  143: false,
+  148: true,
+  151: false,
+};
+
 describe('Testa o componente Pokedex', () => {
-  it('Verifica se renderia o header com o texto correspondente', () => {
-    renderWithRouter(<App />);
+  it('Verifica se renderiza o header com o texto correspondente', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ favoritesPkmn }
+    />);
     expect(screen.getByRole('heading', { name: 'Encountered pokémons' }));
   });
 
   it('Verifica se o botão proximo pokemon funciona corretamente', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ favoritesPkmn }
+    />);
     const button = screen.getByRole('button', { name: /Próximo pokémon/i });
 
     const pokeInicial = screen.getByText('Pikachu');
@@ -28,13 +46,19 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Ter apenas um pokémon sendo carregado na página', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ favoritesPkmn }
+    />);
     const pokeId = screen.getAllByTestId('pokemon-name');
     expect(pokeId).toHaveLength(1);
   });
 
   it('Testa os filtros do pokémon', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ favoritesPkmn }
+    />);
 
     const buttonAll = screen.getByRole('button', { name: 'All' });
 
@@ -46,7 +70,10 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se reseta o filtro', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokedex
+      pokemons={ data }
+      isPokemonFavoriteById={ favoritesPkmn }
+    />);
     const noFilter = screen.getByText('Pikachu');
     expect(noFilter).toBeDefined();
 
