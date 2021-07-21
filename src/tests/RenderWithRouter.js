@@ -1,13 +1,21 @@
-import React from 'react';
-import { Router } from 'react-router-dom';
-import { CreateMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
+import React from 'react';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 
-const renderWithRouter = (component) => {
-  const history = CreateMemoryHistory();
-  return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
-  });
-};
+function renderWithRouter(componentToRender) {
+  const historyMock = createMemoryHistory();
+
+  const renderObject = render(
+    <Router history={ historyMock }>
+      {componentToRender}
+    </Router>,
+  );
+
+  return {
+    ...renderObject,
+    history: historyMock,
+  };
+}
 
 export default renderWithRouter;
