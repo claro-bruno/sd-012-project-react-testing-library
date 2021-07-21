@@ -8,7 +8,7 @@ describe('Testa o component About.js', () => {
   });
 
   test('Testa se contém informações sobre a Pokédex', () => {
-    const seaction = screen.getByTestId('about');
+    const seaction = screen.getByText(/About Pokédex/);
     expect(seaction).toBeInTheDocument();
   });
 
@@ -19,12 +19,10 @@ describe('Testa o component About.js', () => {
   });
 
   test('Testa se contém dois parágrafos com texto sobre a Pokédex', () => {
-    const text1 = screen.getByTestId('info1');
-    const text2 = screen.getByTestId('info2');
+    const text1 = screen.getByText(/simulates a Pokédex/);
+    const text2 = screen.getByText(/Pokémons by type/);
     expect(text1).toBeInTheDocument();
     expect(text2).toBeInTheDocument();
-    const paragraph = screen.getAllByTitle('info');
-    expect(paragraph).toHaveLength(2);
   });
 
   test('Testa se contém a imagem de uma pokédex', () => {
