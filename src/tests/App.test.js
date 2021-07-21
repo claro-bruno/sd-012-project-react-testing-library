@@ -3,7 +3,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Teste o componente <App.js />', () => {
+describe('1. Teste o componente <App.js />', () => {
   it('O primeiro link deve possuir o texto Home.', () => {
     renderWithRouter(<App />);
     const linkToHome = screen.getByRole('link', { name: /Home/i });
@@ -39,5 +39,10 @@ describe('Teste o componente <App.js />', () => {
     fireEvent.click(linkToFavorite);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
+  });
+  it('Testa redirecionamento para Not-Found ao entrar em URL indefinida.', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/404');
+    expect(screen.getByText('Page requested not found')).toBeInTheDocument();
   });
 });
