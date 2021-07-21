@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithrouter';
 
-describe('Verifica App.js', () => {
+describe('Verifica FavoritePokemons.js', () => {
   it('Testa se é exibido na tela a mensagem "No favorite pokemon found". ', () => {
     renderWithRouter(<App />);
     const linkFavoritePokemon = screen.getByRole('link', { name: /favorite pokémon/i });
