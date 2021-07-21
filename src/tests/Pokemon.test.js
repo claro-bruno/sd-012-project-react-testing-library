@@ -14,14 +14,14 @@ describe('Testes para o componente Pokemon', () => {
         isFavorite
       />,
     );
-    const { averageWeight, image, name } = pokemons[0];
+    const { averageWeight, image, name, type } = pokemons[0];
     const { measurementUnit, value } = averageWeight;
     const pokeName = screen.getByTestId('pokemon-name');
     const pokeType = screen.getByTestId('pokemon-type');
     const pokeWeight = screen.getByTestId('pokemon-weight');
     const pokeImage = screen.getByAltText(`${name} sprite`);
-    expect(pokeName).toBeInTheDocument();
-    expect(pokeType).toBeInTheDocument();
+    expect(pokeName).toHaveTextContent(name);
+    expect(pokeType).toHaveTextContent(type);
     expect(pokeWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     expect(pokeImage).toHaveAttribute('src', image);
   });
