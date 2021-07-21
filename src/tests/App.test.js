@@ -37,4 +37,11 @@ describe('Testa o componente App', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+
+  test('Testa Not Found', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/xablau');
+    expect(screen.getByText('Page requested not found')).toBeInTheDocument();
+  });
 });
