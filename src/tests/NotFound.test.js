@@ -7,6 +7,6 @@ describe('Requisito 4 - Teste o componente <NotFound.js /> ', () => {
     render(<NotFound />);
     const img = screen.getByAltText(/Pikachu crying/i);
     expect(screen.getByRole('heading')).toHaveTextContent('Page requested not found 😭');
-    expect(img).toBeInTheDocument();
+    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
