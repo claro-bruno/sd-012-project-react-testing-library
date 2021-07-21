@@ -10,10 +10,10 @@ describe('Testa o componente <Pokemon />', () => {
   });
 
   it('Testa se o card possui nome correto do pokemon', () => {
-    const pokeDetails = screen.getByText(/more details/i);
+    const pokeDetails = screen.getByText('More details');
     userEvent.click(pokeDetails);
-    const pikachu = screen.getAllByText(/pikachu/i)[1];
-    expect(pikachu).toBeInTheDocument();
+    const pikachu = screen.getByText('Pikachu');
+    expect(pikachu).toBeDefined();
   });
 
   it('Testa se o card possui tipo correto do pokemon', () => {
