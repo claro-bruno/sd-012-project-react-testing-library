@@ -1,5 +1,5 @@
 import React from 'react';
-import { getByRole, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import Pokedex from '../components/Pokedex';
@@ -20,10 +20,17 @@ describe('Testes para componente Pokedex', () => {
   });
   it('Verifica se mostra o proximo pokemon da lista ao clicar em next', () => {
     const nextButton = screen.getByRole('button', { name: /Próximo pokémon/i });
-    const pikachu = screen.getByText(pokemons[0].name);
-    expect(pikachu).toBeInTheDocument();
-    userEvent.click(nextButton);
-    const charmander = screen.getByText(pokemons[1].name);
-    expect(charmander).toBeInTheDocument();
+    pokemons.forEach((pokemon, index) => {
+      const poke = screen.getByText(pokemon.name);
+      expect(poke).toBeInTheDocument();
+      userEvent.click(nextButton);
+      let nextIndex = index + 1;
+      if(index === pokemons.length - 1) nextIndex = 0;
+      const nextPoke = screen.getByText(pokemons[nextIndex].name);
+      expect(nextPoke).toBeInTheDocument();
+    });
   });
+  it('Verifica se e mostrado so um pokemon por vez', () => {
+
+  })
 });
