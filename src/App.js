@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-
+// July was here
 import {
   About,
   FavoritePokemons,
