@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Verifica se exist os links do App', () => {
+describe('Testando os links do App', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
   });
