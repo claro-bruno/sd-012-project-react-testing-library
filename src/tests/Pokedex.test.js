@@ -23,7 +23,7 @@ test('Se é exibido o próximo pokémon quando clica', () => {
 
 test('Se é exibido apenas um pokemon por vez', () => {
   renderWithRouter(<App />);
-  const pokeLen = screen.getAllByText('Pikachu');
+  const pokeLen = screen.getAllByTestId('pokemon-name');
   expect(pokeLen.length).toBe(1);
 });
 
