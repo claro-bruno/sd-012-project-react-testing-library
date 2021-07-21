@@ -18,6 +18,10 @@ describe('Testa o componente PokemonDetails', () => {
     renderWithRouter(<App />);
     const moreDetailsLink = screen.getByRole('link', { name: /more details/i });
     userEvent.click(moreDetailsLink);
+
+    const title = screen.getByText(/pikachu details/i);
+    expect(title).toBeInTheDocument();
+
     const name = screen.getByTestId('pokemon-name');
     expect(name).toHaveTextContent(/pikachu/i);
 
