@@ -10,7 +10,7 @@ describe('Testando component About', () => {
     expect(nivel).toBeInTheDocument();
     expect(nivel.innerHTML).toBe('About Pokédex');
   });
-  it('tem 2 paragrafos sobre a Pokedex', () => {
+  it('tem 2 paragrafos sobre a Pokedex com este texto', () => {
     const parag = screen.getByText('This application simulates a Pokédex, '
     + 'a digital encyclopedia containing all Pokémons');
     const para2 = screen.getByText('One can filter Pokémons by type, '
