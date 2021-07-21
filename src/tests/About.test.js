@@ -19,7 +19,7 @@ describe('Testa a página About', () => {
     expect(pokedexInfo).toBeInTheDocument();
   });
 
-  it('Testa de tem um h2 com o tedto about pokedex', () => {
+  it('Testa de tem um h2 com o texto about pokedex', () => {
     const headerTitle = screen.getByRole('heading', { name: 'About Pokédex' });
     expect(headerTitle).toBeDefined();
   });
