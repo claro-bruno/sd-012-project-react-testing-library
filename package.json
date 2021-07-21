@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.6.3",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "gitmoji-cli": "^4.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
