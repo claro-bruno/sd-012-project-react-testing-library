@@ -8,13 +8,13 @@ describe('Testa o componente Pokemon', () => {
   it('Testa se o card renderizado contém o nome do Pokémon', () => {
     renderWithRouter(<App />);
     const name = screen.getByTestId('pokemon-name');
-    expect(name).toBeInTheDocument();
+    expect(name).toHaveTextContent(/pikachu/i);
   });
 
   it('Testa se o card renderizado contém o tipo do Pokémon', () => {
     renderWithRouter(<App />);
     const type = screen.getByTestId('pokemon-type');
-    expect(type).toBeInTheDocument();
+    expect(type).toHaveTextContent(/electric/i);
   });
 
   it('Testa se o card possui o peso do Pokémon', () => {
