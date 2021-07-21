@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { getByRole, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
@@ -7,15 +7,16 @@ import pokemons from '../data';
 
 describe('Testes para o componente Pokemon', () => {
   beforeEach(() => {
-    renderWithRouter(
-    <Pokemon
-      pokemon={ pokemons[0] }
-      showDetailsLink
-      isFavorite
-    />,
-    );
+    
   });
   it('Testa se os dados do pokemon aparecem no card', () => {
+    renderWithRouter(
+      <Pokemon
+        pokemon={ pokemons[0] }
+        showDetailsLink
+        isFavorite
+      />,
+    );
     const { averageWeight, image, name} = pokemons[0];
     const { measurementUnit, value } = averageWeight;
     const pokeName = screen.getByTestId('pokemon-name');
@@ -26,5 +27,18 @@ describe('Testes para o componente Pokemon', () => {
     expect(pokeType).toBeInTheDocument();
     expect(pokeWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`)
     expect(pokeImage).toHaveAttribute('src', image);
+  });
+
+  it('Testa se o card possui um link para detalhes do pokemon', () => {
+    const { history } = renderWithRouter(
+      <Pokemon
+        pokemon={ pokemons[0] }
+        showDetailsLink
+        isFavorite
+      />,
+    );
+    const pokeDetails = screen.getByRole('link', { name: /More details/i });
+    userEvent.click(pokeDetails);
+    expect(history.location.pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
 });
