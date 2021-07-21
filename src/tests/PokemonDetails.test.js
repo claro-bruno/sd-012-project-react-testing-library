@@ -2,21 +2,23 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
+import App from '../App';
 import PokemonDetails from '../components/PokemonDetails';
 import pokemons from '../data';
 
 const match = { params: { id: 25 } };
+const favoritePokemon = { 25: true };
 
 describe('Testes para o componente PokemonDetails', () => {
-  it('Testa se aparecem as informacoes detalhes na tela', () => {
-    const pokemonSelected = pokemons
-      .find((pokemon) => pokemon.id === match.params.id);
-    const { name, summary } = pokemonSelected;
+  const pokemonSelected = pokemons
+    .find((pokemon) => pokemon.id === match.params.id);
+  const { name, summary, foundAt } = pokemonSelected;
+  it('Verifica se aparecem as informacoes detalhes na tela', () => {
     renderWithRouter(
       <PokemonDetails
         pokemons={ pokemons }
         match={ match }
-        isPokemonFavoriteById={ { 25: true } }
+        isPokemonFavoriteById={ favoritePokemon }
       />,
     );
     const detailsTitle = screen.getByRole('heading', { name: `${name} Details` });
@@ -29,24 +31,34 @@ describe('Testes para o componente PokemonDetails', () => {
     expect(pokeSummary).toBeInTheDocument();
   });
 
-  it('Teste que verifica se ha uma secao com mapas da localizacao do pokemon', () => {
-    const pokemonSelected = pokemons
-      .find((pokemon) => pokemon.id === match.params.id);
+  it('Verifica se ha uma secao com mapas da localizacao do pokemon', () => {
     renderWithRouter(
       <PokemonDetails
         pokemons={ pokemons }
         match={ match }
-        isPokemonFavoriteById={ { 25: true } }
+        isPokemonFavoriteById={ favoritePokemon }
       />,
     );
     const locationsTitle = screen
-      .getByRole('heading', { name: `Game Locations of ${pokemon.name}` });
+      .getByRole('heading', { name: `Game Locations of ${name}` });
     expect(locationsTitle).toBeInTheDocument();
-    pokemonSelected.foundAt.forEach(({ location, map }, index) => {
+    foundAt.forEach(({ location, map }, index) => {
       const locationName = screen.getByText(location);
-      const locationImage = screen.getAllByAltText(`${pokemon.name} location`);
+      const locationImage = screen.getAllByAltText(`${name} location`);
       expect(locationName).toBeInTheDocument();
       expect(locationImage[index]).toHaveAttribute('src', map);
     });
+  });
+
+  it('Verifica se ha um checkbox para favoritar e se ele funciona', () => {
+    // ideia retirada do codigo do rogrigo merlone : https://github.com/tryber/sd-012-project-react-testing-library/pull/2/files
+    renderWithRouter(<App />);
+    const detailsLink = screen.getByRole('link', { name: /More Details/i });
+    userEvent.click(detailsLink);
+    const favCheckbox = screen.getByLabelText(/Pokémon favoritado\?/i);
+    expect(favCheckbox).toBeInTheDocument();
+    userEvent.click(favCheckbox);
+    const favIcon = screen.getByAltText(`${name} is marked as favorite`);
+    expect(favIcon).toBeInTheDocument();
   });
 });
