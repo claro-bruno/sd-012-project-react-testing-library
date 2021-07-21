@@ -45,5 +45,3 @@ describe('Testa o componente App', () => {
     expect(notFoud).toBeInTheDocument();
   });
 });
-
-// it('', () => {});
