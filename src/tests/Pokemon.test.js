@@ -1,14 +1,11 @@
 import React from 'react';
-import { getByRole, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
 describe('Testes para o componente Pokemon', () => {
-  beforeEach(() => {
-    
-  });
   it('Testa se os dados do pokemon aparecem no card', () => {
     renderWithRouter(
       <Pokemon
@@ -17,7 +14,7 @@ describe('Testes para o componente Pokemon', () => {
         isFavorite
       />,
     );
-    const { averageWeight, image, name} = pokemons[0];
+    const { averageWeight, image, name } = pokemons[0];
     const { measurementUnit, value } = averageWeight;
     const pokeName = screen.getByTestId('pokemon-name');
     const pokeType = screen.getByTestId('pokemon-type');
@@ -25,11 +22,11 @@ describe('Testes para o componente Pokemon', () => {
     const pokeImage = screen.getByAltText(`${name} sprite`);
     expect(pokeName).toBeInTheDocument();
     expect(pokeType).toBeInTheDocument();
-    expect(pokeWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`)
+    expect(pokeWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     expect(pokeImage).toHaveAttribute('src', image);
   });
 
-  it('Testa se o card possui um link para detalhes do pokemon e ao clicar leva a pagina de detalhes', () => {
+  it('Testa se o card possui um link para detalhes e ao clicar leva a pagina', () => {
     const { history } = renderWithRouter(
       <Pokemon
         pokemon={ pokemons[0] }
