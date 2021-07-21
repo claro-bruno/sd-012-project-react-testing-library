@@ -5,35 +5,39 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 describe('Testa o componente <Pokedex />', () => {
-  it('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
+  beforeEach(() => {
     renderWithRouter(<App />);
+  });
+
+  it('Teste se página contém um heading h2 com o texto Encountered pokémons', () => {
     const h2 = screen.getByRole('heading', { name: /Encountered pokémons/i });
     expect(h2).toBeInTheDocument();
   });
 
   it('Testa se o próximo pokemon da lista é exibido', () => {
-    renderWithRouter(<App />);
-    const btn = screen.getAllByRole('button')[8];
-    expect(btn).toHaveTextContent(/Próximo pokémon/i);
+    const nextBtn = screen.getByText('Próximo pokémon');
+    userEvent.click(nextBtn);
 
-    userEvent.click(btn);
-    const nextPokemon = screen.getByText(/charmander/i);
-    expect(nextPokemon).toBeInTheDocument();
-    userEvent.click(btn);
-    userEvent.click(btn);
-    userEvent.click(btn);
-    userEvent.click(btn);
-    userEvent.click(btn);
-    userEvent.click(btn);
-    userEvent.click(btn);
-    userEvent.click(btn);
-    const pikachu = screen.getByText(/pikachu/i);
-    expect(pikachu).toBeInTheDocument();
+    expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/caterpie/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/ekans/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/alakazam/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/mew/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/rapidash/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/snorlax/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/dragonair/i)).toBeInTheDocument();
+    userEvent.click(nextBtn);
+    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
   });
 
   it('Testa se é mostrado apenas um pokémon por vez', () => {
-    renderWithRouter(<App />);
-
     const btn = screen.getAllByRole('button')[8];
     expect(btn).toHaveTextContent(/Próximo pokémon/i);
 
@@ -85,5 +89,12 @@ describe('Testa o componente <Pokedex />', () => {
     const dragonBtn = screen.getAllByRole('button')[7];
     expect(dragonBtn).toHaveTextContent(/dragon/i);
     userEvent.click(dragonBtn);
+  });
+
+  it('Testa se a pokedex contem um botao para resetar o fitro', () => {
+    const allBtn = screen.getByRole('button', { name: 'All' });
+    const noFilter = screen.getByText(/pikachu/i);
+    userEvent.click(allBtn);
+    expect(noFilter).toBeInTheDocument();
   });
 });
