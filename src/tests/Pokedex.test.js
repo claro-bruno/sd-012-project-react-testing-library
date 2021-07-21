@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { getByTestId, getByText, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
@@ -18,7 +18,7 @@ describe('testa o componente pokedex', () => {
     const button = screen.getByText(/Próximo pokémon/i);
     userEvent.click(button);
 
-    const nextPokemon = screen.getByText('Charmander');
+    const nextPokemon = screen.getByTestId('pokemon-name');
     expect(nextPokemon).toBeInTheDocument();
   });
 
@@ -32,9 +32,14 @@ describe('testa o componente pokedex', () => {
   });
 
   it('Testa os botões de filtrar por tipo', () => {
-    const poisonFilter = screen.getByRole('button', { name: 'Poison' });
-    userEvent.click(poisonFilter);
-    const poisonPokemon = screen.getByText('Ekans');
-    expect(poisonPokemon).toBeInTheDocument();
+    const fireFilter = screen.getByRole('button', { name: 'Fire' });
+    expect(fireFilter).toHaveTextContent('Fire');
+    userEvent.click(fireFilter);
+    const firePokemon = screen.getByText('Charmander');
+    expect(firePokemon).toBeInTheDocument();
+
+    const nextPokemon = screen.getByText('Próximo pokémon');
+    userEvent.click(nextPokemon);
+    expect(screen.getByText('Rapidash')).toBeInTheDocument();
   });
 });
