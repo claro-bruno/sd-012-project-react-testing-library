@@ -35,6 +35,7 @@ describe('Teste se o topo da aplicação contém um conjunto fixo de links de na
       // Teste se a aplicação é redirecionada para a página de Pokémons Favoritados
       userEvent.click(linkFavorites);
       const { pathname } = history.location;
+      // verificar se a url é "/favorites"
       expect(pathname).toBe('/favorites');
       expect(linkFavorites).toBeInTheDocument();
     });
