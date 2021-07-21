@@ -18,7 +18,12 @@ describe('Testando o componente pokedex', () => {
     expect(button.innerHTML).toBe('Próximo pokémon');
   });
 
-  test('Verifica se o botão All está na página', () => {
+  test('Verifica se a Pokedex tem os buttons de filtro', () => {
+    const SETE = 7;
+    expect(screen.getAllByTestId('pokemon-type-button').length).toBe(SETE);
+  });
+
+  test('Verifica se o botão All funciona', () => {
     fireEvent.click(screen.getByText('Fire'));
     expect(screen.getByTestId('pokemon-type').innerHTML).toBe('Fire');
     fireEvent.click(screen.getByText('All'));
