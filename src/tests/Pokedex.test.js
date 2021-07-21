@@ -33,4 +33,7 @@ describe('Testes no componente renderWithRouter', () => {
     fireEvent.click(nextPokeButton);
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
+  it('Verifica se é mostrado somente 1 pokémon por vez', () => {
+    expect(screen.getAllByTestId('pokemon-name').length).toBe(1);
+  });
 });
