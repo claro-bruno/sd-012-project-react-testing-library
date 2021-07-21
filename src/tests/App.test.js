@@ -1,6 +1,6 @@
 import React from 'react';
-import renderWithRouter from '../services/renderWithRouter';
 import { screen, fireEvent } from '@testing-library/react';
+import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
 const appLinks = ['Home', 'About', 'Favorite Pokémons', 'More details'];
