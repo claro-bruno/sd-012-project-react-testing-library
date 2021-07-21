@@ -15,6 +15,13 @@ describe('Testando o componente Pokemon', () => {
     expect(pikachuImg2.src).not.toBe('');
   });
 
+  test('Verifica se o nome, tipo e peso do pokemon certo aparece na tela', () => {
+    const weight = 'Average weight: 6.0 kg';
+    expect(screen.getByTestId('pokemon-name').innerHTML).toBe('Pikachu');
+    expect(screen.getByTestId('pokemon-type').innerHTML).toBe('Electric');
+    expect(screen.getByTestId('pokemon-weight').innerHTML).toBe(weight);
+  });
+
   test('Verifica se More details te leva para o lugar correto', () => {
     fireEvent.click(screen.getByText(/More details/i));
     expect(screen.getByText(/Pikachu Details/i)).toBeInTheDocument();
