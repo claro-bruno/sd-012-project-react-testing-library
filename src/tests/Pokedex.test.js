@@ -19,7 +19,7 @@ describe('Test all `Pokédex` component', () => {
     expect(heading).toHaveTextContent(/encountered pokémons/i);
   });
 
-  test('if shows each pokemon after click in next button', () => {
+  test('if shows next pokemon after click in next button', () => {
     renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
@@ -28,8 +28,34 @@ describe('Test all `Pokédex` component', () => {
     );
 
     const nextButton = screen.getByTestId('next-pokemon');
+    expect(nextButton).toHaveTextContent('Próximo pokémon');
     pokemons.forEach((pokemon) => {
       expect(screen.getByText(pokemon.name)).toBeInTheDocument();
+      fireEvent.click(nextButton);
+    });
+  
+    const firstPokemon = screen.getByText('Pikachu');
+    expect(firstPokemon).toBeInTheDocument();
+  });
+
+  test('if shows only one pokemon per time', () => {
+    renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+
+    const nextButton = screen.getByTestId('next-pokemon');
+
+    pokemons.forEach(({ name }) => {
+      expect(screen.getByText(name)).toBeInTheDocument();
+
+      const withOutThisPokemon = pokemons.filter(({ name }) => name !== name);
+      withOutThisPokemon.forEach(({ name }) => {
+        expect(screen.queryByText(name)).toBeNull();
+      });
+
       fireEvent.click(nextButton);
     });
   });
