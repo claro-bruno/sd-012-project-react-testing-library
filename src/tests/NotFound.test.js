@@ -11,4 +11,9 @@ describe('Verificações do componente NotFound', () => {
     expect(screen.getByText('Page requested not found')).toBeTruthy();
     // ref https://stackoverflow.com/questions/55509875/how-to-query-by-text-string-which-contains-html-tags-using-react-testing-library
   });
+  it('Verifica se é exibido uma imagem específica nessa página', () => {
+    const imgAltText = 'Pikachu crying because the page requested was not found';
+    const findImage = screen.getByAltText(imgAltText);
+    expect(findImage.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  });
 });
