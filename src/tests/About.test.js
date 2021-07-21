@@ -23,6 +23,7 @@ describe('Testa renderização do componente About', () => {
     const paragraphTwo = screen.getByText(phraseTwo);
     expect(paragraphOne).toBeDefined();
     expect(paragraphTwo).toBeDefined();
+    // Teste realizado de acordo com a dica do colega Cristiano Lima
   });
 
   it('Testa se a página renderiza a imagem da pokedex', () => {
