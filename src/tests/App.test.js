@@ -29,4 +29,17 @@ describe('Testa o componente App', () => {
     const header = screen.getByRole('heading', { name: 'Encountered pokémons' });
     expect(header).toBeInTheDocument();
   });
+
+  it('Testa se é redirecionado ao About ao clicar no link about.', () => {
+    const { history } = renderWithRouter(<App />);
+    expect(history.location.pathname).toBe('/');
+
+    const aboutLink = screen.getByRole('link', { name: 'About' });
+    expect(aboutLink).toBeInTheDocument();
+    userEvent.click(aboutLink);
+
+    const header = screen.getByRole('heading', { name: 'About Pokédex' });
+    expect(header).toBeInTheDocument();
+    expect(history.location.pathname).toBe('/about');
+  });
 });
