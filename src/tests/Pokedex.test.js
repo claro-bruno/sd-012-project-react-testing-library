@@ -5,31 +5,6 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-const pokemons = [
-  {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-    summary: 'with electricity to make them tender enough to eat.',
-  },
-];
-
 test('Testa se contém um heading com Encountered Pokémons', () => {
   renderWithRouter(<App />);
   const pokeHeading = screen.getByText(/Encountered pokémons/);
@@ -46,10 +21,7 @@ test('Se é exibido o próximo pokémon quando clica', () => {
   expect(nextPoke).toBeInTheDocument();
 });
 
-test('Se é exibido apenas um pokemon por vez', async () => {
-  global.fetch = jest.fn()
-    .mockResolvedValue({ json: () => Promise.resolve(pokemons) });
-
+test('Se é exibido apenas um pokemon por vez', () => {
   renderWithRouter(<App />);
   const pokeLen = screen.getAllByText('Pikachu');
   expect(pokeLen.length).toBe(1);
