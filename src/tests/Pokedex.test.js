@@ -21,8 +21,9 @@ describe('Teste componente Pokedex', () => {
 
   it('Testa se os botões de filtro funcionam', () => {
     renderWithRouter(<App />);
-    const fireFilter = screen.getByRole('button', { name: /fire/i });
-    userEvent.click(fireFilter);
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(typeButtons[1]).toHaveTextContent(/fire/i);
+    userEvent.click(typeButtons[1]);
     const type = screen.getByTestId('pokemon-type');
     expect(type).toHaveTextContent(/Fire/i);
   });
