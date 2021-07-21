@@ -14,7 +14,9 @@ describe('Testa componente About', () => {
     renderWithRouter(<App />);
     const linkAbout = screen.getByRole('link', { name: /About/i });
     userEvent.click(linkAbout);
-    expect(screen.getByRole('heading', { name: /About Pokédex/i, level: 2 }));
+    expect(screen.getByRole('heading', {
+      name: /About Pokédex/i,
+      level: 2 })).toBeInTheDocument();
     expect(screen.getByText(PARAGRAPH_1)).toBeInTheDocument();
     expect(screen.getByText(PARAGRAPH_2)).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAttribute('src', SRC_POKEDEX);
