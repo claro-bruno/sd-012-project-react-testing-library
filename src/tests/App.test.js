@@ -1,16 +1,8 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
-import { Router } from 'react-router-dom';
 import App from '../App';
-
-function renderWithRouter(component) {
-  const history = createMemoryHistory();
-  return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
-  });
-}
+import renderWithRouter from '../renderWithRouter';
 
 describe('Testa todo o App', () => {
   it('Testa se o App é renderizado em seu estado inicial', () => {
