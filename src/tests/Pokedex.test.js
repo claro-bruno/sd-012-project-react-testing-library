@@ -15,8 +15,8 @@ describe('testa o componente pokedex', () => {
   });
 
   it('Testa se o próximo pokémon é exibido ao clicar no botão', () => {
-    const button = screen.getByText(/Próximo pokémon/i);
-    userEvent.click(button);
+    const buttonNext = screen.getByText(/Próximo pokémon/i);
+    userEvent.click(buttonNext);
 
     const nextPokemon = screen.getByTestId('pokemon-name');
     expect(nextPokemon).toBeInTheDocument();
@@ -32,6 +32,9 @@ describe('testa o componente pokedex', () => {
   });
 
   it('Testa os botões de filtrar por tipo', () => {
+    const typesButtons = 7;
+    expect(screen.getAllByTestId('pokemon-type-button').length).toBe(typesButtons);
+
     const fireFilter = screen.getByRole('button', { name: 'Fire' });
     expect(fireFilter).toHaveTextContent('Fire');
     userEvent.click(fireFilter);
@@ -41,5 +44,13 @@ describe('testa o componente pokedex', () => {
     const nextPokemon = screen.getByText('Próximo pokémon');
     userEvent.click(nextPokemon);
     expect(screen.getByText('Rapidash')).toBeInTheDocument();
+  });
+
+  it('Testa de o botão de próximo pokemon fica desabilitado', () => {
+    const bugFilter = screen.getByText('Bug');
+    userEvent.click(bugFilter);
+
+    const buttonNext = screen.getByText(/Próximo pokémon/i);
+    expect(buttonNext).toBeDisabled();
   });
 });
