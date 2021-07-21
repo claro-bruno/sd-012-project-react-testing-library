@@ -4,7 +4,7 @@ import { FavoritePokemons } from '../components';
 import renderWithRouter from './renderWithRouter';
 import mockFavoritePokemons from '../__mocks__/mockFavoritePokemons';
 
-describe('Teste do componente <About />', () => {
+describe('Teste do componente <FavoritePokemons />', () => {
   it(
     'Aparece na tela a mensagem "No favorite pokemon found" se não há pokémons favoritos',
     () => {
