@@ -20,7 +20,7 @@ describe('Verifica roteamentos da aplicação', () => {
     const headingTitle = screen.getByRole('heading', { level: 2 });
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
-    expect(headingTitle.innerHTML).toBe('Favorite pokémons');
+    expect(headingTitle).toHaveTextContent('Favorite pokémons');
   });
 });
 
