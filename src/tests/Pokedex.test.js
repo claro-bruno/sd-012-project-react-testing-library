@@ -5,6 +5,8 @@ import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import isPokemonFavoriteById from '../services/isPokemonFavoritById';
 
+const NEXT_BUTTON = 'next-pokemon';
+
 describe('Test all `Pokédex` component', () => {
   test('if contains a heading h2 with `Encountered Pokémons` text', () => {
     renderWithRouter(
@@ -27,13 +29,13 @@ describe('Test all `Pokédex` component', () => {
       />,
     );
 
-    const nextButton = screen.getByTestId('next-pokemon');
+    const nextButton = screen.getByTestId(NEXT_BUTTON);
     expect(nextButton).toHaveTextContent('Próximo pokémon');
     pokemons.forEach((pokemon) => {
       expect(screen.getByText(pokemon.name)).toBeInTheDocument();
       fireEvent.click(nextButton);
     });
-  
+
     const firstPokemon = screen.getByText('Pikachu');
     expect(firstPokemon).toBeInTheDocument();
   });
@@ -46,12 +48,13 @@ describe('Test all `Pokédex` component', () => {
       />,
     );
 
-    const nextButton = screen.getByTestId('next-pokemon');
+    const nextButton = screen.getByTestId(NEXT_BUTTON);
 
-    pokemons.forEach(({ name }) => {
-      expect(screen.getByText(name)).toBeInTheDocument();
+    pokemons.forEach((pokemon) => {
+      const pokemonName = screen.getByText(pokemon.name);
+      expect(pokemonName).toBeInTheDocument();
 
-      const withOutThisPokemon = pokemons.filter(({ name }) => name !== name);
+      const withOutThisPokemon = pokemons.filter(({ name }) => name !== pokemon.name);
       withOutThisPokemon.forEach(({ name }) => {
         expect(screen.queryByText(name)).toBeNull();
       });
@@ -88,7 +91,7 @@ describe('Test all `Pokédex` component', () => {
 
     const pokemonTypes = [...new Set(pokemons.map(({ type }) => type))];
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
-    const nextButton = screen.getByTestId('next-pokemon');
+    const nextButton = screen.getByTestId(NEXT_BUTTON);
 
     pokemonTypes.forEach((pokemonType, i) => {
       fireEvent.click(typeButtons[i]);
