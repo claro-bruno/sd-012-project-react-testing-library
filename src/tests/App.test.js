@@ -25,6 +25,6 @@ describe('Testes em App.js', () => {
 
     history.push('/pagina-que-nao-existe');
     const notFound = screen.getByText('Page requested not found');
-    expect(notFound).toBeInTheDocument();
+    expect(notFound).toBeDefined();
   });
 });
