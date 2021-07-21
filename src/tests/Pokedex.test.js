@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
@@ -8,7 +8,6 @@ import App from '../App';
 const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
 
 describe('Testando o componente pokedex', () => {
-
   beforeEach(() => {
     renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteById } />,
@@ -26,6 +25,6 @@ describe('Testando o componente pokedex', () => {
   });
 
   test('Verifica se é mostrado um pokemon por vez', () => {
-    
+
   });
 });
