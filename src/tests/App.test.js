@@ -23,3 +23,14 @@ describe('Verifica roteamentos da aplicação', () => {
     expect(headingTitle.innerHTML).toBe('Favorite pokémons');
   });
 });
+
+describe('Verifica se o topo da aplicação contém um conjunto fixo de links', () => {
+  beforeEach(() => {
+    renderWithRouter(<App />);
+  });
+  it('O primeiro Link deve possuir o texto "Home"', () => {
+    const firstLink = screen.getAllByRole('link');
+    expect(firstLink[0].innerHTML).toBe('Home');
+  });
+  
+});
