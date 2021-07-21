@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './renderWithrouter';
 
 describe('Verifica App.js', () => {
-  test('Testa conjunto fixo de links de navegação.', () => {
+  it('Testa conjunto fixo de links de navegação.', () => {
     renderWithRouter(<App />);
     const linkHome = screen.getByRole('link', { name: /home/i });
     const linkAbout = screen.getByRole('link', { name: /about/i });
@@ -15,7 +15,7 @@ describe('Verifica App.js', () => {
     expect(linkFavoritePokemon).toBeInTheDocument();
   });
 
-  test('Testa link Home redireciona para URL "/"', () => {
+  it('Testa link Home redireciona para URL "/"', () => {
     const { history } = renderWithRouter(<App />);
     const linkHome = screen.getByRole('link', { name: /home/i });
     userEvent.click(linkHome);
@@ -23,7 +23,7 @@ describe('Verifica App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  test('Testa link About redireciona para URL "/about"', () => {
+  it('Testa link About redireciona para URL "/about"', () => {
     const { history } = renderWithRouter(<App />);
     const linkAbout = screen.getByRole('link', { name: /about/i });
     userEvent.click(linkAbout);
@@ -31,7 +31,7 @@ describe('Verifica App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('Testa link Home redireciona para URL "/"', () => {
+  it('Testa link Home redireciona para URL "/"', () => {
     const { history } = renderWithRouter(<App />);
     const linkFavoritePokemon = screen.getByRole('link', { name: /favorite pokémon/i });
     userEvent.click(linkFavoritePokemon);
