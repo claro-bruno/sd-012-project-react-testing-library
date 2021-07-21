@@ -61,6 +61,9 @@ describe('Testa o componente Pokedex', () => {
     />);
 
     const buttonAll = screen.getByRole('button', { name: 'All' });
+    const typeBtnLen = 7;
+    const allButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(allButtons).toHaveLength(typeBtnLen);
 
     data.forEach((item) => {
       const button = screen.getByRole('button', { name: item.type });
