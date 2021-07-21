@@ -21,7 +21,7 @@ describe('Testes para componente Pokedex', () => {
   });
 
   it('Verifica se mostra o proximo pokemon da lista ao clicar em next', () => {
-    const nextButton = screen.getByRole('button', { name: /Próximo pokémon/i });
+    const nextButton = screen.getByTestId('next-pokemon');
     pokemons.forEach((pokemon, index) => {
       const poke = screen.getByText(pokemon.name);
       expect(poke).toBeInTheDocument();
@@ -43,11 +43,11 @@ describe('Testes para componente Pokedex', () => {
   it('Verifica se a pokedex tem todos botoes de filtro', () => {
     const pokeTypes = [...new Set(pokemons
       .reduce((types, { type }) => [...types, type], []))];
-    pokeTypes.forEach((type) => {
-      const typeButton = screen.getByRole('button', { name: type });
-      const allButton = screen.getByRole('button', { name: /All/i });
-      expect(typeButton).toBeInTheDocument();
-      userEvent.click(typeButton);
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    const allButton = screen.getByRole('button', { name: /All/i });
+    typeButtons.forEach((button, index) => {
+      expect(button).toHaveTextContent(pokeTypes[index]);
+      userEvent.click(button);
       expect(allButton).toBeInTheDocument();
     });
   });
