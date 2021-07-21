@@ -33,4 +33,13 @@ describe('Testa todo o App.js', () => {
     expect(favoritesLink).toBeInTheDocument();
     expect(favoritesLink).toHaveTextContent(/Favorite Pokémons/i);
   });
+
+  it('clicando no link "Home"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const homeLink = screen.getByText(/Home/i);
+    userEvent.click(homeLink);
+
+    expect(history.location.pathname).toBe('/');
+  });
 });
