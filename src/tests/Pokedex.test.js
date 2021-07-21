@@ -53,9 +53,12 @@ describe('Botão Próximo pokémon é clicado', () => {
     expect(getAllBtn).toBeInTheDocument();
     userEvent.click(getAllBtn);
 
-    Data.forEach((pokemon) => {
+    const getTestId = screen.getAllByTestId('pokemon-type-button');
+
+    Data.forEach((pokemon, i) => {
       const getPokeType = screen.getByRole('button', { name: pokemon.type });
       expect(getPokeType).toBeInTheDocument();
+      expect(getTestId[i]).not.toBe('');
     });
   });
 
@@ -65,11 +68,7 @@ describe('Botão Próximo pokémon é clicado', () => {
     const getNextBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     expect(getNextBtn).toBeInTheDocument();
 
-    const qntAll = Data.length;
-    for (let i = 0; i < qntAll; i += 1) {
-      userEvent.click(getNextBtn);
-    }
-
+    Data.forEach(() => { userEvent.click(getNextBtn); });
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
 });
