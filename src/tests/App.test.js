@@ -6,7 +6,7 @@ import App from '../App';
 describe('Teste o componente <App.js />', () => {
   it('Se a página principal da Pokédex é renderizada ao carregar o caminho "/"', () => {
     renderWithRouter(<App />);
-    const homePage = screen.getByText(/Encountered pokémons/i);
+    const homePage = screen.getByText(/No favorite pokemon found/i);
     expect(homePage).toBeInTheDocument();
   });
 
