@@ -10,5 +10,7 @@ describe('Testa o componente PokemonDetails.js', () => {
     renderWithRouter(<App />);
     const links = screen.getAllByRole('link');
     userEvent.click(links[3]);
+    const pikachu = screen.getByText('Pikachu');
+    expect(pikachu).toBeInTheDocument();
   });
 });
