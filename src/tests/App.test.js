@@ -1,9 +1,8 @@
 import React from 'react';
-import App from '../App';
-import renderWithRouter from './renderWithRouter';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
+import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 describe('Teste do componente App.js', () => {
   it('Testa se a página é redirecionada para Home', () => {
@@ -35,4 +34,3 @@ describe('Teste do componente App.js', () => {
     expect(error).toBeInTheDocument();
   });
 });
-
