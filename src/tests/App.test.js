@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
@@ -12,11 +10,11 @@ describe('Atendendo aos testes do Requisito 1', () => {
     const homeLink = screen.getAllByRole('link')[0];
     const aboutLink = screen.getAllByRole('link')[1];
     const favoriteLink = screen.getAllByRole('link')[2];
-    expect(homeLink.innerHTML).toBe('Home');
+    expect(homeLink.textContent).toBe('Home');
     expect(homeLink).toBeInTheDocument();
-    expect(aboutLink.innerHTML).toBe('About');
+    expect(aboutLink.textContent).toBe('About');
     expect(aboutLink).toBeInTheDocument();
-    expect(favoriteLink.innerHTML).toBe('Favorite Pokémons');
+    expect(favoriteLink.textContent).toBe('Favorite Pokémons');
     expect(favoriteLink).toBeInTheDocument();
   });
   test('Testando caminhos dos Links do Requisito 1', () => {
