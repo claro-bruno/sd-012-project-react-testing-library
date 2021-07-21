@@ -1,21 +1,15 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
-import Pokedex from '../components/Pokedex';
-import pokemons from '../data';
 import App from '../App';
-
-const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
 
 describe('Testando o componente pokedex', () => {
   beforeEach(() => {
-    renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteById } />,
-    );
+    renderWithRouter(<App />);
   });
 
   test('Verifica se a página tem um h2 com o texto "Encountered Pokemons', () => {
-    const h2 = screen.getByRole('heading');
+    const h2 = screen.getByRole('heading', { level: 2 });
     expect(h2.innerHTML).toBe('Encountered pokémons');
   });
 
@@ -24,7 +18,10 @@ describe('Testando o componente pokedex', () => {
     expect(button.innerHTML).toBe('Próximo pokémon');
   });
 
-  test('Verifica se é mostrado um pokemon por vez', () => {
-
+  test('Verifica se o botão All está na página', () => {
+    fireEvent.click(screen.getByText('Fire'));
+    expect(screen.getByTestId('pokemon-type').innerHTML).toBe('Fire');
+    fireEvent.click(screen.getByText('All'));
+    expect(screen.getByTestId('pokemon-type').innerHTML).toBe('Electric');
   });
 });
