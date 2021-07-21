@@ -18,26 +18,13 @@ describe('Testando se o FavoritePokemons.', () => {
   it('exibe na tela todos os pokémons favoritados', () => {
     renderWithRouter(<App />);
 
-    let detailsLink = screen.getByRole('link', { name: /more details/i });
-    userEvent.click(detailsLink);
-
-    let favoriteCheckbox = screen.getByLabelText(/pokémon favoritado?/i);
-    userEvent.click(favoriteCheckbox);
-
-    const homeLink = screen.getByRole('link', { name: /home/i });
-    userEvent.click(homeLink);
-
-    const fireButton = screen.getByRole('button', { name: /fire/i });
-    userEvent.click(fireButton);
-
-    detailsLink = screen.getByRole('link', { name: /more details/i });
-    userEvent.click(detailsLink);
-
-    favoriteCheckbox = screen.getByLabelText(/pokémon favoritado?/i);
-    userEvent.click(favoriteCheckbox);
-
-    const favoriteLink = screen.getByRole('link', { name: /favorite pokémons/i });
-    userEvent.click(favoriteLink);
+    userEvent.click(screen.getByRole('link', { name: /more details/i }));
+    userEvent.click(screen.getByLabelText(/pokémon favoritado?/i));
+    userEvent.click(screen.getByRole('link', { name: /home/i }));
+    userEvent.click(screen.getByRole('button', { name: /fire/i }));
+    userEvent.click(screen.getByRole('link', { name: /more details/i }));
+    userEvent.click(screen.getByLabelText(/pokémon favoritado?/i));
+    userEvent.click(screen.getByRole('link', { name: /favorite pokémons/i }));
 
     const pokemonWeightInfo = screen.getAllByText('Average weight', { exact: false });
     expect(pokemonWeightInfo).toHaveLength(2);
