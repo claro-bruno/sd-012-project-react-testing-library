@@ -35,9 +35,10 @@ describe('Testa informações do componente Pokedex.js', () => {
 
     const pokemonsTypes = pokemons.map((pokemon) => pokemon.type)
       .filter((type, index, array) => array.indexOf(type) === index);
+    const buttons = screen.getAllByTestId('pokemon-type-button');
 
-    pokemonsTypes.forEach((type) => {
-      expect(screen.getByRole('button', { name: type })).toBeInTheDocument();
+    pokemonsTypes.forEach((type, index) => {
+      expect(screen.getByRole('button', { name: type })).toBe(buttons[index]);
     });
   });
 
