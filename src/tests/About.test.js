@@ -10,7 +10,7 @@ describe('Testando a página de About', () => {
 
   it('Testa se há dois parágrafos descrevendo o Pokédex', () => {
     render(<About />);
-    expect(screen.getAllByText(/Pokémons/g).length).toEqual(2);
+    expect(screen.getAllByText(/Pokémons/i).length).toEqual(2);
   });
 
   it('Testa se há uma imagem com src path específico', () => {
