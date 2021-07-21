@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from './renderWithRouter';
+import pokemons from '../data';
 
 describe('Testa o componente FavoritePokemons', () => {
   test('Testa se é exibido na tela a mensagem de nenhum pokémon favorito', () => {
@@ -13,20 +14,7 @@ describe('Testa o componente FavoritePokemons', () => {
   });
 
   test('Testa se é exibido os cards dos pokémons favotitados', () => {
-    const mockFavoritePokemons = [
-      {
-        id: 25,
-        name: 'Pikachu',
-        type: 'Electric',
-        averageWeight: { value: '6.0', measurementUnit: 'kg' },
-      },
-      {
-        id: 4,
-        name: 'Charmander',
-        type: 'Fire',
-        averageWeight: { value: '8.5', measurementUnit: 'kg' },
-      },
-    ];
+    const mockFavoritePokemons = pokemons;
 
     renderWithRouter(<FavoritePokemons pokemons={ mockFavoritePokemons } />);
 

@@ -12,7 +12,7 @@ describe('Testa o componente About', () => {
   });
 
   test('Testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
-    const paragraphs = screen.getAllByText(/pokémons/i);
+    const paragraphs = screen.getAllByText(/Pokémons/);
     expect(paragraphs.length).toBe(2);
   });
 
