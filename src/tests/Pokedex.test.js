@@ -22,8 +22,9 @@ describe('Verifica Pokedex.js', () => {
 
   it('Testa se a Pokédex tem os botões de filtro.', () => {
     renderWithRouter(<App />);
-    const filterAll = screen.getByRole('button', { name: /All/i });
-    expect(filterAll).toBeInTheDocument();
+    const filter = screen.getAllByTestId('pokemon-type-button');
+    const length = 7;
+    expect(filter.length).toBe(length);
   });
 
   it('Testa se os botões de filtro funcionam.', () => {
