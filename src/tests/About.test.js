@@ -15,4 +15,8 @@ describe('Testes sobre o componente About', () => {
     const allParagraphs = screen.getAllByText(/pokémons/i);
     expect(allParagraphs.length).toBe(2);
   });
+  it('Verifica se a página tem uma imagem específica de uma pokedex', () => {
+    const image = screen.getByRole('img');
+    expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  });
 });
