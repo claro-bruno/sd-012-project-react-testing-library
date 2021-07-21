@@ -13,6 +13,6 @@ test('Teste do componente About.js', () => {
   const heading = screen.getByRole('heading', { name: /About Pokédex/i });
   expect(heading).toBeInTheDocument();
 
-  const img = screen.getByRole('img', { src: /Pokédex/i });
+  const img = screen.getByRole('img', { name: /Pokédex/i });
   expect(img.src).toContain('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });
