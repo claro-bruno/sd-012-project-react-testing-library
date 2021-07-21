@@ -18,6 +18,7 @@ describe('Teste componente <Pokemon />', () => {
 
   it('Teste se é renderizado um card com as informações', () => {
     renderWithRouter(<App />);
+    const { value, measurementUnit } = pokemon.averageWeight;
 
     const name = screen.getByTestId('pokemon-name');
     expect(name).toBeInTheDocument();
@@ -27,6 +28,7 @@ describe('Teste componente <Pokemon />', () => {
 
     const weigth = screen.getByTestId('pokemon-weight');
     expect(weigth).toBeInTheDocument();
+    expect(weigth).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
 
     const img = screen.getByAltText(`${pokemon.name} sprite`);
     expect(img.src).toBe(pokemon.image);
