@@ -60,7 +60,9 @@ describe('Testa Pokédex', () => {
     const nextButton = screen.getByText('Próximo pokémon');
     pokemons.forEach((pokemon) => {
       expect(allButton).toBeInTheDocument();
-      const typeButtons = screen.getAllByRole('button', { name: pokemon.type });
+      const getTypeButtons = screen.getAllByTestId('pokemon-type-button');
+      const typeButtons = getTypeButtons
+        .filter((button) => button.innerHTML === pokemon.type);
       expect(typeButtons).toHaveLength(1);
       fireEvent.click(typeButtons[0]);
       const pokemonsOfType = pokemons
