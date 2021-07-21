@@ -13,7 +13,7 @@ describe('requisito 1- Testa componente App', () => {
     expect(linkList[2].innerHTML).toBe('Favorite Pokémons');
   });
 
-  it('Testa se Link Home redireciona para o path / ', () => {
+  it('Link Home redireciona para o path / ', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const linkHome = getByText('Home');
 
@@ -22,5 +22,34 @@ describe('requisito 1- Testa componente App', () => {
     const path = history.location.pathname;
 
     expect(path).toBe('/');
+  });
+
+  it('Link About redireciona para o path /about ', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const linkAbout = getByText('About');
+
+    userEvent.click(linkAbout);
+
+    const path = history.location.pathname;
+
+    expect(path).toBe('/about');
+  });
+
+  it('Link Favorite Pokémons redireciona para o path /favorites ', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const linkFavorites = getByText('Favorite Pokémons');
+
+    userEvent.click(linkFavorites);
+
+    const path = history.location.pathname;
+
+    expect(path).toBe('/favorites');
+  });
+
+  it('Redireciona para pagina not found quando path não existe', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/fofis');
+    const noPathMsg = getByText('Page requested not found');
+    expect(noPathMsg).toBeInTheDocument();
   });
 })
