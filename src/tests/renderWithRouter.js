@@ -6,12 +6,12 @@ import { createMemoryHistory } from 'history';
 const renderWithRouter = (component) => {
   const history = createMemoryHistory();
   render(
-    <Router history={ history } >
+    <Router history={ history }>
       { component }
-    </Router>
+    </Router>,
   );
 
-  return history;
-}
+  return { history };
+};
 
 export default renderWithRouter;
