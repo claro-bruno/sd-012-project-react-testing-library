@@ -46,4 +46,18 @@ describe('Verificações a respeito do rotaemento ', () => {
   });
 });
 
-describe('Testes em torno de pokemóns favoritados', () => {});
+describe('Testes em torno de pokemóns favoritados', () => {
+  beforeEach(() => {
+    renderWithRouter(<App />);
+  });
+  const moreDetails = 'More details';
+
+  it('Quando clicado em favorito, deve exibir uma estrela ao lado da imagem', () => {
+    const enteringPokeDetails = screen.getByText(moreDetails);
+    fireEvent.click(enteringPokeDetails);
+    const favoriteLabel = screen.getByLabelText('Pokémon favoritado?');
+    fireEvent.click(favoriteLabel);
+    const favoriteStar = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoriteStar.src).toBe('http://localhost/star-icon.svg');
+  });
+});
