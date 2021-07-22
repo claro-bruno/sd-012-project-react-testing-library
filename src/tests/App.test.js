@@ -29,4 +29,11 @@ describe('Testing component App.js', () => {
       userEvent.click(linkFavorite);
       expect(history.location.pathname).toBe('/favorites');
     });
+
+  it('verify if inserted any path undefined the component "Not Found" is render', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/any-page');
+    const notFound = screen.getByText(/page requested not found/i);
+    expect(notFound).toBeDefined();
+  });
 });
