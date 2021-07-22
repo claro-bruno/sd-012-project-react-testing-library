@@ -40,7 +40,7 @@ describe('Verifica Pokedex.js', () => {
 
     const btnAll = screen.getByRole('button', { name: /All/i });
     userEvent.click(btnAll);
-    expect(btnAll).toHaveTextContent('All');
+    expect(screen.getByText('Pikachu')).toBeDefined();
 
     userEvent.click(btnNext);
     expect(screen.getByText('Charmander')).toBeInTheDocument();
