@@ -1,10 +1,8 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
-import userEvent from '@testing-library/user-event';
 
 describe('Verifica se os links estao sendo renderizados no App', () => {
   test('Verifica se Home aparece', () => {
