@@ -3,13 +3,17 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
+import pokemons from '../data';
 
 describe(' Teste o componente <Pokemon.js />', () => {
+  const pokemon = pokemons[0];
+  const { name, type, averageWeight: { measurementUnit, value } } = pokemon;
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     renderWithRouter(<App />);
-    expect(screen.getByText('Pikachu')).toBeInTheDocument();
-    expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
-    expect(screen.getByTestId(/pokemon-weight/i)).toBeInTheDocument();
+    expect(screen.getByTestId('pokemon-name')).toHaveTextContent(name);
+    expect(screen.getByTestId('pokemon-type')).toHaveTextContent(type);
+    expect(screen.getByTestId(/pokemon-weight/i))
+      .toHaveTextContent(`Average weight ${value} ${measurementUnit}`);
     const altText = 'Pikachu sprite';
     const image = screen.getByAltText(altText);
     expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
