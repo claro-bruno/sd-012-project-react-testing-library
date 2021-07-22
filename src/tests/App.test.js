@@ -54,6 +54,8 @@ describe('1 - Testa o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/no-exist');
     const notFound = screen.getByRole('heading', { name: /Page requested not found/i });
+    const emoji = screen.getByRole('img', { name: 'Crying emoji' });
+    expect(emoji).toBeInTheDocument();
     expect(notFound).toBeInTheDocument();
   });
 });
