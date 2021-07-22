@@ -31,9 +31,9 @@ describe('Verificar todo o component PokemonDetails', () => {
     expect(
       screen.getByRole('heading', { name: `Game Locations of ${title}` }),
     ).toBeDefined();
-    expect(
-      screen.getAllByRole('img', { name: `${title} location` }),
-    ).toHaveLength(2);
+    const imgLocations = screen.getAllByRole('img', { name: `${title} location` });
+    expect(imgLocations[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(imgLocations[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
     expect(screen.getAllByText(/^Kanto.+/)).toHaveLength(2);
     expect(
       screen.getAllByRole('img', { name: `${title} location` }),

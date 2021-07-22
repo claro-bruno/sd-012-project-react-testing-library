@@ -19,8 +19,8 @@ describe('Verifica as informações sobre a pokédex', () => {
     const [p1, p2] = paragraphs;
 
     expect(paragraphs).toHaveLength(2);
-    expect(p1).toContainHTML('<p>');
-    expect(p2).toContainHTML('<p>');
+    expect(p1.localName).toBe('p');
+    expect(p2.localName).toBe('p');
   });
 
   it('Testa o link da imagem', () => {
