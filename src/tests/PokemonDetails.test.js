@@ -15,6 +15,11 @@ const bfEachFunc = () => {
 describe('requisito 7- informacoes detalhadas aparecem', () => {
   beforeEach(bfEachFunc);
 
+  it('contem heading Pokemon Details', () => {
+    const headTitle = screen.getByRole('heading', { name: 'Pikachu Details' });
+    expect(headTitle).toBeInTheDocument();
+  });
+
   it('contem nome do pokemon', () => {
     const pokeName = screen.getByTestId('pokemon-name');
     expect(pokeName).toBeInTheDocument();
