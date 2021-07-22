@@ -31,7 +31,7 @@ describe('Pokemon tests', () => {
     expect(pokemonType).toHaveTextContent(mockPokemon.type);
     expect(pokemonWeight)
       .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
-    expect(pokemonImg.src).toBe(imageURL);
+    expect(pokemonImg).toHaveAttribute('src', imageURL);
     expect(detailsLink).toBeInTheDocument();
   });
 
@@ -63,6 +63,6 @@ describe('Pokemon tests', () => {
     const starImg = screen.getByAltText(`${mockPokemon.name} is marked as favorite`);
 
     expect(starImg).toBeInTheDocument();
-    expect(starImg.src).toBe('http://localhost/star-icon.svg'); // 100% mutants;
+    expect(starImg).toHaveAttribute('src', '/star-icon.svg'); // 100% mutants;
   });
 });
