@@ -32,7 +32,9 @@ describe('Testa Pokedex', () => {
     renderWithRouter(<App />);
 
     const buttons = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    expect(screen.getAllByTestId('pokemon-type-button').length).toBe(buttons.length);
+    const getButton = screen.getAllByTestId('pokemon-type-button');
+    expect(getButton.length).toBe(buttons.length);
+    expect(getButton[0].textContent).toBe('Electric');
   });
 
   test('Verifica se existe botão para resetar o filtro', () => {
