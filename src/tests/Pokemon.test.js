@@ -86,20 +86,6 @@ describe('Se é renderizado um card com as informações de determinado pokémon
     let url = history.location.pathname;
     expect(url).toBe('/');
 
-    const getAllBtn = screen.getByRole('button', { name: 'All' });
-    expect(getAllBtn).toBeInTheDocument();
-    userEvent.click(getAllBtn);
-
-    const getLink = screen.getByRole('link', { name: 'More details' });
-    expect(getLink).toBeInTheDocument();
-
-    userEvent.click(getLink);
-    url = history.location.pathname;
-    expect(url).toBe('/pokemons/25');
-
-    const pokeFav = screen.getByLabelText('Pokémon favoritado?');
-    userEvent.click(pokeFav);
-
     const getFavLinkPage = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(getFavLinkPage).toBeInTheDocument();
 
