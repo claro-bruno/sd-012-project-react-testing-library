@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-const pokemonTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
 const NEXT = 'Próximo pokémon';
 
 describe('Testa o componente <Pokedex />', () => {
@@ -40,7 +39,9 @@ describe('Testa o componente <Pokedex />', () => {
   describe('Testa se a Pokedex tem os botoes de filtro', () => {
     it('testa se existe um botao para cada tipo de pokemon', () => {
       renderWithRouter(<App />);
-      pokemonTypes.map((type) => expect(screen.getByRole('button', { name: type }))
+      const poketypes = screen.getAllByTestId('pokemon-type-button');
+      // console.log(poketypes);
+      poketypes.map((type) => expect(screen.getByRole('button', { name: type.innerHTML }))
         .toBeInTheDocument());
     });
 
