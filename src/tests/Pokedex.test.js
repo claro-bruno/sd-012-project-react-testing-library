@@ -52,12 +52,16 @@ describe('Testando o componente Pokedex', () => {
   });
 
   it(('Testando botão de filtro'), () => {
-    // const typeButton = screen.getAllByTestId('pokemon-type-button');
-    const typesOfPokemon = data.reduce((types, { type }) => [...types, type], ['All']);
-    typesOfPokemon.forEach((type) => {
-      const typeButton = screen.getByRole('button', { name: type });
-      expect(typeButton).toBeInTheDocument();
+    const typesOfPokemon = (
+      [...new Set(data.reduce((types, { type }) => [...types, type], ['All']))]
+    );
+    console.log(typesOfPokemon);
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    console.log(typeButtons.length);
+    typeButtons.forEach((type) => {
+      expect(type).toBeInTheDocument();
     });
+    expect(typesOfPokemon).toHaveLength((typeButtons.length) + 1);
   });
 
   it(('Testando o botão de resetar filtro'), () => {
