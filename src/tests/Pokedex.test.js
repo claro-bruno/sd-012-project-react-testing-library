@@ -35,7 +35,8 @@ describe('Teste o componente <Pokedex.js />', () => {
     expect(screen.getByText('Rapidash')).toBeInTheDocument();
   });
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
-    expect(screen.getByRole('button', { name: /All/i })).toBeInTheDocument();
+    userEvent.click(screen.getByRole('button', { name: /All/i }));
+    expect(screen.getByText('All')).toBeInTheDocument();
   });
   it('Testa se os botões de filtro são criados dinamicamente.', () => {
     const btns = 7;
