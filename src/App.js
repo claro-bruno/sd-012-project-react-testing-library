@@ -11,7 +11,7 @@ import {
 
 import {
   readFavoritePokemonIds,
-  updateFavoritePokemons,
+  updateFavoritePokemons, 
 } from './services/pokedexService';
 
 import pokemons from './data';
