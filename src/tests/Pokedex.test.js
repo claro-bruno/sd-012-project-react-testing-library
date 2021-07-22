@@ -32,12 +32,13 @@ describe('Testing component Pokedex.js', () => {
   });
 
   it('Pokédex have filters buttons', () => {
-    Data.map(({ type }) => {
-      const typeFilter = screen.getByRole('button', { name: type });
-      return expect(typeFilter).toBeInTheDocument();
-    });
-    const allButton = screen.queryAllByRole('button', { hidden: false });
-    expect(allButton[0]).toHaveTextContent(/all/i);
+    const allButton = screen.getByRole('button', { name: 'All' });
+    expect(allButton).toBeDefined();
+    userEvent.click(allButton);
+    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(filterButtons.length).toBe(filterButtons.length);
+    const bugButton = screen.getByRole('button', { name: 'Bug' });
+    userEvent.click(bugButton);
   });
 
   it('Check if there is a button to reset the filter', () => {
