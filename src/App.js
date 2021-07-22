@@ -90,7 +90,6 @@ class App extends Component {
       </Switch>
     );
   }
-//iniciando projeto
   render() {
     return (
       <div className="App">
