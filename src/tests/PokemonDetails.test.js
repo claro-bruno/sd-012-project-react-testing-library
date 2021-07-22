@@ -13,6 +13,10 @@ describe('7. Teste o componente <PokemonDetails.js />', () => {
 
     const summary = screen.getByText(/th/i);
     expect(summary).toBeInTheDocument();
+
+    const pokemonName = screen.getByTestId('pokemon-name').innerHTML;
+    const detailsHeading = screen.getByText(`${pokemonName} Details`);
+    expect(detailsHeading).toBeInTheDocument();
   });
   it('Teste se existe na página mapas contendo as localizações do pokémon', () => {
     renderWithRouter(<App />);
