@@ -29,3 +29,5 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     // mas espero ter feito certo...
   });
 });
+// Link
+// https://github.com/tryber/exercise-todo-list/pull/78/commits/24d6275383468f339d0658c1968d76daaacc218a
