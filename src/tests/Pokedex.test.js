@@ -36,6 +36,8 @@ describe('Testing component Pokedex.js', () => {
       const typeFilter = screen.getByRole('button', { name: type });
       return expect(typeFilter).toBeInTheDocument();
     });
+    const buttonReset = screen.getByRole('button', { name: /all/i });
+    expect(buttonReset).toBeInTheDocument();
   });
 
   it('Check if there is a button to reset the filter', () => {
