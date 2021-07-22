@@ -15,7 +15,7 @@ describe('Testa o componente Pokedex', () => {
   });
   it('Verifica quando clicado "Próximo pokémon", outro pokémon é exibido', () => {
     renderWithRouter(<App />);
-    const buttonElement = screen.getByTestId('next-pokemon');
+    const buttonElement = screen.getByRole('button', { name: /próximo pokémon/i });
     expect(buttonElement).toBeInTheDocument();
     data.forEach((pokemon) => {
       expect(screen.getByTestId(pokemonName).innerHTML).toBe(pokemon.name);
@@ -44,6 +44,7 @@ describe('Testa o componente Pokedex', () => {
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokeName = screen.getByTestId(pokemonName);
     const btnFilterAll = screen.getByRole('button', { name: 'All' });
+    expect(btnFilterAll).toHaveTextContent('All');
     userEvent.click(btnFilterAll);
     expect(pokeName).toHaveTextContent('Pikachu');
     expect(pokemonType).toHaveTextContent('Electric');
