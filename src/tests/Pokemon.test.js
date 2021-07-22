@@ -1,1 +1,36 @@
-test('', () => {});
+import React from 'react';
+import { screen } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
+import Pokemon from '../components/Pokemon';
+import pokemons from '../data';
+
+describe('Tests the Pokemon.js component', () => {
+  const pokemon = pokemons[0];
+
+  test('Teste se é renderizado um card com as informações do pokémon.', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
+    const name = screen.getByTestId('pokemon-name');
+    const type = screen.getByTestId('pokemon-type');
+    const weight = screen.getByTestId('pokemon-weight').innerHTML;
+    const img = screen.getAllByRole('img');
+    // console.log(pokemon);
+    expect(name).toHaveTextContent(pokemon.name);
+    expect(type).toHaveTextContent(pokemon.type);
+    expect(weight).toMatch(pokemon.averageWeight.value);
+    expect(img[0]).toHaveAttribute('src', pokemon.image);
+    expect(img[0]).toHaveAttribute('alt', `${pokemon.name} sprite`);
+  });
+
+  test('Teste se existe um link More Details', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
+    const link = screen.getByRole('link', { name: 'More details' });
+    expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
+  });
+
+  test('Teste se existe um icone Favorito', () => {
+    renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
+    const img = screen.getAllByRole('img');
+    expect(img[1]).toHaveAttribute('src', '/star-icon.svg');
+    expect(img[1]).toHaveAttribute('alt', `${pokemon.name} is marked as favorite`);
+  });
+});
