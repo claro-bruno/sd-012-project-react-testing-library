@@ -54,8 +54,8 @@ describe('testa o Pokedex Page', () => {
   it('testa os botoes de todos os tipos', () => {
     renderWithRouter(<App />);
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
-    // eslint-disable-next-line no-magic-numbers
-    expect(typeButtons.length).toBe(7);
+    const seven = 7;
+    expect(typeButtons.length).toBe(seven);
   });
   it('testa se o botao nao funcione quando nao tem mais opcoes', () => {
     renderWithRouter(<App />);
