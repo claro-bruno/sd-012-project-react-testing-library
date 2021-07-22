@@ -20,7 +20,10 @@ describe('requisito 5- testa componente Pokedex.js', () => {
     expect(pokemon1).toBeInTheDocument();
     expect(pokemon1.innerHTML).toBe('Pikachu');
 
-    userEvent.click(screen.getByTestId('next-pokemon'));
+    const nextBtn = screen.getByTestId('next-pokemon');
+    expect(nextBtn).toBeInTheDocument();
+    expect(nextBtn.innerHTML).toBe('Próximo pokémon');
+    userEvent.click(nextBtn);
 
     const pokemon2 = screen.getByTestId(pokeNameTestId);
     expect(pokemon2).toBeInTheDocument();
