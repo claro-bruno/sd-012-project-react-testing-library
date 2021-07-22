@@ -26,7 +26,7 @@ describe('Test for Pokedex component.', () => {
       />,
     );
 
-    const pokedexHeading = screen.getByRole(/heading/i, /encountered pokémons/i);
+    const pokedexHeading = screen.getByRole(/heading/i, { name: /encountered pokémons/i });
     const pokemonName = screen.getAllByTestId(/pokemon-name/i);
 
     expect(pokedexHeading).toBeDefined();
