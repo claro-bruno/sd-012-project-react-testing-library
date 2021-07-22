@@ -72,4 +72,10 @@ describe('testa se o componente pokedex', () => {
     userEvent.click(screen.getByRole('button', { name: 'All' }));
     expect(screen.getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
   });
+
+  it('possui os filtros determinados', () => {
+    renderWithRouter(<App />);
+    const typeButton = screen.queryAllByTestId('pokemon-type-button');
+    expect(typeButton[0].textContent).toBe('Electric');
+  });
 });
