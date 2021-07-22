@@ -42,10 +42,13 @@ describe('Check if Pokemon.js is working as it should', () => {
     const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType.innerHTML).toBe(pokemonSample.type);
     const pokemonWeight = screen.getByTestId('pokemon-weight');
+    const { averageWeight: { value, measurementUnit } } = pokemonSample;
     expect(pokemonWeight.innerHTML)
-      .toContain(pokemonSample.averageWeight.value);
+      .toContain(value);
     expect(pokemonWeight.innerHTML)
-      .toContain(pokemonSample.averageWeight.measurementUnit);
+      .toContain(measurementUnit);
+    expect(pokemonWeight.innerHTML)
+      .toBe(`Average weight: ${value} ${measurementUnit}`);
     const avatar = screen.getByRole('img', { name: `${pokemonSample.name} sprite` });
     expect(avatar).toBeInTheDocument();
     expect(avatar.src).toBe(pokemonSample.image);
