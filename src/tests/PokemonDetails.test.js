@@ -7,55 +7,55 @@ import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
-const mockedPokemon = pokemons[5];
+const { id, name, summary, foundAt } = pokemons[5];
 
 describe('PokemonDetails tests', () => {
   it('PokemonDetails page test', () => {
     const { history } = renderWithRouter(<App />);
-    history.push(`/pokemons/${mockedPokemon.id}`);
+    history.push(`/pokemons/${id}`);
 
-    const subtitle = screen.getByText(`${mockedPokemon.name} Details`);
+    const subtitle = screen.getByText(`${name} Details`);
     const summaryTitle = screen.queryByRole('heading', { name: /summary/i });
-    const summary = screen.getByText(/apparently, it appears only/i);
+    const summaryText = screen.getByText(/apparently, it appears only/i);
     const detailLink = screen.queryByRole('link', { name: /more details/i });
 
     expect(subtitle).toBeInTheDocument();
     expect(summaryTitle).toBeInTheDocument();
-    expect(summary).toHaveTextContent(mockedPokemon.summary);
-    expect(detailLink).not.toBeInTheDocument();
+    expect(summaryText).toHaveTextContent(summary);
+    expect(detailLink).toBeNull();
   });
 
   it('Map section test', () => {
     const { history } = renderWithRouter(<App />);
-    history.push(`/pokemons/${mockedPokemon.id}`);
+    history.push(`/pokemons/${id}`);
 
-    const subtitle = screen.getByText(`Game Locations of ${mockedPokemon.name}`);
+    const subtitle = screen.getByText(`Game Locations of ${name}`);
     const mapImage = screen
-      .queryByRole('img', { name: `${mockedPokemon.name} location` });
-    const locationName = screen.getByText(mockedPokemon.foundAt[0].location);
+      .queryByRole('img', { name: `${name} location` });
+    const locationName = screen.getByText(foundAt[0].location);
 
     expect(subtitle).toBeInTheDocument();
-    expect(mapImage.src).toBe(mockedPokemon.foundAt[0].map);
+    expect(mapImage).toHaveAttribute('src', foundAt[0].map);
     expect(locationName).toBeInTheDocument();
   });
 
   it('Favorited pokémon', () => {
     const { history } = renderWithRouter(<App />);
-    history.push(`/pokemons/${mockedPokemon.id}`);
+    history.push(`/pokemons/${id}`);
 
     const checkbox = screen.getByLabelText(/pokémon favoritado?/i);
 
     expect(checkbox).toBeInTheDocument();
-    expect(screen.queryByAltText(`${mockedPokemon.name} is marked as favorite`))
+    expect(screen.queryByAltText(`${name} is marked as favorite`))
       .toBeNull();
 
     userEvent.click(checkbox);
 
-    expect(screen.queryByAltText(`${mockedPokemon.name} is marked as favorite`))
+    expect(screen.queryByAltText(`${name} is marked as favorite`))
       .toBeInTheDocument(); // 100% mutants;
 
     userEvent.click(checkbox);
-    expect(screen.queryByAltText(`${mockedPokemon.name} is marked as favorite`))
+    expect(screen.queryByAltText(`${name} is marked as favorite`))
       .toBeNull();
   });
 });
