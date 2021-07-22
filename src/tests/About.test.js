@@ -9,7 +9,7 @@ describe('Testing component About.js', () => {
   });
 
   it('the page contain a "h2" with text "About Pokédex"', () => {
-    const heading = screen.getByRole('heading', { name: 'About Pokédex' });
+    const heading = screen.getByRole('heading', { name: /about pokédex/i });
     expect(heading).toBeInTheDocument();
   });
 
