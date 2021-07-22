@@ -36,8 +36,8 @@ describe('Testing component Pokedex.js', () => {
       const typeFilter = screen.getByRole('button', { name: type });
       return expect(typeFilter).toBeInTheDocument();
     });
-    const buttonReset = screen.getByRole('button', { name: /all/i });
-    expect(buttonReset).toBeInTheDocument();
+    const allButton = screen.queryAllByRole('button', { hidden: false });
+    expect(allButton[0]).toHaveTextContent(/all/i);
   });
 
   it('Check if there is a button to reset the filter', () => {
@@ -46,7 +46,11 @@ describe('Testing component Pokedex.js', () => {
     expect(buttonReset).toHaveTextContent(/all/i);
     userEvent.click(buttonReset);
 
-    const getPokemon = screen.getByText(/pikachu/i);
-    expect(getPokemon).toBeInTheDocument();
+    Data.map(({ name }) => {
+      const buttonNext = screen.getByRole('button', { name: /próximo pokémon/i });
+      const pokemon = screen.getByText(name);
+      expect(pokemon).toBeInTheDocument();
+      return userEvent.click(buttonNext);
+    });
   });
 });
