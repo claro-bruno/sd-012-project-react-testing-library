@@ -43,10 +43,10 @@ describe('Component Tests <PokemonDetails.js />', () => {
 
   it('Teste se o usuário pode favoritar um pokémon através da página de detalhes', () => {
     renderWithRouter(<App />);
-    const detail = screen.getByText(/More details/);
+    const detail = screen.getByText(/More details/i);
     userEvent.click(detail);
 
-    const favs = screen.getByText(/Pokémon favoritado?/);
+    const favs = screen.getByText(/Pokémon favoritado?/i);
     expect(favs).toBeInTheDocument();
   });
 });
