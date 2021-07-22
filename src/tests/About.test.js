@@ -15,7 +15,7 @@ describe('testa componente About', () => {
     expect(screen.getByRole('heading', { name: 'About Pokédex' }))
       .toBeInTheDocument();
 
-    const link = "https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png";
+    const link = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const img = screen.getAllByText('Pokédex');
     expect(img.src).toBe(link);
 
