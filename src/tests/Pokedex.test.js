@@ -3,8 +3,11 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import data from '../data';
 
 describe('Testa o componente Pokedex', () => {
+  const pokeTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+  const pokemonName = 'pokemon-name';
   it('Verifica se contém h2 com o texto Encountered pokémons', () => {
     renderWithRouter(<App />);
     const h2Element = screen.getByText('Encountered pokémons');
@@ -14,34 +17,35 @@ describe('Testa o componente Pokedex', () => {
     renderWithRouter(<App />);
     const buttonElement = screen.getByTestId('next-pokemon');
     expect(buttonElement).toBeInTheDocument();
-    expect(screen.getByText('Próximo pokémon')).toBeInTheDocument();
+    data.forEach((pokemon) => {
+      expect(screen.getByTestId(pokemonName).innerHTML).toBe(pokemon.name);
+      expect(screen.getByTestId('pokemon-type').innerHTML).toBe(pokemon.type);
+      userEvent.click(buttonElement);
+    });
   });
-  it('Verifica se após clicar no botão, outro pokémon é mostrado', () => {
+  it('Verifica se é mostrado apenas 1 pokemon por vez', () => {
     renderWithRouter(<App />);
-    const buttonElement = screen.getByTestId('next-pokemon');
-    const pokemonName = screen.getByTestId('pokemon-name');
-    const pokemonType = screen.getByTestId('pokemon-type');
-    const pokemonWeight = screen.getByTestId('pokemon-weight');
-    expect(pokemonName).toBeInTheDocument();
-    expect(pokemonName).toHaveTextContent('Pikachu');
-    expect(pokemonType).toBeInTheDocument();
-    expect(pokemonType).toHaveTextContent('Electric');
-    expect(pokemonWeight).toBeInTheDocument();
-    expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
-    userEvent.click(buttonElement);
-    expect(screen.getByText('Charmander')).toBeInTheDocument();
-    expect(screen.getAllByText('Fire')[0]).toBeInTheDocument();
-    expect(screen.getByText('Average weight: 8.5 kg')).toBeInTheDocument();
+    const pokeName = screen.getAllByTestId('pokemon-name');
+    expect(pokeName.length).toBe(1);
   });
-//   it('Verifica os botões de filtro', () => {
-//     renderWithRouter(<App />);
-//     expect(screen.getByText('All').innerText).toBe('All');
-//     expect(screen.getByText('Electric')).toBe('Electric');
-//     expect(screen.getByText('Fire')).toBe('Fire');
-//     expect(screen.getByText('Bug')).toBe('Bug');
-//     expect(screen.getByText('Poison')).toBe('Poison');
-//     expect(screen.getByText('Psychic')).toBe('Psychic');
-//     expect(screen.getByText('Normal')).toBe('Normal');
-//     expect(screen.getByText('Dragon')).toBe('Dragon');
-//   });
+  it('Verifica os botões de filtro', () => {
+    renderWithRouter(<App />);
+    const dataId = 'pokemon-type-button';
+    const filterBtns = screen.getAllByTestId(dataId);
+    console.log(filterBtns);
+    const expectedNumberLength = 7;
+    expect(screen.getAllByTestId(dataId).length).toBe(expectedNumberLength);
+    expect(filterBtns.forEach((btn, i) => {
+      expect(btn.innerHTML).toBe(pokeTypes[i]);
+    }));
+  });
+  it('Verifica o funcionamento do botão All', () => {
+    renderWithRouter(<App />);
+    const pokemonType = screen.getByTestId('pokemon-type');
+    const pokeName = screen.getByTestId(pokemonName);
+    const btnFilterAll = screen.getByTestId('');
+    userEvent.click(btnFilterAll);
+    expect(pokeName).toHaveTextContent('Pikachu');
+    expect(pokemonType).toHaveTextContent('Electric');
+  });
 });
