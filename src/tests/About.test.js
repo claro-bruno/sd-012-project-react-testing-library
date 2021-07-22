@@ -12,11 +12,15 @@ describe('Testa componente About', () => {
   it(`Verifica se existe um reading h2 com o texto "About Pokédex", dois parágrafos
   com texto sobre a Pokédex e a imagem de uma pokedex`, () => {
     renderWithRouter(<App />);
+
     const linkAbout = screen.getByRole('link', { name: /About/i });
+
     userEvent.click(linkAbout);
+
     expect(screen.getByRole('heading', {
       name: /About Pokédex/i,
       level: 2 })).toBeInTheDocument();
+
     expect(screen.getByText(PARAGRAPH_1)).toBeInTheDocument();
     expect(screen.getByText(PARAGRAPH_2)).toBeInTheDocument();
     expect(screen.getByRole('img')).toHaveAttribute('src', SRC_POKEDEX);
