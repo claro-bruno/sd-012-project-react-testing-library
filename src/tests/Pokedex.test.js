@@ -50,11 +50,10 @@ describe('Teste o componente <Pokedex.js />', () => {
 
   it('Teste se a Pokédex tem os botões de filtro', () => {
     const arrType = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
-    arrType.forEach((type) => {
-      const button = screen.queryAllByRole('button', { name: type });
-      expect(button[0]).toBeInTheDocument();
-      expect(button[1]).toBeUndefined();
-      userEvent.click(button[0]);
+    arrType.forEach((type, index) => {
+      const button = screen.queryAllByTestId('pokemon-type-button');
+      expect(button[index]).toHaveTextContent(type);
+      userEvent.click(button[index]);
       const testType = screen.getByTestId('pokemon-type');
       expect(testType).toHaveTextContent(type);
     });
