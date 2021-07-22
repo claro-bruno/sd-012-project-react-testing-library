@@ -55,4 +55,34 @@ describe('Testa todo PokemonDetails.js', () => {
       expect(locationImages[index]).toHaveProperty('alt', `${pokemon.name} location`);
     });
   });
+
+  it('checkbox favorita o pokemon', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const linkDetails = screen.getByText(/More details/i);
+    userEvent.click(linkDetails);
+
+    const { pathname } = history.location;
+    const pokemon = pokemons.find((pkm) => pkm.id === getPokemonId(pathname));
+
+    const favCheckbox = screen.getByLabelText(/Pokémon favoritado?/i);
+    expect(favCheckbox).toBeInTheDocument();
+    expect(favCheckbox).not.toBeChecked();
+
+    let favStarImage = screen
+      .queryByRole('img', { name: `${pokemon.name} is marked as favorite` });
+    expect(favStarImage).not.toBeInTheDocument();
+
+    userEvent.click(favCheckbox);
+    expect(favCheckbox).toBeChecked();
+
+    favStarImage = screen
+      .queryByRole('img', { name: `${pokemon.name} is marked as favorite` });
+    expect(favStarImage).toBeInTheDocument();
+
+    userEvent.click(favCheckbox);
+    expect(favCheckbox).not.toBeChecked();
+
+    expect(favStarImage).not.toBeInTheDocument();
+  });
 });
