@@ -5,6 +5,8 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Se é renderizado um card com as informações de determinado pokémon', () => {
+  const details = 'More details';
+
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
     const { history } = renderWithRouter(<App />);
     const url = history.location.pathname;
@@ -63,6 +65,36 @@ describe('Se é renderizado um card com as informações de determinado pokémon
 
   test('Contém um link de navegação para exibir detalhes deste Pokémon.', () => {
     const { history } = renderWithRouter(<App />);
+    const url = history.location.pathname;
+    expect(url).toBe('/');
+
+    const getAllBtn = screen.getByRole('button', { name: 'All' });
+    expect(getAllBtn).toBeInTheDocument();
+    userEvent.click(getAllBtn);
+
+    const getLink = screen.getByRole('link', { name: details });
+    expect(getLink).toBeInTheDocument();
+    expect(getLink.href).toBe('http://localhost/pokemons/25');
+  });
+
+  test('Verifica se redirecionou para a pagina de Detalhes', () => {
+    const { history } = renderWithRouter(<App />);
+    const url = history.location.pathname;
+    expect(url).toBe('/');
+
+    const getAllBtn = screen.getByRole('button', { name: 'All' });
+    expect(getAllBtn).toBeInTheDocument();
+    userEvent.click(getAllBtn);
+
+    const getLink = screen.getByRole('link', { name: details });
+    expect(getLink).toBeInTheDocument();
+    userEvent.click(getLink);
+
+    expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
+  });
+
+  test('Se ao clicar no link de navegação do Pokémon, é feito o redirecionamento', () => {
+    const { history } = renderWithRouter(<App />);
     let url = history.location.pathname;
     expect(url).toBe('/');
 
@@ -70,12 +102,9 @@ describe('Se é renderizado um card com as informações de determinado pokémon
     expect(getAllBtn).toBeInTheDocument();
     userEvent.click(getAllBtn);
 
-    const getLink = screen.getByRole('link', { name: 'More details' });
+    const getLink = screen.getByRole('link', { name: details });
     expect(getLink).toBeInTheDocument();
-    expect(getLink.href).toBe('http://localhost/pokemons/25');
-
     userEvent.click(getLink);
-    expect(screen.getByText('Pikachu Details')).toBeInTheDocument();
     url = history.location.pathname;
 
     expect(url).toBe('/pokemons/25');
@@ -85,6 +114,20 @@ describe('Se é renderizado um card com as informações de determinado pokémon
     const { history } = renderWithRouter(<App />);
     let url = history.location.pathname;
     expect(url).toBe('/');
+
+    const getAllBtn = screen.getByRole('button', { name: 'All' });
+    expect(getAllBtn).toBeInTheDocument();
+    userEvent.click(getAllBtn);
+
+    const getLink = screen.getByRole('link', { name: details });
+    expect(getLink).toBeInTheDocument();
+
+    userEvent.click(getLink);
+    url = history.location.pathname;
+    expect(url).toBe('/pokemons/25');
+
+    const pokeFav = screen.getByLabelText('Pokémon favoritado?');
+    userEvent.click(pokeFav);
 
     const getFavLinkPage = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(getFavLinkPage).toBeInTheDocument();
