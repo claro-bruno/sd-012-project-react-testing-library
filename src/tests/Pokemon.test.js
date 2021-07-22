@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import Pokemon from '../components/Pokemon';
@@ -35,4 +36,20 @@ describe('Testa do Pokemon.js', () => {
       .toHaveAttribute('alt', `${pokemonsData[0].name} is marked as favorite`);
   });
 
+  it('link "More details" leva até a página correta', () => {
+    const { history } = renderWithRouter(<App />);
+
+    expect(history.location.pathname).toBe('/');
+
+    const linkDetails = screen.getByText(/More details/i);
+    expect(linkDetails).toBeInTheDocument();
+
+    userEvent.click(linkDetails);
+
+    const title = screen
+      .getByRole('heading', { name: `${pokemonsData[0].name} Details` });
+    expect(title).toBeInTheDocument();
+
+    expect(history.location.pathname).toBe(`/pokemons/${pokemonsData[0].id}`);
+  });
 });
