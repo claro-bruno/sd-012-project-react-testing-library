@@ -14,8 +14,10 @@ describe('Testing component Pokemon.js', () => {
     expect(getNamePokemon).toHaveTextContent(/charmander/i);
     const getType = screen.getByTestId('pokemon-type');
     expect(getType).toHaveTextContent('Fire');
+    const value = 8.5;
+    const measurementUnit = 'kg';
     const getAverageWeigth = screen.getByTestId(/pokemon-weight/i);
-    expect(getAverageWeigth).toHaveTextContent(/8.5 kg/i);
+    expect(getAverageWeigth).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     const getImage = screen.getByAltText(/charmander sprite/i);
     expect(getImage).toHaveAttribute('src', url);
   });
