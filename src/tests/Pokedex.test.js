@@ -34,4 +34,15 @@ describe('Testa Pokedex', () => {
     const buttons = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
     expect(screen.getAllByTestId('pokemon-type-button').length).toBe(buttons.length);
   });
+
+  test('Verifica se existe botão para resetar o filtro', () => {
+    renderWithRouter(<App />);
+
+    const button = screen.getByRole('button', { name: /all/i });
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('All');
+    userEvent.click(button);
+
+    expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
+  });
 });
