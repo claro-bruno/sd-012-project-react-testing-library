@@ -20,4 +20,12 @@ describe('Testa App', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
+
+  test('Verifica se a página é redicionada para about quando clicado em About', () => {
+    const { history } = renderWithRouter(<App />);
+
+    userEvent.click(screen.getByRole('link', { name: /about/i }));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
 });
