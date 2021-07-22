@@ -34,4 +34,25 @@ describe('Testa todo Pokedex.js', () => {
     const secondPokemon = screen.getByTestId('pokemon-name');
     expect(secondPokemon).toHaveTextContent(pokemons[1].name);
   });
+
+  it('clicando diversas vezes no botão "Próximo pokémon', () => {
+    const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+
+    const btnNext = screen.getByTestId('next-pokemon');
+    expect(btnNext).toBeInTheDocument();
+
+    const firstPokemon = screen.getByTestId('pokemon-name');
+    expect(firstPokemon).toHaveTextContent(pokemons[0].name);
+
+    pokemons.forEach(() => {
+      userEvent.click(btnNext);
+    });
+
+    const afterClicks = screen.getByTestId('pokemon-name');
+    expect(afterClicks).toHaveTextContent(pokemons[0].name);
+  });
 });
