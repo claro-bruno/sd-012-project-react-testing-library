@@ -6,42 +6,34 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Testa Pokemon.js', () => {
-  it('Existe o name do primeiro pokemon da lista na tela', () => {
+  it('Testa render de name/type/weight/imagem cada pokemon', () => {
     renderWithRouter(<App />);
-    const { name } = pokemons[0];
 
-    const pokemonName = screen.getByTestId('pokemon-name');
-    expect(pokemonName).toHaveTextContent(name);
-  });
+    pokemons.forEach((pokemon) => {
+      const { name, type, image, averageWeight: { value, measurementUnit } } = pokemon;
 
-  it('Existe o type do primeiro pokemon da lista na tela', () => {
-    renderWithRouter(<App />);
-    const { type } = pokemons[0];
+      const pokemonName = screen.getByTestId('pokemon-name');
+      const pokemonType = screen.getByTestId('pokemon-type');
+      const pokemonWeight = screen.getByTestId('pokemon-weight');
+      const pokemonImageAlt = screen.getByAltText(`${name} sprite`);
 
-    const pokemonType = screen.getByTestId('pokemon-type');
-    expect(pokemonType).toHaveTextContent(type);
-  });
+      expect(pokemonName).toHaveTextContent(name);
+      expect(pokemonType).toHaveTextContent(type);
+      expect(pokemonWeight)
+        .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
 
-  it('Existe o weight do primeiro pokemon da lista na tela', () => {
-    renderWithRouter(<App />);
-    const { averageWeight: { value, measurementUnit } } = pokemons[0];
+      expect(pokemonImageAlt.src).toBe(`${image}`);
+      expect(pokemonImageAlt).toBeDefined();
 
-    const pokemonWeight = screen.getByTestId('pokemon-weight');
-    expect(pokemonWeight)
-      .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
-  });
+      const buttonNext = screen.getByRole('button', { name: /Próximo pokémon/ });
 
-  it('Existe a imagem do primeiro pokemon da lista na tela', () => {
-    renderWithRouter(<App />);
-    const { name, image } = pokemons[0];
-
-    const pokemonImageAlt = screen.getByAltText(`${name} sprite`);
-    expect(pokemonImageAlt.src).toBe(`${image}`);
-    expect(pokemonImageAlt).toBeDefined();
+      userEvent.click(buttonNext);
+    });
   });
 
   it('testa link "More details" e checkbox "Pokémon favoritado?"', () => {
     const { history } = renderWithRouter(<App />);
+
     const { name, id } = pokemons[0];
 
     const linkDetails = screen.getByRole('link', { name: /More details/ });
