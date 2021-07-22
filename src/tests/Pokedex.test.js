@@ -21,5 +21,13 @@ describe('Testa Pokedex', () => {
     userEvent.click(screen.getByRole('button', { name: /próximo pokémon/i }));
 
     expect(screen.getByText(/charmander/i)).toBeInTheDocument();
+
+    
+  });
+
+  test('Verifica se é exibido apenas 1 pokémon por vez', () => {
+    renderWithRouter(<App />);
+
+    expect(screen.getAllByTestId('pokemon-name').length).toBe(1);
   });
 });
