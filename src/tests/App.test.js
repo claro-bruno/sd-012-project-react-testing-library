@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Teste o componente <App.js />', () => {
-  test('Testa se o topo contém um conjunto fixo de links de navegação.', () => {
+  it('Testa se o topo contém um conjunto fixo de links de navegação.', () => {
     renderWithRouter(<App />);
     const links = screen.getAllByRole('link');
     expect(links[0]).toHaveTextContent('Home');
@@ -12,7 +12,7 @@ describe('Teste o componente <App.js />', () => {
     expect(links[2]).toHaveTextContent('Favorite Pokémons');
   });
 
-  test('Teste se a aplicação é redirecionada para a página inicial, '
+  it('Teste se a aplicação é redirecionada para a página inicial, '
   + 'na URL / ao clicar no link Home da barra de navegação.', () => {
     const { history } = renderWithRouter(<App />);
     const links = screen.getAllByRole('link');
@@ -25,7 +25,7 @@ describe('Teste o componente <App.js />', () => {
     expect(pageContent).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada para a página About, '
+  it('Teste se a aplicação é redirecionada para a página About, '
   + 'na URL /about ao clicar no link About da barra de navegação.', () => {
     const { history } = renderWithRouter(<App />);
     const links = screen.getAllByRole('link');
@@ -38,7 +38,7 @@ describe('Teste o componente <App.js />', () => {
     expect(pageContent).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada para a página Pokemons Favoritados, '
+  it('Teste se a aplicação é redirecionada para a página Pokemons Favoritados, '
   + 'na URL /favorites ao clicar no link Favorite Pkmn da barra de navegação.', () => {
     const { history } = renderWithRouter(<App />);
     const links = screen.getAllByRole('link');
@@ -51,7 +51,7 @@ describe('Teste o componente <App.js />', () => {
     expect(pageContent).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada para a página Not Found '
+  it('Teste se a aplicação é redirecionada para a página Not Found '
   + ' ao entrar em uma URL desconhecida.', () => {
     const { history } = renderWithRouter(<App />);
     history.push('xablau');
