@@ -125,13 +125,15 @@ describe('Testa component Pokedex', () => {
     userEvent.click(btnAll);
     expect(screen.getByText(/pikachu/i)).toBeDefined();
   });
+  it('Verifica se o botão nome do tipo corresponde ao pokémon', () => {
+    renderWithRouter(<App />);
+    const btnType = screen.getByRole('button', { name: /electric/i });
+
+    userEvent.click(btnType);
+    const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType).toHaveTextContent(/electric/i);
+  });
 });
-// it('Verifica se o botão nome do tipo corresponde ao pokémon', () => {
-//   renderWithRouter(<App />);
-//   const btnType = screen.getByRole('button', { name: /electric/i });
-//   const pokemonType = screen.getByTestId('pokemon-type');
-//   expect(pokemonType.innerHTML).toEqual('Electric');
-// });
 
 // it('Verifica se o botão All está sempre visível', () => {
 //   renderWithRouter(<App />);
