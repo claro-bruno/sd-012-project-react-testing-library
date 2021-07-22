@@ -41,4 +41,8 @@ describe('Teste o componente <Pokedex.js />', () => {
     const btns = 7;
     expect(screen.getAllByTestId('pokemon-type-button').length).toBe(btns);
   });
+  it('Testa se o botão "Próximo pokémon" fica desabilitado', () => {
+    userEvent.click(screen.getByRole('button', { name: /Poison/i }));
+    expect(screen.getByRole('button', { name: /Próximo pokémon/i })).toBeDisabled();
+  });
 });
