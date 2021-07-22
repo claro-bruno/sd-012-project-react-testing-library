@@ -42,7 +42,7 @@ describe('Requisito 1', () => {
   });
   it('1.5 - Verifica página Erro 404', () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/xablau');
+    history.push('/tiagoornelas');
     const notFound = screen.getByText(/page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
