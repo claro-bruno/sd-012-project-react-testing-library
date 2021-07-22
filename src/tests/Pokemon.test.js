@@ -4,10 +4,10 @@ import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
-describe('Tests the Pokemon.js component', () => {
+describe('Teste o componente <Pokemon.js />', () => {
   const pokemon = pokemons[0];
 
-  test('Teste se é renderizado um card com as informações do pokémon.', () => {
+  it('Teste se é renderizado um card com as informações do pokémon.', () => {
     renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
     const name = screen.getByTestId('pokemon-name');
     const type = screen.getByTestId('pokemon-type');
@@ -24,13 +24,13 @@ describe('Tests the Pokemon.js component', () => {
     expect(weight).toHaveTextContent(testWeight);
   });
 
-  test('Teste se existe um link More Details', () => {
+  it('Teste se existe um link More Details', () => {
     renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
     const link = screen.getByRole('link', { name: 'More details' });
     expect(link).toHaveAttribute('href', `/pokemons/${pokemon.id}`);
   });
 
-  test('Teste se existe um icone Favorito', () => {
+  it('Teste se existe um icone Favorito', () => {
     renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
     const img = screen.getAllByRole('img');
     expect(img[1]).toHaveAttribute('src', '/star-icon.svg');
