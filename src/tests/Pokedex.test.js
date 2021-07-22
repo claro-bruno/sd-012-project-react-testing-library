@@ -31,8 +31,11 @@ describe('Testa Pokedex.js', () => {
   it('Existe todos os botões de filter por "Type"', () => {
     const types = pokemons.map((pokemon) => pokemon.type);
     const allTypes = [...types, 'All'];
-    allTypes.forEach((type) => expect(screen
-      .getByRole('button', { name: `${type}` })).toBeDefined());
+    const numberButtonsFilter = 7;
+    allTypes.forEach((type) => (
+      expect(screen.getByRole('button', { name: `${type}` })).toBeDefined()));
+    expect(screen.getAllByTestId('pokemon-type-button')).toBeDefined();
+    expect(screen.getAllByTestId('pokemon-type-button').length).toBe(numberButtonsFilter);
   });
 
   it('Testa todos os botões de filter', () => {
