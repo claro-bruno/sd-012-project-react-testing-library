@@ -55,4 +55,18 @@ describe('Testa todo Pokedex.js', () => {
     const afterClicks = screen.getByTestId('pokemon-name');
     expect(afterClicks).toHaveTextContent(pokemons[0].name);
   });
+
+  it('mostra apenas um pokemon', () => {
+    const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+
+    const firstPokemon = screen.queryByText(pokemons[0].name);
+    expect(firstPokemon).toBeInTheDocument();
+
+    const secondPokemon = screen.queryByText(pokemons[1].name);
+    expect(secondPokemon).not.toBeInTheDocument();
+  });
 });
