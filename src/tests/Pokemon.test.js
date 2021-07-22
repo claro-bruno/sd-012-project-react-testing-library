@@ -13,7 +13,7 @@ describe(' Teste o componente <Pokemon.js />', () => {
     expect(screen.getByTestId('pokemon-name')).toHaveTextContent(name);
     expect(screen.getByTestId('pokemon-type')).toHaveTextContent(type);
     expect(screen.getByTestId(/pokemon-weight/i))
-      .toHaveTextContent(`Average weight ${value} ${measurementUnit}`);
+      .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     const altText = 'Pikachu sprite';
     const image = screen.getByAltText(altText);
     expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
