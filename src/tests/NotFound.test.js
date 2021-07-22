@@ -1,18 +1,19 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
-// import App from '../App';
 
-test('Verifica se a pagina exibe o texto correto', () => {
-  render(<NotFound />);
-  const msg = screen.getByRole('heading');
-  expect(msg).toHaveTextContent('Page requested not found 😭');
-});
+describe('Teste o componente <NotFound.js />', () => {
+  it('Teste se página contém um heading h2 '
+  + 'com o texto Page requested not found 😭;', () => {
+    render(<NotFound />);
+    const msg = screen.getByRole('heading');
+    expect(msg).toHaveTextContent('Page requested not found 😭');
+  });
 
-test('Verifica se a pagina exibe a imagem correta', () => {
-  const url = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-  render(<NotFound />);
-  const img = screen.getAllByRole('img');
-  expect(img[1].src).toBe(url);
+  it('Teste se a pagina exibe a imagem', () => {
+    const url = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+    render(<NotFound />);
+    const img = screen.getAllByRole('img');
+    expect(img[1].src).toBe(url);
+  });
 });
