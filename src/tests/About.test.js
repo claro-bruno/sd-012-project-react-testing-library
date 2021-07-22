@@ -1,24 +1,35 @@
-// import React from 'react';
-// import { fireEvent, screen, waitFor } from '@testing-library/react';
-// import renderWithRouter from './renderWithRouter';
-// import App from '../App';
+import { fireEvent, screen } from '@testing-library/react';
 
-// describe('Testa o componente About', () => {
-//   beforeEach(async () => {
-//     const aboutLink = await screen.findByRole('link', /about/i);
+describe('Testa o componente About', () => {
+  beforeEach(() => {
+    const aboutLink = screen.getByRole('link', /about/i);
 
-//     fireEvent.click(aboutLink);
-//   });
-//   it('Renderiza título', async () => {
-//     const aboutTitle = await screen.findByRole('heading', /About Pokédex/i);
+    fireEvent.click(aboutLink);
+  });
+  it('Renderiza título', () => {
+    const aboutTitle = screen.getByText(/About Pokédex/i);
 
-//     await waitFor(() => {
-//       expect(aboutTitle).toBeInTheDocument();
-//     });
-//   });
+    expect(aboutTitle).toBeInTheDocument();
+  });
 
-//   it('Renderiza paragrafos', async () => {
-//     const aboutParagraph1 = await screen.findByRole('heading', /About Pokédex/i);
+  it('Renderiza paragrafos', () => {
+    const aboutParagraph1 = screen.getByText(/This application simulates a Pokédex/i);
 
-//   });
-// });
+    const aboutParagraph2 = screen.getByText(/One can filter Pokémons by type, /i);
+
+    expect(aboutParagraph1).toBeInTheDocument();
+    expect(aboutParagraph2).toBeInTheDocument();
+  });
+
+  it('Renderiza dois parágrafos', () => {
+    const paragraphs = screen.getAllByRole('p');
+
+    expect(paragraphs).toHaveLength(2);
+  });
+
+  it('Renderiza a imagem', () => {
+    const image = screen.getByAltText('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+
+    expect(image).toBeDefined();
+  });
+});

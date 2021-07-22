@@ -1,78 +1,72 @@
 import React from 'react';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Testa o componente App', () => {
-  it('Testa existência dos links', async () => {
-    const home = await screen.findByRole('link', /home/i);
-    const about = await screen.findByRole('link', /about/i);
-    const fav = await screen.findByRole('link', /favorite pokémons/i);
+  it('Existência dos links', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByRole(
+      'link',
+      { name: /home/i },
+    );
+    const about = screen.getByRole('link', { name: /about/i });
+    const fav = screen.getByRole('link', { name: /favorite pokémons/i });
 
-    await waitFor(() => {
-      expect(home).toBeInTheDocument();
-      expect(about).toBeInTheDocument();
-      expect(fav).toBeInTheDocument();
-    });
+    expect(home).toBeInTheDocument();
+    expect(about).toBeInTheDocument();
+    expect(fav).toBeInTheDocument();
   });
 
-  it('Testa funcionamento do link home', async () => {
+  it('Funcionamento do link home', () => {
     const { history } = renderWithRouter(<App />);
-    const home = await screen.findByRole('link', /home/i);
+    const home = screen.getByRole('link', { name: /home/i });
 
     fireEvent.click(home);
 
     const { pathname } = history.location;
-    const homeText = await screen.findByText(/Encountered pokémons/i);
+    const homeText = screen.getByText(/Encountered pokémons/i);
 
-    await waitFor(() => {
-      expect(pathname).toBe('/');
-      expect(homeText).toBeInTheDocument();
-    });
+    expect(pathname).toBe('/');
+    expect(homeText).toBeInTheDocument();
   });
 
-  it('Testa funcionamento do link about', async () => {
+  it('Funcionamento do link about', () => {
     const { history } = renderWithRouter(<App />);
-    const about = await screen.findByRole('link', /about/i);
-    const { pathname } = history.location;
+    const about = screen.getByRole('link', { name: /about/i });
 
     fireEvent.click(about);
 
-    const aboutText = await screen.findByText(/About Pokédex/i);
+    const { pathname } = history.location;
+    const aboutText = screen.getByText(/About Pokédex/i);
 
-    await waitFor(() => {
-      expect(pathname).toBe('/about');
-      expect(aboutText).toBeInTheDocument();
-    });
+    expect(pathname).toBe('/about');
+    expect(aboutText).toBeInTheDocument();
   });
 
-  it('Testa funcionamento do link Favorite Pokémons', async () => {
+  it('Funcionamento do link Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
-    const fav = await screen.findByRole('link', /favorite pokémons/i);
-    const { pathname } = history.location;
+    const fav = screen.getByRole('link', { name: /favorite pokémons/i });
 
     fireEvent.click(fav);
 
-    const favText = await screen.findByText(/Favorite pokémons/i);
+    const { pathname } = history.location;
+    const favText = screen.getByRole('heading', { name: /Favorite pokémons/i });
 
-    await waitFor(() => {
-      expect(pathname).toBe('/favorites');
-      expect(favText).toBeInTheDocument();
-    });
+    expect(pathname).toBe('/favorites');
+    expect(favText).toBeInTheDocument();
   });
 
-  it('Testa aviso de página inexistente', async () => {
+  it('Aviso de página inexistente', () => {
     const { history } = renderWithRouter(<App />);
-    const { pathname } = history.location;
-
     const notFound = '/notFound';
-    const noMatch = await screen.findByText(/Page requested not found/i);
 
     history.push(notFound);
 
-    await waitFor(() => {
-      expect(pathname).toBe(notFound);
-      expect(noMatch).toBeInTheDocument();
-    });
+    const noMatch = screen.getByRole('heading', { name: /Page requested not found/i });
+    const { pathname } = history.location;
+
+    expect(pathname).toBe(notFound);
+    expect(noMatch).toBeInTheDocument();
   });
 });
