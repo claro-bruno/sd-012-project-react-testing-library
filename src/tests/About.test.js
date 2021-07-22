@@ -11,6 +11,12 @@ describe('Testando o componente About.js', () => {
     const url = history.location.pathname;
     expect(url).toBe('/');
   });
+
+  /**
+   * Consultei o Testing Library para resolver essa parte.
+   * Link do site https://testing-library.com/docs/queries/byrole/
+   */
+
   test('Verifica se renderiza o texto About Pokédex em h2', () => {
     const { history } = renderWithRouter(<About />);
     const tagH2 = screen.getByRole('heading', { level: 2 });
