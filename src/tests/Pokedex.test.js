@@ -59,7 +59,8 @@ describe('Testa o componente Pokedex.js', () => {
   it('Testa se há botões de filtro para cada tipo', () => {
     pokemons.forEach((pokemon) => {
       const { type } = pokemon;
-      expect(screen.getByRole('button', { name: `${type}` })).toBeDefined();
+      const buttonsType = screen.getAllByTestId('pokemon-type-button');
+      expect(buttonsType.find((button) => button.innerHTML === type)).toBeDefined();
     });
     const fire = screen.getByRole('button', { name: 'Fire' });
     const electric = screen.getByRole('button', { name: 'Electric' });
