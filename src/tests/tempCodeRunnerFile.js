@@ -1,1 +1,0 @@
-expect(screen.getByAltText(/Charmander sprite/)).toBeInTheDocument();

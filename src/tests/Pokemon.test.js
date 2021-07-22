@@ -5,7 +5,6 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('testa se o componente pokemon', () => {
-
   it('renderiza card com informações do pokemon', () => {
     renderWithRouter(<App />);
     const pokeName = screen.getByTestId('pokemon-name');
