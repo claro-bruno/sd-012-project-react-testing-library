@@ -17,5 +17,5 @@ describe('Testa NotFound', () => {
     history.push('/adsadasdsad');
     const SRC = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(screen.getAllByRole('img')[1].src).toBe(SRC);
-  })
+  });
 });
