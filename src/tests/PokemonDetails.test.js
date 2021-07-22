@@ -36,9 +36,9 @@ describe('Testa o componente PokemonDetails', () => {
         const locationName = screen.getByText(area.location);
         expect(locationName).toBeInTheDocument();
 
+        const imgAlt = mockedPokemon.name;
         const imgUrl = area.map;
-
-        const image = screen.getAllByAltText(`${mockedPokemon.name} location`);
+        const image = screen.getAllByAltText(`${imgAlt} location`);
         expect(image[index]).toHaveProperty('src', imgUrl);
       });
     });
