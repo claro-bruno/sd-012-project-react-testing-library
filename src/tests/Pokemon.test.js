@@ -12,8 +12,8 @@ test('Se é renderizado um card com as infos', () => {
   const pokeWeight = screen.getByText('Average weight: 6.0 kg');
   const pokeImg = screen
     .getByAltText('Pikachu sprite');
-  expect(pokeName).toBeInTheDocument();
-  expect(pokeType).toBeInTheDocument();
+  expect(pokeName).toHaveTextContent('Pikachu');
+  expect(pokeType).toHaveTextContent('Electric');
   expect(pokeWeight).toBeInTheDocument();
   expect(pokeImg.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
 });
