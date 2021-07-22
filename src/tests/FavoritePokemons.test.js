@@ -3,28 +3,10 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
-const favPokemonsMock = [
-  {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  },
-  {
-    id: 10,
-    name: 'Caterpie',
-    type: 'Bug',
-    averageWeight: {
-      value: '2.9',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png',
-  },
-];
+import pokemons from '../data';
+
+const favPokemonsMock = pokemons
+  .filter(({ name }) => name === 'Pikachu' || name === 'Caterpie');
 
 describe('FavoritePokemons tests', () => {
   it('The "No favorite pokemon found" message must be in the document', () => {
