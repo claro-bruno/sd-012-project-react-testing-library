@@ -107,6 +107,9 @@ const mockFavorite = {
   151: false,
 };
 
+const mockPokemonsType = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal','Dragon']
+
+
 describe('Teste do componente Pokedex.js', () => {
   test('Teste de renderização do heading', () => {
     renderWithRouter(
@@ -147,14 +150,12 @@ describe('Teste do componente Pokedex.js', () => {
   });
 
   test('Teste de funcionamento dos botões de filtro', () => {
-    const pokemonType = mockPokemons.map((pokemon) => pokemon.type);
     renderWithRouter(
       <Pokedex pokemons={ mockPokemons } isPokemonFavoriteById={ mockFavorite } />,
     );
-    pokemonType.forEach((type) => {
-      const button = screen.getByRole('button', { name: type });
-      expect(button).toBeInTheDocument();
-    });
+
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(typeButtons).toHaveLength(mockPokemonsType.length);
 
     const typeButton = screen.getByRole('button', { name: /Psychic/i });
     fireEvent.click(typeButton);
