@@ -44,5 +44,6 @@ describe('Tentando o Componente <Pokemon />', () => {
   it(('Teste se existe um ícone de estrela nos Pokémons favoritados'), () => {
     const pokeStar = screen.getByRole('img', { name: /favorite/i });
     expect(pokeStar).toHaveAttribute('src', '/star-icon.svg');
+    expect(pokeStar).toHaveProperty('alt', 'Pikachu is marked as favorite');
   });
 });
