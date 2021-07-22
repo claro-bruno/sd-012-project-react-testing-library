@@ -47,9 +47,7 @@ describe('Atendendo aos testes do Requisito 6', () => {
 
     const pkmImg = screen.getByAltText(`${pokemon.name} sprite`);
     expect(pkmImg).toBeInTheDocument();
-    expect(pkmImg.src).not.toBeNull();
-    expect(pkmImg.src).not.toBe('');
-    console.log(pkmImg.src);
+    expect(pkmImg.src).toContain('http');
 
     if (favPokemon) {
       const favStar = screen.getByAltText(`${pokemon.name} is marked as favorite`);
