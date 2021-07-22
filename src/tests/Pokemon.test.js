@@ -1,19 +1,12 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import MutationObserver from '@sheerun/mutationobserver-shim';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 import Pokemon from '../components/Pokemon';
 import App from '../App';
 
-// window.MutationObserver = MutationObserver;
-
 describe('Requisito 6 - Teste o componente <Pokemon.js /> ', () => {
-  // beforeEach(() => renderWithRouter(<Pokemon
-  //   pokemon={ pokemons[0] }
-  //   isFavorite={ false }
-  // />));
   it('Testa se é renderizado o card com as informações corretas do Pokémon', () => {
     renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
@@ -25,7 +18,6 @@ describe('Requisito 6 - Teste o componente <Pokemon.js /> ', () => {
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
     const pokemonImage = screen.getByRole('img');
-
     expect(pokemonName).toHaveTextContent(name);
     expect(pokemonType).toHaveTextContent(type);
     expect(pokemonWeight).toHaveTextContent(`Average weight: ${value} ${unit}`);
