@@ -21,6 +21,7 @@ test('Testa Pokedex', () => {
   expect(FirstPokemonType.innerHTML).toBe('Electric');
 
   const nextPokemonButton = screen.getByTestId('next-pokemon');
+  expect(nextPokemonButton.innerHTML).toBe('Próximo pokémon');
   userEvent.click(nextPokemonButton);
 
   const SecondPokemon = screen.getByText(/Charmander/i);
