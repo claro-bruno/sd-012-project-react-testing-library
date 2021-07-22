@@ -18,7 +18,7 @@ describe('', () => {
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritados', () => {
-    renderWithRouter(<FavoritePokemons pokemons={pokemonsArray} />);
+    renderWithRouter(<FavoritePokemons pokemons={ pokemonsArray } />);
     const msgNotFound = screen.queryByText(/no favorite pokemon found/i);
     const pikachu = screen.getByText('Pikachu');
     const snorlax = screen.getByText('Snorlax');
