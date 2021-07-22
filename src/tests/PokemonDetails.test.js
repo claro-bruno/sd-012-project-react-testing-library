@@ -15,7 +15,7 @@ describe('Testa o componente PokemonDetails', () => {
 
       const detailsTitle = screen.getByText(`${mockedPokemon.name} Details`);
       const linkToDetail = screen.queryByRole('link', { name: 'More details' });
-      const summaryTitle = screen.queryByRole('heading', { name: 'Summary', level: 2 });
+      const summaryTitle = screen.getByRole('heading', { name: 'Summary', level: 2 });
       const summary = screen.getByText(mockedPokemon.summary);
 
       expect(detailsTitle).toBeInTheDocument();
