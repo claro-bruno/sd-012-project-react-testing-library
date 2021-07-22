@@ -7,8 +7,7 @@ import App from '../App';
 
 jest.mock('../data');
 
-const { averageWeight, id, image, name, type } = Alakazam[0];
-const { measurementUnit, value } = averageWeight;
+const { averageWeight: { measurementUnit, value }, id, image, name, type } = Alakazam[0];
 const middleWeight = `Average weight: ${value} ${measurementUnit}`;
 
 describe('Testa componente Pokemon', () => {
