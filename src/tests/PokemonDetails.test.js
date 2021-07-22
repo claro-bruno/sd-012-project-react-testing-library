@@ -17,6 +17,11 @@ describe('Testa componente Pokemon Details', () => {
 
     const infos = screen.getByRole('heading', { level: 2, name: 'Summary' }).innerHTML;
     expect(infos).toBe('Summary');
+
+    const pikachu = screen.getByText(/Pikachu Details/);
+    expect(pikachu).toBeInTheDocument();
+
+    expect(detail).not.toBeInTheDocument();
   });
 
   it('Testa seção com os mapas contendo as localizações do pokémon',
@@ -39,6 +44,12 @@ describe('Testa componente Pokemon Details', () => {
       expect(maps[1].alt).toBe(altLocation);
       expect(maps[2].src).toBe(map2);
       expect(maps[2].alt).toBe(altLocation);
+
+      const cityOfKanto = screen.getByText(/Kanto Viridian Forest/);
+      expect(cityOfKanto).toBeInTheDocument();
+
+      const kanto = screen.getByText(/Kanto Power Plant/);
+      expect(kanto).toBeInTheDocument();
     });
 
   it('Teste se o usuário pode favoritar um pokémon através da página de detalhes', () => {
@@ -48,5 +59,8 @@ describe('Testa componente Pokemon Details', () => {
 
     const favs = screen.getByText(/Pokémon favoritado?/i);
     expect(favs).toBeInTheDocument();
+
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).toBeInTheDocument();
   });
 });
