@@ -17,13 +17,20 @@ const renderWithRouter = (component) => {
 };
 
 describe('verifica os links presentes no componente App', () => {
-  test('Verifica presença e funcionamento do link "Home"', () => {
+  test('Verifica presença e funcionamento dos links "Home"', () => {
     const { history: { location } } = renderWithRouter(<App />);
     const homeLink = screen.getByText(/home/i);
     expect(homeLink).toBeInTheDocument();
     fireEvent.click(homeLink);
     expect(location.pathname).toBe('/');
-    expect(screen.getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
+  test('Verifica presença e funcionamento do link "Favorite Pokémons"', () => {
+    const { history } = renderWithRouter(<App />)
+    const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    expect(favoriteLink).toBeInTheDocument();
+    fireEvent.click(favoriteLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
   test('Verifica presença e funcionamento do link "About"', () => {
     const { history } = renderWithRouter(<App />);
