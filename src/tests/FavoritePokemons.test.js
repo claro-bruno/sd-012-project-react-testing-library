@@ -4,7 +4,6 @@ import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
 describe('Atendendo aos testes do Requisito 3', () => {
-
   test('Testando se renderiza texto sem nenhum Pokemon', () => {
     renderWithRouter(<FavoritePokemons />);
     const noPKM = screen.getByText('No favorite pokemon found');
@@ -52,8 +51,8 @@ describe('Atendendo aos testes do Requisito 3', () => {
             map: 'https://cdn2.bulbagarden.net/upload/9/95/Johto_Mt_Silver_Map.png',
           },
         ],
-        summary: 'At full gallop, its four hooves barely touch the ground because it moves '
-        + 'so incredibly fast.',
+        summary: 'At full gallop, its four hooves barely touch the ground because it'
+        + ' moves so incredibly fast.',
       },
     ];
     renderWithRouter(<FavoritePokemons pokemons={ favPokemon } />);

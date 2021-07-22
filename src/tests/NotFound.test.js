@@ -4,7 +4,6 @@ import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
 
 describe('Atendendo aos testes do Requisito 4', () => {
-
   test('Testando dos requirimentos', () => {
     renderWithRouter(<NotFound />);
     const notFoundHeading = screen.getByRole('heading', { level: 2 });
