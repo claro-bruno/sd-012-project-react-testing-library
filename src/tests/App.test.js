@@ -25,7 +25,7 @@ describe('verifica os links presentes no componente App', () => {
     expect(location.pathname).toBe('/');
   });
   test('Verifica presença e funcionamento do link "Favorite Pokémons"', () => {
-    const { history } = renderWithRouter(<App />)
+    const { history } = renderWithRouter(<App />);
     const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(favoriteLink).toBeInTheDocument();
     fireEvent.click(favoriteLink);
