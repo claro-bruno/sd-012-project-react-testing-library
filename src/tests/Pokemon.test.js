@@ -7,10 +7,14 @@ import App from '../App';
 describe('Testes do arquvio Pokemon.js', () => {
   test('Verifica se um card e criado', () => {
     const { history } = renderWithRouter(<App />);
-    screen.getByTestId('pokemon-name');
-    screen.getByTestId('pokemon-type');
+    const pokeName = screen.getByTestId('pokemon-name');
+    expect(pokeName).toHaveTextContent('Pikachu');
+    const pokeType = screen.getByTestId('pokemon-type');
+    expect(pokeType).toHaveTextContent('Electric');
     const weight = screen.getByTestId('pokemon-weight');
-    expect(weight).toHaveTextContent('Average weight:');
+    const measure = 'kg';
+    const pokeWeight = '6.0';
+    expect(weight).toHaveTextContent(`Average weight: ${pokeWeight} ${measure}`);
     const image = screen.getByRole('img');
     const imgSrc = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
     const imgAlt = 'Pikachu sprite';

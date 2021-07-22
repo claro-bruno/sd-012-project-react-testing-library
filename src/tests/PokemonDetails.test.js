@@ -10,7 +10,7 @@ describe('Testes na pagina detalhes do pokemon', () => {
     const details = screen.getByRole('link', { name: 'More details' });
     userEvent.click(details);
     const title = screen.getAllByRole('heading', { level: 2 });
-    expect(title[0]).toHaveTextContent('Pikachu');
+    expect(title[0]).toHaveTextContent('Pikachu Details');
     expect(title[1]).toHaveTextContent('Summary');
     expect(details).not.toBeInTheDocument();
     const paragraph = screen.getByText(/This intelligent Pokémon roasts hard berries/i);
