@@ -31,6 +31,6 @@ describe('Testa o componente <About.js />', () => {
     const imageURL = screen.getByRole('img');
 
     expect(imageURL).toBeInTheDocument();
-    expect(imageURL).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png')
+    expect(imageURL).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
