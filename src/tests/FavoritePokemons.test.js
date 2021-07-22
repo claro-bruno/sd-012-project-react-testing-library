@@ -8,8 +8,8 @@ import App from '../App';
 describe('Verifica o conteúdo do componente FavoritePokemons', () => {
   test('Verifica a renderização de uma mensagem caso não haja favoritos', () => {
     render(<FavoritePokemons />);
-    const mesageNotFound = screen.getByText('No favorite pokemon found');
-    expect(mesageNotFound).toBeInTheDocument();
+    const notFoundMessage = screen.getByText('No favorite pokemon found');
+    expect(notFoundMessage).toBeInTheDocument();
   });
 
   test('Verifica se é exibido todos os cards de pokémons favoritados', () => {
