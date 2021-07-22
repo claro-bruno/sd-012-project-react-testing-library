@@ -50,4 +50,31 @@ describe('Testando o componente Pokedex', () => {
       userEvent.click(nextPokemonButton);
     });
   });
+
+  it(('Testando botão de filtro'), () => {
+    // const typeButton = screen.getAllByTestId('pokemon-type-button');
+    const typesOfPokemon = data.reduce((types, { type }) => [...types, type], ['All']);
+    typesOfPokemon.forEach((type) => {
+      const typeButton = screen.getByRole('button', { name: type });
+      expect(typeButton).toBeInTheDocument();
+    });
+  });
+
+  it(('Testando o botão de resetar filtro'), () => {
+    const allButton = screen.getByRole('button', { name: 'All' });
+    expect(allButton).toBeInTheDocument();
+    const pokemonName = screen.getByTestId('pokemon-name');
+    const nextPokemonButton = screen.getByText('Próximo pokémon');
+    data.forEach(({ name }) => {
+      expect(pokemonName).toHaveTextContent(name);
+      userEvent.click(nextPokemonButton);
+    });
+    const fireButton = screen.getByRole('button', { name: 'Fire' });
+    userEvent.click(fireButton);
+    userEvent.click(allButton);
+    data.forEach(({ name }) => {
+      expect(pokemonName).toHaveTextContent(name);
+      userEvent.click(nextPokemonButton);
+    });
+  });
 });
