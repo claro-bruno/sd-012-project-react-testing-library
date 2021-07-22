@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import data from '../data';
-import { element } from 'prop-types';
 
 describe('Testando o componente Pokedex', () => {
   const favoriteFake = {
@@ -58,9 +57,9 @@ describe('Testando o componente Pokedex', () => {
     );
     const typeButtons = screen.getAllByTestId('pokemon-type-button');
     typeButtons.forEach((type) => {
-      const elements = typesOfPokemon.some((typeElement) => {
-        return typeElement === type.innerHTML;
-      });
+      const elements = typesOfPokemon.some((typeElement) => (
+        typeElement === type.innerHTML
+      ));
       expect(elements).toBeTruthy();
     });
     expect(typesOfPokemon).toHaveLength((typeButtons.length) + 1);
