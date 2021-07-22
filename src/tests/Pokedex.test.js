@@ -86,4 +86,12 @@ describe('Verifica Pokedex.js', () => {
     expect(screen.getAllByText('Fire')[0]).toBeInTheDocument();
     expect(screen.getByText('Average weight: 8.5 kg')).toBeInTheDocument();
   });
+
+  it('Testa renderização do botão type por dataTestId', () => {
+    renderWithRouter(<App />);
+
+    const NUMBER = 7;
+    const btnType = screen.getAllByTestId('pokemon-type-button');
+    expect(btnType).toHaveLength(NUMBER);
+  });
 });
