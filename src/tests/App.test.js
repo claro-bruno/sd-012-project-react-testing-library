@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './helper/renderWithRouter';
+import renderWithRouter from './renderWithRouter';
 
 describe('1 - Testando o componente <App />', () => {
   it('Teste se a aplicação contém um link "Home".', () => {
