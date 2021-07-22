@@ -1,11 +1,13 @@
 import React from 'react';
 // import { MemoryRouter } from 'react-router-dom'; //
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, render } from '@testing-library/react';
 import App from '../App';
+
+// https://stackoverflow.com/questions/61482418/react-testing-library-screen-vs-render-queries //
 
 describe('Teste de componente <App.js />', () => {
   it('Se o topo do ao contém um conjunto fixo de links de navegação', () => {
-    renderWithRouter(<App />);
+    render(<App />);
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('About')).toBeInTheDocument();
     expect(screen.getByText('Favorite Pokémons')).toBeInTheDocument();
