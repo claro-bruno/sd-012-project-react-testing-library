@@ -37,6 +37,3 @@ describe('Testa FavoritePokemons', () => {
     });
   });
 });
-
-// const FavoritePokemon = screen.getByLabelText('Pokémon favoritado?');
-// expect(FavoritePokemon).toBeDefined();
