@@ -6,7 +6,7 @@ import App from '../App';
 describe('Testa o componente NotFound', () => {
   beforeEach(() => {
     const { history } = renderWhitRouter(<App />);
-    history.push('pagina-not-found');
+    history.push('/pagina-not-found');
   });
 
   test('Testa se página contém um heading h2', () => {

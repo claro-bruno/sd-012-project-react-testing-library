@@ -43,7 +43,7 @@ describe('Testa se existem 3 links ordenados no nav que direcionam para outras p
 test('Testa se ao entrar em uma URL desconhecida é redirecionado para a página Not Found',
   () => {
     const { history } = renderWhitRouter(<App />);
-    history.push('pagina-not-found');
+    history.push('/pagina-not-found');
     const NotFound = screen
       .getByAltText('Pikachu crying because the page requested was not found');
     expect(NotFound).toBeDefined();
