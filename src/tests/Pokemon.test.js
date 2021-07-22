@@ -19,9 +19,7 @@ describe('6. Teste o componente <Pokemon.js />', () => {
     expect(detailsType).toBeInTheDocument();
 
     const pokemonWeight = screen.getByTestId('pokemon-weight').innerHTML;
-    expect(pokemonWeight).toMatch(/Average/);
-    expect(pokemonWeight).toMatch(/./);
-    expect(pokemonWeight).toMatch(/kg/);
+    expect(pokemonWeight).toMatch(/Average weight: \d*\.\d* kg/);
   });
   it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     renderWithRouter(<App />);
