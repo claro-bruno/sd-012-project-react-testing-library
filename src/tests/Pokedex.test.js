@@ -41,5 +41,10 @@ describe('Verifica Pokedex.js', () => {
     const btnAll = screen.getByRole('button', { name: /All/i });
     userEvent.click(btnAll);
     expect(btnAll).toHaveTextContent('All');
+
+    userEvent.click(btnNext);
+    expect(screen.getByText('Charmander')).toBeInTheDocument();
+    expect(screen.getAllByText('Fire')[1]).toBeInTheDocument();
+    expect(screen.getByText('Average weight: 8.5 kg')).toBeInTheDocument();
   });
 });
