@@ -63,7 +63,7 @@ describe('Teste do componente <Pokedex />', () => {
       expect(allBtn).toBeInTheDocument();
       event.click(allBtn);
 
-      const nextPokemonBtn = screen.getByTestId('next-pokemon');
+      const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
       pokemons.forEach(({ name }) => {
         expect(screen.getByTestId('pokemon-name')).toHaveTextContent(name);
         event.click(nextPokemonBtn);
