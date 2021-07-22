@@ -85,10 +85,8 @@ describe('Testa todo Pokedex.js', () => {
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />);
 
-    types.forEach((type) => {
-      const btnType = screen.getByRole('button', { name: type });
-      expect(btnType).toBeInTheDocument();
-    });
+    const allBtnTypes = screen.getAllByTestId('pokemon-type-button');
+    expect(allBtnTypes.length).toBe(types.length);
 
     const oneType = pokemons.filter((pokemon) => pokemon.type === 'Fire');
     const btnFire = screen.getByRole('button', { name: /Fire/i });
@@ -97,7 +95,7 @@ describe('Testa todo Pokedex.js', () => {
     const firstPokemon = screen.getByTestId(pokemonNameId);
     expect(firstPokemon).toHaveTextContent(oneType[0].name);
 
-    const btnNext = screen.getByTestId(nextPokemonId);
+    const btnNext = screen.getByText(/Próximo pokémon/i);
 
     const btnAll = screen.getByRole('button', { name: /All/i });
     expect(btnAll).toBeInTheDocument();
