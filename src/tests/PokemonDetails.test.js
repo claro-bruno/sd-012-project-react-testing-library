@@ -4,6 +4,14 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
+import * as pokedexService from '../services/pokedexService';
+
+jest.mock('../services/pokedexService');
+const favorites = [];
+pokedexService.updateFavoritePokemons.mockImplementation((idItem) => {
+  favorites.push(idItem);
+});
+pokedexService.readFavoritePokemonIds.mockImplementation(() => favorites);
 
 describe('Testa Pokemon Details', () => {
   beforeEach(() => {
@@ -33,8 +41,12 @@ describe('Testa Pokemon Details', () => {
     expect(imgs[0].src).toBe(pokemons[0].foundAt[0].map);
     expect(imgs[1].src).toBe(pokemons[0].foundAt[1].map);
   });
-  it('verifica se há um checkbox', () => {
+  it('verifica se há um checkbox funcionando', () => {
     const label = screen.getByLabelText('Pokémon favoritado?');
     expect(label).toBeInTheDocument();
+    userEvent.click(label);
+    expect(pokedexService.updateFavoritePokemons).toBeCalled();
+    const fav = 25;
+    expect(favorites).toContain(fav);
   });
 });
