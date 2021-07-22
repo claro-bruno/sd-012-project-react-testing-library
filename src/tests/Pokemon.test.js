@@ -12,7 +12,9 @@ describe('testa componente pokemon.js', () => {
     const weigth = screen.getByTestId('pokemon-weight');
     const img = screen.getByAltText('Pikachu sprite');
     expect(name).toBeInTheDocument();
+    expect(name).toHaveTextContent('Pikachu');
     expect(type).toBeInTheDocument();
+    expect(type).toHaveTextContent('Electric');
     expect(weigth).toBeInTheDocument();
     expect(weigth).toHaveTextContent('Average weight: 6.0 kg');
     expect(img).toBeInTheDocument();
