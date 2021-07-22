@@ -1,8 +1,13 @@
+import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
+import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 describe('Testa o componente About', () => {
   beforeEach(() => {
-    const aboutLink = screen.getByRole('link', /about/i);
+    renderWithRouter(<App />);
+
+    const aboutLink = screen.getByRole('link', { name: /about/i });
 
     fireEvent.click(aboutLink);
   });
@@ -22,14 +27,18 @@ describe('Testa o componente About', () => {
   });
 
   it('Renderiza dois parágrafos', () => {
-    const paragraphs = screen.getAllByRole('p');
+    const paragraphs = screen.queryAllByText(
+      /Pokémons/i,
+      { selector: 'p' },
+      { exact: false },
+    );
 
     expect(paragraphs).toHaveLength(2);
   });
 
   it('Renderiza a imagem', () => {
-    const image = screen.getByAltText('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    const image = screen.getByAltText('Pokédex');
 
-    expect(image).toBeDefined();
+    expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
