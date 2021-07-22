@@ -16,7 +16,7 @@ describe('About tests', () => {
     const imgElement = screen.getByRole('img');
 
     expect(imgElement).toBeInTheDocument();
-    expect(imgElement.src).toBe(imgURL); // 100% mutants!
+    expect(imgElement).toHaveAttribute('src', imgURL); // 100% mutants!
   });
 
   it('Page must contains some informations about Pokédex', () => {
