@@ -1,12 +1,10 @@
 import React from 'react';
-import { getByRole, getByText, screen } from '@testing-library/react';
-import renderWithRouter from '../types/renderWithRouter';
-import Pokedex from '../components/Pokedex';
-import App from '../App';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Pokemon from '../components/Pokemon';
+import renderWithRouter from '../types/renderWithRouter';
+import App from '../App';
 
-describe('Testando o componente App.js', () => {
+describe('Testando o componente Pokedex', () => {
   test('Verifica se renderiza o texto Encountered pokémons em h2', () => {
     const { history } = renderWithRouter(<App />);
     const tagH2 = screen.getByRole('heading', { level: 2 });
@@ -15,7 +13,7 @@ describe('Testando o componente App.js', () => {
     const url = history.location.pathname;
     expect(url).toBe('/');
   });
-  test('Verifica se é exibido o próximo pokémon ao quando botão específico é clicado', () => {
+  test('Verifica se é exibido o próximo pokémon a cada clique', () => {
     const { history } = renderWithRouter(<App />);
     const nextPokemon = screen.getByTestId('next-pokemon');
     userEvent.click(nextPokemon);
@@ -61,7 +59,8 @@ describe('Testando o componente App.js', () => {
   test('Verifica se a Pokédex tem os botões de filtro', () => {
     const { history } = renderWithRouter(<App />);
     const allButtons = screen.getAllByTestId('pokemon-type-button');
-    expect(allButtons.length).toBe(7); 
+    const lengthButtons = 7;
+    expect(allButtons.length).toBe(lengthButtons);
     const allButton = screen.getByRole('button', { name: 'All' });
     expect(allButton).toBeInTheDocument();
     userEvent.click(allButton);
@@ -108,8 +107,6 @@ describe('Testando o componente App.js', () => {
     const { history } = renderWithRouter(<App />);
     const allButton = screen.getByRole('button', { name: 'All' });
     expect(allButton).toBeInTheDocument();
-    const nextPokemon = screen.getByTestId('next-pokemon');
-    expect(nextPokemon).toBeInTheDocument();
     userEvent.click(allButton);
     const pokemonName = screen.getAllByTestId('pokemon-name');
     expect(pokemonName.length).toBe(1);
