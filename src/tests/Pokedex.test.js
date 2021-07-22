@@ -39,7 +39,7 @@ describe('Verifica Pokedex.js', () => {
   it('Verifica se o último pokemon é o dragonair após a ele retorna para pikachu', () => {
     renderWithRouter(<App />);
 
-    const btnNext = screen.getByRole('button', { name: /Próximo pokémon/i });
+    const btnNext = screen.getByTestId('next-pokemon');
     userEvent.click(btnNext);
 
     const NUMBER = 8;
