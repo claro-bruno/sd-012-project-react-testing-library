@@ -34,7 +34,7 @@ describe('Verifica se os links estao sendo renderizados no App', () => {
   });
 });
 
-describe('Ver os corretos', () => {
+describe('Verifica se os links estao direcionando corretamente', () => {
   test('Verifica se ao clicar em home a URL fica em /', () => {
     const { history } = renderWithRouter(<App />);
 
