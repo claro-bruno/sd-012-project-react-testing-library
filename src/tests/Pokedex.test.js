@@ -127,11 +127,11 @@ describe('Testa component Pokedex', () => {
   });
   it('Verifica se o botão nome do tipo corresponde ao pokémon', () => {
     renderWithRouter(<App />);
-    const btnType = screen.getByRole('button', { name: /electric/i });
-
-    userEvent.click(btnType);
+    const btnType = screen.getAllByTestId('pokemon-type-button');
+    expect(btnType[1]).toHaveTextContent(/fire/i);
+    userEvent.click(btnType[1]);
     const pokemonType = screen.getByTestId('pokemon-type');
-    expect(pokemonType).toHaveTextContent(/electric/i);
+    expect(pokemonType).toHaveTextContent(/fire/i);
   });
 });
 
