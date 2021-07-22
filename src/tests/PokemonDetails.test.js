@@ -98,4 +98,15 @@ describe('Verifica PokemonDetails.js', () => {
     const labelFavorite = screen.getByLabelText(/Pokémon favoritado?/i);
     expect(labelFavorite).toBeDefined();
   });
+
+  it('Testa se renderiza o h2 Pikachu Details', () => {
+    renderWithRouter(<App />);
+
+    const moreDetails = screen.getByRole('link', { name: /more details/i });
+
+    userEvent.click(moreDetails);
+
+    const subtitlePikachu = screen.getByRole('heading', { name: /Pikachu details/i });
+    expect(subtitlePikachu).toBeDefined();
+  });
 });
