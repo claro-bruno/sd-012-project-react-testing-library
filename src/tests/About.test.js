@@ -4,18 +4,16 @@ import renderWithRouter from '../renderWithRouter';
 import { About } from '../components';
 
 describe('Testa About', () => {
+  const { getByRole, getByText } = screen;
   test('Testa se about contém informações sobre a pokedex', () => {
     renderWithRouter(<About />);
 
-    expect(screen.getByRole('heading', { name: /about pokédex/i })).toBeDefined();
+    expect(getByRole('heading', { name: /about pokédex/i })).toBeDefined();
 
-    const TEXT_A = /This application simulates a Pokédex,/i;
-    const TEXT_B = /One can filter Pokémons by type,/i;
-
-    expect(screen.getByText(TEXT_A)).toBeDefined();
-    expect(screen.getByText(TEXT_B)).toBeDefined();
+    expect(getByText(/This application simulates a Pokédex,/i)).toBeDefined();
+    expect(getByText(/One can filter Pokémons by type,/i)).toBeDefined();
 
     const SRC = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(screen.getByRole('img')).toHaveAttribute('src', SRC);
+    expect(getByRole('img')).toHaveAttribute('src', SRC);
   });
 });
