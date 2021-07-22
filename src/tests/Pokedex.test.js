@@ -51,3 +51,10 @@ test('Teste se a Pokédex tem os botões de filtro', () => {
   expect(testIds[5]).toHaveTextContent('Normal');
   expect(testIds[6]).toHaveTextContent('Dragon');
 });
+
+test('Testa se existe o botao All', () => {
+  renderWithRouter(<App />);
+  const allBtn = screen.getByRole('button', { name: 'All' });
+  expect(allBtn).toBeInTheDocument();
+  fireEvent.click(allBtn);
+});
