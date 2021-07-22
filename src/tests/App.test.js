@@ -1,6 +1,7 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
+// import { MemoryRouter } from 'react-router-dom'; //
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 
 describe('Teste de componente <App.js />', () => {
