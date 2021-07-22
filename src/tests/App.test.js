@@ -6,8 +6,8 @@ import renderWithRouter from './renderwithRouter';
 
 describe('Testing component App.js', () => {
   it('verify link in Nav have a text "Home" and redirect to "/"', () => {
-    const linkHome = screen.getByRole('link', { name: /Home/i });
     const { history } = renderWithRouter(<App />);
+    const linkHome = screen.getByRole('link', { name: /Home/i });
     expect(linkHome).toBeInTheDocument();
     userEvent.click(linkHome);
     expect(history.location.pathname).toBe('/');
