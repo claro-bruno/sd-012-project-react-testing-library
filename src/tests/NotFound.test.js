@@ -19,6 +19,6 @@ describe('NotFound tests', () => {
       .getByAltText(/pikachu crying because the page requested was not found/i);
 
     expect(img).toBeInTheDocument();
-    expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'); // 100% mutants;
+    expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'); // 100% mutants;
   });
 });
