@@ -1,8 +1,8 @@
 import React from 'react';
-import Pokedex from '../components/Pokedex';
-import { getAllByTestId, render, screen } from '@testing-library/react';
-import renderWithRouter from './renderWithRouter';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import Pokedex from '../components/Pokedex';
+import renderWithRouter from './renderWithRouter';
 import data from '../data';
 
 describe('Test for Pokedex component.', () => {
@@ -19,9 +19,14 @@ describe('Test for Pokedex component.', () => {
       151: false,
     };
 
-    renderWithRouter(<Pokedex pokemons={ data } isPokemonFavoriteById={ mockFavoriteById } />);
+    renderWithRouter(
+      <Pokedex
+        pokemons={ data }
+        isPokemonFavoriteById={ mockFavoriteById }
+      />,
+    );
 
-    const pokedexHeading = screen.getByRole(/heading/i, /encountered pokémons/i)
+    const pokedexHeading = screen.getByRole(/heading/i, /encountered pokémons/i);
     const pokemonName = screen.getAllByTestId(/pokemon-name/i);
 
     expect(pokedexHeading).toBeDefined();
@@ -42,7 +47,12 @@ describe('Test for Pokedex component.', () => {
       151: false,
     };
 
-    renderWithRouter(<Pokedex pokemons={ data } isPokemonFavoriteById={ mockFavoriteById } />);
+    renderWithRouter(
+      <Pokedex
+        pokemons={ data }
+        isPokemonFavoriteById={ mockFavoriteById }
+      />,
+    );
 
     const nextPokemonButton = screen.getByRole(/button/i, { name: /próximo pokémon/i });
     const currentPokemon = screen.getByTestId(/pokemon-name/i);
@@ -67,12 +77,18 @@ describe('Test for Pokedex component.', () => {
       151: false,
     };
 
-    renderWithRouter(<Pokedex pokemons={ data } isPokemonFavoriteById={ mockFavoriteById } />);
+    renderWithRouter(
+      <Pokedex
+        pokemons={ data }
+        isPokemonFavoriteById={ mockFavoriteById }
+      />,
+    );
 
     const pokedexTypeButtons = screen.getAllByTestId(/pokemon-type-button/i);
+    const typeLength = 7;
 
     expect(pokedexTypeButtons).toBeDefined();
-    expect(pokedexTypeButtons).toHaveLength(7)
+    expect(pokedexTypeButtons).toHaveLength(typeLength);
 
     const pokedexBugTypeButton = screen.getByRole(/button/i, { name: /bug/i });
     userEvent.click(pokedexBugTypeButton);
@@ -94,7 +110,12 @@ describe('Test for Pokedex component.', () => {
       151: false,
     };
 
-    renderWithRouter(<Pokedex pokemons={ data } isPokemonFavoriteById={ mockFavoriteById } />);
+    renderWithRouter(
+      <Pokedex
+        pokemons={ data }
+        isPokemonFavoriteById={ mockFavoriteById }
+      />,
+    );
 
     const pokedexAllButton = screen.getByRole(/button/i, { name: /all/i });
 
@@ -103,7 +124,7 @@ describe('Test for Pokedex component.', () => {
 
     userEvent.click(pokedexAllButton);
 
-    const pokeCard = screen.getByTestId(/pokemon-name/i)
+    const pokeCard = screen.getByTestId(/pokemon-name/i);
     expect(pokeCard).toHaveTextContent(data[0].name);
   });
 });

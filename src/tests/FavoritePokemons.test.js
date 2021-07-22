@@ -1,17 +1,17 @@
 import React from 'react';
-import FavoritePokemons from '../components/FavoritePokemons';
 import { render, screen } from '@testing-library/react';
+import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from './renderWithRouter';
 
-describe("Tests for FavoritePokemons component.", () => {
-  it("Test if has no favorite pokemons when not passed value.", () => {
+describe('Tests for FavoritePokemons component.', () => {
+  it('Test if has no favorite pokemons when not passed value.', () => {
     render(<FavoritePokemons />);
     const favoriteText = screen.getByText(/no favorite pokemon found/i);
 
     expect(favoriteText).toBeDefined();
   });
 
-  it("Test if show the correct list of favorite pokemons.", () => {
+  it('Test if show the correct list of favorite pokemons.', () => {
     const mockPokemonList = [{
       id: 25,
       name: 'Pikachu',
@@ -32,7 +32,8 @@ describe("Tests for FavoritePokemons component.", () => {
           map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
         },
       ],
-      summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      summary: 'This intelligent Pokémon roasts hard berries '
+        + 'with electricity to make them tender enough to eat.',
     },
     {
       id: 4,
@@ -62,9 +63,10 @@ describe("Tests for FavoritePokemons component.", () => {
           map: 'https://cdn2.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
         },
       ],
-      summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
+      summary: 'The flame on its tail shows the strength of '
+       + 'its life force. If it is weak, the flame also burns weakly.',
     },
-  ];
+    ];
     renderWithRouter(<FavoritePokemons pokemons={ mockPokemonList } />);
     const favoritesName = screen.getAllByTestId(/pokemon-name/i);
 

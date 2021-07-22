@@ -1,11 +1,11 @@
 import React from 'react';
-import App from '../App';
 import { screen } from '@testing-library/react';
-import renderWithRouter from './renderWithRouter';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
-describe("Tests for component App.js", () => {
-  it("Test if App has nav links.", () => {
+describe('Tests for component App.js', () => {
+  it('Test if App has nav links.', () => {
     renderWithRouter(<App />);
     const homeLink = screen.getByRole(/link/i, { name: /home/i });
     const aboutLink = screen.getByRole(/link/i, { name: /about/i });
@@ -16,39 +16,39 @@ describe("Tests for component App.js", () => {
     expect(favoriteLink).toBeDefined();
   });
 
-  it("Test home nav link.", () => {
+  it('Test home nav link.', () => {
     const { history } = renderWithRouter(<App />);
     const homeLink = screen.getByRole(/link/i, { name: /home/i });
 
     userEvent.click(homeLink);
-    
+
     const { pathname } = history.location;
-    expect(pathname).toBe("/");
+    expect(pathname).toBe('/');
   });
 
-  it("Test about nav link.", () => {
+  it('Test about nav link.', () => {
     const { history } = renderWithRouter(<App />);
     const aboutLink = screen.getByRole(/link/i, { name: /about/i });
 
     userEvent.click(aboutLink);
 
     const { pathname } = history.location;
-    expect(pathname).toBe("/about");
+    expect(pathname).toBe('/about');
   });
 
-  it("Test favorite pokémons nav link.", () => {
+  it('Test favorite pokémons nav link.', () => {
     const { history } = renderWithRouter(<App />);
     const aboutLink = screen.getByRole(/link/i, { name: /favorite pokémons/i });
 
     userEvent.click(aboutLink);
 
     const { pathname } = history.location;
-    expect(pathname).toBe("/favorites");
+    expect(pathname).toBe('/favorites');
   });
 
-  it("Test if goes to Not Found Page.", () => {
+  it('Test if goes to Not Found Page.', () => {
     const { history } = renderWithRouter(<App />);
-    history.push("notfound-page")
+    history.push('notfound-page');
 
     const notFoundText = screen.getByText(/page requested not found/i);
     expect(notFoundText).toBeDefined();
