@@ -1,25 +1,31 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
-
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
-  });
-};
+import renderWithRouter from './renderWithRouter';
 
 describe('Teste o componente <App.js />', () => {
-  it('Testa se a aplicação contém um conjunto fixo de links de navegação.', () => {
-    renderWithRouter(<App />);
-    const homeText = screen.getByText(/Home/i);
-    const aboutText = screen.getByText(/about/i);
-    const favoritePokemonsText = screen.getByText(/favorite pokémons/i);
+  it('Testa se a aplicação contém um conjunto de links com navegação válida', () => {
+    const { history } = renderWithRouter(<App />);
 
-    expect(homeText).toBeInTheDocument();
-    expect(aboutText).toBeInTheDocument();
-    expect(favoritePokemonsText).toBeInTheDocument();
+    // const codigoOriginal  = screen.getByRole('link', { name: DAVID GONZAGA })
+    // expect(codigoOriginal).toBeInTheDocument();
+
+    // fireEvent.click(codigoOriginal);
+    // expect(history.location.path).toBe('/https://github.com/tryber/sd-012-project-react-testing-library/pull/38/commits/2915d87cbb1fbba5dfb810c01908f0fc4dcff95f')
+
+    const home = screen.getByRole('link', { name: 'Home' });
+    fireEvent.click(home);
+    expect(history.location.pathname).toBe('/');
+
+    const about = screen.getByRole('link', { name: 'About' });
+    fireEvent.click(about);
+    expect(history.location.pathname).toBe('/about');
+
+    const favorites = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    fireEvent.click(favorites);
+    expect(history.location.pathname).toBe('/favorites');
+
+    history.push('/not-found');
+    expect(screen.getByAltText(/Pikachu crying/i)).toBeInTheDocument();
   });
 });
