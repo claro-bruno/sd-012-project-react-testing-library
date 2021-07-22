@@ -13,9 +13,10 @@ beforeEach(() => {
 
 describe('Testa Pokemon Details', () => {
   const pokemon = data[0];
+  const { name, summary, foundAt } = pokemon;
   describe('Testa as informações detalhadas do Pokémon', () => {
     it('Testa texto "name details"', () => {
-      const header = screen.getByText(`${pokemon.name} Details`);
+      const header = screen.getByText(`${name} Details`);
       expect(header).toBeInTheDocument();
     });
     it('Testa heading summary', () => {
@@ -23,35 +24,35 @@ describe('Testa Pokemon Details', () => {
       expect(sumarry).toBeInTheDocument();
     });
     it('Testa summary content', () => {
-      const sumarryContent = screen.getByText(`${pokemon.summary}`);
+      const sumarryContent = screen.getByText(`${summary}`);
       expect(sumarryContent).toBeInTheDocument();
     });
   });
   describe('Testa se existe na pagina uma seção com os mapas', () => {
     it('Testa se na seção de detalhes existe um heading', () => {
-      const heading = screen.getByText(`Game Locations of ${pokemon.name}`);
+      const heading = screen.getByText(`Game Locations of ${name}`);
       expect(heading).toBeInTheDocument();
     });
     it('Testa se as localiçoes sao mostradas na seção detalhes', () => {
-      const locations = screen.getAllByAltText(`${pokemon.name} location`);
-      expect(locations.length).toBe(pokemon.foundAt.length);
+      const locations = screen.getAllByAltText(`${name} location`);
+      expect(locations.length).toBe(foundAt.length);
     });
     it('Testa se o nome das localizaçoes sao mostradas na seçao detalhe', () => {
-      pokemon.foundAt.forEach(({ location }) => {
+      foundAt.forEach(({ location }) => {
         const findLocalName = screen.getByText(location);
         expect(findLocalName).toBeInTheDocument();
       });
     });
     it('Testa se e exibido uma imagem do mapa em cada localização', () => {
-      pokemon.foundAt.forEach(() => {
-        const checkMap = screen.getAllByAltText(`${pokemon.name} location`);
+      foundAt.forEach(() => {
+        const checkMap = screen.getAllByAltText(`${name} location`);
         checkMap.forEach((f) => expect(f).toBeInTheDocument());
       });
     });
     it('Testa se a imagem da localização possui atributo src com a url correta', () => {
-      const checkUrl = screen.getAllByAltText(`${pokemon.name} location`);
+      const checkUrl = screen.getAllByAltText(`${name} location`);
       checkUrl.forEach((map, i) => {
-        expect(map.src).toBe(pokemon.foundAt[i].map);
+        expect(map.src).toBe(foundAt[i].map);
       });
     });
   });
@@ -63,7 +64,7 @@ describe('Testa Pokemon Details', () => {
     it('Testa cliques alternados no checkbox de favoritar', () => {
       const findlabel = screen.getByLabelText('Pokémon favoritado?');
       userEvent.click(findlabel);
-      const findStar = screen.getByAltText(`${pokemon.name} is marked as favorite`);
+      const findStar = screen.getByAltText(`${name} is marked as favorite`);
       expect(findStar).toBeInTheDocument();
       userEvent.click(findlabel);
       expect(findStar).not.toBeInTheDocument();

@@ -3,18 +3,10 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import data from '../data';
 
 describe('Testa funcionamento do componente "Pokemon"', () => {
-  const pokemons = {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-  };
+  const pokemons = data[0];
   const { id, name, type, averageWeight, image } = pokemons;
   const { value, measurementUnit } = averageWeight;
   describe('Testa se e renderizado card com informaçoes de determinado pokemon', () => {
