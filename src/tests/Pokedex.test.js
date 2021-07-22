@@ -34,16 +34,14 @@ describe('Teste do componente <Pokedex />', () => {
   it(
     'Os botões de filtro por tipo de Pokémon existem na Pokédex e funcionam corretamente',
     () => {
-      mockPokemonTypes.forEach((type) => {
-        const filterByTypeButtons = screen.getAllByRole('button', { name: type });
-        expect(filterByTypeButtons.length).toBe(1);
-      });
+      const filterByTypeButtons = screen.getAllByTestId('pokemon-type-button');
+      expect(filterByTypeButtons.length).toBe(mockPokemonTypes.length);
 
       const filterByPsychicBtn = screen.getByRole('button', { name: 'Psychic' });
       event.click(filterByPsychicBtn);
 
       const psychicPokemons = pokemons.filter(({ type }) => type === 'Psychic');
-      const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+      const nextPokemonBtn = screen.getByTestId('next-pokemon');
       psychicPokemons.forEach((_pokemon, index, array) => {
         if ((array.length - 1) === index) {
           const { name } = array[0];
@@ -65,7 +63,7 @@ describe('Teste do componente <Pokedex />', () => {
       expect(allBtn).toBeInTheDocument();
       event.click(allBtn);
 
-      const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+      const nextPokemonBtn = screen.getByTestId('next-pokemon');
       pokemons.forEach(({ name }) => {
         expect(screen.getByTestId('pokemon-name')).toHaveTextContent(name);
         event.click(nextPokemonBtn);
