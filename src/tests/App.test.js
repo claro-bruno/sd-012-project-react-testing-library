@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from '../services/renderwithRouter';
+import renderWithRouter from './renderwithRouter';
 
 describe('Testing component App.js', () => {
   it('verify link in Nav have a text "Home" and redirect to "/"', () => {
