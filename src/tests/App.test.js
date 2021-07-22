@@ -36,4 +36,11 @@ describe('Testa App', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+
+  test('Testa se a página é redicionada para not found', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/pagina-inexistente');
+
+    expect(screen.getByText('Page requested not found')).toBeDefined();
+  });
 });
