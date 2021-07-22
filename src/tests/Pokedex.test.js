@@ -10,6 +10,11 @@ describe('Testa todo Pokedex.js', () => {
   const nextPokemonId = 'next-pokemon';
   const pokemonNameId = 'pokemon-name';
 
+  const types = [...new Set(pokemons
+    .reduce((Types, { type }) => [...Types, type], []))];
+
+  const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+
   it('renderiza titulo "Encountered pokémons"', () => {
     const { history } = renderWithRouter(<App />);
 
@@ -21,7 +26,7 @@ describe('Testa todo Pokedex.js', () => {
   });
 
   it('clicando no botão "Próximo pokémon"', () => {
-    const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+    // const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -39,7 +44,7 @@ describe('Testa todo Pokedex.js', () => {
   });
 
   it('clicando diversas vezes no botão "Próximo pokémon', () => {
-    const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+    // const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -60,7 +65,7 @@ describe('Testa todo Pokedex.js', () => {
   });
 
   it('mostra apenas um pokemon', () => {
-    const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+    // const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
@@ -74,14 +79,11 @@ describe('Testa todo Pokedex.js', () => {
   });
 
   it('renderiza botões de filtro', () => {
-    const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
+    // const isPokemonFavoriteById = App.setIsPokemonFavoriteById();
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />);
-
-    const types = [...new Set(pokemons
-      .reduce((Types, { type }) => [...Types, type], []))];
 
     types.forEach((type) => {
       const btnType = screen.getByRole('button', { name: type });
@@ -107,5 +109,24 @@ describe('Testa todo Pokedex.js', () => {
     userEvent.click(btnNext);
     const afterClick02 = screen.getByTestId(pokemonNameId);
     expect(afterClick02).toHaveTextContent(oneType[0].name);
+  });
+
+  it('renderiza botão "All"', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+
+    const secondBtnType = screen.getByRole('button', { name: types[1] });
+    userEvent.click(secondBtnType);
+
+    const pokemonName = screen.getByTestId(pokemonNameId);
+    expect(pokemonName).not.toHaveTextContent(pokemons[0].name);
+
+    const btnAll = screen.getByRole('button', { name: /All/i });
+    userEvent.click(btnAll);
+
+    const pokemonAfterClick = screen.getByTestId(pokemonNameId);
+    expect(pokemonAfterClick).toHaveTextContent(pokemons[0].name);
   });
 });
