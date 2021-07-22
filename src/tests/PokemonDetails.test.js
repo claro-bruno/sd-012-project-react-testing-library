@@ -44,5 +44,12 @@ describe('testa componente PokemonDetails', () => {
     userEvent.click(linkDetails);
     const favCheck = screen.getByLabelText(/Pokémon favoritado?/i);
     expect(favCheck).toBeInTheDocument();
+
+    userEvent.click(favCheck);
+    const favIcon = screen.getByAltText(/is marked as favorite/i);
+    expect(favIcon).toBeInTheDocument();
+
+    userEvent.click(favCheck);
+    expect(favIcon).not.toBeInTheDocument();
   });
 });
