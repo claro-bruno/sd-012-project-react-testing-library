@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
-import PokemonDetails from '../components/PokemonDetails';
 import App from '../App';
 
 describe('Requisito 7 - Teste o componente <PokemonDetails.js /> ', () => {
