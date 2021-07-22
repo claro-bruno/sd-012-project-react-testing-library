@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('Component Tests <PokemonDetails.js />', () => {
+describe('Testa componente Pokemon Details', () => {
   it('Testa se as informações detalhadas do pokémon são mostradas na tela', () => {
     renderWithRouter(<App />);
     const detail = screen.getByText(/More details/);
