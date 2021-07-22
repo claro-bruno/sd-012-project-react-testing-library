@@ -28,4 +28,12 @@ describe('Testa App', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
+
+  test('Testa se é redicionada para pokémons favoritos quando clicado em pokémon', () => {
+    const { history } = renderWithRouter(<App />);
+
+    userEvent.click(screen.getByRole('link', { name: /favorite pokémons/i }));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
 });
