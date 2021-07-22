@@ -57,14 +57,14 @@ describe('Testa componente <Pokedex.js />', () => {
       .getByTestId('pokemon-type');
     expect(typePokemon.textContent).toBe('Electric');
 
-    const buttonAll = screen.getByTestId('');
+    const buttonAll = screen.getByRole('button', { name: /All/i });
     expect(buttonAll).toBeInTheDocument();
   });
 
   it('Pokédex contém um botão para resetar filtro', () => {
     renderWithRouter(<App />);
 
-    const buttonAll = screen.getByTestId('');
+    const buttonAll = screen.getByRole('button', { name: /All/i });
     expect(buttonAll).toHaveTextContent('All');
 
     userEvent.click(buttonAll);
