@@ -43,7 +43,7 @@ describe('Testa o componente Pokedex', () => {
     renderWithRouter(<App />);
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokeName = screen.getByTestId(pokemonName);
-    const btnFilterAll = screen.getByTestId('');
+    const btnFilterAll = screen.getByRole('button', { name: 'All' });
     userEvent.click(btnFilterAll);
     expect(pokeName).toHaveTextContent('Pikachu');
     expect(pokemonType).toHaveTextContent('Electric');
