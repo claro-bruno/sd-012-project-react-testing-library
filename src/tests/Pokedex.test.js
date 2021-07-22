@@ -35,19 +35,20 @@ describe('Pokedex tests', () => {
     );
 
     const btn = screen.getByRole('button', { name: /próximo pokémon/i });
+    const [pikachu, charmander] = pokemons;
 
     expect(btn).toBeInTheDocument();
-    expect(screen.queryByText(pokemons[0].name)).toBeInTheDocument();
-    expect(screen.queryByText(pokemons[1].name)).toBeNull();
-    expect(screen.queryByText(pokemons[8].name)).toBeNull();
+    expect(screen.queryByText(pikachu.name)).toBeInTheDocument();
+    expect(screen.queryByText(charmander.name)).toBeNull();
+    expect(screen.queryByText(pokemons[8].name)).toBeNull(); // pokemons[8] === dragonair.name;
 
     Array.from({ length: pokemons.length - 1 })
       .forEach(() => userEvent.click(btn));
     expect(screen.queryByText(pokemons[8].name)).toBeInTheDocument();
-    expect(screen.queryByText(pokemons[0].name)).toBeNull();
+    expect(screen.queryByText(pikachu.name)).toBeNull();
 
     userEvent.click(btn);
-    expect(screen.queryByText(pokemons[0].name)).toBeInTheDocument();
+    expect(screen.queryByText(pikachu.name)).toBeInTheDocument();
     expect(screen.queryByText(pokemons[8].name)).toBeNull();
   });
 
@@ -58,6 +59,7 @@ describe('Pokedex tests', () => {
         isPokemonFavoriteById={ mockIsPokemonFavoriteById }
       />,
     );
+    const [pikachu] = pokemons;
 
     const allBtn = screen.getByRole('button', { name: /all/i });
     const typeBtns = screen.getAllByTestId('pokemon-type-button');
@@ -71,7 +73,7 @@ describe('Pokedex tests', () => {
 
     userEvent.click(allBtn);
     const actualName = screen.queryByTestId('pokemon-name');
-    expect(actualName).toHaveTextContent(pokemons[0].name); // 100% mutants;
+    expect(actualName).toHaveTextContent(pikachu.name); // 100% mutants;
   });
 
   it('Test if Next Pokémon button is disabled when they`re filtred to only one', () => {
