@@ -13,27 +13,34 @@ describe('Testa Pokedex.js', () => {
     expect(title).toBeDefined();
   });
 
-  it('É exibido o próximo Pokémon quando o botão "Próximo pokémon" é clicado',
+  it('É renderizado o próximo Pokémon quando o botão "Próximo pokémon" é clicado',
     () => {
       const button = screen.getByRole('button', { name: /Próximo pokémon/ });
       const firstPoke = pokemons[0].name;
-      for (let index = 0; index < pokemons.length; index += 1) {
-        expect(screen.getByText(`${pokemons[index].name}`))
-          .toBeDefined();
+
+      pokemons.forEach((pokemon, index) => {
+        const { name } = pokemon;
+
+        const pokemonName = screen.getByText(`${name}`);
+        expect(pokemonName).toBeDefined();
+
         userEvent.click(button);
+
         if (index === pokemons.length - 1) {
-          expect(screen.getByText(`${firstPoke}`))
-            .toBeDefined();
+          const firstPokemon = screen.getByText(`${firstPoke}`);
+          expect(firstPokemon).toBeDefined();
         }
-      }
+      });
     });
 
   it('Existe todos os botões de filter por "Type"', () => {
     const types = pokemons.map((pokemon) => pokemon.type);
     const allTypes = [...types, 'All'];
     const numberButtonsFilter = 7;
+
     allTypes.forEach((type) => (
       expect(screen.getByRole('button', { name: `${type}` })).toBeDefined()));
+
     expect(screen.getAllByTestId('pokemon-type-button')).toBeDefined();
     expect(screen.getAllByTestId('pokemon-type-button').length).toBe(numberButtonsFilter);
   });
@@ -42,24 +49,31 @@ describe('Testa Pokedex.js', () => {
     const button = screen.getByRole('button', { name: /Próximo pokémon/ });
     const types = pokemons.map((pokemon) => pokemon.type);
     const allTypes = [...types, 'All'];
+
     allTypes.forEach((type) => {
       userEvent.click(screen.getByRole('button', { name: `${type}` }));
+
       let filterPoke = [];
+
       if (type !== 'All') {
         filterPoke = pokemons.filter((pokemon) => pokemon.type === type);
       } else {
         filterPoke = pokemons;
       }
+
       const firstPoke = filterPoke[0].name;
-      for (let index = 0; index < filterPoke.length; index += 1) {
-        expect(screen.getByText(`${filterPoke[index].name}`))
-          .toBeDefined();
+
+      filterPoke.forEach((poke, index) => {
+        const { name } = poke;
+
+        expect(screen.getByText(`${name}`)).toBeDefined();
+
         userEvent.click(button);
+
         if (index === filterPoke.length - 1) {
-          expect(screen.getByText(`${firstPoke}`))
-            .toBeDefined();
+          expect(screen.getByText(`${firstPoke}`)).toBeDefined();
         }
-      }
+      });
     });
   });
 });
