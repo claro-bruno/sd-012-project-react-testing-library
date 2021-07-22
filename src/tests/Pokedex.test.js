@@ -4,109 +4,66 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
+const pokeNameTestId = 'pokemon-name';
+
 describe('requisito 5- testa componente Pokedex.js', () => {
-  it('nome do pokemon deve ser Pikachu', () => {
+  it('contem heading com texto Encountered pokémons', () => {
     renderWithRouter(<App />);
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
 
-    const PokeName = screen.getByTestId('pokemon-name');
-    expect(PokeName).toBeInTheDocument();
-    expect(PokeName.innerHTML).toBe('Pikachu');
-
-    userEvent.click(screen.getByRole('button', { name: 'Electric' }));
-
-    const PokeName1 = screen.getByTestId('pokemon-name');
-    expect(PokeName1).toBeInTheDocument();
-    expect(PokeName1.innerHTML).toBe('Pikachu');
+    const head = screen.getByRole('heading', { name: 'Encountered pokémons' });
+    expect(head).toBeInTheDocument();
   });
 
-  it('o tipo do pokemon mostrado na tela deve estar correto', () => {
+  it('testa button proximo pokemon', () => {
     renderWithRouter(<App />);
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
+    const pokemon1 = screen.getByTestId(pokeNameTestId);
+    expect(pokemon1).toBeInTheDocument();
+    expect(pokemon1.innerHTML).toBe('Pikachu');
 
-    const PokeType = screen.getByTestId('pokemon-type');
-    expect(PokeType).toBeInTheDocument();
-    expect(PokeType.innerHTML).toBe('Electric');
+    userEvent.click(screen.getByTestId('next-pokemon'));
 
-    userEvent.click(screen.getByRole('button', { name: 'Electric' }));
-
-    const PokeType1 = screen.getByTestId('pokemon-type');
-    expect(PokeType1).toBeInTheDocument();
-    expect(PokeType1.innerHTML).toBe('Electric');
+    const pokemon2 = screen.getByTestId(pokeNameTestId);
+    expect(pokemon2).toBeInTheDocument();
+    expect(pokemon2.innerHTML).toBe('Charmander');
   });
 
-  it('o peso medio do pokemon deve ser mostrado de forma correta', () => {
+  it('é mostrado apenas um pokemon', () => {
     renderWithRouter(<App />);
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
 
-    const PokeWeight = screen.getByTestId('pokemon-weight');
-    expect(PokeWeight).toBeInTheDocument();
-    expect(PokeWeight.innerHTML).toBe('Average weight: 6.0 kg');
+    const pokeList = screen.getAllByTestId(pokeNameTestId);
+    expect(pokeList.length).toBe(1);
 
-    userEvent.click(screen.getByRole('button', { name: 'Electric' }));
+    userEvent.click(screen.getByRole('button', { name: 'Fire' }));
 
-    const PokeWeight1 = screen.getByTestId('pokemon-weight');
-    expect(PokeWeight1).toBeInTheDocument();
-    expect(PokeWeight1.innerHTML).toBe('Average weight: 6.0 kg');
+    const pokeList2 = screen.getAllByTestId(pokeNameTestId);
+    expect(pokeList2.length).toBe(1);
   });
 
-  it('a imagem do pokemon deve aparecer na tela com URL e atributo alt corretos', () => {
+  it('possui buttons de filtro por tipo', () => {
     renderWithRouter(<App />);
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
-
-    const imgName = 'Pikachu sprite';
-    const PokeImg = screen.getByRole('img', { name: imgName });
-    expect(PokeImg).toBeInTheDocument();
-    expect(PokeImg.alt).toBe(imgName);
-    expect(PokeImg.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-
-    userEvent.click(screen.getByRole('button', { name: 'Electric' }));
-
-    const PokeImg1 = screen.getByRole('img', { name: imgName });
-    expect(PokeImg1).toBeInTheDocument();
-    expect(PokeImg1.alt).toBe(imgName);
-    expect(PokeImg1.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    const typesAmount = 7;
+    const btnList = screen.getAllByTestId('pokemon-type-button');
+    expect(btnList.length).toBe(typesAmount);
   });
 
-  it('o card contem o link de navegacao correto para os detalhes do pokemon', () => {
-    const { history } = renderWithRouter(<App />);
-    const linkNameMd = 'More details';
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
-    userEvent.click(screen.getByRole('link', { name: linkNameMd }));
-
-    const path = history.location.pathname;
-    expect(path).toBe('/pokemons/25');
-
-    userEvent.click(screen.getByRole('link', { name: 'Home' }));
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
-    userEvent.click(screen.getByRole('link', { name: linkNameMd }));
-
-    const path1 = history.location.pathname;
-    expect(path1).toBe('/pokemons/25');
-  });
-
-  it('exibe estrela em pokemon favoritado Pikachu', () => {
+  it('possui button All que reseta o filtro', () => {
     renderWithRouter(<App />);
-    const linkNameMdPk = 'More details';
-    userEvent.click(screen.getByRole('button', { name: 'All' }));
-    userEvent.click(screen.getByRole('link', { name: linkNameMdPk }));
-    userEvent.click(screen.getByLabelText('Pokémon favoritado?'));
-    userEvent.click(screen.getByRole('link', { name: 'Home' }));
 
-    const favImg = screen.getByRole('img', { name: 'Pikachu is marked as favorite' });
-    expect(favImg).toBeInTheDocument();
-    expect(favImg.alt).toBe('Pikachu is marked as favorite');
-    expect(favImg.src).toBe('http://localhost/star-icon.svg');
+    const allBtn = screen.getByRole('button', { name: 'All' });
+    expect(allBtn).toBeInTheDocument();
+    expect(allBtn.innerHTML).toBe('All');
 
-    userEvent.click(screen.getByRole('button', { name: 'Bug' }));
-    userEvent.click(screen.getByRole('link', { name: linkNameMdPk }));
-    userEvent.click(screen.getByLabelText('Pokémon favoritado?'));
-    userEvent.click(screen.getByRole('link', { name: 'Home' }));
-    userEvent.click(screen.getByRole('button', { name: 'Bug' }));
+    const pokemon1 = screen.getByTestId(pokeNameTestId);
+    expect(pokemon1).toBeInTheDocument();
+    expect(pokemon1.innerHTML).toBe('Pikachu');
 
-    const favImg1 = screen.getByRole('img', { name: 'Caterpie is marked as favorite' });
-    expect(favImg1).toBeInTheDocument();
-    expect(favImg1.alt).toBe('Caterpie is marked as favorite');
-    expect(favImg1.src).toBe('http://localhost/star-icon.svg');
+    userEvent.click(screen.getByRole('button', { name: 'Poison' }));
+
+    const pokemon2 = screen.getByTestId(pokeNameTestId);
+    expect(pokemon2.innerHTML).toBe('Ekans');
+
+    userEvent.click(allBtn);
+
+    expect(pokemon1).toBeInTheDocument();
   });
 });
