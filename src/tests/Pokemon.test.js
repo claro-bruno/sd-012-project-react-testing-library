@@ -11,14 +11,17 @@ describe('Tests the Pokemon.js component', () => {
     renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
     const name = screen.getByTestId('pokemon-name');
     const type = screen.getByTestId('pokemon-type');
-    const weight = screen.getByTestId('pokemon-weight').innerHTML;
+    const weight = screen.getByTestId('pokemon-weight');
+    const testNum = pokemon.averageWeight.value;
+    const testUnit = pokemon.averageWeight.measurementUnit;
+    const testWeight = `Average weight: ${testNum} ${testUnit}`;
     const img = screen.getAllByRole('img');
-    // console.log(pokemon);
+
     expect(name).toHaveTextContent(pokemon.name);
     expect(type).toHaveTextContent(pokemon.type);
-    expect(weight).toMatch(pokemon.averageWeight.value);
     expect(img[0]).toHaveAttribute('src', pokemon.image);
     expect(img[0]).toHaveAttribute('alt', `${pokemon.name} sprite`);
+    expect(weight).toHaveTextContent(testWeight);
   });
 
   test('Teste se existe um link More Details', () => {
