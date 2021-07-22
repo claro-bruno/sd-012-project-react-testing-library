@@ -6,6 +6,7 @@ import renderWithRouter from './renderWithRouter';
 describe('6. Teste o componente <Pokemon.js />', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     renderWithRouter(<App />);
+    const pokemonType = screen.getByTestId('pokemon-type').innerHTML;
     fireEvent.click(screen.getByRole('link', { name: /More Details/i }));
     fireEvent.click(screen.getByRole('checkbox'));
 
@@ -13,6 +14,14 @@ describe('6. Teste o componente <Pokemon.js />', () => {
     const sprite = screen.getAllByRole('img')[0];
     expect(sprite.src).toMatch(/bulbagarden/);
     expect(sprite.alt).toBe(`${pokemonName} sprite`);
+
+    const detailsType = screen.getByText(`${pokemonType}`);
+    expect(detailsType).toBeInTheDocument();
+
+    const pokemonWeight = screen.getByTestId('pokemon-weight').innerHTML;
+    expect(pokemonWeight).toMatch(/Average/);
+    expect(pokemonWeight).toMatch(/./);
+    expect(pokemonWeight).toMatch(/kg/);
   });
   it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     renderWithRouter(<App />);
