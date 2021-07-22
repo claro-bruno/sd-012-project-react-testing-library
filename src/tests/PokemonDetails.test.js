@@ -13,12 +13,14 @@ describe('Testa o componente PokemonDetails', () => {
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
     expect(moreDetails).not.toBeInTheDocument();
+    const h2Details = screen.getByText('Pikachu Details');
     const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
     const pokemonWeight = screen.getByTestId('pokemon-weight');
-    expect(pokemonName.innerHTML).toBe('Pikachu');
-    expect(pokemonType.innerHTML).toBe('Electric');
-    expect(pokemonWeight.innerHTML).toBe('Average weight: 6.0 kg');
+    expect(h2Details).toBeInTheDocument();
+    expect(pokemonName).toHaveTextContent('Pikachu');
+    expect(pokemonType).toHaveTextContent('Electric');
+    expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
     const summaryText = screen.getByText('Summary');
     const paragraphResume = screen.getByText('This intelligent', { exact: false });
     expect(summaryText).toBeInTheDocument();
