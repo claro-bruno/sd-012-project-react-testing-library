@@ -11,6 +11,7 @@ describe('Testa o componente About', () => {
 
     fireEvent.click(aboutLink);
   });
+
   it('Renderiza título', () => {
     const aboutTitle = screen.getByText(/About Pokédex/i);
 
