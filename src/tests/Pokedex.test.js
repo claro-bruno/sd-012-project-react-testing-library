@@ -15,8 +15,6 @@ describe('Testa Pokedex.js', () => {
 
   it('É exibido o próximo Pokémon quando o botão "Próximo pokémon" é clicado',
     () => {
-      const buttonAll = screen.getByRole('button', { name: /All/ });
-      userEvent.click(buttonAll);
       const button = screen.getByRole('button', { name: /Próximo pokémon/ });
       const firstPoke = pokemons[0].name;
       for (let index = 0; index < pokemons.length; index += 1) {
@@ -40,9 +38,15 @@ describe('Testa Pokedex.js', () => {
   it('Testa todos os botões de filter', () => {
     const button = screen.getByRole('button', { name: /Próximo pokémon/ });
     const types = pokemons.map((pokemon) => pokemon.type);
-    types.forEach((type) => {
+    const allTypes = [...types, 'All'];
+    allTypes.forEach((type) => {
       userEvent.click(screen.getByRole('button', { name: `${type}` }));
-      const filterPoke = pokemons.filter((pokemon) => pokemon.type === type);
+      let filterPoke = [];
+      if (type !== 'All') {
+        filterPoke = pokemons.filter((pokemon) => pokemon.type === type);
+      } else {
+        filterPoke = pokemons;
+      }
       const firstPoke = filterPoke[0].name;
       for (let index = 0; index < filterPoke.length; index += 1) {
         expect(screen.getByText(`${filterPoke[index].name}`))
