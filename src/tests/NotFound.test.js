@@ -12,7 +12,7 @@ describe('Teste do componente About', () => {
     expect(noMacth).toBeDefined();
     // Feito com ajuda de Daniel Batista - turma 12
     const link = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const img = screen.getByAltText(/Pikachu crying because the page/i);
-    expect(img.src).toBe(link);
+    const alt = screen.getByAltText(/Pikachu crying because the page/i);
+    expect(alt.src).toBe(link);
   });
 });
