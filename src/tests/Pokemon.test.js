@@ -15,9 +15,9 @@ describe('Testing component Pokemon.js', () => {
     const getType = screen.getByTestId('pokemon-type');
     expect(getType).toHaveTextContent('Fire');
     const value = 8.5;
-    const measurementUnit = 'kg';
+    const unit = 'kg';
     const getAverageWeigth = screen.getByTestId(/pokemon-weight/i);
-    expect(getAverageWeigth).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
+    expect(getAverageWeigth).toHaveTextContent(`Average weight: ${value} ${unit}`);
     const getImage = screen.getByAltText(/charmander sprite/i);
     expect(getImage).toHaveAttribute('src', url);
   });
