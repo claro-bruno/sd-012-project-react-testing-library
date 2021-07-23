@@ -3,7 +3,7 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Teste do component App.js.', () => {
+describe('Teste do Component App.js.', () => {
   test('Verifica se o topo da aplicação '
     + 'contém um conjunto fixo de links de navegação.', () => {
     renderWithRouter(<App />);
