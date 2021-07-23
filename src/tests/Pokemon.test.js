@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -25,4 +26,14 @@ describe('Testa Pokemon', () => {
     const URL = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
     expect(img).toHaveAttribute('src', URL);
   });
+});
+
+test('Testa link para detalhes do pokemon', () => {
+  const { history } = renderWithRouter(<App />);
+  const link = screen.getByText(/more details/i);
+
+  expect(link).toBeInTheDocument();
+  expect(link).toHaveAttribute('href', '/pokemons/25');
+  userEvent.click(link);
+  expect(history.location.pathname).toBe('/pokemons/25');
 });
