@@ -46,10 +46,11 @@ describe('Pokedex.js', () => {
     const allBtn = screen.getByRole('button', { name: /All/i });
     expect(allBtn).toBeInTheDocument();
 
-    const length = 7;
-    expect(screen
-      .getAllByTestId('pokemon-type-button'))
-      .toHaveLength(length);
+    pokemons.forEach((pokemon) => {
+      const { type } = pokemon;
+      const btn = screen.getByRole('button', { name: type });
+      expect(btn).toBeInTheDocument();
+    });
   });
 
   it('Botão Reset de filtros', () => {
