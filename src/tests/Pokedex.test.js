@@ -2,15 +2,22 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
+import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../etc/renderWithRouter';
 
 import pokemons from '../data';
 
 const testID = 'pokemon-name';
 
+beforeEach(() => {
+  renderWithRouter(<Pokedex
+    pokemons={ pokemons }
+    isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+  />);
+});
+
 describe('Pokedex.js', () => {
   it('Heading', () => {
-    renderWithRouter(<App />);
     const heading = screen.getByRole('heading', {
       name: /Encountered pokémons/i,
       level: 2,
@@ -19,17 +26,20 @@ describe('Pokedex.js', () => {
   });
 
   it('Próximo', () => {
-    renderWithRouter(<App />);
-    const btn = screen.getByRole('button', {
-      name: /Próximo pokémon/i,
-    });
-    userEvent.click(btn);
-    const pokemon = screen.getAllByTestId(testID);
-    expect(pokemon.length).toBe(1);
+    const btn = screen.getByRole('button', { name: /Próximo pokémon/i });
+    for (let index = 0; index < pokemons.length; index += 1) {
+      userEvent.click(btn);
+      if (index >= pokemons.length - 1) {
+        const pokemon = screen.getByText(pokemons[0].name);
+        expect(pokemon).toBeDefined();
+      } else {
+        const pokemon = screen.getByText(pokemons[index + 1].name);
+        expect(pokemon).toBeDefined();
+      }
+    }
   });
 
   it('Exibe um único pokémon', () => {
-    renderWithRouter(<App />);
     const btn = screen.getByRole('button', {
       name: /Próximo pokémon/i,
     });
@@ -46,7 +56,6 @@ describe('Pokedex.js', () => {
   });
 
   it('Botões de Filtro', () => {
-    renderWithRouter(<App />);
     const allBtn = screen.getByRole('button', { name: /All/i });
     expect(allBtn).toBeInTheDocument();
 
@@ -58,8 +67,15 @@ describe('Pokedex.js', () => {
   });
 
   it('Botão Reset de filtros', () => {
-    renderWithRouter(<App />);
     const allBtn = screen.getByRole('button', { name: /All/i });
     userEvent.click(allBtn);
+    let pokemon = screen.getByText(pokemons[0].name);
+    expect(pokemon).toBeDefined();
+    const proxBtn = screen.getByRole('button', { name: /Próximo pokémon/i });
+    for (let index = 0; index < pokemons.length - 1; index += 1) {
+      userEvent.click(proxBtn);
+      pokemon = screen.getByText(pokemons[index + 1].name);
+      expect(pokemon).toBeDefined();
+    }
   });
 });
