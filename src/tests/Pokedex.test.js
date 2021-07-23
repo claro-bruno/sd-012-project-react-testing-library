@@ -66,4 +66,9 @@ test('Verifica se existe botao "All" que reseta o filtro de tipos', () => {
   expect(currPokemon).toHaveTextContent('Pikachu');
   fireEvent.click(screen.getByText('Próximo pokémon'));
   expect(currPokemon).toHaveTextContent('Charmander');
+  const normalTypeBtn = screen.getByRole('button', { name: 'Normal' });
+  fireEvent.click(normalTypeBtn);
+  expect(currPokemon).toHaveTextContent('Snorlax');
+  fireEvent.click(allBtn);
+  expect(currPokemon).toHaveTextContent('Pikachu');
 });
