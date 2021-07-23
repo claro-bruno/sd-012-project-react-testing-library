@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Teste o componente <About.js />.', () => {
-  test('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
+  test('Testa se a página contém um heading h2 com o texto About Pokédex', () => {
     render(<About />);
     const title = screen.getByRole('heading', { level: 2 });
     expect(title).toHaveTextContent('About Pokédex');
