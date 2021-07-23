@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
-beforeEach(() => {
-  render(<About />);
-});
-
 describe('Testa informações sobre Pokédex em <About.js />.', () => {
+  beforeEach(() => {
+    render(<About />);
+  });
+
   it('Testa descrição da Pokédex em parágrafos', () => {
     const p1 = screen.getByText('This application simulates a Pokédex', { exact: false });
 
