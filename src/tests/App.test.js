@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../etc/renderWithRouter';
 
-describe('App,js', () => {
+describe('App.js', () => {
   it('Home', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: /home/i });
