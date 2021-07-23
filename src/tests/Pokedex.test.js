@@ -113,7 +113,7 @@ describe('Testa Pokedex.js', () => {
     userEvent.click(buttonAll);
     expect(screen.getByText(/pikachu/i)).toBeInTheDocument();
   });
-  
+
   it('Testa botao correspondente ao pokemon', () => {
     renderWithRouter(<App />);
     const btnType = screen.getAllByTestId('pokemon-type-button');
