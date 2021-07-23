@@ -33,7 +33,6 @@ describe('Pokedex.js', () => {
     const btn = screen.getByRole('button', {
       name: /Próximo pokémon/i,
     });
-
     // testa 3 cliques
     userEvent.click(btn);
     let pokemon = screen.getAllByTestId(testID);
