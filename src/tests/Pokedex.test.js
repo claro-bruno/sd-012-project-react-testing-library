@@ -39,6 +39,7 @@ describe('Testa o componente Pokedex', () => {
     types.forEach((type) => {
       const buttonType = screen.getByRole('button', { name: type });
       expect(buttonType).toBeInTheDocument();
+      expect(buttonType).toHaveAttribute('data-testid', 'pokemon-type-button');
       userEvent.click(buttonType);
       expect(screen.getByTestId('pokemon-type').innerHTML).toBe(type);
     });
