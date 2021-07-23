@@ -1,1 +1,62 @@
-test('', () => {});
+import React from 'react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import renderWithRouter from '../types/renderWithRouter';
+import App from '../App';
+
+describe('Testando o componente Pokemon', () => {
+  test('Verifica se é renderizado um card com as informações de um pokémon', () => {
+    const { history } = renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /More details/i });
+    expect(moreDetails).toBeInTheDocument();
+    userEvent.click(moreDetails);
+    const pikachuDetails = screen.getByText(/Pikachu Details/i);
+    expect(pikachuDetails).toBeInTheDocument();
+    expect(moreDetails).not.toBeInTheDocument();
+    const tagH2 = screen.getAllByRole('heading', { level: 2 });
+    expect(tagH2[1]).toHaveTextContent('Summary');
+    const url = history.location.pathname;
+    expect(url).toBe('/pokemons/25');
+  });
+  test('Verifica se é renderizado um card com as informações de um pokémon', () => {
+    const { history } = renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /More details/i });
+    expect(moreDetails).toBeInTheDocument();
+    userEvent.click(moreDetails);
+    const gameLocations = screen.getByText(/Game Locations of Pikachu/i);
+    expect(gameLocations).toBeInTheDocument();
+    const kantoViridianForest = screen.getByText(/Kanto Viridian Forest/i);
+    expect(kantoViridianForest).toBeInTheDocument();
+    const kantoPowerPlant = screen.getByText(/Kanto Power Plant/i);
+    expect(kantoPowerPlant).toBeInTheDocument();
+    const images = screen.getAllByRole('img');
+    const firstImageSource = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+    const secondImageSource = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
+    expect(images[1].src).toBe(firstImageSource);
+    expect(images[2].src).toBe(secondImageSource);
+    const imagesAlt = 'Pikachu location';
+    expect(images[1].alt).toBe(imagesAlt);
+    const url = history.location.pathname;
+    expect(url).toBe('/pokemons/25');
+  });
+  test('Verifica se se o usuário pode favoritar um pokémon na página de detalhes', () => {
+    const { history } = renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /More details/i });
+    expect(moreDetails).toBeInTheDocument();
+    userEvent.click(moreDetails);
+    const pikachuDetails = screen.getByText(/Pikachu Details/i);
+    expect(pikachuDetails).toBeInTheDocument();
+    expect(moreDetails).not.toBeInTheDocument();
+    userEvent.click(moreDetails);
+    const summary = screen.getByText('Summary');
+    expect(summary).toBeInTheDocument();
+    const summaryText = screen.getAllByText(/This intelligent Pokémon roasts/i);
+    expect(summaryText[0]).toBeInTheDocument();
+    const favoriteIcon = screen.getAllByRole('img');
+    expect(favoriteIcon[0]).not.toBe('/star-icon.svg');
+    const checkboxFavorite = screen.getByText('Pokémon favoritado?');
+    expect(checkboxFavorite).toBeInTheDocument();
+    const url = history.location.pathname;
+    expect(url).toBe('/pokemons/25');
+  });
+});
