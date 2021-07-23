@@ -26,7 +26,6 @@ describe('Testa página Favorite Pokemons', () => {
         map: 'https://cdn2.bulbagarden.net/upload/5/54/Kanto_Vermilion_City_Map.png',
       },
     ],
-    summary: 'What sounds like its cry may actually be its snores or the rumblings of its hungry belly.',
   };
 
   it('Testa com pokemons favoritos', () => {
