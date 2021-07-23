@@ -92,8 +92,6 @@ class App extends Component {
   }
   
   render() {
-    const pokemonTypes = [...new Set(pokemons.map((pokemon) => pokemon.type))];
-    console.log(pokemonTypes);
     return (
       <div className="App">
         <h1>Pokédex</h1>
