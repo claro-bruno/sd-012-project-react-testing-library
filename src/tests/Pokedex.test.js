@@ -38,10 +38,6 @@ describe('Pokedex.js', () => {
   });
 
   it('Exibe um único pokémon', () => {
-    const btn = screen.getByRole('button', {
-      name: /Próximo pokémon/i,
-    });
-    userEvent.click(btn);
     const pokemon = screen.getAllByTestId('pokemon-name');
     expect(pokemon).toHaveLength(1);
   });
