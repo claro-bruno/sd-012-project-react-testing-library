@@ -26,7 +26,7 @@ test('Verifica heading h2', () => {
 });
 
 test('Verifica presença e funcionamento do botao "Próximo pokémon"', () => {
-  const nextBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+  const nextBtn = screen.getByTestId('next-pokemon');
   const pokeArray = [
     'Pikachu', 'Charmander', 'Caterpie', 'Ekans', 'Alakazam', 'Mew',
     'Rapidash', 'Snorlax', 'Dragonair'];
@@ -46,8 +46,8 @@ test('Verifica os botoes de filtro de pokemon', () => {
   const typeBtns = [
     'Electric', 'Fire', 'Bug', 'Poison', 'Psychic',
     'Normal', 'Dragon'];
-  const allBtns = screen.getAllByRole('button');
-  const numberOfBtns = 9;
+  const allBtns = screen.getAllByTestId('pokemon-type-button');
+  const numberOfBtns = 7;
   expect(allBtns.length).toEqual(numberOfBtns);
   typeBtns.forEach((crr) => {
     const filterBtn = screen.getByRole('button', { name: crr });
