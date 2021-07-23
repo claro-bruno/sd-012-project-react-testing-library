@@ -43,7 +43,7 @@ describe('Pokedex.js', () => {
     });
     userEvent.click(btn);
     const pokemon = screen.getAllByTestId('pokemon-name');
-    expect(pokemon.length).toBe(1);
+    expect(pokemon).toHaveLength(1);
   });
 
   it('Botões de Filtro', () => {
