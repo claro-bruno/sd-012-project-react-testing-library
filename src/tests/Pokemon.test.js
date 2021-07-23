@@ -30,10 +30,10 @@ describe('Verifica Pokemon.js', () => {
   it('Verifica se é renderizado um card com as informações do pokémon', () => {
     renderWithRouter(<App />);
     const correctName = screen.getByTestId('pokemon-name');
-    expect(correctName).toBeInTheDocument();
+    expect(correctName).toHaveTextContent('Pikachu');
 
     const correctType = screen.getByTestId('pokemon-type');
-    expect(correctType).toBeInTheDocument();
+    expect(correctType).toHaveTextContent('Electric');
 
     const { averageWeight: { value, measurementUnit } } = mockPokemons;
     const average = screen.getByText(`Average weight: ${value} ${measurementUnit}`);
