@@ -45,8 +45,9 @@ describe('Pokedex.js', () => {
   it('Botões de Filtro', () => {
     const allBtn = screen.getByRole('button', { name: /All/i });
     expect(allBtn).toBeInTheDocument();
-
-    const length = 7;
+    const typesArr = [...new Set(pokemons
+      .reduce((types, { type }) => [...types, type], []))];
+    const { length } = typesArr;
     expect(screen
       .getAllByTestId('pokemon-type-button'))
       .toHaveLength(length);
