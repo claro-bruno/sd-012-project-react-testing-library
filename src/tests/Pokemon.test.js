@@ -3,6 +3,8 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import { Pokemon } from '../components';
+import pokemons from '../data';
 
 describe('Testa Pokemon', () => {
   test('Testa o nome do Pokemon', () => {
@@ -36,4 +38,11 @@ test('Testa link para detalhes do pokemon', () => {
   expect(link).toHaveAttribute('href', '/pokemons/25');
   userEvent.click(link);
   expect(history.location.pathname).toBe('/pokemons/25');
+});
+
+test('Testa se pokemon favorito tem estrela', () => {
+  const pokemon = pokemons[0];
+  renderWithRouter(<Pokemon isFavorite pokemon={ pokemon } />);
+  const icon = screen.getByAltText('Pikachu is marked as favorite');
+  expect(icon).toHaveAttribute('src', '/star-icon.svg');
 });
