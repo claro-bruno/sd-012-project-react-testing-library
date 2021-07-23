@@ -13,7 +13,7 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    // iniciando com um pokemon favorito para realizar o teste
+    // iniciando com um pokemon favorito para realizar o teste, objeto retirado do data.js
     const favoritePikachu = [
       {
         id: 25,
@@ -41,6 +41,7 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     ];
 
     renderWithRouter(<FavoritePokemons pokemons={ favoritePikachu } />);
+    // data-testid encontrado no arquivo Pokemom.js
     const favorite = screen.getByTestId('pokemon-name');
 
     expect(favorite).toBeInTheDocument();
