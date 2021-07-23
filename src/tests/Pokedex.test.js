@@ -1,9 +1,11 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
+import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testa o componente <About.js />.', () => {
+  const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon']
   test('Testa se página contém um heading h2 com o texto Encountered pokémon', () => {
     renderWithRouter(<App />);
     const title = screen.getByRole('heading', { level: 2 });
@@ -24,10 +26,11 @@ describe('Testa o componente <About.js />.', () => {
   });
   test('Teste se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
-    const button = screen.getByText('Psychic');
-    fireEvent.click(button);
-    const pokemons = screen.getByText('Alakazam');
-    expect(pokemons).toBeInTheDocument();
+    const buttons = screen.getAllByTestId('pokemon-type-button');
+    buttons.forEach((button, i) => {
+      expect(button).toBeInTheDocument();
+      expect(button).toHaveTextContent(types[i]);
+    })
   });
   test('Teste se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
