@@ -46,92 +46,60 @@ describe('Verifica Pokedex.js', () => {
     // O texto do botão deve corresponder ao nome do tipo, ex. Psychic;
     renderWithRouter(<App />);
     // ATENÇÃO ----- REFATORAR CÓDIGO DEPOIS.
-    // const pokemon = screen.getAllByTestId('pokemon-name');
-    // const pokemonButtonFilter = screen.getByRole('button',
-    //   { name: /{pokemon-name}/i });
-    // expect(pokemon).toBe(pokemonButtonFilter);
-    // O botão All precisa estar sempre visível.
 
+    // O botão All precisa estar sempre visível.
     const allButtonPokemonsFilter = screen.getByRole('button',
       { name: /All/i });
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
-    const electricButtonFilter = screen.getByRole('button',
-      { name: /Electric/i });
-    expect(electricButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
+    const buttonType = screen.getAllByTestId('pokemon-type-button');
+    expect(buttonType[0]).toHaveTextContent(/Electric/i);
+    expect(buttonType[1]).toHaveTextContent(/Fire/i);
+    expect(buttonType[2]).toHaveTextContent(/Bug/i);
+    expect(buttonType[3]).toHaveTextContent(/Poison/i);
+    expect(buttonType[4]).toHaveTextContent(/Psychic/i);
+    expect(buttonType[5]).toHaveTextContent(/Normal/i);
+    expect(buttonType[6]).toHaveTextContent(/Dragon/i);
 
-    const fireButtonFilter = screen.getByRole('button',
-      { name: /Fire/i });
-    expect(fireButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
-
-    const bugButtonFilter = screen.getByRole('button',
-      { name: /Bug/i });
-    expect(bugButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
-
-    const poisonButtonFilter = screen.getByRole('button',
-      { name: /Poison/i });
-    expect(poisonButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
-
-    const psychicButtonFilter = screen.getByRole('button',
-      { name: /Psychic/i });
-    expect(psychicButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
-
-    const normalButtonFilter = screen.getByRole('button',
-      { name: /Normal/i });
-    expect(normalButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
-
-    const dragonButtonFilter = screen.getByRole('button',
-      { name: /Dragon/i });
-    expect(dragonButtonFilter).toBeInTheDocument();
-    expect(allButtonPokemonsFilter).toBeInTheDocument();
+    // const pokemonType = screen.getByTestId('pokemon-type');
 
     // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;
-    userEvent.click(electricButtonFilter);
+    userEvent.click(buttonType[0]);
     const pokedexElectric = screen.getByText('Pikachu', 'Electric');
     expect(pokedexElectric).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
-    userEvent.click(fireButtonFilter);
+    userEvent.click(buttonType[1]);
     const pokedexFire = screen.getByText('Charmander', 'Fire');
     expect(pokedexFire).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
-    userEvent.click(bugButtonFilter);
+    userEvent.click(buttonType[2]);
     const pokedexBug = screen.getByText('Caterpie', 'Bug');
     expect(pokedexBug).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
-    userEvent.click(poisonButtonFilter);
+    userEvent.click(buttonType[3]);
     const pokedexPoison = screen.getByText('Ekans', 'Poison');
-    expect(pokedexPoison).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
+    expect(pokedexPoison).toBeInTheDocument();
 
-    userEvent.click(psychicButtonFilter);
+    userEvent.click(buttonType[4]);
     const pokedexPsychic = screen.getByText('Alakazam', 'Psychic');
     expect(pokedexPsychic).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
-    userEvent.click(normalButtonFilter);
+    userEvent.click(buttonType[5]);
     const pokedexNormal = screen.getByText('Snorlax', 'Normal');
     expect(pokedexNormal).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
-    userEvent.click(dragonButtonFilter);
+    userEvent.click(buttonType[6]);
     const pokedexDragon = screen.getByText('Dragonair', 'Dragon');
     expect(pokedexDragon).toBeInTheDocument();
     expect(allButtonPokemonsFilter).toBeInTheDocument();
 
     // O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
-    const buttonNext = screen.getByRole('button',
-      { name: /Próximo pokémon/i });
-    userEvent.click(buttonNext);
-    expect(pokedexElectric).toBeInTheDocument();
   });
 
   test('Testa se a Pokédex contém um botão para resetar o filtro', () => {
@@ -140,6 +108,10 @@ describe('Verifica Pokedex.js', () => {
     const dragonButtonFilter = screen.getByRole('button',
       { name: /Dragon/i });
     userEvent.click(dragonButtonFilter);
+    // const buttonNext = screen.getByRole('button',
+    // { name: /Próximo pokémon/i });
+    // userEvent.click(buttonNext);
+    // expect(pokedexElectric).toBeInTheDocument();
 
     // O texto do botão deve ser All;
     const allButtonResetFilter = screen.getByRole('button',
@@ -149,7 +121,7 @@ describe('Verifica Pokedex.js', () => {
     // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado;
     // Ao carregar a página, o filtro selecionado deverá ser All;
     userEvent.click(allButtonResetFilter);
-    const buttonNext = screen.getByRole('button',
+    const buttonNext = screen.getByTestId('next-pokemon',
       { name: /Próximo pokémon/i });
     expect(buttonNext).toBeEnabled();
   });
