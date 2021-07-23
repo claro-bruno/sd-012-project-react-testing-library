@@ -55,13 +55,8 @@ describe('Pokedex.js', () => {
   it('Botão Reset de filtros', () => {
     const allBtn = screen.getByRole('button', { name: /All/i });
     userEvent.click(allBtn);
-    let pokemon = screen.getByText(pokemons[0].name);
-    expect(pokemon).toBeDefined();
     const proxBtn = screen.getByRole('button', { name: /Próximo pokémon/i });
-    for (let index = 0; index < pokemons.length - 1; index += 1) {
-      userEvent.click(proxBtn);
-      pokemon = screen.getByText(pokemons[index + 1].name);
-      expect(pokemon).toBeDefined();
-    }
+    userEvent.click(proxBtn);
+    expect(screen.getByText(pokemons[1].name)).toBeDefined();
   });
 });
