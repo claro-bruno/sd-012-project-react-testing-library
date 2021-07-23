@@ -32,7 +32,7 @@ describe('App.js', () => {
   it('Not Found', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/test');
-    const notFound = screen.getByRole('heading', { name: /age requested not found/i });
+    const notFound = screen.getByRole('heading', { name: /Page requested not found/i });
     expect(notFound).toBeInTheDocument();
   });
 });
