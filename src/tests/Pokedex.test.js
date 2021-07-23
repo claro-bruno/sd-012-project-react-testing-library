@@ -7,8 +7,6 @@ import renderWithRouter from '../etc/renderWithRouter';
 
 import pokemons from '../data';
 
-const testID = 'pokemon-name';
-
 beforeEach(() => {
   renderWithRouter(<Pokedex
     pokemons={ pokemons }
@@ -43,15 +41,8 @@ describe('Pokedex.js', () => {
     const btn = screen.getByRole('button', {
       name: /Próximo pokémon/i,
     });
-    // testa 3 cliques
     userEvent.click(btn);
-    let pokemon = screen.getAllByTestId(testID);
-    expect(pokemon.length).toBe(1);
-    userEvent.click(btn);
-    pokemon = screen.getAllByTestId(testID);
-    expect(pokemon.length).toBe(1);
-    userEvent.click(btn);
-    pokemon = screen.getAllByTestId(testID);
+    const pokemon = screen.getAllByTestId('pokemon-name');
     expect(pokemon.length).toBe(1);
   });
 
