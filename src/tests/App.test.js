@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
-describe('Testes em App', () => {
-  test('Teste se App contém um conjunto fixo de links de navegação', () => {
+describe('Testes no component <App.js />', () => {
+  test('Há links fixos de navegação. Redirecionam para respectiva página.', () => {
     const { history } = renderWithRouter(<App />);
 
     const linkHome = screen.getByRole('link', { name: /Home/i });

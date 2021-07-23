@@ -5,8 +5,9 @@ import renderWithRouter from '../services/renderWithRouter';
 import data from '../data';
 import App from '../App';
 
+beforeEach(() => renderWithRouter(<App />));
+
 describe('Testes no componente <Pokedex.js />', () => {
-  beforeEach(() => renderWithRouter(<App />));
   test('Heading h2 = "Encountered pokémons"; texto do botão = "próximo pokémon"', () => {
     const heading = screen.getByRole('heading', { name: /Encountered pokémons/i });
     expect(heading).toBeInTheDocument();
@@ -16,11 +17,11 @@ describe('Testes no componente <Pokedex.js />', () => {
 
   test('Cliques sucessivos mostram cada pokémon. O primeiro deve ser "pikachu"', () => {
     // Feito com a ajuda de Elias Forte - turma 12.
-    data.map(({ name }) => {
+    data.forEach(({ name }) => {
       const pokemonName = screen.getByText(name);
       const buttonNext = screen.getByRole('button', { name: /próximo pokémon/i });
       expect(pokemonName).toBeInTheDocument();
-      return userEvent.click(buttonNext);
+      userEvent.click(buttonNext);
     });
 
     expect(screen // após passar por todo os itens do array, o primeiro nome a ser mostrado deve ser pikachu.
@@ -36,12 +37,11 @@ describe('Testes no componente <Pokedex.js />', () => {
 });
 
 describe('A Pokédex tem os botões de filtro.', () => {
-  beforeEach(() => renderWithRouter(<App />));
-
   test('São mostrados todos os botões de filtro', () => {
     expect(screen
       .getByRole('button', { name: 'All' }))
       .toBeInTheDocument();
+
     const length = 7;
     expect(screen
       .getAllByTestId('pokemon-type-button'))
