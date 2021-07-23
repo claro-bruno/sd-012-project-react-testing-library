@@ -3,13 +3,12 @@ import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Teste do component App.js', () => {
+describe('Teste do component App.js.', () => {
   test('Verifica se o topo da aplicação '
     + 'contém um conjunto fixo de links de navegação.', () => {
-    const { history } = renderWithRouter(<App />);
+    renderWithRouter(<App />);
     const links = screen.getAllByRole('link');
 
-    expect(history.location.pathname).toBe('/');
     expect(links[0]).toHaveTextContent('Home');
     expect(links[1]).toHaveTextContent('About');
     expect(links[2]).toHaveTextContent('Favorite Pokémons');
