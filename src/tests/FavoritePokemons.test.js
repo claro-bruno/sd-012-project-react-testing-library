@@ -26,11 +26,11 @@ describe('Testa FavoritePokemons', () => {
 
       history.push(`/pokemons/${id}`);
 
-      const favoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
-      userEvent.click(favoritePokemons);
+      const favoritePokemon = screen.getByLabelText('Pokémon favoritado?');
+      userEvent.click(favoritePokemon);
 
-      const { location: { pathname } } = history;
-      expect(pathname).toBe('/favorites');
+      const linkFavorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
+      userEvent.click(linkFavorite);
 
       const pokemonName = await screen.findAllText(name);
       expect(pokemonName).toBeDefined();
