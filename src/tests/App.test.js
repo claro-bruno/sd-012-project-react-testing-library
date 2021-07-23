@@ -12,16 +12,19 @@ describe('Testa o componente <App/js>', () => {
 
     it('O primeiro link deve possuir o texto "Home"', () => {
       const home = screen.getAllByRole('link');
+
       expect(home[0].innerHTML).toBe('Home');
     });
 
     it('O segundo link deve possuir o texto "About"', () => {
       const about = screen.getAllByRole('link');
+
       expect(about[1].innerHTML).toBe('About');
     });
 
     it('O terceiro link deve possuir o texto "Favorite Pokémons"', () => {
       const favorite = screen.getAllByRole('link');
+
       expect(favorite[2].innerHTML).toBe('Favorite Pokémons');
     });
   });
