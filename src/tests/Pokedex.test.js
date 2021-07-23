@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { fireEvent, getByRole, getByTestId, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import App from '../App';
 
@@ -35,7 +35,7 @@ test('Verifica presença e funcionamento do botao "Próximo pokémon"', () => {
     expect(currentPokemon).toHaveTextContent(crr);
     if (crr === 'Dragonair') {
       fireEvent.click(nextBtn);
-      expect(screen.getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
+      expect(currentPokemon).toHaveTextContent('Pikachu');
     } else {
       fireEvent.click(nextBtn);
     }
@@ -62,9 +62,8 @@ test('Verifica os botoes de filtro de pokemon', () => {
 test('Verifica se existe botao "All" que reseta o filtro de tipos', () => {
   const allBtn = screen.getByRole('button', { name: 'All' });
   expect(allBtn).toBeInTheDocument();
-  fireEvent.click(allBtn);
+  const currPokemon = screen.getByTestId('pokemon-name');
+  expect(currPokemon).toHaveTextContent('Pikachu');
   fireEvent.click(screen.getByText('Próximo pokémon'));
-  expect(screen.getByText('Pikachu')).toBeInTheDocument();
-  fireEvent.click(screen.getByText('Próximo pokémon'));
-  expect(screen.getByText('Charmander')).toBeInTheDocument();
+  expect(currPokemon).toHaveTextContent('Charmander');
 });
