@@ -35,8 +35,10 @@ describe('Testa Pokedex.js', () => {
 
   it('Existe todos os botões de filter por "Type"', () => {
     const types = pokemons.map((pokemon) => pokemon.type);
-    const allTypes = [...types, 'All'];
-    const numberButtonsFilter = 7;
+    const typesNoRepeated = [...new Set(types)];
+    // referência do new Set(): https://dicasdejavascript.com.br/javascript-como-remover-valores-repetidos-de-um-array/
+    const allTypes = [...typesNoRepeated, 'All'];
+    const numberButtonsFilter = typesNoRepeated.length;
 
     allTypes.forEach((type) => (
       expect(screen.getByRole('button', { name: `${type}` })).toBeDefined()));
@@ -48,7 +50,8 @@ describe('Testa Pokedex.js', () => {
   it('Testa todos os botões de filter', () => {
     const button = screen.getByRole('button', { name: /Próximo pokémon/ });
     const types = pokemons.map((pokemon) => pokemon.type);
-    const allTypes = [...types, 'All'];
+    const typesNoRepeated = [...new Set(types)];
+    const allTypes = [...typesNoRepeated, 'All'];
 
     allTypes.forEach((type) => {
       userEvent.click(screen.getByRole('button', { name: `${type}` }));
