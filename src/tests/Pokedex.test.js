@@ -36,5 +36,4 @@ describe('Testa o componente <About.js />.', () => {
     const pokemons = screen.getByText('Pikachu');
     expect(pokemons).toBeInTheDocument();
   });
-  
 });
