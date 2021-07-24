@@ -7,7 +7,7 @@ import renderWithRouter from './renderWithRouter';
 
 const pokemonTestId = 'pokemon-name';
 
-function filterHelper() {
+function filterTypesHelper() {
   const allTypes = pokemons.map((pokemon) => pokemon.type);
   const types = allTypes.filter((type, index) => allTypes.indexOf(type) === index);
   return types;
@@ -15,7 +15,6 @@ function filterHelper() {
 
 function testAllPokemonsHelper() {
   const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
-  // const nextPokemonLink = screen.getByTestId('next-pokemon');
   expect(nextPokemonLink).toBeInTheDocument();
 
   pokemons.forEach(() => {
@@ -26,9 +25,11 @@ function testAllPokemonsHelper() {
 }
 
 describe('5 - Testa o componente <Pokedex.js />', () => {
-  it('Verifica se página contém um heading h2 com o texto "Encountered pokémons"', () => {
+  beforeEach(() => {
     renderWithRouter(<App />);
+  });
 
+  it('Verifica se página contém um heading h2 com o texto "Encountered pokémons"', () => {
     const titlePokedex = screen.getByRole(
       'heading',
       { name: /Encountered pokémons/i, level: 2 },
@@ -39,10 +40,7 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
 
   it('Verifica se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon'
       + ' é clicado', () => {
-    renderWithRouter(<App />);
-
     const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
-    // const nextPokemonLink = screen.getByTestId('next-pokemon');
     expect(nextPokemonLink).toBeInTheDocument();
 
     pokemons.forEach((pokemon) => {
@@ -56,14 +54,11 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
   });
 
   it('Verifica se é mostrado apenas um Pokémon por vez', () => {
-    renderWithRouter(<App />);
     testAllPokemonsHelper();
   });
 
   it('Verifica se a Pokedéx tem os botões de filtro', () => {
-    renderWithRouter(<App />);
-
-    const filters = filterHelper();
+    const filters = filterTypesHelper();
 
     const allTypesButton = screen.getByRole('button', { name: /All/i });
     expect(allTypesButton).toBeInTheDocument();
@@ -86,7 +81,6 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
   });
 
   it('Verifica se a Pokedéx contém um botão para resetar o filtro', () => {
-    renderWithRouter(<App />);
     testAllPokemonsHelper();
 
     const resetTypeButton = screen.getByRole('button', { name: /All/i });
