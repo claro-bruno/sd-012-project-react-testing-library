@@ -14,11 +14,11 @@ describe('Testa About', () => {
   it('Testa se contém dois paragrágrafos', () => {
     renderWithRouter(<About />);
 
-    const P1 = /This application simulates a Pokédex, /i;
-    const P2 = /One can filter Pokémons by type, /i;
+    const P1 = screen.getByText(/This application simulates a Pokédex, /i);
+    const P2 = screen.getByText(/One can filter Pokémons by type, /i);
 
-    expect(screen.getByText(P1)).toBeInTheDocument();
-    expect(screen.getByText(P2)).toBeInTheDocument();
+    expect(P1).toBeInTheDocument();
+    expect(P2).toBeInTheDocument();
   });
 
   it('Testa se contém img da Pokédex', () => {
