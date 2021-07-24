@@ -22,25 +22,26 @@ describe('5 - Teste o componente <Pokedex.js />', () => {
     expect(firstPokemon).toBeInTheDocument();
   });
 
-  test('3- Teste se é exibido o próximo Pokémon da lista', () => {
+  it('3- Testa se é mostrado apenas um Pokémon por vez', () => {
     renderWithRouter(<App />);
-    screen.getByText(/More details/);
+    expect(screen.getAllByTestId('pokemon-name').length).toBe(1);
   });
   test('4- Teste se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
-    const pokemonButton = screen.getAllByTestId('pokemon-type-button');
     const counter = 7;
+    const pokemonButton = screen.getAllByTestId('pokemon-type-button');
     expect(pokemonButton.length).toBe(counter);
   });
   test('5- Teste se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
     // O filtro estará desativado ao clicar em Eletric (Pikachu) e retornará em Fire (Charmander)
     // Buscando o botão All
+    // Verificando se o primeiro Card é Ekans Poison
+    const Ekans = screen.getByText(/Poison/);
+    fireEvent.click(Ekans);
     const pokemonBtnAll = screen.getByText(/All/);
     fireEvent.click(pokemonBtnAll);
-    // Verificando se o primeiro Card é Pikachu
-    const pikachu = screen.getByText(/Pikachu/);
-    expect(pikachu).toBeInTheDocument();
+    expect(Ekans).toBeInTheDocument();
     // indo para o Próximo Card
     const nextButtonPokemon = screen.getByTestId('next-pokemon');
     expect(nextButtonPokemon).toBeInTheDocument();
