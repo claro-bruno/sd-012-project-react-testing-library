@@ -23,4 +23,8 @@ describe('Test "Pokedex" components', () => {
     userEvent.click(nextPokemonButton);
     expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
   });
+
+  it('Tests if is shown just one Pokémon at a time', () => {
+    
+  });
 });
