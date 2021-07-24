@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testes App.js', () => {
-  it('Testa Home', () => {
+  it('Testa rota Home', () => {
     const { history } = renderWithRouter(<App />);
 
     const home = screen.getByRole('link', { name: /Home/i });
@@ -16,7 +16,7 @@ describe('Testes App.js', () => {
     expect(pathname).toBe('/');
   });
 
-  it('Testa About', () => {
+  it('Testa rota About', () => {
     const { history } = renderWithRouter(<App />);
 
     const about = screen.getByRole('link', { name: /About/i });
@@ -27,7 +27,7 @@ describe('Testes App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('Testa Favorite Pokémons', () => {
+  it('Testa rota Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
 
     const favoritePokemon = screen.getByRole('link', { name: /Favorite Pokémons/i });
@@ -38,7 +38,7 @@ describe('Testes App.js', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  it('Testa Not Found', () => {
+  it('Testa rota Not Found', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/erro');
