@@ -14,7 +14,9 @@ function filterHelper() {
 }
 
 function testAllPokemonsHelper() {
-  const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
+  /* const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
+  expect(nextPokemonLink).toBeInTheDocument(); */
+  const nextPokemonLink = screen.getByTestId('next-pokemon');
   expect(nextPokemonLink).toBeInTheDocument();
 
   pokemons.forEach(() => {
@@ -40,7 +42,8 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
       + ' é clicado', () => {
     renderWithRouter(<App />);
 
-    const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
+    // const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
+    const nextPokemonLink = screen.getByTestId('next-pokemon');
     expect(nextPokemonLink).toBeInTheDocument();
 
     pokemons.forEach((pokemon) => {
@@ -67,12 +70,14 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
     expect(allTypesButton).toBeInTheDocument();
 
     filters.forEach((filter) => {
-      const filterTypeButton = screen.getByRole('button', { name: filter });
-      expect(filterTypeButton).toBeInTheDocument();
+      const typeButtons = screen.getAllByTestId('pokemon-type-button');
+      const filterTypeButton = typeButtons
+        .filter((button) => button.textContent === filter);
+      expect(filterTypeButton[0]).toBeInTheDocument();
 
       const pokemonsByType = pokemons.filter((pokemon) => pokemon.type === filter);
       pokemonsByType.forEach(() => {
-        userEvent.click(filterTypeButton);
+        userEvent.click(filterTypeButton[0]);
         const type = screen.getByTestId('pokemon-type');
         expect(type).toHaveTextContent(filter);
         expect(allTypesButton).toBeInTheDocument();
