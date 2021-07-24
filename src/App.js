@@ -92,6 +92,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.isPokemonFavoriteById)
     return (
       <div className="App">
         <h1>Pokédex</h1>
