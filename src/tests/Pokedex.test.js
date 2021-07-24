@@ -8,8 +8,6 @@ import pokemons from '../data';
 beforeEach(() => renderWithRouter(<App />));
 
 describe('Testa o componente Pokedex.js', () => {
-  const nextButton = screen.getByText('Próximo pokémon');
-
   it('Testa se a página contém um heading h2 com o texto Encountered pokémons', () => {
     expect(screen.getByText('Encountered pokémons')).toBeInTheDocument();
   });
@@ -17,7 +15,7 @@ describe('Testa o componente Pokedex.js', () => {
   it('Testa se o botão "Próximo pokémon" exibe os pokémons quando clicado', () => {
     pokemons.forEach((pokemon) => {
       expect(screen.getByText(pokemon.name)).toBeInTheDocument();
-      userEvent.click(nextButton);
+      userEvent.click(screen.getByText('Próximo pokémon'));
     });
 
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
@@ -31,7 +29,7 @@ describe('Testa o componente Pokedex.js', () => {
 
     userEvent.click(screen.getByText('Fire'));
     expect(screen.getByText('Charmander')).toBeInTheDocument();
-    userEvent.click(nextButton);
+    userEvent.click(screen.getByText('Próximo pokémon'));
     expect(screen.getByText('Rapidash')).toBeInTheDocument();
 
     expect(screen.getByText('All')).toBeInTheDocument();
@@ -39,7 +37,7 @@ describe('Testa o componente Pokedex.js', () => {
   it('Testa se a Pokédex contém um botão para resetar o filtro', () => {
     userEvent.click(screen.getByText('All'));
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
-    userEvent.click(nextButton);
+    userEvent.click(screen.getByTestId('next-pokemon'));
     expect(screen.getByText('Charmander')).toBeInTheDocument();
   });
 });
