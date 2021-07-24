@@ -253,7 +253,7 @@ Observe que nem todos os testes são contemplados em sua totalidade pelo avaliad
 
 ### 5. Teste o componente `<Pokedex.js />`
 
-- Teste se página contém um heading `h2` com o texto `Encountered pokémons`.
+- Teste se página contém um heading `h2` com o texto `c`.
 
 - Teste se é exibido o próximo Pokémon da lista quando o botão `Próximo pokémon` é clicado.
 
