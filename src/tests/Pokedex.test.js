@@ -48,10 +48,12 @@ describe('Teste o componente Pokedex', () => {
   });
   test('Teste os botões de filtro', () => {
     pokemons.forEach((pokemon) => {
-      const filterButton = screen.getByRole('button', { name: pokemon.type });
-      const allButton = screen.getByText('All');
-      expect(filterButton).toBeInTheDocument();
-      expect(allButton).toBeInTheDocument();
+      const filterButtons = screen.getAllByTestId('pokemon-type-button');
+      expect(filterButtons.some((button) => button.textContent === pokemon.type));
+      // const filterButton = screen.getByRole('button', { name: pokemon.type });
+      // const allButton = screen.getByText('All');
+      // expect(filterButton).toHaveProperty('testIdAttribute', 'pokemon-type-button');
+      // expect(allButton).toBeInTheDocument();
     });
     const firePokemons = pokemons.map((pokemon) => (pokemon.type === /Fire/i));
     const fireButton = screen.getByRole('button', { name: /Fire/i });
