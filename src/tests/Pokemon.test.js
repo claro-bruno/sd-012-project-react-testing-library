@@ -29,10 +29,14 @@ describe('6 - Teste o componente `<Pokemon.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
-  test('4- Teste também se a URL exibida no navegador muda para `/pokemon/<id>`', () => {
+
+  test('4- Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
     renderWithRouter(<App />);
-  });
-  test('5- Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
-    renderWithRouter(<App />);
+    const clickMoreDetails = screen.getByText(/More details/);
+    fireEvent.click(clickMoreDetails);
+    const checkLabel = screen.getByLabelText(/Pokémon favoritado?/);
+    fireEvent.click(checkLabel);
+    const star = screen.getByAltText(/Pikachu is marked as favorite/);
+    expect(star.src).toBe('http://localhost/star-icon.svg');
   });
 });
