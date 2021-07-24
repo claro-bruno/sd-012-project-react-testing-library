@@ -14,9 +14,8 @@ function filterHelper() {
 }
 
 function testAllPokemonsHelper() {
-  /* const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
-  expect(nextPokemonLink).toBeInTheDocument(); */
-  const nextPokemonLink = screen.getByTestId('next-pokemon');
+  const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
+  // const nextPokemonLink = screen.getByTestId('next-pokemon');
   expect(nextPokemonLink).toBeInTheDocument();
 
   pokemons.forEach(() => {
@@ -42,8 +41,8 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
       + ' é clicado', () => {
     renderWithRouter(<App />);
 
-    // const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
-    const nextPokemonLink = screen.getByTestId('next-pokemon');
+    const nextPokemonLink = screen.getByRole('button', { name: /Próximo pokémon/i });
+    // const nextPokemonLink = screen.getByTestId('next-pokemon');
     expect(nextPokemonLink).toBeInTheDocument();
 
     pokemons.forEach((pokemon) => {
