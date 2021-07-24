@@ -16,6 +16,13 @@ describe('Testa o componente <About.js />.', () => {
     const type = screen.getByTestId('pokemon-type');
     expect(type).toHaveTextContent(`${data[0].type}`);
   });
+  test('Teste se é renderizado um card com as informações', () => {
+    renderWithRouter(<App />);
+    const title = screen.getByTestId('pokemon-weight');
+    expect(title).toHaveTextContent(
+      `Average weight: ${data[0].value} ${data[0].measurementUnit}`,
+    );
+  });
   test('Testa se a imagem do Pokémon é exibida', () => {
     renderWithRouter(<App />);
     const moreDetails = screen.getByText('More details');
