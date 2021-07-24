@@ -39,6 +39,11 @@ describe('Testes do componente Pokedex', () => {
 
     const firePokemonsName = ['Charmander', 'Rapidash'];
 
+    const filtersNumber = 7;
+
+    const allFilterButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(allFilterButtons.length).toBe(filtersNumber);
+
     pokemons.forEach((pokemon) => {
       const filterButtons = screen.getAllByRole('button', { name: pokemon.type });
       expect(filterButtons.length).toBe(1);
