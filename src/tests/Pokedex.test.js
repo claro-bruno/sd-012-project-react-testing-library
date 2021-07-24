@@ -97,7 +97,6 @@ describe('Testa página Pokedex', () => {
 
 describe('Testa os botões miseravi', () => {
   const filtros = [
-    'All',
     'Electric',
     'Fire',
     'Bug',
@@ -119,6 +118,7 @@ describe('Testa os botões miseravi', () => {
       const botao = screen.getByRole('button', { name: filtro });
       expect(botao.innerHTML).toBe(filtro);
       expect(botao).toBeInTheDocument();
+      expect(botao).toHaveAttribute('data-testid', 'pokemon-type-button');
     });
 
     const botaoAll = screen.getByRole('button', { name: 'All' });
