@@ -5,6 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import data from '../data';
 
 describe('Testa o componente <About.js />.', () => {
+  const { averageWeight } = data[0];
   test('Testa se a imagem do Pokémon é exibida', () => {
     renderWithRouter(<App />);
     const image = screen.getByAltText(`${data[0].name} sprite`);
@@ -18,7 +19,7 @@ describe('Testa o componente <About.js />.', () => {
 
     const title = screen.getByTestId('pokemon-weight');
     expect(title).toHaveTextContent(
-      `Average weight: ${data[0].averageWeight.value} ${data[0].averageWeight.measurementUnit}`
+      `Average weight: ${averageWeight.value} ${averageWeight.measurementUnit}`,
     );
   });
   test('Testa se a imagem do Pokémon é exibida', () => {
