@@ -7,7 +7,7 @@ describe('4 - Testa o componente <NotFound.js />', () => {
   it('Verifica se página contém um heading h2 com o texto'
       + ' Page requested not found 😭', () => {
     renderWithRouter(<NotFound />);
-    const notFound = screen.getByRole('heading', { name: /Page requested not found/i });
+    const notFound = screen.getByRole('heading', { name: /Page requested not found/i, level: 2 });
     const emoji = screen.getByRole('img', { name: 'Crying emoji' });
     expect(notFound).toBeInTheDocument();
     expect(emoji).toBeInTheDocument();

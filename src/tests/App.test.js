@@ -21,7 +21,7 @@ describe('1 - Testa o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     const linkToHome = screen.getByRole('link', { name: /Home/i });
     userEvent.click(linkToHome);
-    const titleHome = screen.getByRole('heading', { name: /Encountered pokémons/i });
+    const titleHome = screen.getByRole('heading', { name: /Encountered pokémons/i, level: 2 });
     expect(titleHome).toBeInTheDocument();
     const urlHome = history.location.pathname;
     expect(urlHome).toBe('/');
@@ -32,7 +32,7 @@ describe('1 - Testa o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     const linkToAbout = screen.getByRole('link', { name: /About/i });
     userEvent.click(linkToAbout);
-    const titleAbout = screen.getByRole('heading', { name: /About Pokédex/i });
+    const titleAbout = screen.getByRole('heading', { name: /About Pokédex/i, level: 2 });
     expect(titleAbout).toBeInTheDocument();
     const urlAbout = history.location.pathname;
     expect(urlAbout).toBe('/about');
@@ -43,7 +43,7 @@ describe('1 - Testa o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     const linkToFavorites = screen.getByRole('link', { name: /Favorite Pokémons/i });
     userEvent.click(linkToFavorites);
-    const titleFavorites = screen.getByRole('heading', { name: /Favorite pokémons/i });
+    const titleFavorites = screen.getByRole('heading', { name: /Favorite pokémons/i, level: 2 });
     expect(titleFavorites).toBeInTheDocument();
     const urlFavorites = history.location.pathname;
     expect(urlFavorites).toBe('/favorites');
@@ -53,7 +53,7 @@ describe('1 - Testa o componente <App.js />', () => {
       + ' URL desconhecida', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/no-exist');
-    const notFound = screen.getByRole('heading', { name: /Page requested not found/i });
+    const notFound = screen.getByRole('heading', { name: /Page requested not found/i, level: 2 });
     const emoji = screen.getByRole('img', { name: 'Crying emoji' });
     expect(emoji).toBeInTheDocument();
     expect(notFound).toBeInTheDocument();
