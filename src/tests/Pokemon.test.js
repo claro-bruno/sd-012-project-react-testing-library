@@ -9,6 +9,12 @@ describe('Testa o componente <About.js />.', () => {
     renderWithRouter(<App />);
     const image = screen.getByAltText(`${data[0].name} sprite`);
     expect(image.src).toBe(data[0].image);
+
+    const name = screen.getByTestId('pokemon-name');
+    expect(name).toHaveTextContent(`${data[0].name}`);
+
+    const type = screen.getByTestId('pokemon-type');
+    expect(type).toHaveTextContent(`${data[0].type}`);
   });
   test('Testa se a imagem do Pokémon é exibida', () => {
     renderWithRouter(<App />);
