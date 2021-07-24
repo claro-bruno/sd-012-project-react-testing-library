@@ -25,15 +25,9 @@ describe('1 - Teste se contém um conjunto fixo de links de navegação', () => 
 });
 
 test('Redirecionada para a página inicial, `/` ao clicar no link `Home` ', () => {
-  const {
-    history,
-  } = renderWithRouter(<App />);
-  const linkHome = screen.getByRole('link', {
-    name: /home/i,
-  });
-  const {
-    pathname,
-  } = history.location;
+  const { history } = renderWithRouter(<App />);
+  const linkHome = screen.getByRole('link', { name: /home/i });
+  const { pathname } = history.location;
   expect(pathname).toBe('/');
   userEvent.click(linkHome);
 });
