@@ -68,5 +68,8 @@ describe('7 - Testa o componente <PokemonDetails.js />', () => {
     expect(favoriteIcon).toBeInTheDocument();
     userEvent.click(checkboxInput);
     expect(favoriteIcon).not.toBeInTheDocument();
+
+    const checkboxLabel = screen.getByText('Pokémon favoritado?');
+    expect(checkboxLabel).toHaveTextContent('Pokémon favoritado?');
   });
 });
