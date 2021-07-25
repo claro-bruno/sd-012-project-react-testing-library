@@ -34,7 +34,7 @@ describe('Teste o componente <Pokemon.js />', () => {
 
   it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     const { history } = renderWithRouter(<App />);
-    const link = screen.getByRole('link', { name: /More details/i });
+    const link = screen.getByText('More details');
     fireEvent.click(link);
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
