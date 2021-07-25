@@ -4,7 +4,7 @@ import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-const moreDetail = 'More details'
+const moreDetail = 'More details';
 describe('Teste o componente <Pokemon.js />', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     renderWithRouter(<App />);
