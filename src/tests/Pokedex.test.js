@@ -2,6 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
+import Data from '../data';
 import App from '../App';
 
 describe('Verifica requisitos do desafio 5', () => {
@@ -45,9 +46,8 @@ describe('Verifica requisitos do desafio 5', () => {
   it('Testa nome dos botoes', () => {
     renderWithRouter(<App />);
 
-    const electric = screen.getByRole('button', {
-      name: /Electric/i,
+    Data.forEach((pokemon) => {
+      expect(pokemon.innerHTML === pokemon.type);
     });
-    expect(electric.innerHTML).toBe('Electric');
   });
 });

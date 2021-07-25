@@ -26,7 +26,9 @@ describe('Verifica se a pagina contem "No favorite pokemon found"', () => {
     userEvent.click(details);
 
     // Adiciona o Pokemon como favorito
-    const check = screen.getByRole('checkbox');
+    const check = screen.getByRole('checkbox', {
+      name: /Pokémon favoritado?/i,
+    });
     userEvent.click(check);
 
     // Vai para a pagina de Pokemons favoritos

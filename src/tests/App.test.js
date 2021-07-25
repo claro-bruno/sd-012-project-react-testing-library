@@ -87,7 +87,6 @@ describe('Verifica se os links estao direcionando corretamente', () => {
     const { pathname } = history.location;
     const image = screen.getByRole('img', {
       name: /Pikachu crying because the page requested was not found/i,
-     
     });
 
     expect(image).toBeInTheDocument();

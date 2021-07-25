@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import Data from '../data';
 
 describe('Verifica requisitos do desafio 6', () => {
   it('Verifica se a página exibe os detalhes do Pokemon', () => {
@@ -46,9 +47,7 @@ describe('Verifica requisitos do desafio 6', () => {
       level: 2,
     });
 
-    const firstHalf = 'It can freely detach its jaw to swallow large prey whole. ';
-    const secondHalf = 'It can become too heavy to move, however.';
-    const allText = `${firstHalf + secondHalf}`;
+    const allText = Data[3].summary;
     const resume = screen.getByText(allText);
 
     expect(heading).toBeInTheDocument();
