@@ -12,11 +12,10 @@ describe('About tests', () => {
 
   it('Test the image URL', () => {
     renderWithRouter(<About />);
-    const imgURL = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    const imgElement = screen.getByRole('img');
-
-    expect(imgElement).toBeInTheDocument();
-    expect(imgElement.src).toBe(imgURL); // 100% mutants!
+    expect(screen.getByRole('img')).toHaveProperty(
+      'src',
+      'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
+    );
   });
 
   it('Page must contains some informations about Pokédex', () => {
