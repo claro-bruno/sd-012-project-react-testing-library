@@ -51,6 +51,8 @@ describe('Teste o componente Pokedex.js', () => {
   });
   test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<App />);
+    const typeBtn = screen.getAllByTestId('pokemon-type-button');
+    expect(typeBtn).toBeDefined();
     const btn = screen.getByRole('button', { name: 'All' });
     expect(btn).toBeInTheDocument();
     userEvent.click(btn);
