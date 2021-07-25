@@ -8,8 +8,8 @@ const moreDetail = 'More details';
 describe('Teste o componente <Pokemon.js />', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     renderWithRouter(<App />);
-    expect(screen.getByTestId('pokemon-name')).toBeInTheDocument();
-    expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
+    expect(screen.getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
+    expect(screen.getByTestId('pokemon-type')).toHaveTextContent('Electric');
     expect(screen.getByTestId('pokemon-weight')).toBeInTheDocument();
     expect(screen.getByText('Average weight: 6.0 kg')).toBeInTheDocument();
     const altText = 'Pikachu sprite';
