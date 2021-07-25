@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import About from '../components/About';
 import renderWithRouter from '../helper/renderWithRouter';
 
-describe('Testa o componente <About.js />', () => {
+describe('[ 2 ] Testa o componente About.js', () => {
   test('Testa se a página contém as informações sobre a Pokédex', () => {
     renderWithRouter(<About />);
     const pokedexInfo1 = screen.getByText(/digital encyclopedia/i);
