@@ -40,4 +40,13 @@ describe('Testando o componente App.js', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+
+  test('Testa se é redirecionado para página Not Found'
+    + 'se digitar URL desconhecida', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/tanto-faz');
+    const altPikachu = screen.getByAltText('Pikachu crying because'
+      + ' the page requested was not found');
+    expect(altPikachu).toBeDefined();
+  });
 });
