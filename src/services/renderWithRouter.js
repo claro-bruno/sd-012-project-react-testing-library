@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 
 const renderWithRouter = (component) => {
-  const mockHistory = createMemoryHistory;
+  const mockHistory = createMemoryHistory();
   return {
     ...render(
       <Router history={ mockHistory }>
