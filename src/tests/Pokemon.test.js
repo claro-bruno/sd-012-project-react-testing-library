@@ -19,14 +19,14 @@ describe('Teste o componente <Pokemon.js />', () => {
    para exibir detalhes deste Pokémon. O link deve possuir a URL
     /pokemons/<id>, onde <id> é o id do Pokémon exibido;`, () => {
     renderWithRouter(<App />);
-    const linkDetails = screen.getByText(/more details/i);
+    const linkDetails = screen.getByText('More details');
     expect(linkDetails).toBeInTheDocument();
   });
 
   it(`Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento
    da aplicação para a página de detalhes de Pokémon.`, () => {
     const { history } = renderWithRouter(<App />);
-    const linkDetails = screen.getByText(/more details/i);
+    const linkDetails = screen.getByText('More details');
     fireEvent.click(linkDetails);
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
@@ -38,7 +38,7 @@ describe('Teste o componente <Pokemon.js />', () => {
     fireEvent.click(link);
     const { pathname } = history.location;
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
-    fireEvent.click(screen.getByRole('checkbox', { name: /Pokémon favoritado\?/i }));
+    fireEvent.click(screen.getByRole('checkbox'));
     const altText = 'Pikachu is marked as favorite';
     const image = screen.getByAltText(altText);
     expect(image.src).toBe('http://localhost/star-icon.svg');
