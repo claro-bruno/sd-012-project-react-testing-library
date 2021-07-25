@@ -35,19 +35,20 @@ describe('Test the Pokemon component', () => {
       isPokemonFavoriteById={ {} }
     />);
 
-    const $namePokemon = screen.getByTestId(/pokemon-name/i);
-    expect($namePokemon).toBeInTheDocument('');
+    const name = screen.getByText(mokePokemon.name);
+    expect(name).toBeInTheDocument();
 
-    const $typePokemon = screen.getByTestId('pokemon-type');
-    expect($typePokemon).toBeInTheDocument('');
+    const type = screen.getByTestId('pokemon-type');
+    expect(type.innerHTML).toEqual(mokePokemon.type);
 
-    const $averageWeightPokemon = screen.getByTestId(/pokemon-weight/i);
-    expect($averageWeightPokemon).toBeInTheDocument('');
+    const { averageWeight: { value, measurementUnit } } = mokePokemon;
+    const average = screen.getByText(`Average weight: ${value} ${measurementUnit}`);
+    expect(average).toBeInTheDocument();
 
-    const $imgPokemon = screen.getByRole('img');
-    expect($imgPokemon).toBeInTheDocument();
-    expect($imgPokemon).toHaveAttribute('src', mokePokemon.image);
-    expect($imgPokemon).toHaveAttribute('alt', `${mokePokemon.name} sprite`);
+    const img = screen.getByRole('img');
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', mokePokemon.image);
+    expect(img).toHaveAttribute('alt', `${mokePokemon.name} sprite`);
   });
 
   it('tests whether the Pokédex card contains a link to view details', () => {
