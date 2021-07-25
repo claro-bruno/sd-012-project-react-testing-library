@@ -33,37 +33,40 @@ describe('Teste o componente Pokedex', () => {
       </BrowserRouter>,
     );
   });
+
   test('Teste se o texto título é apresentado', () => {
     const homeTitle = screen.getByRole('heading', { name: 'Encountered pokémons' });
     expect(homeTitle).toBeInTheDocument();
   });
+
   test('Teste o botão Próximo Pokémon', () => {
     pokemons.forEach((pokemon) => checkPokemons(pokemon));
     const firstPokemon = screen.getByText(pokemons[0].name);
     expect(firstPokemon).toBeInTheDocument();
   });
+
   test('Teste se é mostrado apenas um pokémon por vez', () => {
     const pokemonName = screen.getByTestId(/pokemon-name/i);
     expect(pokemonName).toBeInTheDocument();
   });
+
   test('Teste os botões de filtro', () => {
     pokemons.forEach((pokemon) => {
       const filterButtons = screen.getAllByTestId('pokemon-type-button');
       expect(filterButtons.some((button) => button.textContent === pokemon.type));
-      // const filterButton = screen.getByRole('button', { name: pokemon.type });
-      // const allButton = screen.getByText('All');
-      // expect(filterButton).toHaveProperty('testIdAttribute', 'pokemon-type-button');
-      // expect(allButton).toBeInTheDocument();
     });
+
     const firePokemons = pokemons.map((pokemon) => (pokemon.type === /Fire/i));
     const fireButton = screen.getByRole('button', { name: /Fire/i });
     userEvent.click(fireButton);
+
     firePokemons.forEach((pokemon) => {
       const pokemonType = screen.getByTestId('pokemon-type');
       userEvent.click(screen.getByTestId(/next-pokemon/i));
       expect(pokemonType).toHaveProperty('name', pokemon.type);
     });
   });
+
   test('Teste o botão de filtro All', () => {
     // Verifica se o filtro "all" está ativo ao carregar a página:
     pokemons.forEach((pokemon) => checkPokemons(pokemon));
