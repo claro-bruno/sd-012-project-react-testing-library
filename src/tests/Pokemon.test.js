@@ -11,8 +11,8 @@ describe('Teste o componente <Pokemon.js />', () => {
     expect(screen.getByTestId('pokemon-name')).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
     expect(screen.getByTestId('pokemon-weight')).toBeInTheDocument();
-    expect(screen.getByText('Average weight: 6.0 kg')).toBeInTheDocument()
-    const altText = `Pikachu sprite`;
+    expect(screen.getByText('Average weight: 6.0 kg')).toBeInTheDocument();
+    const altText = 'Pikachu sprite';
     const image = screen.getByAltText(altText);
     expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
