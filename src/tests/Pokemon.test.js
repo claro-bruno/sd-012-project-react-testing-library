@@ -15,7 +15,7 @@ describe('Testa o componente <Pokemon/>', () => {
 
     expect(pokemonName).toBeInTheDocument();
     expect(pokemonType).toBeInTheDocument();
-    expect(pokemonType).toBe('Electric');
+    expect(pokemonType).toHaveTextContent('Electric');
     expect(pokemonWeight).toBeInTheDocument();
     expect(pokemonImgAlt).toBeInTheDocument();
     expect(pokemonImgAlt.src).toBe(IMG_LINK);
