@@ -8,13 +8,13 @@ describe('Testa o componente <Pokemon/>', () => {
     renderWithRouter(<App />);
 
     const IMG_LINK = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
-    const pokemonName = screen.getByTestId('pokemon-name');
-    const pokemonType = screen.getByTestId('pokemon-type');
-    const pokemonWeight = screen.getByTestId('pokemon-weight');
+    const pokemonName = screen.getByText('Pikachu');
+    const pokemonType = screen.getAllByText('Electric');
+    const pokemonWeight = screen.getByText('Average weight: 6.0 kg');
     const pokemonImgAlt = screen.getByAltText('Pikachu sprite');
 
     expect(pokemonName).toBeInTheDocument();
-    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType[0]).toBeInTheDocument();
     expect(pokemonWeight).toBeInTheDocument();
     expect(pokemonImgAlt).toBeInTheDocument();
     expect(pokemonImgAlt.src).toBe(IMG_LINK);
