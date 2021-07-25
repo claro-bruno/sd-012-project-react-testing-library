@@ -19,8 +19,8 @@ describe('[ 1 ] Testa o componente App.js', () => {
       });
       test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
         renderWithRouter(<App />);
-        const favoritePokemons = screen.getByRole('link', { name: /favorite pokémons/i });
-        expect(favoritePokemons).toBeInTheDocument();
+        const favorite = screen.getByRole('link', { name: /favorite pokémons/i });
+        expect(favorite).toBeInTheDocument();
       });
     });
   describe('Testa se a aplicação é redirecionada adequadamente',
