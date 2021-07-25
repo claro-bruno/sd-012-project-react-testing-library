@@ -6,10 +6,10 @@ import App from '../App';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
-describe('Teste se a página contém um heading h2 e o texto Encountered pokémons', () => {
+describe('Testa o component <Pokedex />', () => {
   const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
 
-  it('if there is a h2 heading', () => {
+  it('Teste se a página contém um heading h2 e o texto Encountered pokémons', () => {
     renderWithRouter(<App />);
     const text = screen.getByRole('heading', { name: /encountered pokémons/i });
     expect(text).toBeInTheDocument();

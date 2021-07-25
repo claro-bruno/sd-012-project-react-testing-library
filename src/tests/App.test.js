@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('App tests', () => {
+describe('Testa o componente <App />', () => {
   it('Testa se ao clicar no link "Home" é redirecionado para a rota "/"', () => {
     const { history } = renderWithRouter(<App />);
     const linkHome = screen.getByRole('link', { name: /home/i });

@@ -16,7 +16,7 @@ const favoritePokemons = [
   },
 ];
 
-describe('FavoritePokemons tests', () => {
+describe('Testa o componente <FavoritePokemons />', () => {
   test('Teste se é exibido na tela a mensagem No favorite pokemon found', () => {
     renderWithRouter(<FavoritePokemons />);
     const text = screen.getByText(/No favorite pokemon found/i);
