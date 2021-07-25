@@ -12,7 +12,7 @@ beforeEach(() => {
 });
 
 describe('Testando o componente App.js', () => {
-  test('Testa o texto que contém conjunto de links no topo da página', () => {
+  test('Testa o texto contido no conjunto de links no topo da página', () => {
     const links = screen.getAllByRole('link');
     expect(links[0]).toHaveTextContent('Home');
     expect(links[1]).toHaveTextContent('About');
