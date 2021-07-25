@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 describe('Verifica se os links estao sendo renderizados no App', () => {
-  test('Verifica se Home aparece', () => {
+  it('Verifica se Home aparece', () => {
     renderWithRouter(<App />);
 
     const home = screen.getByRole('link', {
@@ -15,7 +15,7 @@ describe('Verifica se os links estao sendo renderizados no App', () => {
     expect(home).toBeInTheDocument();
   });
 
-  test('Verifica se About aparece', () => {
+  it('Verifica se About aparece', () => {
     renderWithRouter(<App />);
     const about = screen.getByRole('link', {
       name: /about/i,
@@ -24,7 +24,7 @@ describe('Verifica se os links estao sendo renderizados no App', () => {
     expect(about).toBeInTheDocument();
   });
 
-  test('Verifica se Favorite Pokémons aparece', () => {
+  it('Verifica se Favorite Pokémons aparece', () => {
     renderWithRouter(<App />);
     const favorite = screen.getByRole('link', {
       name: /Favorite Pokémons/i,
@@ -35,7 +35,7 @@ describe('Verifica se os links estao sendo renderizados no App', () => {
 });
 
 describe('Verifica se os links estao direcionando corretamente', () => {
-  test('Verifica se ao clicar em home a URL fica em /', () => {
+  it('Verifica se ao clicar em home a URL fica em /', () => {
     const { history } = renderWithRouter(<App />);
 
     const home = screen.getByRole('link', {
@@ -51,7 +51,7 @@ describe('Verifica se os links estao direcionando corretamente', () => {
     expect(pathname).toBe('/');
   });
 
-  test('Verifica se ao clicar em About, a URL se torna /About', () => {
+  it('Verifica se ao clicar em About, a URL se torna /About', () => {
     const { history } = renderWithRouter(<App />);
     const about = screen.getByRole('link', {
       name: /about/i,
@@ -66,7 +66,7 @@ describe('Verifica se os links estao direcionando corretamente', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('Verifica se ao clicar em Favorite Pokémons, a URL se torna /favorites', () => {
+  it('Verifica se ao clicar em Favorite Pokémons, a URL se torna /favorites', () => {
     const { history } = renderWithRouter(<App />);
     const favorite = screen.getByRole('link', {
       name: /Favorite Pokémons/i,
@@ -81,7 +81,7 @@ describe('Verifica se os links estao direcionando corretamente', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('Verifica se ao colocar uma url desconhecida, renderiza o Not Found', () => {
+  it('Verifica se ao colocar uma url desconhecida, renderiza o Not Found', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/digimon');
     const { pathname } = history.location;

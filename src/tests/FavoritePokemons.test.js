@@ -6,7 +6,7 @@ import { FavoritePokemons } from '../components';
 import App from '../App';
 
 describe('Verifica se a pagina contem "No favorite pokemon found"', () => {
-  test('Verifica se a página contém o primeiro paragrafo', () => {
+  it('Verifica se a página contém o primeiro paragrafo', () => {
     const textComplete = 'No favorite pokemon found';
 
     renderWithRouter(<FavoritePokemons />);
@@ -16,7 +16,7 @@ describe('Verifica se a pagina contem "No favorite pokemon found"', () => {
     expect(noFavPhrase).toBeInTheDocument();
   });
 
-  test('Verifica se a página exibe todos os Pokemons favoritados', () => {
+  it('Verifica se a página exibe todos os Pokemons favoritados', () => {
     renderWithRouter(<App />);
 
     // Vai para a secao details do Pokemon

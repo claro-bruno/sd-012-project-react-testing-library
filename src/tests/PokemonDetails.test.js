@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Verifica requisitos do desafio 6', () => {
-  test('Verifica se a página exibe os detalhes do Pokemon', () => {
+  it('Verifica se a página exibe os detalhes do Pokemon', () => {
     renderWithRouter(<App />);
 
     const type = screen.getByRole('button', {
@@ -57,7 +57,7 @@ describe('Verifica requisitos do desafio 6', () => {
     expect(resume).toBeInTheDocument();
   });
 
-  test('Verifica se a página exibe o mapa do Pokemon', () => {
+  it('Verifica se a página exibe o mapa do Pokemon', () => {
     renderWithRouter(<App />);
     // Vai para a secao details do Pokemon
     const details = screen.getByRole('link', {
@@ -86,7 +86,7 @@ describe('Verifica requisitos do desafio 6', () => {
     expect(ekansLocation).toHaveAttribute('alt', 'Ekans location');
   });
 
-  test('Verifica label da checkbox', () => {
+  it('Verifica label da checkbox', () => {
 
   });
 });

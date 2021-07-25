@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Verifica requisitos do desafio 6', () => {
-  test('Verifica se a página exibe os atributos do Pokemon', () => {
+  it('Verifica se a página exibe os atributos do Pokemon', () => {
     renderWithRouter(<App />);
 
     // Vai para a secao details do Pokemon
@@ -37,7 +37,7 @@ describe('Verifica requisitos do desafio 6', () => {
     expect(image).toHaveAttribute('alt', 'Pikachu sprite');
   });
 
-  test('Verifica se o card do Pokemon exibe um link para more details', () => {
+  it('Verifica se o card do Pokemon exibe um link para more details', () => {
     renderWithRouter(<App />);
 
     const pokemon = screen.getByRole('link', {
@@ -46,7 +46,7 @@ describe('Verifica requisitos do desafio 6', () => {
     expect(pokemon).toHaveAttribute('href', '/pokemons/25');
   });
 
-  test('Verifica se ao clicar no link, você é redirecionado a page more details', () => {
+  it('Verifica se ao clicar no link, você é redirecionado a page more details', () => {
     const { history } = renderWithRouter(<App />);
 
     const pokemon = screen.getByRole('link', {
@@ -58,7 +58,7 @@ describe('Verifica requisitos do desafio 6', () => {
     expect(pathname).toBe('/pokemons/25');
   });
 
-  test('Verifica se os pokemons favoritados tem estrelinha', () => {
+  it('Verifica se os pokemons favoritados tem estrelinha', () => {
     renderWithRouter(<App />);
 
     const favorite = screen.getByRole('link', {

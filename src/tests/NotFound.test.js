@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithRouter';
 import { NotFound } from '../components';
 
 describe('Verifica requisitos do desafio 4', () => {
-  test('Verifica se a pagina tem o texto "Page requested not found" e o emoji 😭', () => {
+  it('Verifica se a pagina tem o texto "Page requested not found" e o emoji 😭', () => {
     renderWithRouter(<NotFound />);
 
     const heading = screen.getByText('Page requested not found');
@@ -14,7 +14,7 @@ describe('Verifica requisitos do desafio 4', () => {
     expect(emoji).toBeInTheDocument();
   });
 
-  test('Verifica se a página contém o gif do Pikachu', () => {
+  it('Verifica se a página contém o gif do Pikachu', () => {
     const imageAlt = 'Pikachu crying because the page requested was not found';
     renderWithRouter(<NotFound />);
 

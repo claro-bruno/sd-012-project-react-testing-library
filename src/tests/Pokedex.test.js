@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Verifica requisitos do desafio 5', () => {
-  test('Verifica se a página contem um h2', () => {
+  it('Verifica se a página contem um h2', () => {
     renderWithRouter(<App />);
 
     const heading = screen.getByRole('heading', {
@@ -14,7 +14,7 @@ describe('Verifica requisitos do desafio 5', () => {
 
     expect(heading).toBeInTheDocument();
   });
-  test('Verifica se a página renderiza o proximo pokemon ao ser clicada', () => {
+  it('Verifica se a página renderiza o proximo pokemon ao ser clicada', () => {
     renderWithRouter(<App />);
 
     const button = screen.getByRole('button', {
@@ -23,7 +23,7 @@ describe('Verifica requisitos do desafio 5', () => {
 
     userEvent.click(button);
   });
-  test('Testa botoes de filtro da pagina', () => {
+  it('Testa botoes de filtro da pagina', () => {
     renderWithRouter(<App />);
 
     const allButton = screen.getByRole('button', {
@@ -34,7 +34,7 @@ describe('Verifica requisitos do desafio 5', () => {
     expect(allButton).toBeInTheDocument();
     expect(buttons.length).toBe(expectLenght);
   });
-  test('Testa botao All', () => {
+  it('Testa botao All', () => {
     renderWithRouter(<App />);
 
     const allButton = screen.getByRole('button', {
@@ -42,7 +42,7 @@ describe('Verifica requisitos do desafio 5', () => {
     });
     userEvent.click(allButton);
   });
-  test('Testa nome dos botoes', () => {
+  it('Testa nome dos botoes', () => {
     renderWithRouter(<App />);
 
     const electric = screen.getByRole('button', {
