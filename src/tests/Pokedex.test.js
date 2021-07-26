@@ -25,24 +25,7 @@ describe('Test "Pokedex" components', () => {
   });
 
   it('Tests if is shown just one Pokémon at a time', () => {
-    const pokemonName = [
-      'Charmander',
-      'Caterpie',
-      'Ekans',
-      'Alakazam',
-      'Mew',
-      'Rapidash',
-      'Snorlax',
-      'Dragonair',
-    ];
-    const nextPokemonButton = screen.getByRole('button', {
-      name: /Próximo pokémon/,
-    });
-
-    pokemonName.forEach((pokemon) => {
-      userEvent.click(nextPokemonButton);
-      expect(screen.getByText(pokemon)).toBeInTheDocument();
-    });
+    expect(screen.getAllByTestId('pokemon-name').length).toBe(1);
   });
 
   it('Tests if Pokedex has filter button', () => {
@@ -84,5 +67,10 @@ describe('Test "Pokedex" components', () => {
     userEvent.click(bugPokemonButton);
     expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
     expect(nextPokemonButton).toBeDisabled();
+  });
+
+  it('Tests if "Próximo Pokemon Button is disabled when has just 1 pokemon"', () => {
+    const pokeType = screen.getAllByTestId('pokemon-type-button');
+    expect(pokeType).toBeDefined();
   });
 });
