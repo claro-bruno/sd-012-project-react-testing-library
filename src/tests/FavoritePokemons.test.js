@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter.js';
+import renderWithRouter from '../renderWithRouter';
 
 describe('. Teste o componente <FavoritePokemons.js />', () => {
   it('Teste mensagem caso não tenha pokemon favorito', () => {
