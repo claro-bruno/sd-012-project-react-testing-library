@@ -33,7 +33,8 @@ describe('Testando o componente Pokedex.js', () => {
   });
 
   test('Testando Botões de Filtro', () => {
-    const retButtons = screen.getAllByRole('button');
+    const retButtons = screen.getAllByTestId('pokemon-type-button');
+
     pokemonTypes.forEach((type) => {
       const buttonFilter = retButtons.filter((button) => button.textContent === type);
       expect(buttonFilter.length).toBe(1);
