@@ -9,10 +9,17 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     // Testando o Sumário
     const moreDetails = (screen.getByText(/More details/));
     fireEvent.click(moreDetails);
-    const sumary = (screen.getByRole('heading', { level: 2, name: /Summary/ }));
+    // Verifica se tem a palavra Details
+    const details = (screen.getByRole('heading',
+      { level: 2, name: /Details/ }));
+    expect(details).toBeInTheDocument();
+    // Verifica se tem a palavra Summary
+    const sumary = (screen.getByRole('heading',
+      { level: 2, name: /Summary/ }));
     expect(sumary).toBeInTheDocument();
     // Testando o Parágrafo
-    const paragraph = (screen.getByText(/This intelligent Pokémon/));
+    const paragraph = (screen
+      .getByText(/This intelligent Pokémon roasts hard berries with electricity/));
     expect(paragraph).toBeInTheDocument();
     // Testa o checkBox
     const checkLabel = screen.getByLabelText(/Pokémon favoritado?/);
