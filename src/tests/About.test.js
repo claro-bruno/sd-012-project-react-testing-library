@@ -1,46 +1,21 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import App from '../App';
+import About from '../components/About';
 
-describe('Testa os links de App', () => {
+describe('Testa componente <About />', () => {
   beforeEach(() => {
-    renderWithRouter(<App />);
+    renderWithRouter(<About />);
   });
 
-  test('O primeiro link deve possuir o texto Home', () => {
-    const linkAppHome = screen.getByRole('link', { name: /Home/i });
-    expect(linkAppHome).toBeInTheDocument();
+  test('Testa se há um heading h2 com texto About Pokédex e se há 2 parágrafos', () => {
+    const headingh2 = screen.getByRole('heading', { level: 2 });
+    expect(headingh2).toHaveTextContent('About Pokédex');
   });
 
-  test('O segundo link deve possuir o texto About', () => {
-    const linkAppAbout = screen.getByRole('link', { name: /About/i });
-    expect(linkAppAbout).toBeInTheDocument();
-  });
-
-  test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
-    const linkAppFavorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
-    expect(linkAppFavorite).toBeInTheDocument();
-  });
-});
-
-describe('Testa redirecionamento dos aos links', () => {
-  beforeEach(() => {
-    renderWithRouter(<App />);
-  });
-
-  test('Testa redirecionamento para o link Home', () => {
-    const linkAppHome = screen.getByRole('link', { name: /Home/i });
-    expect(linkAppHome).toBeInTheDocument();
-  });
-
-  test('Testa redirecionamento para o link About', () => {
-    const linkAppAbout = screen.getByRole('link', { name: /About/i });
-    expect(linkAppAbout).toBeInTheDocument();
-  });
-
-  test('Testa redirecionamento para o link Favorites Pokémons', () => {
-    const linkAppFavorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
-    expect(linkAppFavorite).toBeInTheDocument();
+  test('Testa se a página contém a seguinte imagem de uma Pokédex', () => {
+    const image = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const imageAbout = screen.getByRole('img');
+    expect(imageAbout).toHaveAttribute('src', image);
   });
 });
