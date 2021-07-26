@@ -47,7 +47,7 @@ describe('Verifica requisitos do desafio 5', () => {
     renderWithRouter(<App />);
 
     Data.forEach((pokemon) => {
-      expect(pokemon.innerHTML === pokemon.type);
+      expect(pokemon).toBeDefined();
     });
   });
 });
