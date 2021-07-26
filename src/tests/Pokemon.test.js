@@ -1,1 +1,24 @@
-test('', () => {});
+import React from 'react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import App from '../App';
+import renderWithRouter from './renderWithRouter';
+
+describe(' é renderizado um card com as informações de determinado pokémon.', () => {
+  test('testa se o card tem todas as informaçoes solicitadas', () => {
+    renderWithRouter(<App />);
+    userEvent.click(screen.getByText('More details'));
+    expect(screen.getByTestId('pokemon-name')).toBeInTheDocument();
+    expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
+    expect(screen.getByText(/Average weight/i)).toBeInTheDocument();
+    const link = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
+    const img = screen.getByAltText(/Pikachu sprite/i);
+    expect(img.src).toBe(link);
+  });
+
+  test('testando rotas de acordo com o requisito ', () => {
+    // const { history } = renderWithRouter(<App />);
+    // userEvent.click(screen.getByText('More details'));
+    // const { pathname } = history.location;
+  });
+});

@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from './renderWithRouter';
 
-
 const favoritePokemons = [{
   id: 25,
   name: 'Pikachu',
@@ -24,19 +23,19 @@ const favoritePokemons = [{
       map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
     },
   ],
-  summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
-},]
- 
+  summary: `This intelligent Pokémon roasts hard 
+  berries with electricity to make them tender enough to eat.`,
+}];
 
 describe('testa se favorite pokemons funciona como esperado', () => {
-  test('testa se quando não ha um pokemons a pagina renderiza "No favorite pokemon found". ', () => {
-    render(<FavoritePokemons/>);
-    const notpokemons = screen.getByText(/No favorite pokemon found/i)
+  test('testa se quando não ha um pokemons a pagina renderiza . ', () => {
+    render(<FavoritePokemons />);
+    const notpokemons = screen.getByText(/No favorite pokemon found/i);
     expect(notpokemons).toBeInTheDocument();
   });
-  test('quando a checkbox de favoritos em details pokemons é marcada o card aparece em favorite pokemons ', () => {
-    renderWithRouter(<FavoritePokemons pokemons={favoritePokemons}/>);
-    const favorite = screen.getByText(/Pikachu/i)
+  test('quando a checkbox de favoritos em details  ', () => {
+    renderWithRouter(<FavoritePokemons pokemons={ favoritePokemons } />);
+    const favorite = screen.getByText(/Pikachu/i);
     expect(favorite).toBeInTheDocument();
-  })
-})
+  });
+});
