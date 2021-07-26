@@ -8,6 +8,7 @@ import pokemons from '../data';
 
 const nameTestId = 'pokemon-name';
 const typeTestId = 'pokemon-type';
+const typeButtonTestId = 'pokemon-type-button';
 
 const pokemonTypes = pokemons.map((pokemon) => pokemon.type);
 const uniquePokemonTypes = [...new Set(pokemonTypes)];
@@ -61,15 +62,16 @@ describe('[ 5 ] Testa o componente Pokedex.js', () => {
   describe('Testa se a Pokédex tem os botões de filtro', () => {
     test('Deve existir um botão para cada tipo de Pokémon, sem repetição', () => {
       renderWithRouter(<App />);
-      uniquePokemonTypes.forEach((pokemonType) => {
-        expect(screen.getByRole('button', { name: pokemonType })).toBeInTheDocument();
+      uniquePokemonTypes.forEach((pokemonType, index) => {
+        expect(screen.getAllByTestId(typeButtonTestId)[index])
+          .toHaveTextContent(pokemonType);
       });
     });
     test('Se selecionado Tipo, a Pokédex deve circular apenas por pokémons daquele tipo',
       () => {
         renderWithRouter(<App />);
-        uniquePokemonTypes.forEach((pokemonType) => {
-          fireEvent.click(screen.getByRole('button', { name: pokemonType }));
+        uniquePokemonTypes.forEach((pokemonType, index) => {
+          fireEvent.click(screen.getAllByTestId(typeButtonTestId)[index]);
           fireEvent.click(screen.getByTestId('next-pokemon'));
           expect(screen.getByTestId(typeTestId)).toHaveTextContent(pokemonType);
         });
@@ -77,15 +79,15 @@ describe('[ 5 ] Testa o componente Pokedex.js', () => {
     test('O texto do botão deve corresponder ao nome do tipo, ex. Psychic',
       () => {
         renderWithRouter(<App />);
-        uniquePokemonTypes.forEach((pokemonType) => {
-          fireEvent.click(screen.getByRole('button', { name: pokemonType }));
+        uniquePokemonTypes.forEach((pokemonType, index) => {
+          fireEvent.click(screen.getAllByTestId(typeButtonTestId)[index]);
           expect(screen.getByTestId(typeTestId)).toHaveTextContent(pokemonType);
         });
       });
     test('O botão All precisa estar sempre visível', () => {
       renderWithRouter(<App />);
-      uniquePokemonTypes.forEach((pokemonType) => {
-        fireEvent.click(screen.getByRole('button', { name: pokemonType }));
+      uniquePokemonTypes.forEach((pokemonType, index) => {
+        fireEvent.click(screen.getAllByTestId(typeButtonTestId)[index]);
         fireEvent.click(screen.getByTestId('next-pokemon'));
         expect(screen.getByRole('button', { name: /all/i })).toBeInTheDocument();
       });
@@ -100,8 +102,8 @@ describe('[ 5 ] Testa o componente Pokedex.js', () => {
       () => {
         renderWithRouter(<App />);
         const nextPkmBtn = screen.getByRole('button', { name: /Próximo pokémon/i });
-        uniquePokemonTypes.forEach((pokemonType) => {
-          fireEvent.click(screen.getByRole('button', { name: pokemonType }));
+        uniquePokemonTypes.forEach((pokemonType, index) => {
+          fireEvent.click(screen.getAllByTestId(typeButtonTestId)[index]);
           fireEvent.click(screen.getByRole('button', { name: /all/i }));
           checkAllPokemons(nextPkmBtn);
         });
