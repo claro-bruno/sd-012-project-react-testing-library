@@ -55,6 +55,12 @@ const mockFavoritePokemons = [{
 }];
 describe('vendo os pokemons favortios', () => {
   it('testando se existe pokemons favoritos', () => {
+    renderWithRouter(<FavoritePokemons />);
+    const notFound = screen.getByText(/No favorite pokemon found/i);
+    expect(notFound).toBeInTheDocument();
+  });
+
+  it('testando se existe pokemons favoritos', () => {
     renderWithRouter(<FavoritePokemons pokemons={ mockFavoritePokemons } />);
     const pikachu = screen.getByText(mockFavoritePokemons[0].name);
     const charmander = screen.getByText(mockFavoritePokemons[1].name);
