@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  screen,
-  fireEvent,
-} from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -22,8 +19,12 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     expect(checkLabel).toBeInTheDocument();
     fireEvent.click(checkLabel);
     const markedFavorite = screen.getByAltText(/Pikachu is marked as favorite/);
-    /* expect(mapPower.src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png'); */
     expect(markedFavorite).toBeInTheDocument();
-    /* const mapPower = screen.getByText('Kanto Power Plant'); */
+    // Verifica as imagens
+    const mapImage = screen.getByText(/Game Locations of Pikachu/);
+    const pokLocation = screen.getAllByAltText(/Pikachu location/);
+    expect(mapImage).toBeInTheDocument();
+    expect(pokLocation[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(pokLocation[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 });
