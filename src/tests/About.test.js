@@ -4,7 +4,7 @@ import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
 
 describe('2- Test component <About.js />', () => {
-  it('2.1 - Test if page About has a <h2> tag with text "About Pokédex"', () => {
+  it('2.1 - Test if has a <h2> tag with the message "About Pokédex"', () => {
     renderWithRouter(<About />);
     const h2Tag = screen.getByRole('heading', { level: 2 });
     const h2Text = screen.getByText('About Pokédex');

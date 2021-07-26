@@ -4,7 +4,7 @@ import renderWithRouter from './renderWithRouter';
 import { FavoritePokemons } from '../components';
 import favoritePokemons from '../__mocks__/mockFavoritePokemons';
 
-describe('3 - Test the component <FavoritePokemons.js />', () => {
+describe('3 - Test component <FavoritePokemons.js />', () => {
   it('3.1 - Test if show a message when there is no favorite pokémons', () => {
     renderWithRouter(<FavoritePokemons />);
     const noFavoriteMessage = screen.getByText(/No favorite pokemon found/i);
