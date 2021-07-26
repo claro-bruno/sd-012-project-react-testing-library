@@ -35,9 +35,11 @@ describe('[ 6 ] Testa o componente Pokemon.js', () => {
         });
       test('A imagem do Pokémon deve ser exibida', () => {
         renderWithRouter(<App />);
-        const pokemonImage = screen.getByRole('img', { src: firstPokemon.image });
+        const imageName = `${firstPokemon.name} sprite`;
+        const pokemonImage = screen.getByRole('img', { name: imageName });
         expect(pokemonImage).toBeInTheDocument();
         expect(pokemonImage).toHaveAttribute('alt', `${firstPokemon.name} sprite`);
+        expect(pokemonImage).toHaveAttribute('src', firstPokemon.image);
       });
     });
   describe('Testa se o card do Pokémon contém link de navegação para os detalhes deste',
