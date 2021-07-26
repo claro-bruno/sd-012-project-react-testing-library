@@ -9,7 +9,7 @@ describe(' Testes do componente APP - Ex1', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe(' Testes do componente APP - Ex1', () => {
 
   it('shows the Pokédex when the route is `/`', () => {
     const { getByText } = render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={ ['/'] }>
         <App />
       </MemoryRouter>,
     );

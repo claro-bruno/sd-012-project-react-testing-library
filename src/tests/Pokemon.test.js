@@ -70,5 +70,5 @@ describe('Teste o componente <Pokemon.js />', () => {
     const image = getAllByRole('img');
     expect(image[1].src).toContain('star-icon.svg');
     expect(image[1].alt).toContain('Ekans is marked as favorite');
-  })
-})
+  });
+});

@@ -1,16 +1,16 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { FavoritePokemons } from '../components/FavoritePokemons';
+import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import RenderWithRouter from '../RenderWithRouter';
+import RenderWithRouter from '../renderWithRouter';
 
 describe('. Teste o componente <FavoritePokemons.js />', () => {
   it('Teste mensagem caso não tenha pokemon favorito', () => {
     const { getByText } = render(<FavoritePokemons />);
-    expect( getByText(/No Favorite pokemon found/i)).toBeInTheDocument();
+    expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
 
-  it('Teste se é exibido todos os cards de pokémons favpritos.', () => {
+  it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
     const { getByText, container, getAllByRole } = RenderWithRouter(<App />);
 
     const details = getByText(/More details/i);
@@ -21,12 +21,10 @@ describe('. Teste o componente <FavoritePokemons.js />', () => {
     fireEvent.click(favoriteListLink);
 
     const img = getAllByRole('img');
-    expect(img.length.toBe(2));
-    
+    expect(img.length).toBe(2);
     const pokemonsInfo = container.querySelectorAll('p');
-    // console.log(pokemonsInfo);
-    const expectLenghtOfTagP = 3;
-    expect(pokemonsInfo.length).toBe(expectLenghtOfTagP);
+    const expectLengthOfTagP = 3;
+    expect(pokemonsInfo.length).toBe(expectLengthOfTagP);
     expect(getByText(/More details/i)).toBeInTheDocument();
   });
 });
