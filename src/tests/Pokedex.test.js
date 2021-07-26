@@ -38,11 +38,13 @@ describe('Testa o component Pokedex', () => {
 
     const allBtn = screen.getByRole('button', { name: /All/i });
     expect(allBtn).toBeDefined();
+    const btnType = screen.getAllByTestId('pokemon-type-button');
+    expect(btnType).toBeDefined();
     types.forEach((type) => {
       expect(allBtn).toBeDefined();
-      const btnType = screen.getByRole('button', { name: type });
-      expect(btnType).toBeDefined();
-      userEvent.click(btnType);
+      const btnTypePk = screen.getByRole('button', { name: type });
+      expect(btnTypePk).toBeDefined();
+      userEvent.click(btnTypePk);
     });
     userEvent.click(allBtn);
     expect(screen.getByText(`${pokemons[0].name}`)).toBeDefined();
