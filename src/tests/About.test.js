@@ -5,13 +5,13 @@ import About from '../components/About';
 describe(' Testes do componente About', () => {
   it('Teste se a página contém as informações sobre a Pokédex.', () => {
     const { getByRole } = render(<About />);
-    const subtitle = getByRole('heading', { level: 2 });
+    const subtitle = screen.getByRole('heading', { level: 2 });
     expect(subtitle).toHaveTextContent(/About Pokédex/i);
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex..', () => {
     const { container } = render(<About />);
-    const paragraphs = container.querySelectorAll('p');
+    const paragraphs = container.getByRole('p');
     expect(paragraphs.length).toBe(2);
   });
 
