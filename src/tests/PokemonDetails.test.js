@@ -17,6 +17,10 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     const sumary = (screen.getByRole('heading',
       { level: 2, name: /Summary/ }));
     expect(sumary).toBeInTheDocument();
+    // Verifica o H2 Location
+    const gameLocation = (screen.getByRole('heading',
+      { level: 2, name: /Game Locations of Pikachu/ }));
+    expect(gameLocation).toBeInTheDocument();
     // Testando o Parágrafo
     const paragraph = (screen
       .getByText(/This intelligent Pokémon roasts hard berries with electricity/));
@@ -27,11 +31,9 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     fireEvent.click(checkLabel);
     const markedFavorite = screen.getByAltText(/Pikachu is marked as favorite/);
     expect(markedFavorite).toBeInTheDocument();
-    // Verifica as imagens
-    const mapImage = screen.getByText(/Game Locations of Pikachu/);
-    const pokLocation = screen.getAllByAltText(/Pikachu location/);
-    expect(mapImage).toBeInTheDocument();
-    expect(pokLocation[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
-    expect(pokLocation[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+    // Verifica alt Location / Images
+    const pokLocationImg = screen.getAllByAltText(/Pikachu location/);
+    expect(pokLocationImg[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(pokLocationImg[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 });
