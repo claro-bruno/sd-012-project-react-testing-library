@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import RenderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 describe('. Teste o componente <FavoritePokemons.js />', () => {
   it('Teste mensagem caso não tenha pokemon favorito', () => {
@@ -11,7 +11,7 @@ describe('. Teste o componente <FavoritePokemons.js />', () => {
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    const { getByText, container, getAllByRole } = RenderWithRouter(<App />);
+    const { getByText, container, getAllByRole } = renderWithRouter(<App />);
 
     const details = getByText(/More details/i);
     fireEvent.click(details);
