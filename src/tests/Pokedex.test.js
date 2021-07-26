@@ -6,25 +6,83 @@ import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
 describe('Test "Pokedex" components', () => {
-  // beforeEach(() => renderWithRouter(<App />));
+  beforeEach(() => renderWithRouter(<App />));
 
   it('Tests if page contains text "Encountered pokémons"', () => {
-    renderWithRouter(<App />);
-
-    const h2Element = screen.getByRole('heading', { name: /Encountered pokémons/i });
+    const h2Element = screen.getByRole('heading', {
+      name: /Encountered pokémons/i,
+    });
     expect(h2Element).toBeInTheDocument();
   });
 
   it('Tests if is shown next Pokémon, when "Próximo pokémon" is clicked', () => {
-    renderWithRouter(<App />);
-
-    const nextPokemonButton = screen.getByRole('button', { name: /Próximo pokémon/ });
+    const nextPokemonButton = screen.getByRole('button', {
+      name: /Próximo pokémon/,
+    });
 
     userEvent.click(nextPokemonButton);
     expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
   });
 
   it('Tests if is shown just one Pokémon at a time', () => {
-    
+    const pokemonName = [
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Mew',
+      'Rapidash',
+      'Snorlax',
+      'Dragonair',
+    ];
+    const nextPokemonButton = screen.getByRole('button', {
+      name: /Próximo pokémon/,
+    });
+
+    pokemonName.forEach((pokemon) => {
+      userEvent.click(nextPokemonButton);
+      expect(screen.getByText(pokemon)).toBeInTheDocument();
+    });
+  });
+
+  it('Tests if Pokedex has filter button', () => {
+    const allPokemonButton = screen.getByRole('button', {
+      name: /All/,
+    });
+
+    const pokemonName = [
+      'Charmander',
+      'Caterpie',
+      'Ekans',
+      'Alakazam',
+      'Mew',
+      'Rapidash',
+      'Snorlax',
+      'Dragonair',
+    ];
+
+    const nextPokemonButton = screen.getByRole('button', {
+      name: /Próximo pokémon/,
+    });
+
+    userEvent.click(allPokemonButton);
+
+    pokemonName.forEach((pokemon) => {
+      userEvent.click(nextPokemonButton);
+      expect(screen.getByText(pokemon)).toBeInTheDocument();
+    });
+  });
+
+  it('Tests if Pokedex has a reset filter button', () => {
+    const bugPokemonButton = screen.getByRole('button', {
+      name: /Bug/,
+    });
+    const nextPokemonButton = screen.getByRole('button', {
+      name: /Próximo pokémon/,
+    });
+
+    userEvent.click(bugPokemonButton);
+    expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
+    expect(nextPokemonButton).toBeDisabled();
   });
 });
