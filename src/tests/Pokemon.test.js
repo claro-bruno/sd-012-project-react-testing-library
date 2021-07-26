@@ -18,8 +18,9 @@ describe('Testa o component Pokemon', () => {
 
       const { averageWeight } = pk;
       const weightPk = screen.getByTestId('pokemon-weight');
-      expect(weightPk)
-        .toHaveTextContent(`${averageWeight.value} ${averageWeight.measurementUnit}`);
+      const { value, measurementUnit } = averageWeight;
+      const txt = `Average weight: ${value} ${measurementUnit}`;
+      expect(weightPk).toHaveTextContent(txt);
 
       const imgSRC = pk.image;
       const imgPk = screen.getByRole('img', { name: `${pk.name} sprite` });
