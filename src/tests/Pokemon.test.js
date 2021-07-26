@@ -41,7 +41,7 @@ describe('Testando o componente Pokemon.js', () => {
     expect(pokemonType).toHaveTextContent(type);
 
     const pokemonWeight = screen.getByTestId('pokemon-weight');
-    expect(pokemonWeight).toHaveTextContent(`${value} ${measurementUnit}`);
+    expect(pokemonWeight).toHaveTextContent(` ${value} ${measurementUnit}`);
 
     const pokemonImage = screen.getAllByRole('img');
     expect(pokemonImage[0]).toHaveAttribute('alt', `${name} sprite`);
