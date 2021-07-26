@@ -1,28 +1,16 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(
-      <Router history={ history }>
-        {component}
-      </Router>,
-    ),
-    history,
-  });
-};
-
-describe('verifica os links presentes no componente App', () => {
-  test('Verifica presença e funcionamento dos links "Home"', () => {
-    const { history: { location } } = renderWithRouter(<App />);
+describe('Verifica os links presentes no componente App', () => {
+  test('Verifica presença e funcionamento do link "Home"', () => {
+    const { history } = renderWithRouter(<App />);
     const homeLink = screen.getByText(/home/i);
     expect(homeLink).toBeInTheDocument();
     fireEvent.click(homeLink);
-    expect(location.pathname).toBe('/');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
   test('Verifica presença e funcionamento do link "Favorite Pokémons"', () => {
     const { history } = renderWithRouter(<App />);

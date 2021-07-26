@@ -1,24 +1,11 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { fireEvent, screen } from '@testing-library/react';
 import pokemons from '../data';
 import App from '../App';
-
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(
-      <Router history={ history }>
-        {component}
-      </Router>,
-    ),
-    history,
-  });
-};
+import renderWithRouter from '../renderWithRouter';
 
 describe(
-  'Verifica informaçoes presentes no card de cada pokémon no comp. Pokémon', () => {
+  'Verifica informaçoes presentes no card de cada pokémon no componente Pokemon', () => {
     test('Verifica nome, tipo, peso e imagem de cada pokémon', () => {
       renderWithRouter(<App />);
       pokemons.forEach((pokemon) => {
@@ -37,17 +24,21 @@ describe(
         fireEvent.click(screen.getByTestId('next-pokemon'));
       });
     });
-    test('Verifica existência do link details', () => {
+    test('Verifica existência do link "More details"', () => {
       renderWithRouter(<App />);
       const detailLink = screen.getByText(/More details/i);
       expect(detailLink).toBeInTheDocument();
     });
-    test('Verifica pathname na pagina details', () => {
+    test('Verifica se o link redireciona para página de detalhes', () => {
       const { history } = renderWithRouter(<App />);
       fireEvent.click(screen.getByText(/More details/i));
       const { pathname } = history.location;
       expect(screen.getByText(/Game Locations of/i)).toBeInTheDocument();
       expect(pathname).toBe('/pokemons/25');
+    });
+    test('Verifica se é exibida a imagem de estrela no pokémon favoritado', () => {
+      renderWithRouter(<App />);
+      fireEvent.click(screen.getByText(/More details/i));
       const faveCheckbox = screen.getByLabelText('Pokémon favoritado?');
       fireEvent.click(faveCheckbox);
       const faveImg = screen
