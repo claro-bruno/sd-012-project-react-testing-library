@@ -17,8 +17,13 @@ describe(' é renderizado um card com as informações de determinado pokémon.'
   });
 
   test('testando rotas de acordo com o requisito ', () => {
-    // const { history } = renderWithRouter(<App />);
-    // userEvent.click(screen.getByText('More details'));
-    // const { pathname } = history.location;
+    const { history } = renderWithRouter(<App />);
+    userEvent.click(screen.getByText('More details'));
+    const { pathname } = history.location;
+    expect(pathname).toEqual('/pokemons/25');
+    userEvent.click(screen.getByText(/Pokémon favoritado/i));
+    const link = 'http://localhost/star-icon.svg';
+    const img = screen.getByAltText(/Pikachu is marked as favorite/i);
+    expect(img.src).toBe(link);
   });
 });
