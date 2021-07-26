@@ -15,7 +15,7 @@ describe('Verifica o componente "App.js"', () => {
     expect(pathname).toBe('/');
   });
 
-  test('Verifica se o linké de navegação e com o texto "About"', () => {
+  test('Verifica se o link é de navegação e com o texto "About"', () => {
     const { history } = renderWithRouter(<App />);
     const linkAbout = screen.getByRole('link', { name: /About/i });
     expect(linkAbout).toBeDefined();
@@ -23,5 +23,15 @@ describe('Verifica o componente "App.js"', () => {
     userEvent.click(linkAbout);
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
+  });
+
+  test('Verifica se o link é de navegação e com o "Favorite Pokémons"', () => {
+    const { history } = renderWithRouter(<App />);
+    const linkFavoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(linkFavoritePokemons).toBeDefined();
+
+    userEvent.click(linkFavoritePokemons);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
 });
