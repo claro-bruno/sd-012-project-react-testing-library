@@ -55,9 +55,9 @@ describe('[ 7 ] Teste o componente PokemonDetails.js', () => {
         const locationHeading = screen.getByRole('heading', { name: locations });
         expect(locationHeading).toBeInTheDocument();
         const { foundAt } = firstPokemon;
-        foundAt.forEach(({ location, image }, index) => {
+        foundAt.forEach(({ location, map }, index) => {
           expect(screen.getByText(location)).toBeInTheDocument();
-          expect(screen.getAllByRole('img')[index]).toHaveAttribute('src', image);
+          expect(screen.getAllByRole('img')[index + 1]).toHaveAttribute('src', map);
           const altText = `${firstPokemon.name} location`;
           expect(screen.getAllByAltText(altText)[index]).toBeInTheDocument();
         });
