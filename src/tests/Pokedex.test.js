@@ -9,8 +9,8 @@ describe('Testa o component Pokedex', () => {
   beforeEach(() => renderWithRouter(<App />));
 
   test('Testa se existe um heading "Encountered pokémons" na tela', () => {
-    const headingH2 = screen.getByRole('heading', { name: /Encountered pokémons/i, level: 2 });
-    expect(headingH2).toBeDefined();
+    const h2 = screen.getByRole('heading', { name: /Encountered pokémons/i, level: 2 });
+    expect(h2).toBeDefined();
   });
 
   test('Testa se é exibido o próximo Pokémon da lista', () => {
