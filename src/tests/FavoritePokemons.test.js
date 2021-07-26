@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
-describe('Testa o component About', () => {
+describe('Testa o component FavoritPokemons', () => {
   const typePkObj = [
     {
       type: 'Electric',
