@@ -1,0 +1,228 @@
+22:12:22 (87368) INFO ConfigReader Using stryker.conf.json
+22:12:22 (87368) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+22:12:22 (87368) DEBUG ConfigReader Loading config /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker.conf.json
+22:12:22 (87368) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/components/About.js",
+    "src/App.js",
+    "src/components/FavoritePokemons.js",
+    "src/components/NotFound.js",
+    "src/components/Pokedex.js",
+    "src/components/Pokemon.js",
+    "src/components/PokemonDetails.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true,
+  "configFile": "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker.conf.json"
+}
+22:12:22 (87368) DEBUG PluginLoader Loading @stryker-mutator/* from /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator
+22:12:22 (87368) DEBUG PluginLoader Loading plugin "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+22:12:22 (87368) DEBUG PluginLoader Loading plugin "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:12:22 (87368) DEBUG PluginLoader Loading plugins /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+22:12:22 (87368) DEBUG PluginLoader Loading plugins /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+22:12:22 (87368) DEBUG PluginLoader Loading plugins /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+22:12:22 (87368) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+22:12:23 (87368) INFO InputFileResolver Found 7 of 63 file(s) to be mutated.
+22:12:23 (87368) DEBUG InputFileResolver All input files: [
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker.log",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.babelrc.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.eslintignore",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.eslintrc.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.github/CODEOWNERS",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.github/workflows/main.yml",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.gitignore",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stylelintignore",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stylelintrc.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.trybe/requirements.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/README.md",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/package-lock.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/package.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/favicon.ico",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/index.html",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/logo192.png",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/logo512.png",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/manifest.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/robots.txt",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/public/star-icon.svg",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/App.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/App.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/About.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/Button.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/NotFound.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/Pokedex.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/Pokemon.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/PokemonDetails.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/about.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/button.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/favorite-pokemons.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/index.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/not-found.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/pokedex.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/pokemon-details.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/pokemon.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/data.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/index.css",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/index.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/logo.svg",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/serviceWorker.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/services/pokedexService.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/services/renderWithRouter.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/setupTests.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/About.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/App.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/FavoritePokemons.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/NotFound.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/Pokedex.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/Pokemon.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/tests/PokemonDetails.test.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/types/index.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/About.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/App.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/stryker/PokemonDetails.conf.json",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/testefalhando.png",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/testepassando.png"
+]
+22:12:23 (87368) DEBUG InputFileResolver Files to mutate: [
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/App.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/About.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/NotFound.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/Pokedex.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/Pokemon.js",
+  "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/src/components/PokemonDetails.js"
+]
+22:12:23 (87368) DEBUG TemporaryDirectory Using temp directory "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stryker-tmp"
+22:12:23 (87368) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+22:12:23 (87368) INFO InitialTestExecutor Starting initial test run. This may take a while.
+22:12:23 (87368) DEBUG Sandbox Creating a sandbox for files in /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stryker-tmp/sandbox9831241
+22:12:23 (87368) DEBUG Sandbox Creating test runner 0
+22:12:23 (87368) DEBUG ChildProcessProxy Starting /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/test-runner/ChildProcessTestRunnerWorker.js in child process 87381
+22:12:24 (87368) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+22:12:23 (87381) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stryker-tmp/sandbox9831241
+22:12:23 (87381) DEBUG PluginLoader Loading @stryker-mutator/* from /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator
+22:12:23 (87381) DEBUG PluginLoader Loading plugin "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+22:12:23 (87381) DEBUG PluginLoader Loading plugin "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+22:12:23 (87381) DEBUG PluginLoader Loading plugins /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+22:12:23 (87381) DEBUG PluginLoader Loading plugins /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+22:12:24 (87381) DEBUG PluginLoader Loading plugins /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+22:12:24 (87381) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stryker-tmp/sandbox9831241"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+22:12:24 (87381) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+22:12:24 (87381) DEBUG JestTestRunner Project root is /home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stryker-tmp/sandbox9831241
+22:12:24 (87381) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js","^.+\\.css$":"/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"/home/cris/Documentos/modulo2-trybe/projetos-modulo2/sd-012-project-react-testing-library/.stryker-tmp/sandbox9831241","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
