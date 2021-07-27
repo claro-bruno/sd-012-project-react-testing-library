@@ -15,13 +15,14 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     expect(pathname).toBe('/pokemons/25');
     const pokeName = screen.getByText('Pikachu');
     const pokeType = screen.getByText('Electric');
-    const pokeWeight = screen.getByText('Average weight: 6.0 kg');
+    const pokeWeight = screen.getByTestId('pokemon-weight');
     const pokeImage = screen.getByAltText('Pikachu sprite');
     expect(pokeName).toBeDefined();
     expect(pokeType).toBeDefined();
     expect(pokeWeight).toBeDefined();
     expect(pokeImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
+  //-----------------------------------------------------
   test('1-Teste se as informações detalhadas do Pokémon selecionado', () => {
     renderWithRouter(<App />);
     // Testando o Sumário
@@ -43,15 +44,15 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     const paragraph = (screen
       .getByText(/This intelligent Pokémon roasts hard berries with electricity/));
     expect(paragraph).toBeInTheDocument();
+    // Verifica alt Location / Images
+    const pokLocationImg = screen.getAllByAltText(/Pikachu location/);
+    expect(pokLocationImg[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(pokLocationImg[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
     // Testa o checkBox
     const checkLabel = screen.getByLabelText(/Pokémon favoritado?/);
     expect(checkLabel).toBeInTheDocument();
     fireEvent.click(checkLabel);
     const markedFavorite = screen.getByAltText(/Pikachu is marked as favorite/);
     expect(markedFavorite).toBeInTheDocument();
-    // Verifica alt Location / Images
-    const pokLocationImg = screen.getAllByAltText(/Pikachu location/);
-    expect(pokLocationImg[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
-    expect(pokLocationImg[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 });
