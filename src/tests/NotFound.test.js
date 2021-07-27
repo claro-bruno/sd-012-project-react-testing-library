@@ -2,18 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
-describe('Teste o componente <NotFound.js />', () => {
-  it('Contém um heading h2 com o texto Page "requested not found" ', () => {
+describe('Teste dos componentes do <NotFound.js/>', () => {
+  it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
     const { getByRole } = render(<NotFound />);
-    const h2NotFound = getByRole('heading', { level: 2 });
-    expect(h2NotFound).toBeInTheDocument();
-    expect(h2NotFound.textContent).toMatch(/requested not found/i);
+    const title = getByRole('heading', { level: 2, name: /Page requested not found/ });
+    expect(title).toBeInTheDocument();
   });
 
-  it('Teste se página mostra a imagem da URL expectedURL.', () => {
-    const { getByAltText } = render(<NotFound />);
-    const expectedURL = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const notFoundIMG = getByAltText(/Pikachu crying because/i);
-    expect(notFoundIMG).toHaveAttribute('src', expectedURL);
+  it('Teste se a página contém uma determinada imagem ', () => {
+    const { getAllByRole } = render(<NotFound />);
+    const image = getAllByRole('img');
+    expect(image[1].src).toContain('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

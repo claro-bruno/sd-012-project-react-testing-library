@@ -1,10 +1,10 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
+import renderRouter from './renderRouter';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
 
-describe(' Testes do componente APP - Ex1', () => {
+describe('Teste dos componentes do <App.js/>', () => {
   it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
@@ -15,50 +15,45 @@ describe(' Testes do componente APP - Ex1', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it('shows the Pokédex when the route is `/`', () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
-
-    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  it('Teste se a página principal da Pokédex é renderizada no caminho de URL', () => {
+    const { history } = renderRouter(<App />);
+    const url = history.location.pathname;
+    expect(url).toBe('/');
   });
 
-  it('A pagina deve possuir os links para  Home, About e Favorite Pokémons.', () => {
-    const { getByText } = renderWithRouter(<App />);
-
-    expect(getByText(/home/i)).toBeInTheDocument();
-    expect(getByText(/About/i)).toBeInTheDocument();
-    expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
+  it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
+    const { getAllByRole } = renderRouter(<App />);
+    const link = getAllByRole('link');
+    expect(link[0].innerHTML).toBe('Home');
+    expect(link[1].innerHTML).toBe('About');
+    expect(link[2].innerHTML).toBe('Favorite Pokémons');
   });
 
-  it('Clicar no link Home a aplicação vai para a página inicial ', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-
-    const home = getByText(/home/i);
+  it('A aplicação redireciona para a página inicial, na URL /  ao clicar em Home', () => {
+    const { history, getByRole } = renderRouter(<App />);
+    const home = getByRole('link', { name: 'Home' });
     fireEvent.click(home);
-
-    const { location: { pathname } } = history;
-    expect(pathname).toBe('/');
+    expect(history.location.pathname).toBe('/');
   });
 
-  it('Clicar no link About a aplicação vai para a página About ', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-
-    const about = getByText(/About/i);
+  it('A aplicação redireciona para a página About, na URL /  ao clicar em About', () => {
+    const { history, getByRole } = renderRouter(<App />);
+    const about = getByRole('link', { name: 'About' });
     fireEvent.click(about);
-
-    const { location: { pathname } } = history;
-    expect(pathname).toBe('/about');
+    expect(history.location.pathname).toBe('/about');
   });
 
-  it(' Se um link desconhecido leva para a página not found ', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+  it('Redireciona para Pokémons Favoritados, na URL /  ao clicar em favorites', () => {
+    const { history, getByRole } = renderRouter(<App />);
+    const favorites = getByRole('link', { name: 'Favorite Pokémons' });
+    fireEvent.click(favorites);
+    expect(history.location.pathname).toBe('/favorites');
+  });
 
-    history.push('/notfound');
-
-    const notFound = getByText(/Page requested not found/i);
-    expect(notFound).toBeInTheDocument();
+  it('Redireciona para a página Not Found ao entrar em uma URL desconhecida.', () => {
+    const { history, getByText } = renderRouter(<App />);
+    history.push('*');
+    const text = getByText(/not found/);
+    expect(text).toBeInTheDocument();
   });
 });

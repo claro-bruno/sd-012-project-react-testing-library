@@ -1,30 +1,25 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import FavoritePokemons from '../components/FavoritePokemons';
+import { render, fireEvent } from '@testing-library/react';
+import Favorite from '../components/FavoritePokemons';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
+import renderRouter from './renderRouter';
 
-describe('. Teste o componente <FavoritePokemons.js />', () => {
-  it('Teste mensagem caso não tenha pokemon favorito', () => {
-    const { getByText } = render(<FavoritePokemons />);
-    expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
+describe('Teste dos componentes do <FavoritePokemons.js/>', () => {
+  it('Teste se é exibido na tela a msg favorite pokemon', () => {
+    const { getByText } = render(<Favorite />);
+    const text = getByText(/No favorite pokemon found/);
+    expect(text).toBeInTheDocument();
   });
 
-  it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-    const { getByText, container, getAllByRole } = renderWithRouter(<App />);
-
-    const details = getByText(/More details/i);
-    fireEvent.click(details);
-    const favoriteCheckbox = getByText(/Pokémon favoritado?/i);
-    fireEvent.click(favoriteCheckbox);
-    const favoriteListLink = getByText(/Favorite Pokémons/i);
-    fireEvent.click(favoriteListLink);
-
-    const img = getAllByRole('img');
-    expect(img.length).toBe(2);
-    const pokemonsInfo = container.querySelectorAll('p');
-    const expectLengthOfTagP = 3;
-    expect(pokemonsInfo.length).toBe(expectLengthOfTagP);
-    expect(getByText(/More details/i)).toBeInTheDocument();
+  it('Teste se é exibido todos os cards de pokémons favoritados', () => {
+    const { history, getAllByText, getByRole } = renderRouter(<App />);
+    history.push('/pokemons/25');
+    const favoritado = getByRole('checkbox');
+    fireEvent.click(favoritado);
+    history.push('/pokemons/4');
+    fireEvent.click(favoritado);
+    history.push('/favorites');
+    const pokemon = getAllByText(/kg/i);
+    expect(pokemon.length).toEqual(2);
   });
 });

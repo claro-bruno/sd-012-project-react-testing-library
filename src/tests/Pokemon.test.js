@@ -1,65 +1,38 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
+import renderRouter from './renderRouter';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
 
-describe('Teste o componente <Pokemon.js />', () => {
-  const poke = {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-  };
-
-  it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
-    const { getByText, getByRole, getByTestId } = renderWithRouter(<App />);
-    const details = getByText(/More details/i);
-    const name = getByText(/Pikachu/i);
-    const type = getByTestId('pokemon-type');
-    const weight = getByTestId('pokemon-weight').innerHTML;
-    console.log(weight.textContent);
+describe('Teste dos componentes do <Pokemon.js/>', () => {
+  it('Teste se é renderizado um card com as infos de x pokemon', () => {
+    const { getByRole, getByText, getByTestId } = renderRouter(<App />);
+    const button = getByRole('button', { name: /Fire/i });
+    fireEvent.click(button);
+    const pokemon = getByText('Charmander');
+    const info = getByText('Average weight: 8.5 kg');
     const image = getByRole('img');
+    const type = getByTestId('pokemon-type');
 
-    fireEvent.click(details);
-    const average = `${poke.averageWeight.value} ${poke.averageWeight.measurementUnit}`;
-    expect(name.textContent).toMatch(poke.name);
-    expect(type.textContent).toMatch(poke.type);
-    expect(weight).toMatch(`Average weight: ${average}`);
-    expect(image.src).toContain(poke.image);
-    expect(image.alt).toContain(`${poke.name} sprite`);
+    expect(pokemon).toBeInTheDocument();
+    expect(info).toBeInTheDocument();
+    expect(image.src).toContain('https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png');
+    expect(image.alt).toContain('Charmander sprite');
+    expect(type.innerHTML).toBe('Fire');
   });
-
-  it('Contém um Link de navegação correto do id pokemon', () => {
-    const { getByRole, history } = renderWithRouter(<App />);
-    const poisonBtn = getByRole('button', { name: /poison/i });
-    fireEvent.click(poisonBtn);
-
+  it('Teste de o Pokemon contém um Link de navegação', () => {
+    const { getByRole, history } = renderRouter(<App />);
+    const button = getByRole('button', { name: /Fire/i });
+    fireEvent.click(button);
     const link = getByRole('link', { name: /More details/i });
+    expect(link).toBeInTheDocument();
     fireEvent.click(link);
-
-    const URL = '/pokemons/23';
+    const URL = '/pokemons/4';
     expect(history.location.pathname).toBe(URL);
   });
-
-  it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
-    const { getAllByRole, getByRole } = renderWithRouter(<App />);
-    const poisonBtn = getByRole('button', { name: /poison/i });
-    fireEvent.click(poisonBtn);
+  it('Teste se existe um ícone de estrela nos pokes favoritados', () => {
+    const { getByRole, getAllByRole } = renderRouter(<App />);
+    const button = getByRole('button', { name: /Fire/i });
+    fireEvent.click(button);
 
     const link = getByRole('link', { name: /More details/i });
     fireEvent.click(link);
@@ -69,6 +42,6 @@ describe('Teste o componente <Pokemon.js />', () => {
 
     const image = getAllByRole('img');
     expect(image[1].src).toContain('star-icon.svg');
-    expect(image[1].alt).toContain('Ekans is marked as favorite');
+    expect(image[1].alt).toContain('Charmander is marked as favorite');
   });
 });
