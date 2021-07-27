@@ -4,7 +4,7 @@ import { NotFound } from '../components';
 
 describe('4 - Test component <NotFound.js />', () => {
   beforeEach(() => render(<NotFound />));
-  it('4.1 - Test if has a <h2> tag with the message "Encountered pokémons"', () => {
+  it('4.1 - Test if has a <h2> tag with the message "Page requested not found"', () => {
     const h2Tag = screen.getByRole('heading', { name: /Page requested not found/i });
     expect(h2Tag).toBeInTheDocument();
   });
