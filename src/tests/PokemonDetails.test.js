@@ -6,22 +6,17 @@ import data from '../data';
 
 describe('7- Teste o componente <PokemonDetails.js', () => {
   const pokeData = data[0];
-  const { name } = pokeData;
+  const { name, type, summary } = pokeData;
   test('1.1- Verificando informações detalhadas', () => {
-    const { history } = renderWithRouter(<App />);
-    const moreDetails = 'More details';
-    const linkPokeUrl = screen.getByText(moreDetails);
-    fireEvent.click(linkPokeUrl);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');
-    const pokeName = screen.getByText('Pikachu');
-    const pokeType = screen.getByText('Electric');
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /More details/ });
+    fireEvent.click(moreDetails);
+    expect(screen.getByText(`${name} Details`)).toBeInTheDocument();
+    expect(screen.getByText(`${type}`)).toBeInTheDocument();
+    expect(screen.getByText(summary)).toBeInTheDocument();
+    expect(screen.getByText(`Game Locations of ${name}`)).toBeInTheDocument();
     const pokeWeight = screen.getByTestId('pokemon-weight');
     expect(pokeWeight).toBeDefined();
-    const pokeImage = screen.getByAltText('Pikachu sprite');
-    expect(pokeName).toBeDefined();
-    expect(pokeType).toBeDefined();
-    expect(pokeImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
   //-----------------------------------------------------
   test('1-Teste se as informações detalhadas do Pokémon selecionado', () => {
