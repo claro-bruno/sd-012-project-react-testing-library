@@ -40,6 +40,8 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     const gameLocation = (screen.getByRole('heading',
       { level: 2, name: /Game Locations of Pikachu/ }));
     expect(gameLocation).toBeInTheDocument();
+    // Espera que o botão mais detalhes não exista
+    expect(moreDetails).not.toBeInTheDocument();
     // Testando o Parágrafo
     const paragraph = (screen
       .getByText(/This intelligent Pokémon roasts hard berries with electricity/));
