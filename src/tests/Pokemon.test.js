@@ -63,6 +63,6 @@ describe('Teste o componente <Pokemon.js />', () => {
     const favorite = screen.getByAltText('Pikachu is marked as favorite');
 
     expect(favorite).toBeInTheDocument();
-    expect(favorite).toHaveAttribute('src', 'http://localhost/star-icon.svg');
+    expect(favorite.src).toBe('http://localhost/star-icon.svg');
   });
 });
