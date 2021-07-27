@@ -50,6 +50,7 @@ describe('Testa o componente <Pokedex.js />', () => {
     );
     const button = screen.getByTestId(nextPokemon);
     expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Próximo pokémon');
 
     const pokemonName = screen.getByTestId(pokemonId);
     pokemons.forEach((pokemon, i) => {
