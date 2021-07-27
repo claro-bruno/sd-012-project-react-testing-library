@@ -1,36 +1,35 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Pokemon from '../components/Pokemon';
 // import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
 describe('Teste o componente <Pokemon.js />', () => {
   // pokemon que será usado como mock para os testes
-  const pokemonPikachu = [
-    {
-      id: 25,
-      name: 'Pikachu',
-      type: 'Electric',
-      averageWeight: {
-        value: '6.0',
-        measurementUnit: 'kg',
-      },
-      image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-      moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-      foundAt: [
-        {
-          location: 'Kanto Viridian Forest',
-          map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-        },
-        {
-          location: 'Kanto Power Plant',
-          map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-        },
-      ],
-      summary: `This intelligent Pokémon roasts hard berries with electricity to make 
-      them tender enough to eat.`,
+  const pokemonPikachu = {
+    id: 25,
+    name: 'Pikachu',
+    type: 'Electric',
+    averageWeight: {
+      value: '6.0',
+      measurementUnit: 'kg',
     },
-  ];
+    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
+    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
+    foundAt: [
+      {
+        location: 'Kanto Viridian Forest',
+        map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+      },
+      {
+        location: 'Kanto Power Plant',
+        map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
+      },
+    ],
+    summary: `This intelligent Pokémon roasts hard berries with electricity to make 
+    them tender enough to eat.`,
+  };
 
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     renderWithRouter(<Pokemon pokemon={ pokemonPikachu } isFavorite />);
@@ -54,7 +53,7 @@ describe('Teste o componente <Pokemon.js />', () => {
       isFavorite
     />);
     const linkDetails = screen.getByText('More details');
-    fireEvent.click(linkDetails);
+    userEvent.click(linkDetails);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25'); // id do pikachu
   });
