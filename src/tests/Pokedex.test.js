@@ -1,13 +1,10 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, getByText, screen } from '@testing-library/react';
 // import Pokedex from '../components/Pokedex';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
-import pokemons from '../data';
 
 describe('Teste o componente <Pokedex.js />', () => {
-  console.log(pokemons);
-
   beforeEach(() => {
     renderWithRouter(<App />);
   });
@@ -42,5 +39,13 @@ describe('Teste o componente <Pokedex.js />', () => {
       expect(filtered).toBeInTheDocument();
       expect(filtered).toHaveTextContent(pokeType[item]);
     });
+  });
+
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    const btnAll = screen.getByText('All');
+    fireEvent.click(btnAll);
+    const poke = screen.getByText('Pikachu');
+
+    expect(poke).toBeInTheDocument();
   });
 });
