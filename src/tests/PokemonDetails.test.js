@@ -5,6 +5,7 @@ import renderWithRouter from './renderWithRouter';
 
 describe('7- Teste o componente <PokemonDetails.js', () => {
   // verificando informações detalhadas
+  // Ficou redudante em realção a (PokemonTest) porem não está passando no evaluetor job.
   test('1.1- Verificando informações detalhadas', () => {
     const { history } = renderWithRouter(<App />);
     const moreDetails = 'More details';
@@ -12,6 +13,14 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     fireEvent.click(linkPokeUrl);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
+    const pokeName = screen.getByText('Pikachu');
+    const pokeType = screen.getByText('Electric');
+    const pokeWeight = screen.getByText('Average weight: 6.0 kg');
+    const pokeImage = screen.getByAltText('Pikachu sprite');
+    expect(pokeName).toBeDefined();
+    expect(pokeType).toBeDefined();
+    expect(pokeWeight).toBeDefined();
+    expect(pokeImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
   test('1-Teste se as informações detalhadas do Pokémon selecionado', () => {
     renderWithRouter(<App />);
