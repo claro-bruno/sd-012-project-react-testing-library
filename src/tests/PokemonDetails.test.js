@@ -2,10 +2,11 @@ import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
+import data from '../data';
 
 describe('7- Teste o componente <PokemonDetails.js', () => {
-  // verificando informações detalhadas
-  // Ficou redudante em realção a (PokemonTest) porem não está passando no evaluetor job.
+  const pokeData = data[0];
+  const { name } = pokeData;
   test('1.1- Verificando informações detalhadas', () => {
     const { history } = renderWithRouter(<App />);
     const moreDetails = 'More details';
@@ -16,19 +17,19 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     const pokeName = screen.getByText('Pikachu');
     const pokeType = screen.getByText('Electric');
     const pokeWeight = screen.getByTestId('pokemon-weight');
+    expect(pokeWeight).toBeDefined();
     const pokeImage = screen.getByAltText('Pikachu sprite');
     expect(pokeName).toBeDefined();
     expect(pokeType).toBeDefined();
-    expect(pokeWeight).toBeDefined();
     expect(pokeImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
   //-----------------------------------------------------
   test('1-Teste se as informações detalhadas do Pokémon selecionado', () => {
     renderWithRouter(<App />);
     // Testando o Sumário
+    // Verifica se tem a palavra Details
     const moreDetails = (screen.getByText(/More details/));
     fireEvent.click(moreDetails);
-    // Verifica se tem a palavra Details
     const details = (screen.getByRole('heading',
       { level: 2, name: /Details/ }));
     expect(details).toBeInTheDocument();
@@ -47,7 +48,9 @@ describe('7- Teste o componente <PokemonDetails.js', () => {
     // Verifica alt Location / Images
     const pokLocationImg = screen.getAllByAltText(/Pikachu location/);
     expect(pokLocationImg[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(pokLocationImg[0].alt).toBe(`${name} location`);
     expect(pokLocationImg[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+    expect(pokLocationImg[1].alt).toBe(`${name} location`);
     // Testa o checkBox
     const checkLabel = screen.getByLabelText(/Pokémon favoritado?/);
     expect(checkLabel).toBeInTheDocument();
