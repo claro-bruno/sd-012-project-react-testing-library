@@ -4,6 +4,15 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 describe('7- Teste o componente <PokemonDetails.js', () => {
+  // verificando informações detalhadas
+  test('1.1- Verificando informações detalhadas', () => {
+    const { history } = renderWithRouter(<App />);
+    const moreDetails = 'More details';
+    const linkPokeUrl = screen.getByText(moreDetails);
+    fireEvent.click(linkPokeUrl);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
+  });
   test('1-Teste se as informações detalhadas do Pokémon selecionado', () => {
     renderWithRouter(<App />);
     // Testando o Sumário
