@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
-const pokemon = pokemons[8];
+const pokemon = pokemons[0];
 const { averageWeight, id, image, name, type } = pokemon;
 const { measurementUnit, value } = averageWeight;
 
