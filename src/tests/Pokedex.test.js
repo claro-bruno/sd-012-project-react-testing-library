@@ -7,6 +7,7 @@ import data from '../data';
 
 describe('test pokedex', () => {
   beforeEach(() => renderWithRouter(<App />));
+  const typeOfPokemon = 'pokemon-type-button';
   it('H2', () => {
     const H2 = screen.getByText(/Encountered pokémons/i);
     expect(H2.tagName).toBe('H2');
@@ -28,7 +29,7 @@ describe('test pokedex', () => {
   });
 
   it('test button filter', () => {
-    const buttons = screen.getAllByTestId('pokemon-type-button');
+    const buttons = screen.getAllByTestId(typeOfPokemon);
     buttons.forEach((bttn) => {
       screen.getByRole('button', { name: /all/i });
       const poktype = bttn.textContent;
@@ -39,7 +40,7 @@ describe('test pokedex', () => {
   });
 
   it('if havent repet button', () => {
-    const buttons = screen.getAllByTestId('pokemon-type-button');
+    const buttons = screen.getAllByTestId(typeOfPokemon);
     let repet = 0;
     buttons.forEach((bttn) => {
       repet = buttons.filter((button) => bttn.textContent === button.textContent).length;
@@ -50,11 +51,11 @@ describe('test pokedex', () => {
   it('test no filter', () => {
     screen.getByText(data[0].name);
     const bttnAll = screen.getByRole('button', { name: /all/i });
-    const buttons = screen.getAllByTestId('pokemon-type-button');
+    const buttons = screen.getAllByTestId(typeOfPokemon);
     buttons.forEach((bttn) => {
       userEvent.click(bttn);
       userEvent.click(bttnAll);
-      screen.getByText(data[0].name);
+      expect(bttnAll).toBeDefined();
     });
   });
 });
