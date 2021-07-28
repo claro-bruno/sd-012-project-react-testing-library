@@ -1,16 +1,43 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import App from '../App';
+import renderWhithRouter from './renderWithRouter.test';
 
-describe('Teste o componente App.js', () => {
-  test('Teste se a aplicação contém um conjunto fixo de links de navegação', () => {
-    render(<App />);
-    const linkHome = screen.getByRole('link', { name: 'Home' });
-
-    expect(linkHome).toBeDefined();
+describe('Testando links no App', () => {
+  beforeEach(() => {
+    renderWhithRouter(<App />);
+  });
+  test('Teste se o link direcionado para Home', () => {
+    const linkURL = screen.getByRole('link', { name: /Home/i });
+    expect(linkURL).toBeInTheDocument();
+  });
+  test('Teste se o link direcionado para About', () => {
+    const linkURL = screen.getByRole('link', { name: /About/i });
+    expect(linkURL).toBeInTheDocument();
+  });
+  test('Teste se o link direcionado para Pokémons Favoritados', () => {
+    const linkURL = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(linkURL).toBeInTheDocument();
   });
 });
 
+describe(' Testando click links no App', () => {
+  beforeEach(() => {
+    renderWhithRouter(<App />);
+  });
+  test('Teste se clicando o link direcionado para Home', () => {
+    const linkURL = screen.getByRole('link', { name: /Home/i });
+    expect(linkURL).toBeInTheDocument();
+  });
+  test('Teste se clicando o link direcionado para About', () => {
+    const linkURL = screen.getByRole('link', { name: /About/i });
+    expect(linkURL).toBeInTheDocument();
+  });
+  test('Teste se clicando o link direcionado para Pokémons Favoritados', () => {
+    const linkURL = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(linkURL).toBeInTheDocument();
+  });
+});
 // Acessar os elementos da tela
 
 // Interagir com eles (se houver necessidade)
