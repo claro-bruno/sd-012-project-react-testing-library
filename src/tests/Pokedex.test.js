@@ -12,7 +12,7 @@ describe('Testa Pokédex', () => {
   const next = 'Próximo pokémon';
 
   it('Se o título está presente', () => {
-    const title = screen.getByRole('heading', { name: 'Encountered pokémons' });
+    const title = screen.getByText('Encountered pokémons');
 
     expect(title).toBeInTheDocument();
   });
@@ -63,11 +63,15 @@ describe('Testa Pokédex', () => {
     filterTypes.map((type) => {
       const allButton = screen.getByRole('button', { name: 'All' });
 
-      expect(allButton).toBeInTheDocument();
+      if (type !== 'All') {
+        const typeButton = screen.getByRole('button', { name: type });
 
-      const typeButton = screen.getByRole('button', { name: type });
+        expect(allButton).toBeInTheDocument();
+        expect(typeButton).toHaveAttribute('data-testid', 'pokemon-type-button');
+        return expect(typeButton).toBeInTheDocument();
+      }
 
-      return expect(typeButton).toBeInTheDocument();
+      return expect(allButton).toBeInTheDocument();
     });
   });
 
