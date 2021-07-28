@@ -5,6 +5,8 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
+// https://dicasdejavascript.com.br/javascript-como-remover-valores-repetidos-de-um-array/
+
 describe('Testa Pokedex.js', () => {
   beforeEach(() => renderWithRouter(<App />));
 
@@ -13,46 +15,69 @@ describe('Testa Pokedex.js', () => {
     expect(title).toBeDefined();
   });
 
-  it('É exibido o próximo Pokémon quando o botão "Próximo pokémon" é clicado',
+  it('É renderizado o próximo Pokémon quando o botão "Próximo pokémon" é clicado',
     () => {
-      const buttonAll = screen.getByRole('button', { name: /All/ });
-      userEvent.click(buttonAll);
       const button = screen.getByRole('button', { name: /Próximo pokémon/ });
       const firstPoke = pokemons[0].name;
-      for (let index = 0; index < pokemons.length; index += 1) {
-        expect(screen.getByText(`${pokemons[index].name}`))
-          .toBeDefined();
+
+      pokemons.forEach((pokemon, index) => {
+        const { name } = pokemon;
+
+        const pokemonName = screen.getByText(`${name}`);
+        expect(pokemonName).toBeDefined();
+
         userEvent.click(button);
+
         if (index === pokemons.length - 1) {
-          expect(screen.getByText(`${firstPoke}`))
-            .toBeDefined();
+          const firstPokemon = screen.getByText(`${firstPoke}`);
+          expect(firstPokemon).toBeDefined();
         }
-      }
+      });
     });
 
   it('Existe todos os botões de filter por "Type"', () => {
     const types = pokemons.map((pokemon) => pokemon.type);
-    const allTypes = [...types, 'All'];
-    allTypes.forEach((type) => expect(screen
-      .getByRole('button', { name: `${type}` })).toBeDefined());
+    const typesNoRepeated = [...new Set(types)];
+    const allTypes = [...typesNoRepeated, 'All'];
+    const numberButtonsFilter = typesNoRepeated.length;
+
+    allTypes.forEach((type) => (
+      expect(screen.getByRole('button', { name: `${type}` })).toBeDefined()));
+
+    expect(screen.getAllByTestId('pokemon-type-button')).toBeDefined();
+    expect(screen.getAllByTestId('pokemon-type-button').length).toBe(numberButtonsFilter);
   });
 
   it('Testa todos os botões de filter', () => {
     const button = screen.getByRole('button', { name: /Próximo pokémon/ });
     const types = pokemons.map((pokemon) => pokemon.type);
-    types.forEach((type) => {
+    const typesNoRepeated = [...new Set(types)];
+    const allTypes = [...typesNoRepeated, 'All'];
+
+    allTypes.forEach((type) => {
       userEvent.click(screen.getByRole('button', { name: `${type}` }));
-      const filterPoke = pokemons.filter((pokemon) => pokemon.type === type);
-      const firstPoke = filterPoke[0].name;
-      for (let index = 0; index < filterPoke.length; index += 1) {
-        expect(screen.getByText(`${filterPoke[index].name}`))
-          .toBeDefined();
-        userEvent.click(button);
-        if (index === filterPoke.length - 1) {
-          expect(screen.getByText(`${firstPoke}`))
-            .toBeDefined();
-        }
+
+      let filterPoke = [];
+
+      if (type !== 'All') {
+        filterPoke = pokemons.filter((pokemon) => pokemon.type === type);
+      } else {
+        filterPoke = pokemons;
       }
+
+      const firstPoke = filterPoke[0].name;
+
+      filterPoke.forEach((poke, index) => {
+        const { name } = poke;
+
+        expect(screen.getByText(`${name}`)).toBeDefined();
+
+        userEvent.click(button);
+
+        if (index === filterPoke.length - 1) {
+          expect(screen.getByText(`${firstPoke}`)).toBeDefined();
+        }
+      });
     });
   });
 });

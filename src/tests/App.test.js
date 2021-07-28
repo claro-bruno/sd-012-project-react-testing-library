@@ -4,50 +4,62 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-// https://stackoverflow.com/questions/61482418/react-testing-library-screen-vs-render-queries //
+describe('Testa App.js', () => {
+  it('Existe link com o texto "Home"', () => {
+    renderWithRouter(<App />);
 
-describe('Teste de componente <App.js />', () => {
-  it('Se o topo do ao contém um conjunto fixo de links de navegação', () => {
-    render(<App />);
-    expect(screen.getByRole('Home')).toBeInTheDocument();
-    expect(screen.getByRole('About')).toBeInTheDocument();
-    expect(screen.getByRole('Favorite Pokémons')).toBeInTheDocument();
+    const home = screen.getByRole('link', { name: /Home/i });
+    expect(home).toBeDefined();
   });
 
-  describe('Verifica os links presentes na aplicação', () => {
-    test(`Testa se a aplicação contêm o link "Home"
-       e se este redireciona para a página ao ser clicado`,
-    () => {
-      const { history } = renderWithRouter(<App />);
-      const homeLink = screen.getByRole('link', { name: /Home/i });
-      expect(homeLink).toBeInTheDocument();
+  it('Link "Home" redireciona para a URL "/"', () => {
+    const { history } = renderWithRouter(<App />);
 
-      userEvent.click(homeLink);
-      const { pathname } = history.location;
-      expect(pathname).toBe('/');
-    });
+    const home = screen.getByRole('link', { name: /Home/i });
+    userEvent.click(home);
 
-    test(`Testa se a aplicação contêm o link "About"
-       e se este redireciona para a página ao ser clicado`,
-    () => {
-      const { history } = renderWithRouter(<App />);
-      const aboutLink = screen.getByRole('link', { name: /About/i });
-      expect(aboutLink).toBeInTheDocument();
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/');
+  });
 
-      userEvent.click(aboutLink);
-      const { pathname } = history.location;
-      expect(pathname).toBe('/about');
-    });
+  it('Existe um link com o texto "About"', () => {
+    renderWithRouter(<App />);
 
-    test(`Testa se a aplicação contêm o link "Favorite"
-       e se este redireciona para a página ao ser clicado`,
-    () => {
-      const { history } = renderWithRouter(<App />);
-      const favoriteLink = screen.getByRole('link', { name: /Favorite Pokémons/i });
-      expect(favoriteLink).toBeInTheDocument();
-      userEvent.click(favoriteLink);
-      const { pathname } = history.location;
-      expect(pathname).toBe('/favorites');
-    });
+    const about = screen.getByRole('link', { name: /About/i });
+    expect(about).toBeDefined();
+  });
+
+  it('Link "About" redireciona para a URL "/about"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const about = screen.getByRole('link', { name: /About/i });
+    userEvent.click(about);
+
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/about');
+  });
+
+  it('Existe um link com o texto "Favorite Pokémons"', () => {
+    renderWithRouter(<App />);
+
+    const favoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(favoritePokemons).toBeDefined();
+  });
+
+  it('Link "Favorite Pokémons" redireciona para a URL "/favorites"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const favoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    userEvent.click(favoritePokemons);
+
+    const { location: { pathname } } = history;
+    expect(pathname).toBe('/favorites');
+  });
+
+  it('"/pagina-nao-encontrada" redireciona para pagina "Not Found"', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/pagina-nao-encontrada');
+    expect(screen.getByRole('heading', { name: /Not Found/i, level: 2 })).toBeDefined();
   });
 });
