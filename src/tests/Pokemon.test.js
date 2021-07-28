@@ -33,13 +33,26 @@ describe('Testando o componente Pokemon.js', () => {
 
   test('Verificando se o card indicado contém link e exibe detalhes do pokemon', () => {
     const { history } = renderWithRouter(<App />);
-    const pokemonDetails = screen.getByRole('link', { name: 'More details' });
+    const pokemonDetails = screen.getByText('More details');
     expect(pokemonDetails).toBeInTheDocument();
     expect(pokemonDetails).toHaveAttribute('href', '/pokemons/25');
     userEvent.click(pokemonDetails);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
+  // test('Verificando se o card indicado contém um link para exibir detalhes', () => {
+  //   renderWithRouter(<App />);
+  //   const pokemonDetails = screen.getByRole('link', { name: 'More details' });
+  //   expect(pokemonDetails).toBeInTheDocument();
+  // });
+
+  // test('Verificando se o link redireciona para a URL correta', () => {
+  //   const { history } = renderWithRouter(<App />);
+  //   const detailsLink = screen.getByRole('link', { name: 'More details' });
+  //   userEvent.click(detailsLink);
+  //   const { pathname } = history.location;
+  //   expect(pathname).toBe('/pokemons/25');
+  // });
 
   test('se existe um ícone de estrela nos Pokémons favoritados', () => {
     const { history } = renderWithRouter(<App />);
