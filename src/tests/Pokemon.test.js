@@ -44,4 +44,15 @@ describe('Testes do componente Pokemon.js', () => {
     const detailsLink = screen.getByRole('link', { name: 'More details' });
     expect(detailsLink.href).toBe('http://localhost/pokemons/143');
   });
+
+  test('Testa se ao clicar em "Mais detalhes" usuário'
+    + ' é redirecionado para URL correta', () => {
+    const { history } = renderWithRouter(<Pokemon
+      pokemon={ mockPokemon }
+      isFavorite={ false }
+    />);
+    const detailsLink = screen.getByRole('link', { name: 'More details' });
+    userEvent.click(detailsLink);
+    expect(history.location.pathname).toBe('/pokemons/143');
+  });
 });
