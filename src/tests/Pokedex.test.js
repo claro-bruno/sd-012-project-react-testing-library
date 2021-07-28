@@ -33,8 +33,8 @@ describe('Verifica o componente "Pokedex.js"', () => {
     expect(buttons).toBeInTheDocument();
     userEvent.click(buttons);
 
-    const typeButton = screen.getByTestId('pokemon-type');
-    expect(typeButton).toHaveTextContent(/Fire/i);
+    // const typeButton = screen.getByAllTestId('pokemon-type-button');
+    // expect(typeButton).toBeInTheDocument();
   });
 
   test('Verifica se o botao "All" reseta o filtro', () => {
