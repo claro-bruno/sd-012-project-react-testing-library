@@ -49,5 +49,12 @@ describe('test pokedex', () => {
 
   it('test no filter', () => {
     screen.getByText(data[0].name);
+    const bttnAll = screen.getByRole('button', { name: /all/i });
+    const buttons = screen.getAllByTestId('pokemon-type-button');
+    buttons.forEach((bttn) => {
+      userEvent.click(bttn);
+      userEvent.click(bttnAll);
+      screen.getByText(data[0].name);
+    });
   });
 });
