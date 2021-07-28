@@ -11,11 +11,11 @@ describe('Verifica o componente "Pokedex.js"', () => {
     expect(h2Title).toBeInTheDocument();
   });
 
-  // test('Verifica se tem 1 pokemon por vez', () => {
-  //   renderWithRouter(<App />);
-  //   const verifyAmount = screen.getByRole('paragraph', { name: /pikachu/i });
-  //   expect(verifyAmount).toHaveLength(1);
-  // });
+  test('Verifica se tem 1 pokemon por vez', () => {
+    renderWithRouter(<App />);
+    const verifyAmount = screen.getAllByText(/More Details/i);
+    expect(verifyAmount).toHaveLength(1);
+  });
 
   test('Verifica o próximo pokémon ao ser clicado o botão', () => {
     renderWithRouter(<App />);
