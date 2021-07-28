@@ -38,4 +38,10 @@ describe('Testes do componente Pokemon.js', () => {
     expect(pokeWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     expect(pokeImg.src).toBe(mockPokemon.image);
   });
+
+  test('Testa se o card do pokémon específico contém link para "Mais detalhes"', () => {
+    renderWithRouter(<Pokemon pokemon={ mockPokemon } isFavorite={ false } />);
+    const detailsLink = screen.getByRole('link', { name: 'More details' });
+    expect(detailsLink.href).toBe('http://localhost/pokemons/143');
+  });
 });
