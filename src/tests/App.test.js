@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-
+// Codigo de Bruno Yamamoto https://github.com/tryber/sd-012-project-react-testing-library/pull/40/files?file-filters%5B%5D=.js
 describe('Testa o componente App', () => {
   it('Tem um header com os links', () => {
     const { history } = renderWithRouter(<App />);

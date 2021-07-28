@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import About from '../components/About';
-
+// Codigo de Bruno Yamamoto https://github.com/tryber/sd-012-project-react-testing-library/pull/40/files?file-filters%5B%5D=.js
 describe('Testa o component About', () => {
   it('Verifica se contém infos da pokédex', () => {
     const { history } = renderWithRouter(<App />);
