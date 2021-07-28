@@ -29,9 +29,12 @@ describe('testando a pagina pokedex', () => {
 
   it('testa os filtros dos botões', () => {
     renderWithRouter(<App />);
+    const retButtons = screen.getAllByTestId('pokemon-type-button');
     const nove = 9;
     const pokemonTypes = [...new Set(pokemons.map((pokemon) => pokemon.type))];
     pokemonTypes.forEach((types) => {
+      const buttonFilter = retButtons.filter((button) => button.textContent === types);
+      expect(buttonFilter.length).toBe(1);
       const buttons = screen.getByRole('button', { name: types });
       expect(buttons).toBeInTheDocument();
       event.click(buttons);
