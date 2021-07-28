@@ -6,13 +6,14 @@ import { NotFound } from '../components';
 describe('Verifica o componente "NotFound.js"', () => {
   test('Verifica se contém uma tag "h2" com texto "Page Requested not found"', () => {
     renderWithRouter(<NotFound />);
-    const h2TitleText = screen.getByText(/Page requested not found/i);
+    const h2TitleText = screen.getByRole('heading', { name: /Page requested no/i });
     expect(h2TitleText).toBeInTheDocument();
   });
 
   test('Verifica se renderiza a imagem selecionada', () => {
     renderWithRouter(<NotFound />);
-    const img = screen.getByRole('img');
+    const text = /Pikachu crying because the page requested was not found/i;
+    const img = screen.getByAltText(text);
     expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
