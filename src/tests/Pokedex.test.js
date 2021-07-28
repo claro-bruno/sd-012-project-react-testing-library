@@ -42,6 +42,15 @@ describe('Testa componente Pokedex', () => {
     const buttons = screen.getAllByTestId(/pokemon-type-button/i);
     expect(buttons.length).toBe(numberOfButtons);
 
+    const fireButton = screen.getByText(/fire/i);
+    userEvent.click(fireButton);
+    const charmander = screen.getByText(/charmander/i);
+    expect(charmander).toBeDefined();
+    const buttonNext = screen.getByText(/próximo pokémon/i)
+    userEvent.click(buttonNext);
+    const rapidash = screen.getByText(/rapidash/i);
+    expect(rapidash).toBeDefined();
+
     const all = screen.getByText(/all/i);
     expect(all).toBeDefined();
   });
