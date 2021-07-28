@@ -15,7 +15,7 @@ describe('test pokedex', () => {
 
   it('next pokemon', () => {
     screen.getByTestId('pokemon-name');
-    const btt = screen.getByTestId('next-pokemon');
+    const btt = screen.getByRole('button', { name: /Próximo pokémon/i });
     data.forEach((item) => {
       screen.getByText(item.name);
       userEvent.click(btt);
