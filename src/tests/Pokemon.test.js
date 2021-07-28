@@ -8,7 +8,7 @@ describe('Verifica o componente "Pokemon.js"', () => {
   test('Verifica se o card com informações de um pokemon especifico é correto', () => {
     renderWithRouter(<App />);
     const pokemon = screen.getByTestId('pokemon-name');
-    expect(pokemon).toBeInTheDocument();
+    expect(pokemon).toHaveTextContent(/Pikachu/i);
 
     const type = screen.getByTestId('pokemon-type');
     expect(type).toHaveTextContent(/electric/i);
