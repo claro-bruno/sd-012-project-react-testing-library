@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWhithRouter from './renderWhithRouter.test';
 
-describe('Teste o componente <FavoritePokemons.js />', () => {
+describe('Teste o componente Favorite Pokemons', () => {
   beforeEach(() => {
     renderWhithRouter(<FavoritePokemons />);
   });
