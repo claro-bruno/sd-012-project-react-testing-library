@@ -2,12 +2,15 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
-import Pokedex from '../components/Pokedex';
+import App from '../App';
 import pokemon from '../data';
+
+// Consulta para entender o requisito ao repositório da colega Renata Nunes:
+// https://github.com/tryber/sd-012-project-react-testing-library/pull/135
 
 describe('Testa componente Pokedex', () => {
   beforeEach(() => {
-    renderWithRouter(<Pokedex pokemons={ pokemon } isPokemonFavoriteById />);
+    renderWithRouter(<App />);
   });
 
   test('Testa h2', () => {
@@ -19,39 +22,12 @@ describe('Testa componente Pokedex', () => {
     const card = screen.getByRole('button', { name: /próximo pokémon/i });
     expect(card).toBeDefined();
 
-    userEvent.click(card);
-    const charmander = screen.getByText(/charmander/i);
-    expect(charmander).toBeDefined();
+    pokemon.forEach((pok) => {
+      const nextPokemon = screen.getByText(pok.name);
+      expect(nextPokemon).toBeDefined();
+      userEvent.click(card);
+    });
 
-    userEvent.click(card);
-    const caterpie = screen.getByText(/caterpie/i);
-    expect(caterpie).toBeDefined();
-
-    userEvent.click(card);
-    const ekans = screen.getByText(/ekans/i);
-    expect(ekans).toBeDefined();
-
-    userEvent.click(card);
-    const alakazam = screen.getByText(/alakazam/i);
-    expect(alakazam).toBeDefined();
-
-    userEvent.click(card);
-    const mew = screen.getByText(/mew/i);
-    expect(mew).toBeDefined();
-
-    userEvent.click(card);
-    const rapidash = screen.getByText(/rapidash/i);
-    expect(rapidash).toBeDefined();
-
-    userEvent.click(card);
-    const snorlax = screen.getByText(/snorlax/i);
-    expect(snorlax).toBeDefined();
-
-    userEvent.click(card);
-    const dragonair = screen.getByText(/dragonair/i);
-    expect(dragonair).toBeDefined();
-
-    userEvent.click(card);
     const pikachu = screen.getByText(/pikachu/i);
     expect(pikachu).toBeDefined();
   });
@@ -62,52 +38,12 @@ describe('Testa componente Pokedex', () => {
   });
 
   test('Testa botões de filtro', () => {
-    const all = screen.getByRole('button', { name: /all/i });
+    const numberOfButtons = 7;
+    const buttons = screen.getAllByTestId(/pokemon-type-button/i);
+    expect(buttons.length).toBe(numberOfButtons);
+
+    const all = screen.getByText(/all/i);
     expect(all).toBeDefined();
-
-    const electric = screen.getByRole('button', { name: /electric/i });
-    expect(electric).toBeDefined();
-    userEvent.click(electric);
-    const buttonNext = screen.getByRole('button', { name: /Próximo pokémon/i });
-    expect(buttonNext).toBeDisabled();
-
-    const fire = screen.getByRole('button', { name: /fire/i });
-    expect(fire).toBeDefined();
-    userEvent.click(fire);
-    const charmander = screen.getByText(/charmander/i);
-    expect(charmander).toBeDefined();
-    userEvent.click(buttonNext);
-    const rapidash = screen.getByText(/rapidash/i);
-    expect(rapidash).toBeDefined();
-
-    const bug = screen.getByRole('button', { name: /bug/i });
-    userEvent.click(bug);
-    expect(bug).toBeDefined();
-    expect(buttonNext).toBeDisabled();
-
-    const poison = screen.getByRole('button', { name: /poison/i });
-    userEvent.click(poison);
-    expect(poison).toBeDefined();
-    expect(buttonNext).toBeDisabled();
-
-    const psychic = screen.getByRole('button', { name: /psychic/i });
-    expect(psychic).toBeDefined();
-    userEvent.click(psychic);
-    const alakazam = screen.getByText(/alakazam/i);
-    expect(alakazam).toBeDefined();
-    userEvent.click(buttonNext);
-    const mew = screen.getByText(/mew/i);
-    expect(mew).toBeDefined();
-
-    const normal = screen.getByRole('button', { name: /normal/i });
-    userEvent.click(normal);
-    expect(normal).toBeDefined();
-    expect(buttonNext).toBeDisabled();
-
-    const dragon = screen.getByRole('button', { name: /dragon/i });
-    userEvent.click(dragon);
-    expect(dragon).toBeDefined();
-    expect(buttonNext).toBeDisabled();
   });
 
   test('Testa botão de resetar', () => {
