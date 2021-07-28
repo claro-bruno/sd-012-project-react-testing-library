@@ -26,7 +26,10 @@ const mockPokemon = {
 
 describe('Testes do componente Pokemon.js', () => {
   test('Testa se é renderizado um card com infos de pokémon específico', () => {
-    renderWithRouter(<Pokemon pokemon={ mockPokemon } isFavorite={ false } />);
+    renderWithRouter(<Pokemon
+      pokemon={ mockPokemon }
+      isFavorite={ false }
+    />);
     const pokeName = screen.getByTestId('pokemon-name');
     const pokeType = screen.getByTestId('pokemon-type');
     const pokeWeight = screen.getByTestId('pokemon-weight');
@@ -40,7 +43,10 @@ describe('Testes do componente Pokemon.js', () => {
   });
 
   test('Testa se o card do pokémon específico contém link para "Mais detalhes"', () => {
-    renderWithRouter(<Pokemon pokemon={ mockPokemon } isFavorite={ false } />);
+    renderWithRouter(<Pokemon
+      pokemon={ mockPokemon }
+      isFavorite={ false }
+    />);
     const detailsLink = screen.getByRole('link', { name: 'More details' });
     expect(detailsLink.href).toBe('http://localhost/pokemons/143');
   });
@@ -54,5 +60,15 @@ describe('Testes do componente Pokemon.js', () => {
     const detailsLink = screen.getByRole('link', { name: 'More details' });
     userEvent.click(detailsLink);
     expect(history.location.pathname).toBe('/pokemons/143');
+  });
+
+  test('', () => {
+    renderWithRouter(<Pokemon
+      pokemon={ mockPokemon }
+      isFavorite
+    />);
+    const favoriteStar = screen.getByAltText('Snorlax is marked as favorite');
+    expect(favoriteStar).toBeDefined();
+    expect(favoriteStar.src).toBe('http://localhost/star-icon.svg');
   });
 });
