@@ -38,5 +38,6 @@ describe('Teste o componente Pokédex', () => {
 //     const btnReset = screen.getByRole('button', { name: 'All' });
 //     expect(btnReset).toBeInTheDocument();
 //     userEvent.click(btnReset);
+//! !
 //   });
 });
