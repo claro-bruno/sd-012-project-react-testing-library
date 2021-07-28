@@ -39,7 +39,7 @@ describe('Testando o componente Pokemon.js', () => {
 
   test('Verificando se o link redireciona para a URL correta', () => {
     const { history } = renderWithRouter(<App />);
-    const detailsLink = screen.getByRole('link', { name: 'More details' });
+    const detailsLink = screen.getByRole('link', { name: /More details/i });
     userEvent.click(detailsLink);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
