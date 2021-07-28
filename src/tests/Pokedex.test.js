@@ -6,51 +6,48 @@ import App from '../App';
 import data from '../data';
 
 describe('test pokedex', () => {
+  beforeEach(() => renderWithRouter(<App />));
   it('H2', () => {
-    renderWithRouter(<App />);
     const H2 = screen.getByText(/Encountered pokémons/i);
     expect(H2.tagName).toBe('H2');
   });
 
   it('next pokemon', () => {
-    renderWithRouter(<App />);
-    const pokemon1 = screen.getByTestId('pokemon-name');
+    screen.getByTestId('pokemon-name');
     const btt = screen.getByTestId('next-pokemon');
     data.forEach((item) => {
-      const pokemon = screen.getByText(item.name);
-      expect(pokemon).toBeDefined();
+      screen.getByText(item.name);
       userEvent.click(btt);
     });
-    expect(pokemon1).toBeDefined();
+    screen.getByText(data[0].name);
   });
 
   it('one pokemon', () => {
-    renderWithRouter(<App />);
     const pokemon = screen.getAllByTestId('pokemon-name');
     expect(pokemon).toHaveLength(1);
   });
 
   it('test button filter', () => {
-    renderWithRouter(<App />);
-    const bttnAll = screen.getByRole('button', { name: 'All' });
-    data.forEach((item) => {
-      const bttn = screen.getByRole('button', { name: item.type });
-      expect(bttn).toBeDefined();
-      expect(bttnAll).toBeDefined();
+    const buttons = screen.getAllByTestId('pokemon-type-button');
+    buttons.forEach((bttn) => {
+      screen.getByRole('button', { name: /all/i });
+      const poktype = bttn.textContent;
+      userEvent.click(bttn);
+      const pokemon = screen.getByTestId('pokemon-type');
+      expect(poktype).toBe(pokemon.textContent);
     });
   });
 
-  it('Testa se reseta o filtro', () => {
-    renderWithRouter(<App />);
-    const fireBtt = screen.getByRole('button', { name: 'Fire' });
-    const nextBtt = screen.getByRole('button', { name: /Próximo Pokémon/i });
-    const allBtt = screen.getByRole('button', { name: 'All' });
-    userEvent.click(fireBtt);
-    expect(screen.getByText('Charmander')).toBeDefined();
-    userEvent.click(nextBtt);
-    expect(screen.getByText('Rapidash')).toBeDefined();
-    userEvent.click(allBtt);
-    const noFilter = screen.getByText('Pikachu');
-    expect(noFilter).toBeDefined();
+  it('if havent repet button', () => {
+    const buttons = screen.getAllByTestId('pokemon-type-button');
+    let repet = 0;
+    buttons.forEach((bttn) => {
+      repet = buttons.filter((button) => bttn.textContent === button.textContent).length;
+      expect(repet).toBe(1);
+    });
+  });
+
+  it('test no filter', () => {
+    screen.getByText(data[0].name);
   });
 });
