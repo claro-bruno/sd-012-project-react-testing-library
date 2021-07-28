@@ -2,20 +2,21 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
-import App from '../App';
+import Pokedex from '../components/Pokedex';
+import pokemon from '../data';
 
 describe('Testa componente Pokedex', () => {
   beforeEach(() => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Pokedex pokemons={ pokemon } isPokemonFavoriteById />);
   });
 
   test('Testa h2', () => {
-    const text = screen.getByRole('heading', { name: /Encountered pokémons/i });
+    const text = screen.getByRole('heading', { name: /encountered pokémons/i });
     expect(text).toBeDefined();
   });
 
   test('Testa botão e pasagem de pokémons', () => {
-    const card = screen.getByRole('button', { name: /Próximo pokémon/i });
+    const card = screen.getByRole('button', { name: /próximo pokémon/i });
     expect(card).toBeDefined();
 
     userEvent.click(card);
@@ -56,7 +57,7 @@ describe('Testa componente Pokedex', () => {
   });
 
   test('Testa se somente um card é mostrado por vez', () => {
-    const card = screen.getAllByRole('img');
+    const card = screen.getAllByTestId(/pokemon-name/i);
     expect(card.length).toBe(1);
   });
 
