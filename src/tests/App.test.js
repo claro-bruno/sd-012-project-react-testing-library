@@ -23,24 +23,3 @@ describe('Testando links no App', () => {
     expect(linkURL).toBeInTheDocument();
   });
 });
-
-describe(' Testando click links no App', () => {
-  beforeEach(() => {
-    renderWhithRouter(<App />);
-  });
-
-  test('Teste se clicando o link direcionado para Home', () => {
-    const linkURL = screen.getByRole('link', { name: /Home/i });
-    expect(linkURL).toBeInTheDocument();
-  });
-
-  test('Teste se clicando o link direcionado para About', () => {
-    const linkURL = screen.getByRole('link', { name: /About/i });
-    expect(linkURL).toBeInTheDocument();
-  });
-
-  test('Teste se clicando o link direcionado para Pokémons Favoritados', () => {
-    const linkURL = screen.getByRole('link', { name: /Favorite Pokémons/i });
-    expect(linkURL).toBeInTheDocument();
-  });
-});
