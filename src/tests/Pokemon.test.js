@@ -9,13 +9,13 @@ describe('Testando o componente Pokemon.js', () => {
   test('Verificando se o nome correto do Pokémon é mostrado na tela', () => {
     renderWithRouter(<App />);
     const cardPokemon = screen.getByTestId('pokemon-name');
-    expect(cardPokemon).toBeInTheDocument();
+    expect(cardPokemon).toHaveTextContent(/pikachu/i);
   });
 
   test('Verificando se o tipo correto do Pokémon é mostrado na tela', () => {
     renderWithRouter(<App />);
     const pokemonType = screen.getByTestId('pokemon-type');
-    expect(pokemonType).toBeInTheDocument();
+    expect(pokemonType).toHaveTextContent(/electric/i);
   });
 
   test('Verificando o peso médio do pokémon e sua unidade de medida', () => {
@@ -31,15 +31,9 @@ describe('Testando o componente Pokemon.js', () => {
     expect(pokemonImage).toHaveAttribute('alt', 'Pikachu sprite');
   });
 
-  test('Verificando se o card indicado contém um link para exibir detalhes', () => {
-    renderWithRouter(<App />);
-    const pokemonDetails = screen.getByText('More details');
-    expect(pokemonDetails).toBeInTheDocument();
-  });
-
   test('Verificando se o link para a URL correta', () => {
     const { history } = renderWithRouter(<App />);
-    const detailsLink = screen.getByText('More details');
+    const detailsLink = screen.getByText(/more details/i);
     expect(detailsLink).toBeInTheDocument();
     expect(detailsLink).toHaveAttribute('href', '/pokemons/25');
     userEvent.click(detailsLink);
