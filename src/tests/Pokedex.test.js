@@ -51,8 +51,21 @@ describe('Testes do componente Pokedex.JS', () => {
       userEvent.click(button);
       const eachName = screen.getByTestId('pokemon-type');
       expect(eachName).toHaveTextContent(types[index]);
-      userEvent.click(screen.getByRole('button', { name: 'Próximo pokémon' }));
+      userEvent.click(screen.getByRole('button', { name: /Próximo pokémon/i }));
       expect(eachName).toHaveTextContent(types[index]);
     });
+  });
+
+  test('Testa se a Pokédex contém botão para resetar filtro', () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', { name: 'All' });
+    expect(allButton).toHaveTextContent('All');
+    expect(allButton).toBeDefined();
+
+    userEvent.click(allButton);
+    const nextPokeButton = screen.getByRole('button', { name: 'Próximo pokémon' });
+    userEvent.click(nextPokeButton);
+    const secondPokeUnfiltered = screen.getByText(pokemons[1].name);
+    expect(secondPokeUnfiltered).toBeDefined();
   });
 });
