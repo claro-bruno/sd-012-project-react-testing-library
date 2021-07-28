@@ -24,14 +24,13 @@ describe('Verifica o componente "Pokemon.js"', () => {
     const { history } = renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: /More Details/i });
     userEvent.click(detailsLink);
+    const localhost = history.location.pathname;
+    expect(localhost).toBe('/pokemons/25');
 
-    const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');
+    const checkbox = screen.getByRole('checkbox', { checked: false });
+    userEvent.click(checkbox);
 
-    const selectFavoritePokemon = screen.getByRole('checkbox', { checked: false });
-    userEvent.click(selectFavoritePokemon);
-
-    const selectStar = screen.getByAltText('Pikachu is marked as favorite');
-    expect(selectStar.src).toBe('http://localhost/star-icon.svg');
+    const favoritePokemon = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoritePokemon.src).toBe('http://localhost/star-icon.svg');
   });
 });
