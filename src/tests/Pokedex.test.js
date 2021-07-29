@@ -46,8 +46,9 @@ describe('Verifica requisitos do desafio 5', () => {
   it('Testa nome dos botoes', () => {
     renderWithRouter(<App />);
 
-    Data.forEach((pokemon) => {
-      expect(pokemon).toBeDefined();
+    Data.forEach((item) => {
+      const button = screen.getByRole('button', { name: item.type });
+      expect(button).toBeDefined();
     });
   });
 });
