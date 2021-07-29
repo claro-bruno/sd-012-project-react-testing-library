@@ -5,11 +5,10 @@ import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 
 const mockPokemon = pokemons[2];
-console.log(mockPokemon);
 
 describe('Teste o componente <Pokemon.js />', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
-    renderWithRouter(<Pokemon pokemon={ pokemon } showDetailsLink isFavorite />);
+    renderWithRouter(<Pokemon pokemon={ mockPokemon } showDetailsLink isFavorite />);
     const name = screen.getByTestId('pokemon-name');
     const type = screen.getByTestId('pokemon-type');
     const weight = screen.getByTestId('pokemon-weight');
@@ -22,7 +21,7 @@ describe('Teste o componente <Pokemon.js />', () => {
     expect(name).toHaveTextContent(mockPokemon.name);
     expect(type).toHaveTextContent(mockPokemon.type);
     expect(weight).toHaveTextContent(weightInfo);
-    expect(Img).toBe(imageURL);
+    expect(Img.src).toBe(imageURL);
     expect(details).toBeInTheDocument();
   });
 

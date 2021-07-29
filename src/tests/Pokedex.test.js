@@ -64,12 +64,13 @@ const favorites = {
 
 describe('Teste o componente <Pokedex.js />', () => {
   beforeEach(() => {
-    renderWithRouter(
-      <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
-    );
+    
   });
 
   test('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
+    renderWithRouter(
+      <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
+    );
     const heading = screen.getByRole('heading', {
       name: /Encountered pokémons/i,
       level: 2,
@@ -79,6 +80,9 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
   test('Se é exibido o prox Pokémon da lista quando o botão Próximo pokémon é clicado.',
     () => {
+      renderWithRouter(
+        <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
+      );
       const button = screen.getByRole('button', {
         name: /próximo pokémon/i,
       });
@@ -95,10 +99,16 @@ describe('Teste o componente <Pokedex.js />', () => {
       expect(pikachu).toBeInTheDocument();
     });
   test('Teste se é mostrado apenas um Pokémon por vez', () => {
+    renderWithRouter(
+      <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
+    );
     const poke = screen.getAllByTestId('pokemon-name');
     expect(poke.length).toBe(1);
   });
   test('Teste se a Pokedéx contém um botão para resetar o filtro.', () => {
+    renderWithRouter(
+      <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
+    );
     const button = screen.getByRole('button', {
       name: /All/i,
     });
@@ -119,9 +129,6 @@ describe('Teste o componente <Pokedex.js />', () => {
 
     expect(charmander).toBeInTheDocument();
   });
-});
-
-describe('', () => {
   test('Testa se tem filtros', () => {
     renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
