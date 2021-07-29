@@ -33,7 +33,7 @@ describe('Testa o componente Pokedex', () => {
       name: /psychic/i,
     });
     userEvent.click(btnType);
-    const pokemonType = screen.getByTestId('pokemon-type');
+    const pokemonType = screen.getByTestId('pokemon-type-button');
     expect(pokemonType).toHaveTextContent('Psychic');
   });
 
