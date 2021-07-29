@@ -7,7 +7,7 @@ import renderWhithRouter from './renderWhithRouter.test';
 
 describe('Teste o componente Pokemon.js', () => {
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
-    renderWithRouter(<App />);
+    renderWhithRouter(<App />);
 
     const pikachu = pokemons[0];
     const { averageWeight, image, name, type } = pikachu;
