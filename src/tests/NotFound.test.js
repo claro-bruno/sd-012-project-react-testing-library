@@ -17,3 +17,4 @@ describe('Testa tela de página não encontrada', () => {
     expect(notFoundImg.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
+// test json
