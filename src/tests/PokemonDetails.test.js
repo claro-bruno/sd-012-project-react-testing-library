@@ -8,7 +8,7 @@ import pokemons from '../data';
 describe('Testa componente PokemonDetails', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
-    fireEvent.click(screen.getByRole('link', { name: /More details/i }));
+    userEvent.click(screen.getByRole('link', { name: /More details/i }));
   });
 
   test('Teste se a pagina mostra informacoes detalhadas', () => {
@@ -26,28 +26,30 @@ describe('Testa componente PokemonDetails', () => {
     expect(summaryParagraph).toBeInTheDocument();
     expect(summaryParagraph.localName).toBe('p');
   });
-  test('Testa se aparecem mapas da localização do pokémon', () => {
-    const URL1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
-    const URL2 = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
+  test('Teste se existe na página uma seção com mapas contendo as localizações do pokémon',
+    () => {
+      const URL1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
+      const URL2 = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
 
-    const details = screen.getByRole('link', { name: detaiils });
-    fireEvent.click(details);
-    expect(screen.getByRole('heading', { name: 'Game Locations of Pikachu' }))
-      .toBeInTheDocument();
-    const locations = screen.getAllByAltText(/pikachu location/i);
-    expect(locations).toHaveLength(2);
-    expect(locations[0]).toHaveAttribute('src', URL1);
-    expect(locations[1]).toHaveAttribute('src', URL2);
-  });
+      const detailsScreen = screen.getByRole('link', { name: /more details/i });
+      userEvent.click(detailsScreen);
+
+      expect(screen.getByRole('heading', { name: 'Game Locations of Pikachu' }))
+        .toBeInTheDocument();
+      const locations = screen.getAllByAltText(/pikachu location/i);
+      expect(locations).toHaveLength(2);
+      expect(locations[0]).toHaveAttribute('src', URL1);
+      expect(locations[1]).toHaveAttribute('src', URL2);
+    });
 });
 test('Testa se usuario pode favoritar um pokémon pela pagina de detalhes', () => {
   const { name } = pokemons[0];
-  const showCheckbox = screen.getByLabelText(/Pokémon favoritado?/i);
-  fireEvent.click(showCheckbox);
+    const checkbox = screen.getByLabelText(/pokémon favoritado?/i);
+    userEvent.click(checkbox);
 
-  const altImg = `${name} is marked as favorite`;
-  expect(screen.getByAltText(altImg)).toBeInTheDocument();
+    const altScreen = `${name} is marked as favorite`;
+    expect(screen.getByAltText(altScreen)).toBeInTheDocument();
 
-  userEvent.click(showCheckbox);
-  expect(screen.queryByAltText(altImg)).not.toBeInTheDocument();
+    userEvent.click(checkbox);
+    expect(screen.queryByAltText(altScreen)).not.toBeInTheDocument();
 });
