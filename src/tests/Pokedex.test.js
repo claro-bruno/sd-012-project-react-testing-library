@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
@@ -24,7 +24,7 @@ const mockPokemon = [{
       map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
     },
   ],
-  summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+  summary: 'This intelligent Pokémon roasts hard berries eat.',
 },
 {
   id: 4,
@@ -54,8 +54,8 @@ const mockPokemon = [{
       map: 'https://cdn2.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
     },
   ],
-  summary: 'The flame on its tail shows the strength of its life force. If it is weak, the flame also burns weakly.',
-},];
+  summary: 'The flame  its life force. If it is weak, burns weakly.',
+}];
 
 const favorites = {
   25: true,
@@ -63,7 +63,11 @@ const favorites = {
 };
 
 describe('Teste o componente <Pokedex.js />', () => {
-  beforeEach(() => {renderWithRouter(<Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites }/>)});
+  beforeEach(() => {
+    renderWithRouter(
+      <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
+    );
+  });
 
   test('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
     const heading = screen.getByRole('heading', {
@@ -73,41 +77,69 @@ describe('Teste o componente <Pokedex.js />', () => {
 
     expect(heading).toBeInTheDocument();
   });
-  test('Teste se é exibido o próximo Pokémon da lista quando o botão Próximo pokémon é clicado.', () => {
-    const button = screen.getByRole('button', {
-      name: /próximo pokémon/i,
-    })
+  test('Se é exibido o prox Pokémon da lista quando o botão Próximo pokémon é clicado.',
+    () => {
+      const button = screen.getByRole('button', {
+        name: /próximo pokémon/i,
+      });
 
-    expect(button.innerHTML).toBe('Próximo pokémon')
+      expect(button.innerHTML).toBe('Próximo pokémon');
+
+      fireEvent.click(button);
+      const charmander = screen.getByText(/charmander/i);
+
+      expect(charmander).toBeInTheDocument();
+
+      fireEvent.click(button);
+      const pikachu = screen.getByText(/pikachu/i);
+      expect(pikachu).toBeInTheDocument();
+    });
+  test('Teste se é mostrado apenas um Pokémon por vez', () => {
+    const poke = screen.getAllByTestId('pokemon-name');
+    expect(poke.length).toBe(1);
+  });
+  test('Teste se a Pokedéx contém um botão para resetar o filtro.', () => {
+    const button = screen.getByRole('button', {
+      name: /All/i,
+    });
+    const nextButton = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    const pikachu = screen.getByText(/pikachu/i);
+
+    expect(button).toBeInTheDocument();
+    expect(pikachu).toBeInTheDocument();
 
     fireEvent.click(button);
+
+    expect(pikachu).toBeInTheDocument();
+
+    fireEvent.click(nextButton);
     const charmander = screen.getByText(/charmander/i);
 
-    expect(charmander).toBeInTheDocument;
-
-    fireEvent.click(button);
-    const pikachu = screen.getByText(/pikachu/i);
-    expect(pikachu).toBeInTheDocument;
+    expect(charmander).toBeInTheDocument();
   });
-  test('Teste se é mostrado apenas um Pokémon por vez', () => {
-    const coisa = screen.getAllByTestId('pokemon-name');
-    expect(coisa.length).toBe(1);
-  });
- 
-  test('', () => {
-
-  });
-})
+});
 
 describe('', () => {
   test('Testa se tem filtros', () => {
-    renderWithRouter(<Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites }/>)
-    const filtros = ['All', 'Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+    renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
+    );
+    const filtros = ['All',
+      'Electric',
+      'Fire',
+      'Bug',
+      'Poison',
+      'Psychic',
+      'Normal',
+      'Dragon',
+    ];
     filtros.forEach((filtro) => {
-      const button = screen.getByRole('button', {name: filtro });
+      const button = screen.getByRole('button', { name: filtro });
       expect(button.innerHTML).toBe(filtro);
-      expect(button).toBeInTheDocument;
-    })
+      expect(button).toBeInTheDocument();
+    });
   });
-})
+});
 test('', () => {});
