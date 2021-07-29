@@ -63,10 +63,6 @@ const favorites = {
 };
 
 describe('Teste o componente <Pokedex.js />', () => {
-  beforeEach(() => {
-    
-  });
-
   test('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
     renderWithRouter(
       <Pokedex pokemons={ mockPokemon } isPokemonFavoriteById={ favorites } />,
