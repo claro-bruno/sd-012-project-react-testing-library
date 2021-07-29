@@ -10,6 +10,7 @@ describe('Verifica roteamentos da aplicação', () => {
     fireEvent.click(homeLink);
     const headingTitle = screen.getByRole('heading', { level: 2 });
     const { pathname } = history.location;
+
     expect(pathname).toBe('/');
     expect(headingTitle.innerHTML).toBe('Encountered pokémons');
   });
@@ -19,6 +20,7 @@ describe('Verifica roteamentos da aplicação', () => {
     fireEvent.click(favoritesLink);
     const headingTitle = screen.getByRole('heading', { level: 2 });
     const { pathname } = history.location;
+
     expect(pathname).toBe('/favorites');
     expect(headingTitle).toHaveTextContent('Favorite pokémons');
   });
@@ -28,10 +30,12 @@ describe('Verifica se o topo da aplicação contém um conjunto fixo de links', 
   beforeEach(() => {
     renderWithRouter(<App />);
   });
+
   it('O primeiro Link deve possuir o texto "Home"', () => {
     const firstLink = screen.getAllByRole('link');
     expect(firstLink[0].innerHTML).toBe('Home');
   });
+
   it('O segundo Link deve possuir o texto "Favorite Pokémons"', () => {
     const thirdLink = screen.getAllByRole('link');
     expect(thirdLink[1].innerHTML).toBe('About');
