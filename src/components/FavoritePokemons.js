@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { pokemonType } from '../types';
-import Pokemon from './Pokemon';
+import { pokemonType } from "../types";
+import Pokemon from "./Pokemon";
 
-import './favorite-pokemons.css';
+import "./favorite-pokemons.css";
 
 const ZERO = 0;
 
@@ -19,8 +19,8 @@ class FavoritePokemons extends React.Component {
 
   static renderFavoritePokemon(pokemon) {
     return (
-      <div key={ pokemon.id } className="favorite-pokemon">
-        <Pokemon pokemon={ pokemon } isFavorite />
+      <div key={pokemon.id} className="favorite-pokemon">
+        <Pokemon pokemon={pokemon} isFavorite />
       </div>
     );
   }
