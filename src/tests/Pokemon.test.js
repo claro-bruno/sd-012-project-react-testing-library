@@ -8,13 +8,13 @@ describe('6. Teste o componente <Pokemon.js />', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
     renderWithRouter(<App />);
     const pokemonName = screen.getByTestId('pokemon-name');
-    expect(pokemonName).toBe('Pikachu');
+    expect(pokemonName).toHaveTextContent('Pikachu');
   });
 
   test('O tipo correto do pokémon deve ser mostrado na tela.', () => {
     renderWithRouter(<App />);
     const pokemonType = screen.getByTestId('pokemon-type');
-    expect(pokemonType).toBe('Electric');
+    expect(pokemonType).toHaveTextContent('Electric');
   });
 
   test('O peso médio deve ser exibido com um texto no formato Average weight', () => {
