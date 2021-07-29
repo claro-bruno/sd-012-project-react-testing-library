@@ -33,7 +33,7 @@ describe('Testa o componente Pokedex', () => {
       name: /psychic/i,
     });
     userEvent.click(btnType);
-    const pokemonType = screen.getByTestId('pokemon-type-button');
+    const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType).toHaveTextContent('Psychic');
   });
 
@@ -45,5 +45,17 @@ describe('Testa o componente Pokedex', () => {
     userEvent.click(resetBtn);
     const resetAll = screen.getByTestId('pokemon-type');
     expect(resetAll).toHaveTextContent('Electric');
+  });
+
+  test('Botão de filtro para cada Pokémon', () => {
+    RenderWithRouter(<App />);
+    const filter = screen.getAllByTestId('pokemon-type-button');
+    expect(filter[0]).toHaveTextContent('Electric');
+    expect(filter[1]).toHaveTextContent('Fire');
+    expect(filter[2]).toHaveTextContent('Bug');
+    expect(filter[3]).toHaveTextContent('Poison');
+    expect(filter[4]).toHaveTextContent('Psychic');
+    expect(filter[5]).toHaveTextContent('Normal');
+    expect(filter[6]).toHaveTextContent('Dragon');
   });
 });
