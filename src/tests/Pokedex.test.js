@@ -30,10 +30,9 @@ describe('Testando o componente Pokedex.js', () => {
   });
 
   test('Testa se a Pokédex tem os botões de filtro', () => {
-    const retButtons = screen.getAllByRole('button');
-    const normalButton = screen.getByRole('button', { name: 'Normal' });
+    const Buttons = screen.getAllByRole('button');
     pokemonTypes.forEach((type) => {
-      const filterButton = retButtons.filter((button) => button.textContent === type);
+      const filterButton = Buttons.filter((button) => button.textContent === type);
       expect(filterButton.length).toBe(1);
 
       const allButton = screen.getByRole('button', { name: /All/i });
@@ -44,13 +43,11 @@ describe('Testando o componente Pokedex.js', () => {
       const listPokemons = screen.getAllByTestId('pokemon-type');
       const FilteredPokemons = listPokemons.filter((typ) => typ.textContent === type);
       expect(FilteredPokemons.length).toBe(listPokemons.length);
-      event.click(normalButton);
-      const quantityNomral = pokemons.filter((pokedex) => pokedex.type === 'Normal');
-      expect(quantityNomral.length).toBe(1);
     });
   });
 
   test('Testando o botão All Reset', () => {
+    const normalButton = screen.getByRole('button', { name: 'Normal' });
     const allButton = screen.getByRole('button', { name: /All/i });
     expect(allButton).toBeInTheDocument();
     const lenghtAllPokemons = 9;
@@ -58,5 +55,8 @@ describe('Testando o componente Pokedex.js', () => {
     expect(allPokemons).toBe(lenghtAllPokemons);
     event.click(allButton);
     expect(allPokemons).toBe(lenghtAllPokemons);
+    event.click(normalButton);
+    const quantityNormal = pokemons.filter((pokedex) => pokedex.type === 'Normal');
+    expect(quantityNormal.length).toBe(1);
   });
 });
