@@ -42,5 +42,4 @@ NotFound.js  |  100.00 |        2 |         0 |          0 |        0 |       0 
 -------------|---------|----------|-----------|------------|----------|---------|
 18:23:28 (221911) INFO HtmlReporter Your report can be found at: file:///media/andre/Novo%20volume/Curso/TRYBE/BLOCO_15_Testes_automatizados/PROJETO/sd-012-project-react-testing-library/reports/mutation/html/index.html
 18:23:28 (221911) INFO Stryker Done in 12 seconds.
-
  */
