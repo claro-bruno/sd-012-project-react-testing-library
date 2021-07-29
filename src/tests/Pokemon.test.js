@@ -2,16 +2,15 @@ import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
-// import pokemons from '../data';
 
 describe('Testa Pokémon Card', () => {
-  // beforeEach(() => {
-  // });
   it('Informações do Card', () => {
     renderWithRouter(<App />);
     const pokeName = screen.getByText('Pikachu');
     const pokeType = screen.getByTestId('pokemon-type');
-    const rightType = screen.getAllByText('Electric');
+    const allType = screen.getAllByText('Electric');
+    const notType = screen.getByRole('button', { name: 'Electric' });
+    const rightType = allType.filter((element) => element !== notType);
     const averageWeight = screen.getByText('Average weight: ', { exact: false });
     const pokeWeight = screen.getByText('6.0', { exact: false });
     const weightUnit = screen.getByText('kg', { exact: false });
