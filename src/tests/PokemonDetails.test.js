@@ -19,8 +19,8 @@ describe('Testa componente PokemonDetails', () => {
     const link = screen.queryByRole('link', { name: /More details/i });
     expect(link).not.toBeInTheDocument();
 
-    const summaryhead = screen.getByRole('heading', { name: /Summary/i });
-    expect(summaryhead.localName).toBe('h2');
+    const summaryheading = screen.getByRole('heading', { name: /Summary/i });
+    expect(summaryheading.localName).toBe('h2');
 
     const summaryParagraph = screen.getByText(summary);
     expect(summaryParagraph).toBeInTheDocument();
