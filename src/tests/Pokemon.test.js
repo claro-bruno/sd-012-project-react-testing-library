@@ -11,6 +11,7 @@ describe('Testa Pokémon Card', () => {
     renderWithRouter(<App />);
     const pokeName = screen.getByText('Pikachu');
     const pokeType = screen.getByTestId('pokemon-type');
+    const rightType = screen.getAllByText('Electric');
     const averageWeight = screen.getByText('Average weight: ', { exact: false });
     const pokeWeight = screen.getByText('6.0', { exact: false });
     const weightUnit = screen.getByText('kg', { exact: false });
@@ -18,6 +19,7 @@ describe('Testa Pokémon Card', () => {
 
     expect(pokeName).toBeInTheDocument();
     expect(pokeType).toBeInTheDocument();
+    expect(rightType[0]).toBeInTheDocument();
     expect(averageWeight).toBeInTheDocument();
     expect(pokeWeight).toBeInTheDocument();
     expect(weightUnit).toBeInTheDocument();
