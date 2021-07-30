@@ -11,5 +11,6 @@ describe('Testa componente NotFound', () => {
   test('Verifica se renderia a img do Pikachu', () => {
     const img = screen.getByRole('img', { name: /Pikachu crying/i });
     expect(img).toBeInTheDocument();
+    expect(img).toHaveProperty('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
