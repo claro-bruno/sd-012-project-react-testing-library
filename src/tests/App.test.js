@@ -1,32 +1,32 @@
+// Projeto realizado com a ajuda e revisão de Diogo Sant'anna e Bruno Augusto.
+
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Testa os links do menu da aplicação', () => {
-  it('Testa se o 1 link tem texto "Home" e redireciona para "/"', () => {
+describe('Testa o componente App', () => {
+  it('Testa se o 1 link tem texto "Home"', () => {
     renderWithRouter(<App />);
     const linkHome = screen.getByRole('link', { name: /home/i });
     expect(linkHome).toBeInTheDocument();
   });
 
-  it('Testa se o 2 link tem texto "About" e redireciona para "/about"',
+  it('Testa se o 2 link tem texto "About"',
     () => {
       renderWithRouter(<App />);
       const linkAbout = screen.getByRole('link', { name: /about/i });
       expect(linkAbout).toBeInTheDocument();
     });
 
-  it('Testa se o 3 link tem texto "Favorite Pokémons" e redireciona para "/favorites"',
+  it('Testa se o 3 link tem texto "Favorite Pokémons"',
     () => {
       renderWithRouter(<App />);
       const linkAbout = screen.getByRole('link', { name: /favorite pokémons/i });
       expect(linkAbout).toBeInTheDocument();
     });
-});
 
-describe('Testa os links do menu da aplicação', () => {
   it('Testa se o link "Home" e redireciona para "/"', () => {
     const { history } = renderWithRouter(<App />);
     userEvent.click(screen.getByText(/home/i));

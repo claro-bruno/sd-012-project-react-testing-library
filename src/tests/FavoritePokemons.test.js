@@ -11,6 +11,7 @@ describe('Testa o componente FavoritePokemons', () => {
     history.push('/favorites');
     expect(screen.getByText(/No favorite pokemon found/i));
   });
+
   it(`Teste se é exibido todos os 
   cards de pokémons favoritados`, () => {
     const { history } = renderWithRouter(<App />);

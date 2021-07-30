@@ -6,9 +6,11 @@ describe('Testa o componente NotFound', () => {
   it(`Testa se a página contém um heading
   h2 com o texto Page requested not found`, () => {
     render(<NotFound />);
-    const h2 = screen.getByRole('heading', { name: /Page requested not found/i });
+    const h2 = screen.getByRole('heading',
+      { name: /Page requested not found/i, level: 2 });
     expect(h2).toBeInTheDocument();
   });
+
   it('Testa se a página contém a seguinte imagem', () => {
     render(<NotFound />);
     const img = screen.getByRole('img',
