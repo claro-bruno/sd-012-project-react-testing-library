@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../services/renderWithRouter';
 
 describe('Verificando todo o meu component APP', () => {
   it('Se ao clicar no botao home redireciona pra raiz da minha aplicacao', () => {
