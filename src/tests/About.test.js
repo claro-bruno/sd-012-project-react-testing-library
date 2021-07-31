@@ -3,9 +3,6 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import { About } from '../components';
 
-// import BrowserRouter from 'react-router-dom';
-// import userEvent from '@testing-library/user-event';
-
 describe('Verifica About.test.js', () => {
   test('Verifica se h2', () => {
     renderWithRouter(<About />);

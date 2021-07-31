@@ -4,9 +4,6 @@ import App from '../App';
 
 import renderWithRouter from './renderWithRouter';
 
-// import BrowserRouter from 'react-router-dom';
-// import userEvent from '@testing-library/user-event';
-
 describe('Verifica App.test.js', () => {
   test('Verifica se a links na pagina Inicial', () => {
     renderWithRouter(<App />);

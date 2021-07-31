@@ -1,0 +1,295 @@
+12:25:52 (11797) INFO ConfigReader Using stryker.conf.json
+12:25:52 (11797) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+12:25:52 (11797) DEBUG ConfigReader Loading config /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker.conf.json
+12:25:52 (11797) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/components/About.js",
+    "src/App.js",
+    "src/components/FavoritePokemons.js",
+    "src/components/NotFound.js",
+    "src/components/Pokedex.js",
+    "src/components/Pokemon.js",
+    "src/components/PokemonDetails.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "jest",
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true,
+  "configFile": "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker.conf.json"
+}
+12:25:52 (11797) DEBUG PluginLoader Loading @stryker-mutator/* from /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator
+12:25:52 (11797) DEBUG PluginLoader Loading plugin "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+12:25:52 (11797) DEBUG PluginLoader Loading plugin "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+12:25:52 (11797) DEBUG PluginLoader Loading plugins /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+12:25:52 (11797) DEBUG PluginLoader Loading plugins /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+12:25:52 (11797) DEBUG PluginLoader Loading plugins /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+12:25:52 (11797) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+12:25:53 (11797) INFO InputFileResolver Found 7 of 63 file(s) to be mutated.
+12:25:53 (11797) DEBUG InputFileResolver All input files: [
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker.log",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.babelrc.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.eslintignore",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.eslintrc.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.github/CODEOWNERS",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.github/workflows/main.yml",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.gitignore",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stylelintignore",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stylelintrc.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.trybe/requirements.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/README.md",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/package-lock.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/package.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/favicon.ico",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/index.html",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/logo192.png",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/logo512.png",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/manifest.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/robots.txt",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/public/star-icon.svg",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/App.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/App.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/About.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/Button.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/NotFound.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/Pokedex.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/Pokemon.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/PokemonDetails.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/about.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/button.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/favorite-pokemons.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/index.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/not-found.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/pokedex.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/pokemon-details.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/pokemon.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/data.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/index.css",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/index.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/logo.svg",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/serviceWorker.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/services/pokedexService.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/setupTests.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/About.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/App.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/FavoritePokemons.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/NotFound.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/Pokedex.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/Pokemon.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/PokemonDetails.test.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/tests/renderWithRouter.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/types/index.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/About.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/App.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/stryker/PokemonDetails.conf.json",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/testefalhando.png",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/testepassando.png"
+]
+12:25:53 (11797) DEBUG InputFileResolver Files to mutate: [
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/App.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/About.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/FavoritePokemons.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/NotFound.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/Pokedex.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/Pokemon.js",
+  "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/src/components/PokemonDetails.js"
+]
+12:25:53 (11797) DEBUG TemporaryDirectory Using temp directory "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp"
+12:25:53 (11797) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+12:25:53 (11797) INFO InitialTestExecutor Starting initial test run. This may take a while.
+12:25:53 (11797) DEBUG Sandbox Creating a sandbox for files in /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp/sandbox4788984
+12:25:53 (11797) DEBUG Sandbox Creating test runner 0
+12:25:53 (11797) DEBUG ChildProcessProxy Starting /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/test-runner/ChildProcessTestRunnerWorker.js in child process 11810
+12:25:53 (11810) DEBUG ChildProcessProxyWorker Changing current working directory for this process to /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp/sandbox4788984
+12:25:53 (11810) DEBUG PluginLoader Loading @stryker-mutator/* from /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator
+12:25:53 (11810) DEBUG PluginLoader Loading plugin "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+12:25:53 (11810) DEBUG PluginLoader Loading plugin "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+12:25:53 (11810) DEBUG PluginLoader Loading plugins /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+12:25:53 (11810) DEBUG PluginLoader Loading plugins /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+12:25:53 (11810) DEBUG PluginLoader Loading plugins /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+12:25:53 (11810) TRACE JestTestRunner Merging file-based config {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/serviceWorker.js"
+  ],
+  "setupFiles": [
+    "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/src/setupTests.js"
+  ],
+  "testMatch": [
+    "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+  ],
+  "testEnvironment": "jest-environment-jsdom-fourteen",
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js",
+    "^.+\\.css$": "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js",
+    "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "modulePaths": [],
+  "moduleNameMapper": {
+    "^react-native$": "react-native-web",
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ],
+  "rootDir": "/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp/sandbox4788984"
+} 
+      with custom config {}
+      and default (internal) stryker config [object Object]
+12:25:53 (11810) DEBUG JestTestRunner Running jest with --findRelatedTests flag. Set jest.enableFindRelatedTests to false to run all tests on every mutant.
+12:25:53 (11810) DEBUG JestTestRunner Project root is /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp/sandbox4788984
+12:25:53 (11797) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+12:25:53 (11810) TRACE JestLessThan25TestAdapter Invoking Jest with config {"roots":["<rootDir>/src"],"collectCoverageFrom":["**/*.{js,jsx}","!src/index.js","!src/serviceWorker.js"],"setupFiles":["/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-app-polyfill/jsdom.js"],"setupFilesAfterEnv":["<rootDir>/src/setupTests.js"],"testMatch":["<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}","<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"],"testEnvironment":"jest-environment-jsdom-fourteen","transform":{"^.+\\.(js|jsx|ts|tsx)$":"/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/babelTransform.js","^.+\\.css$":"/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/cssTransform.js","^(?!.*\\.(js|jsx|ts|tsx|css|json)$)":"/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/react-scripts/config/jest/fileTransform.js"},"transformIgnorePatterns":["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$","^.+\\.module\\.(css|sass|scss)$"],"modulePaths":[],"moduleNameMapper":{"^react-native$":"react-native-web","^.+\\.module\\.(css|sass|scss)$":"identity-obj-proxy"},"moduleFileExtensions":["web.js","js","web.ts","ts","web.tsx","tsx","json","web.jsx","jsx","node"],"watchPlugins":["jest-watch-typeahead/filename","jest-watch-typeahead/testname"],"rootDir":"/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp/sandbox4788984","collectCoverage":false,"verbose":false,"bail":false,"notify":false,"reporters":[]}
+12:25:59 (11797) DEBUG ChildProcessProxy Disposing of worker process 11810
+12:25:59 (11797) DEBUG ChildProcessProxy Kill 11810
+12:25:59 (11797) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	Verifica NotFound.test.js Verifica se h2 em notFound
+		TestingLibraryElementError: Unable to find an accessible element with the role "heading" and name `/Page requested not found 😭/i`
+
+Here are the accessible roles:
+
+  heading:
+
+  Name "Page requested not found Crying emoji":
+  [36m<h2 />[39m
+
+  --------------------------------------------------
+  img:
+
+  Name "Crying emoji":
+  [36m<span[39m
+    [33maria-label[39m=[32m"Crying emoji"[39m
+    [33mrole[39m=[32m"img"[39m
+  [36m/>[39m
+
+  Name "Pikachu crying because the page requested was not found":
+  [36m<img[39m
+    [33malt[39m=[32m"Pikachu crying because the page requested was not found"[39m
+    [33mclass[39m=[32m"not-found-image"[39m
+    [33msrc[39m=[32m"https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"not-found"[39m
+    [36m>[39m
+      [36m<h2>[39m
+        [0mPage requested not found[0m
+        [36m<span[39m
+          [33maria-label[39m=[32m"Crying emoji"[39m
+          [33mrole[39m=[32m"img"[39m
+        [36m>[39m
+          [0m 😭[0m
+        [36m</span>[39m
+      [36m</h2>[39m
+      [36m<img[39m
+        [33malt[39m=[32m"Pikachu crying because the page requested was not found"[39m
+        [33mclass[39m=[32m"not-found-image"[39m
+        [33msrc[39m=[32m"https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+    at Object.getElementError (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@testing-library/dom/dist/config.js:37:19)
+    at /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+    at /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@testing-library/dom/dist/query-helpers.js:62:17
+    at getByRole (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+    at Object.<anonymous> (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/.stryker-tmp/sandbox4788984/src/tests/NotFound.test.js:10:28)
+    at Object.asyncJestTest (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
+    at /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:43:12
+    at new Promise (<anonymous>)
+    at mapper (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
+    at /home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/jest-jasmine2/build/queueRunner.js:73:41
+12:25:59 (11797) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at async Stryker.runMutationTest (/home/janderson/Projeto-Front-End/sd-012-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
