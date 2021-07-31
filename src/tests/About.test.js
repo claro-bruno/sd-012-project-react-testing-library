@@ -31,9 +31,10 @@ describe('Verificando todo o meu component ABOUT', () => {
   it('Se a página contém a imagem de uma Pokédex', () => {
     renderWithRouter(<About />);
 
-    const img = screen.getByRole('img');
-    expect(img).toBeInTheDocument();
-    expect(img.tagName).toBe('IMG');
-    expect(img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    const image = screen.getByRole('img');
+    expect(image).toBeInTheDocument();
+    expect(image.tagName).toBe('IMG');
+    expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
