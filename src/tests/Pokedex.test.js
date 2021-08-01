@@ -24,8 +24,17 @@ describe('Testa componente Pokedex', () => {
       userEvent.click(butonns);
     });
   });
-  test('Verifica se renderiza o botão "All" ', () => {
+  test('Verifica se funciona o botão "All" ', () => {
     const btnAll = screen.getByRole('button', { name: 'All' });
     expect(btnAll).toBeInTheDocument();
+
+    userEvent.click(btnAll);
+    const pikachu = screen.getByText(/pikachu/i);
+    expect(pikachu).toBeInTheDocument();
+
+    const nextBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+    userEvent.click(nextBtn);
+    const charmander = screen.getByText(/charmander/i);
+    expect(charmander).toBeInTheDocument();
   });
 });
