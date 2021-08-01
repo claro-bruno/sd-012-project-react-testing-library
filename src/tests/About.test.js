@@ -32,9 +32,10 @@ describe('Verificando todo o meu component ABOUT', () => {
     renderWithRouter(<About />);
 
     const image = screen.getByRole('img');
+    const imageSource = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(image).toBeInTheDocument();
     expect(image.tagName).toBe('IMG');
-    expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
-    expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(image).toHaveAttribute('src', imageSource);
+    expect(image.src).toBe(imageSource);
   });
 });
