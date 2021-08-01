@@ -25,10 +25,12 @@ describe('Testa componente Pokedex', () => {
     });
   });
   test('Verifica se funciona o botão "All" ', () => {
-    const btnAll = screen.getByTestId('pokemon-type-button');
+    const btnAll = screen.getAllByTestId('pokemon-type-button');
+    const length = 7;
     expect(btnAll).toBeInTheDocument();
+    expect(btnAll).toHaveLength(length);
 
-    userEvent.click(btnAll);
+    userEvent.click(btnAll[1]);
     const pikachu = screen.getByText(/pikachu/i);
     expect(pikachu).toBeInTheDocument();
 
