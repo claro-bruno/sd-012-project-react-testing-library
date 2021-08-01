@@ -27,16 +27,16 @@ describe('Testa componente Pokedex', () => {
   test('Verifica se funciona o botão "All" ', () => {
     const btnAll = screen.getAllByTestId('pokemon-type-button');
     const length = 7;
-    expect(btnAll).toBeInTheDocument();
-    expect(btnAll).toHaveLength(length);
+    expect(btnAll.length).toBe(length);
 
-    userEvent.click(btnAll[1]);
-    const pikachu = screen.getByText(/pikachu/i);
-    expect(pikachu).toBeInTheDocument();
+    const btnPsychic = screen.getByRole('button', { name: 'Psychic' });
+    userEvent.click(btnPsychic);
+    const alakazan = screen.getByText('Alakazam');
+    expect(alakazan).toBeInTheDocument();
 
     const nextBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     userEvent.click(nextBtn);
-    const charmander = screen.getByText(/charmander/i);
-    expect(charmander).toBeInTheDocument();
+    const mew = screen.getByText('Mew');
+    expect(mew).toBeInTheDocument();
   });
 });
