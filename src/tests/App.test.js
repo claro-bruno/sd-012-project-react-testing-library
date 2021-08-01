@@ -37,7 +37,7 @@ describe('Testando se a aplicação redireciona:', () => {
 
   test('Para About /about', () => {
     const { history } = renderWithRouter(<App />);
-    const getHome = screen.getByRole('link', { name: 'About'});
+    const getHome = screen.getByRole('link', { name: 'About' });
     expect(getHome).toBeInTheDocument();
 
     userEvent.click(getHome);
