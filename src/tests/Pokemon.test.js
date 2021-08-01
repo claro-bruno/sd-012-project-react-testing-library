@@ -26,7 +26,6 @@ describe('Testa todo o meu componente Pokemon', () => {
       const imagePokemon = screen.getByRole('img', { name: `${event.name} sprite` });
       expect(imagePokemon).toBeInTheDocument();
       expect(imagePokemon.src).toBe(imageSource);
-
       userEvent.click(nextbutton);
     });
   });
