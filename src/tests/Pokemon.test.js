@@ -1,14 +1,14 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
-describe('2 - Testando o componente <Pokemon />', () => {
-  it('Teste se tem um card.', () => {
+describe('Testa todo o meu componente Pokemon', () => {
+  it('Testa se renderiza um card', () => {
     renderWithRouter(<App />);
-    const next = screen.getByRole('button', { name: /próximo pokémon/i });
+    const nextbutton = screen.getByRole('button', { name: /próximo pokémon/i });
     pokemons.forEach((event) => {
       const namePokemon = screen.getByTestId('pokemon-name');
       expect(namePokemon).toHaveTextContent(event.name);
@@ -22,15 +22,16 @@ describe('2 - Testando o componente <Pokemon />', () => {
       const txt = `Average weight: ${value} ${measurementUnit}`;
       expect(weigthPokemon).toHaveTextContent(txt);
 
-      const imageSrc = event.image;
+      const imageSource = event.image;
       const imagePokemon = screen.getByRole('img', { name: `${event.name} sprite` });
       expect(imagePokemon).toBeInTheDocument();
-      expect(imagePokemon.src).toBe(imageSrc);
+      expect(imagePokemon.src).toBe(imageSource);
 
-      userEvent.click(next);
+      userEvent.click(nextbutton);
     });
   });
-  test('Testa se contém o link de detalhes', () => {
+
+  it('Testa se contém o link de detalhes', () => {
     const { history } = renderWithRouter(<App />);
     const details = screen.getByRole('link', { name: /More details/i });
     userEvent.click(details);
@@ -38,7 +39,7 @@ describe('2 - Testando o componente <Pokemon />', () => {
     expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
   });
 
-  test('Testa se existe um icone', () => {
+  it('Testa se existe um icone', () => {
     renderWithRouter(<App />);
     const details = screen.getByRole('link', { name: /More details/i });
     userEvent.click(details);
