@@ -28,6 +28,7 @@ describe('Testa componente Pokedex', () => {
     const btnAll = screen.getAllByTestId('pokemon-type-button');
     const length = 7;
     expect(btnAll.length).toBe(length);
+    expect(screen.getByText('All')).toBeInTheDocument();
 
     const btnPsychic = screen.getByRole('button', { name: 'Psychic' });
     userEvent.click(btnPsychic);
