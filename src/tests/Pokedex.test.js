@@ -25,7 +25,7 @@ describe('Testa componente Pokedex', () => {
     });
   });
   test('Verifica se funciona o botão "All" ', () => {
-    const btnAll = screen.getByRole('button', { name: 'All' });
+    const btnAll = screen.getByTestId('pokemon-type-button');
     expect(btnAll).toBeInTheDocument();
 
     userEvent.click(btnAll);
