@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
 
-describe('', () => {
+describe('Test NotFound.js', () => {
   beforeEach(() => {
     renderWithRouter(<NotFound />);
   });
@@ -14,7 +14,7 @@ describe('', () => {
     expect(notFoundMessage).toBeDefined();
   });
 
-  it('tests if there is some image with Pikachu crying because the page requested was not found ', () => {
+  it('tests if there is some image with Pikachu crying ', () => {
     const pikachuImageAlt = 'Pikachu crying because the page requested was not found';
     const cryingPikachuImage = screen.getByRole('img', { name: pikachuImageAlt });
     expect(cryingPikachuImage.src).toStrictEqual('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
