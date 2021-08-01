@@ -1,9 +1,10 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import React from 'react';
 import About from '../components/About';
 import renderWithRouter from './renderWithRouter';
 
-describe('test if the page has info about the pokedex', () => {
-  test('test if the page contains a heading h2 with the text About Pokédex', () => {
+describe('Teste se a página contém as informações sobre a Pokédex', () => {
+  test('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
     const aboutText = getByRole('heading', {
       level: 2,
@@ -11,14 +12,15 @@ describe('test if the page has info about the pokedex', () => {
     });
     expect(aboutText).toBeInTheDocument();
   });
-  test('Test if the page has 2 paragraphs with text about the Pokédex', () => {
+
+  test('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     const { getAllByText } = renderWithRouter(<About />);
 
-    const paragraphsQuant = getAllByText(/Pokémons/);
-    expect(paragraphsQuant.length).toBe(2);
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    const paragraphQuant = getAllByText(/Pokémons/);
+    expect(paragraphQuant.length).toBe(2);
   });
-
-  test('Test if the page has an image of the Pokédex', () => {
+  test('Teste se a página contém uma imagem de Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
     const pokedexImage = getByRole('img');
     expect(pokedexImage).toHaveAttribute(
