@@ -6,9 +6,8 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 const nextPokemon = 'Próximo pokémon';
-const listTypes = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
 
-describe('Testando o componente Pokedex', () => {
+describe('Testando o componente "Pokedex"', () => {
   it('Verifica se existe um h2 com o texto "Encountered pokémons"', () => {
     renderWithRouter(<App />);
     const h2 = screen.getByRole('heading', { level: 2 });
@@ -33,8 +32,9 @@ describe('Testando o componente Pokedex', () => {
 describe('Verifica se existem botões de filtragem no componente Pokedex', () => {
   it('verifica se existe um filtro para cada tipo de pokémon', () => {
     renderWithRouter(<App />);
+    const listTypes = screen.getAllByTestId('pokemon-type-button');
     listTypes.map((typePokemon) => expect(screen.getByRole('button',
-      { name: typePokemon }))
+      { name: typePokemon.innerHTML }))
       .toBeInTheDocument());
   });
   it('Verifica se os filtros estão funcionando', () => {

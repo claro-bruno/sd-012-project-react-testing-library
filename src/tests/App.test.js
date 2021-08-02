@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('Testa o componente App', () => {
+describe('Testa o componente "App"', () => {
   it('Verifica a existência dos botões "Home", "About" e "Favorite"', () => {
     renderWithRouter(<App />);
     const aboutButton = screen.getByText('About');

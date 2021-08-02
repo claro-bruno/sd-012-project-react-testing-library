@@ -6,7 +6,7 @@ import { NotFound } from '../components';
 const URL_IMG = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
 const ALT_IMG = 'Pikachu crying because the page requested was not found';
 
-describe('Testando o componente NotFound', () => {
+describe('Testando o componente "NotFound"', () => {
   it('Verifica se existe um h2 com o texto "Page requested not found"', () => {
     renderWithRouter(<NotFound />);
     const notFoundMsg = screen.getByText(/Page requested not found/i);

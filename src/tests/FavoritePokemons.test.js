@@ -35,7 +35,7 @@ const mockMyFavoritePokemon = [{
   ],
 }];
 
-describe('Testa o componente FavoritePokemons', () => {
+describe('Testa o componente "FavoritePokemons"', () => {
   it('Verifica se é exibida a mensagem "No favorite pokemon found na tela"', () => {
     renderWithRouter(<App />);
     const favoriteButton = screen.getByText('Favorite Pokémons');

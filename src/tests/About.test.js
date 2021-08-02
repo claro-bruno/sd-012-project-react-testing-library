@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
-describe('Testando o componente About', () => {
+describe('Testando o componente "About"', () => {
   it('Verifica se existe um h2 com o texto "About Pokédex"', () => {
     renderWithRouter(<About />);
     const h2 = screen.getByRole('heading', { name: 'About Pokédex' });
