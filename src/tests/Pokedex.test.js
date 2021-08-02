@@ -21,4 +21,12 @@ describe('Requisito 5 - Testa o componenete <Pokedex />', () => {
     const takeH2 = screen.getByRole('heading', { name: /encountered pokémons/i });
     expect(takeH2).toBeInTheDocument();
   });
+
+  it('Testa se há um botão com o texto "Próximo pokémon"', () => {
+    const takeBtn = screen.getByTestId('next-pokemon');
+    const btnText = takeBtn.textContent;
+
+    expect(takeBtn).toBeInTheDocument();
+    expect(btnText).toBe('Próximo pokémon');
+  });
 });
