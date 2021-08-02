@@ -42,7 +42,7 @@ describe('testa a pagina Pokedex', () => {
       expect(pokeType).toBeInTheDocument();
     });
   });
-  it('Testa se botao All esta presente', () => {
+  it('Testa se botao All esta presente na pagina', () => {
     renderWithRouter(<App />);
     const buttonAll = screen.getByRole('button', { name: 'All' });
     userEvent.click(buttonAll);
