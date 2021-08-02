@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Verifica Pokemon.test.js', () => {
-  test('Verificar name, type, weight, image do Pokemon', () => {
+  test('Verifica (name, type, weight, image) do Pokemon', () => {
     renderWithRouter(<App />);
 
     const pokeName = screen.getByTestId('pokemon-name');
@@ -20,7 +20,7 @@ describe('Verifica Pokemon.test.js', () => {
     const imgPoke = screen.getByAltText('Pikachu sprite');
     expect(imgPoke.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
-  test('Verificar link do pokemon', () => {
+  test('Verifica link do pokemon (details, rota)', () => {
     const { history } = renderWithRouter(<App />);
 
     const detailsLink = screen.getByRole('link', { name: /More details/i });
@@ -30,7 +30,7 @@ describe('Verifica Pokemon.test.js', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
-  test('Verificar paga de detalhes do Pokemon', () => {
+  test('Verifica pagina de detalhes do Pokemon se favorito (favorite, details)', () => {
     const { history } = renderWithRouter(<App />);
 
     const detailsLink = screen.getByRole('link', { name: /More details/i });
@@ -40,5 +40,12 @@ describe('Verifica Pokemon.test.js', () => {
     expect(pkxDetail).toBeDefined();
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
+
+    userEvent.click(screen.getByLabelText(/pokémon favoritado?/i));
+    userEvent.click(screen.getByRole('link', { name: /Home/i }));
+
+    const imgStar = screen.getAllByRole('img');
+    expect(imgStar[1].src).toBe('http://localhost/star-icon.svg');
+    expect(imgStar[1].alt).toBe('Pikachu is marked as favorite');
   });
 });
