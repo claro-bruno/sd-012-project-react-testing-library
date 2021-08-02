@@ -48,4 +48,4 @@ describe('Testing About Component, Requirement 2', () => {
     });
 });
 
-// feito com ajuda de victor68
+// código de victor68
