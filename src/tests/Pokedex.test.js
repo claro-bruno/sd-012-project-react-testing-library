@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Verifica App.test.js', () => {
+describe('Verifica Pokedex.test.js', () => {
   test('Verifica se a links na pagina Inicial', () => {
     renderWithRouter(<App />);
 
