@@ -9,7 +9,7 @@ describe('testa a pagina Pokedex', () => {
   it('Testa se existe H2, especifica', () => {
     renderWithRouter(<App />);
     const heading = screen.getByRole('heading', { level: 2 });
-    expect(heading).toBeInTheDocument();
+    expect(heading.innerHTML).toBe('Encountered pokémons');
   });
   it('Testa exibicao espeicficada do botao', () => {
     renderWithRouter(<App />);
