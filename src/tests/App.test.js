@@ -9,6 +9,7 @@ describe('Requisito 1 - Testando o componente <App.js />', () => {
     () => {
       renderWithRouter(<App />);
       const links = screen.getAllByRole('link');
+
       expect(links[0].innerHTML).toBe('Home');
       expect(links[1].innerHTML).toBe('About');
       expect(links[2].innerHTML).toBe('Favorite Pokémons');
@@ -18,8 +19,8 @@ describe('Requisito 1 - Testando o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: 'Home' });
     userEvent.click(home);
-
     const { pathname } = history.location;
+
     expect(pathname).toBe('/');
   });
 
@@ -27,8 +28,8 @@ describe('Requisito 1 - Testando o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: 'About' });
     userEvent.click(home);
-
     const { pathname } = history.location;
+
     expect(pathname).toBe('/about');
   });
 
@@ -36,8 +37,8 @@ describe('Requisito 1 - Testando o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: 'Favorite Pokémons' });
     userEvent.click(home);
-
     const { pathname } = history.location;
+
     expect(pathname).toBe('/favorites');
   });
 
@@ -45,6 +46,7 @@ describe('Requisito 1 - Testando o componente <App.js />', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/teste');
     const notFound = screen.getByText('Page requested not found');
+
     expect(notFound).toBeInTheDocument();
   });
 });
