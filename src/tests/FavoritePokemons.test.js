@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import RenderWithRouter from './RenderWithRouter';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import { FavoritePokemons } from '../components';
 
@@ -37,7 +37,7 @@ const mockMyFavoritePokemon = [{
 
 describe('Testa o componente FavoritePokemons', () => {
   it('Verifica se é exibida a mensagem "No favorite pokemon found na tela"', () => {
-    RenderWithRouter(<App />);
+    renderWithRouter(<App />);
     const favoriteButton = screen.getByText('Favorite Pokémons');
     userEvent.click(favoriteButton);
     const msgNotFound = screen.getByText('No favorite pokemon found');
@@ -45,7 +45,7 @@ describe('Testa o componente FavoritePokemons', () => {
   });
 
   it('Verifica se existem pokemons marcados como favoritos', () => {
-    RenderWithRouter(<FavoritePokemons pokemons={ mockMyFavoritePokemon } />);
+    renderWithRouter(<FavoritePokemons pokemons={ mockMyFavoritePokemon } />);
     const charmander = screen.getByText(mockMyFavoritePokemon[0].name);
     expect(charmander).toBeInTheDocument();
   });
