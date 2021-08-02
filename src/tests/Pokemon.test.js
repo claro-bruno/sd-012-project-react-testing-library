@@ -7,7 +7,7 @@ import App from '../App';
 const URL = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
 
 describe('Testa o componente "Pokemon"', () => {
-  it('testa renderização de um card pokemon', () => {
+  it('Verifica se é renderizado um card com as informações do pokemon', () => {
     renderWithRouter(<App />);
     const pokemonName = screen.getByTestId('pokemon-name');
     const pokemonType = screen.getByTestId('pokemon-type');
@@ -19,7 +19,7 @@ describe('Testa o componente "Pokemon"', () => {
     expect(img).toHaveAttribute('src', URL);
   });
 
-  it('testa se ao clicar no link leva a pagina de detalhes do pokemon', () => {
+  it('Verifica se ao clicar no link leva a pagina de detalhes do pokemon', () => {
     const { history } = renderWithRouter(<App />);
     const pokemonName = screen.getByTestId('pokemon-name');
     const details = screen.getByRole('link', { name: 'More details' });
@@ -29,7 +29,7 @@ describe('Testa o componente "Pokemon"', () => {
     expect(history.location.pathname).toBe('/pokemons/25');
   });
 
-  it('testa se os pokemon favoritos aparecem', () => {
+  it('Verifica se os pokemon favoritos aparecem', () => {
     renderWithRouter(<App />);
     const details = screen.getByRole('link', { name: 'More details' });
     userEvent.click(details);
