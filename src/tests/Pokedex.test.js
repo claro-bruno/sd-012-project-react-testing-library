@@ -15,6 +15,17 @@ describe('Testes no componente renderWithRouter', () => {
     expect(headingH2).toBeInTheDocument();
   });
 
+  it('Se é exibido o próximo Pokémon da lista', () => {
+    const buttonNextPkm = screen.getByRole('button', { name: /Próximo pokémon/i });
+    expect(buttonNextPkm).toBeDefined();
+    const firstPokemon = pokemons[0].name;
+    pokemons.forEach((pokemon) => {
+      expect(screen.getByText(`${pokemon.name}`)).toBeDefined();
+      userEvent.click(buttonNextPkm);
+    });
+    expect(screen.getByText(`${firstPokemon}`)).toBeDefined();
+  });
+
   it('Se é mostrado apenas 1 pokémon por vez', () => {
     const pokemon = screen.getAllByTestId('pokemon-name');
     expect(pokemon.length).toBe(1);
