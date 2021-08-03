@@ -14,18 +14,14 @@ describe('Verificando todo o meu component ABOUT', () => {
 
   it('Se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     renderWithRouter(<About />);
-
-    const texto1 = 'this application simulates a Pokédex, a'
-    + ' digital encyclopedia containing all Pokémons';
-    const paragrafo1 = screen.getByText(texto1);
-    expect(paragrafo1.tagName).toBe('P');
-    expect(paragrafo1).toBeInTheDocument();
-
-    const texto2 = 'One can filter Pokémons by type,'
-    + ' and see more details for each one of them';
-    const paragrafo2 = screen.getByText(texto2);
-    expect(paragrafo2.tagName).toBe('P');
-    expect(paragrafo2).toBeInTheDocument();
+    const paragraph1 = screen.getByText('This application simulates a Pokédex, a'
+    + ' digital encyclopedia containing all Pokémons');
+    const paragraph2 = screen.getByText('One can filter Pokémons by type,'
+    + ' and see more details for each one of them');
+    expect(paragraph1.tagName).toBe('P');
+    expect(paragraph1).toBeInTheDocument();
+    expect(paragraph2.tagName).toBe('P');
+    expect(paragraph2).toBeInTheDocument();
   });
 
   it('Se a página contém a imagem de uma Pokédex', () => {
