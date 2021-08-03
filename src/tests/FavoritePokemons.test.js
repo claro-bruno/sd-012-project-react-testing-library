@@ -2,7 +2,8 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
-import { mockPokemons } from '../helpers/mockPokemons';
+// import { mockPokemons } from '../helpers/mockPokemons';
+import pokemons from '../data';
 
 describe('', () => {
   it('tests if there is some message with "No favorite pokemon found"', () => {
@@ -12,8 +13,9 @@ describe('', () => {
   });
 
   it('tests if all favorite pokemons are rendered ', () => {
-    renderWithRouter(<FavoritePokemons pokemons={ mockPokemons } />);
-    mockPokemons.forEach((pokemon) => {
+    const mockPokemons = jest.fn(() => pokemons);
+    renderWithRouter(<FavoritePokemons pokemons={ mockPokemons() } />);
+    mockPokemons().forEach((pokemon) => {
       const currentPokemon = screen.getByText(pokemon.name);
       expect(currentPokemon).toBeDefined();
     });
