@@ -1,75 +1,65 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import App from '../App';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 
-describe('Testes do componente App.js', () => {
-  describe('Testa o caminho da página inicial', () => {
-    it('Teste se a página principal é renderizada ao carregar no caminho "/".', () => {
-      const { history } = renderWithRouter(<App />);
-      expect(history.location.pathname).toBe('/');
-    });
+import App from '../App';
+
+describe('Teste do componente App', () => {
+  test('Verifica se o componente possúi três links de navegação', () => {
+    renderWithRouter(<App />);
+
+    const linkToHome = screen.getByRole('link', { name: /Home/i });
+    const linkToAbout = screen.getByRole('link', { name: /About/i });
+    const linkToFavorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
+
+    expect(linkToHome).toBeInTheDocument();
+    expect(linkToAbout).toBeInTheDocument();
+    expect(linkToFavorite).toBeInTheDocument();
   });
 
-  describe('Testa se os links do topo da aplicação', () => {
-    const { getByRole } = renderWithRouter(<App />);
-    const navigation = getByRole('navigation');
+  test('Verifica o redirecionamento para a página Home', () => {
+    const { history } = renderWithRouter(<App />);
 
-    it('Testa se o topo da aplicação contém um conjunto fixo de links.', () => {
-      const totalOfLinks = 3;
-      expect(navigation.childNodes.length).toBe(totalOfLinks);
-    });
+    const linkToHome = screen.getByRole('link', { name: /Home/i });
+    userEvent.click(linkToHome);
 
-    it('Testa se o primeiro link possui o texto "Home"', () => {
-      expect(navigation.childNodes[0].textContent).toBe('Home');
-    });
+    const { pathname } = history.location;
 
-    it('Testa se o segundo link possui o texto "About"', () => {
-      expect(navigation.childNodes[1].textContent).toBe('About');
-    });
-
-    it('Testa se o terceiro link possui o texto "Favorite Pokémons"', () => {
-      expect(navigation.childNodes[2].textContent).toBe('Favorite Pokémons');
-    });
+    expect(pathname).toBe('/');
   });
 
-  describe('Testa o redirecionamento dos links', () => {
-    it('Testa se ao clicar no link "Home" é redirecionado para o caminho "/"',
-      () => {
-        const { getByText, history } = renderWithRouter(<App />);
-        const home = getByText(/Home/i);
-        fireEvent.click(home);
-        const { pathname } = history.location;
-        expect(pathname).toBe('/');
-        expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
-      });
+  test('Verifica o redirecionamento para a página About', () => {
+    const { history } = renderWithRouter(<App />);
 
-    it('Testa se ao clicar no link "About" é redirecionado para o caminho "/about"',
-      () => {
-        const { getByText, history } = renderWithRouter(<App />);
-        const about = getByText(/About/i);
-        fireEvent.click(about);
-        const { pathname } = history.location;
-        expect(pathname).toBe('/about');
-        expect(getByText(/About Pokédex/i)).toBeInTheDocument();
-      });
+    const linkToAbout = screen.getByRole('link', { name: /About/i });
+    userEvent.click(linkToAbout);
 
-    it('Testa se ao clicar no link "Favorite Pokémons" é redirecionado para "/favorites"',
-      () => {
-        const { getByText, history } = renderWithRouter(<App />);
-        const favouritePokemons = getByText(/Favorite Pokémons/i);
-        fireEvent.click(favouritePokemons);
-        const { pathname } = history.location;
-        expect(pathname).toBe('/favorites');
-        expect(getByText(/Favorite pokémons/)).toBeInTheDocument();
-      });
+    const { pathname } = history.location;
 
-    it('Testa se ao entrar em uma página inexistente é redirecionado para "not found"',
-      () => {
-        const { getByText, history } = renderWithRouter(<App />);
-        history.push('/page/does-not-exist/');
-        const noMatch = getByText(/Page requested not found/i);
-        expect(noMatch).toBeInTheDocument();
-      });
+    expect(pathname).toBe('/about');
+  });
+
+  test('Verifica o redirecionamento para a página Favorite Pokémons', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const linkToFavorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    userEvent.click(linkToFavorite);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/favorites');
+  });
+
+  test('Verifica o redirecionamento para a página Not Found', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/not-found');
+
+    const notFoundPage = screen.getByRole('heading', {
+      name: /Page requested not found/i,
+    });
+
+    expect(notFoundPage).toBeInTheDocument();
   });
 });

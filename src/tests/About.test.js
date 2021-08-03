@@ -1,24 +1,36 @@
 import React from 'react';
-import About from '../components/About';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
+import About from '../components/About';
 
-describe('Testes do componente "About".', () => {
-  it('Testa se a página contém um heading h2 com o texto About Pokédex.', () => {
-    const { getByText } = renderWithRouter(<About />);
-    const heading = getByText(/About Pokédex/i);
-    expect(heading.localName).toBe('h2');
+describe('Teste do componente About', () => {
+  test('Verifica se o componente possúi um h2 com o texto: About Pokédex', () => {
+    renderWithRouter(<About />);
+
+    const text = screen.getByRole('heading', { name: /About Pokédex/i });
+
+    expect(text).toBeInTheDocument();
   });
 
-  it('Testa se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByText } = renderWithRouter(<About />);
-    const paragraph = getAllByText(/Pokémons/i);
-    expect(paragraph.length).toBe(2);
+  test('Verifica se o componente possúi dois parágrafos sobre a Pokédex', () => {
+    renderWithRouter(<About />);
+
+    const text1 = 'This application simulates a Pokédex';
+    const text2 = 'One can filter Pokémons by type';
+
+    const paragraph1 = screen.getByText(text1, { exact: false });
+    expect(paragraph1).toBeInTheDocument();
+
+    const paragraph2 = screen.getByText(text2, { exact: false });
+    expect(paragraph2).toBeInTheDocument();
   });
 
-  it('Testa se a página contém a imagem de uma Pokédex.', () => {
-    const { getByRole } = renderWithRouter(<About />);
-    const image = getByRole('img');
-    const imagePath = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(image.src).toBe(imagePath);
+  test('Verifica se o componente possui a imagem da Pokédex', () => {
+    renderWithRouter(<About />);
+
+    const imageLink = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+
+    const image = screen.getByRole('img');
+    expect(image).toHaveAttribute('src', imageLink);
   });
 });
