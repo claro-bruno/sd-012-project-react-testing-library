@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Pokedex from '../components/Pokedex';
 import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
@@ -31,8 +32,13 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />', () => {
   it('2. Teste se é exibido o próximo Pokémon da lista quando o botão Próximo é clicado.',
     () => {
       const button = screen.getByText('Próximo pokémon');
-
       expect(button).toBeInTheDocument();
+
+      pokemons.forEach((event) => {
+        const pokemon = screen.getByTestId('pokemon-name');
+        expect(pokemon.textContent).toBe(event.name);
+        userEvent.click(button);
+      });
     });
 
   it('3. Teste se é mostrado apenas um Pokémon por vez.', () => {
@@ -41,15 +47,25 @@ describe('Requisito 5 - Teste o componente <Pokedex.js />', () => {
     expect(pokemonsName.length).toBe(1);
   });
 
-  it('4. Teste se a Pokédex tem os botões de filtro.', () => {
+  it('4a. Teste se a Pokédex tem os botões de filtro.', () => {
     const buttons = screen.getAllByTestId('pokemon-type-button');
+    userEvent.click(buttons[0]);
 
-    expect(buttons.length).toBeGreaterThan(0);
+    expect(screen.getByTestId('next-pokemon')).toBeDisabled();
+  });
+
+  it('4b. Teste se contém um botão com o tipo Fire', () => {
+    const button = screen.getByText('Fire');
+
+    expect(button).toBeInTheDocument();
   });
 
   it('5. Teste se a Pokédex contém um botão para resetar o filtro.', () => {
     const button = screen.getByText('All');
-
+    userEvent.click(button);
     expect(button).toBeInTheDocument();
+
+    const pokemon = screen.getByText('Pikachu');
+    expect(pokemon.textContent).toBe('Pikachu');
   });
 });
