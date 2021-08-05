@@ -5,8 +5,8 @@ import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
 
-describe('Testa todo o meu componente Pokemon', () => {
-    it('Testa se renderiza um card', () => {
+describe('Testa o componente Pokemon', () => {
+    it('Testa se existe um card com detalhes do pokemon', () => {
       renderWithRouter(<App />);
       const nextbutton = screen.getByRole('button', { name: /próximo pokémon/i });
       pokemons.forEach((event) => {
@@ -28,14 +28,14 @@ describe('Testa todo o meu componente Pokemon', () => {
       });
     });
 
-    it('Testa se contém o link de detalhes', () => {
+    it('Testa o link de navegação de detalhes', () => {
       const { history } = renderWithRouter(<App />);
       const details = screen.getByRole('link', { name: /More details/i });
       userEvent.click(details);
       const { location: { pathname } } = history;
       expect(pathname).toBe(`/pokemons/${pokemons[0].id}`);
     });
-    it('Testa se existe um icone', () => {
+    it('Testa icone de estrela dos favoritados', () => {
       renderWithRouter(<App />);
       const details = screen.getByRole('link', { name: /More details/i });
       userEvent.click(details);
