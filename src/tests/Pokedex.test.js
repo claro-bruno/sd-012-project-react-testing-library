@@ -3,13 +3,14 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
+const DATATESTID = 'pokemon-name';
 describe('Testa componente <Pokedex />', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
   });
   test('Teste se página contém um heading h2 com texto Encountered Pokémons', () => {
     const headingh2 = screen.getByRole('heading',
-      { name: /Encountered Pokémons/i level: 2 });
+      { name: /Encountered Pokémons/i, level: 2 });
     expect(headingh2).toBeInTheDocument();
   });
 
@@ -20,7 +21,7 @@ describe('Testa componente <Pokedex />', () => {
     expect(button).toBeInTheDocument();
   });
   test('Teste se é mostrado apenas um Pokémon por vez', () => {
-    expect(screen.getAllByTestId('pokemon-name').length).toBe(1);
+    expect(screen.getAllByTestId(DATATESTID).length).toBe(1);
   });
 
   test('Testa se a Pokedex tem os botões de filtro', () => {
@@ -35,8 +36,8 @@ describe('Testa componente <Pokedex />', () => {
   test('Testa se existe um botão para resetar o filtro', () => {
     expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Poison' }));
-    expect(screen.getByTestId('pokemon-name')).toHaveTextContent('Ekans');
+    expect(screen.getByTestId(DATATESTID)).toHaveTextContent('Ekans');
     fireEvent.click(screen.getByRole('button', { name: 'All' }));
-    expect(screen.getByTestId('pokemon-name')).toHaveTextContent('Pikachu');
+    expect(screen.getByTestId(DATATESTID)).toHaveTextContent('Pikachu');
   });
 });
