@@ -9,7 +9,7 @@ describe('Testa componente <Pokedex />', () => {
   });
   test('Teste se página contém um heading h2 com texto Encountered Pokémons', () => {
     const headingh2 = screen.getByRole('heading',
-      { name: /Encountered Pokémons/i, level: 2 });
+      { name: /Encountered Pokémons/i level: 2 });
     expect(headingh2).toBeInTheDocument();
   });
 
