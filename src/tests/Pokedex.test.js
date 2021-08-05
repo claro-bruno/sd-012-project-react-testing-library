@@ -1,13 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import Pokedex from '../components';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './RenderWithRouter';
 import App from '../App';
 
-// afterEach(() => {
-//   cleanup();
-// });
 const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
 
 describe('Testando o componente "Pokedex"', () => {
@@ -17,6 +13,7 @@ describe('Testando o componente "Pokedex"', () => {
     expect(heading).toBeDefined();
   });
 });
+
 describe('Testando botão "Próximo pokémon"', () => {
   it('Testando se o botão contém o texto "Próximo pokémon"', () => {
     renderWithRouter(<App />);

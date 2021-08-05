@@ -6,8 +6,6 @@ import { Pokemon } from '../components';
 import data from '../data';
 
 describe('Testa o componente "Pokemon"', () => {
-  // const path = '/pokemons/25';
-  // afterEach(() => jest.clearAllMocks());
   const pikachu = data[0];
 
   it('Testa se é renderizado um card com informações do pokémon', () => {
