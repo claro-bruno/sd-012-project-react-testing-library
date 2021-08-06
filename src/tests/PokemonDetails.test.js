@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { screen, fireEvent } from '@testing-library/react';
+=======
+import { screen } from '@testing-library/react';
+>>>>>>> 6396eed23e004a89987776dda171b239d68e71d5
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
@@ -7,11 +11,18 @@ import App from '../App';
 const resume = 'This intelligent Pokémon roasts hard berries with electricity to make';
 const URL1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
 const URL2 = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
+<<<<<<< HEAD
 const detaiils = 'More details';
 const testId = 'pokemon-name';
 
 describe('Testa componente PokemonDetails', () => {
   it('Testa se a pagina mostra infomaçoes detalhadas', () => {
+=======
+const detaiils = 'More details'; const testId = 'pokemon-name';
+
+describe('Testa componente PokemonDetails', () => {
+  test('Testa se a pagina mostra infomaçoes detalhadas', () => {
+>>>>>>> 6396eed23e004a89987776dda171b239d68e71d5
     renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: detaiils });
     userEvent.click(detailsLink);
@@ -23,7 +34,7 @@ describe('Testa componente PokemonDetails', () => {
     expect(pokemonDetails).toHaveTextContent(resume);
   });
 
-  it('Testa se existe na pagina seção com os mapas', () => {
+  test('Testa se existe na pagina seção com os mapas', () => {
     renderWithRouter(<App />);
     const detailsLink = screen.getByRole('link', { name: detaiils });
     userEvent.click(detailsLink);
@@ -35,21 +46,17 @@ describe('Testa componente PokemonDetails', () => {
     expect(locations[1]).toHaveAttribute('src', URL2);
   });
 
-  it('Testa se usuario pode favoritar atraves da pagina de detalhes', () => {
+  test('Testa se usuario pode favoritar atraves da pagina de detalhes', () => {
     renderWithRouter(<App />);
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
-    const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
-    userEvent.click(moreDetails);
-    const favoriteButton = screen.getByLabelText('Pokémon favoritado?');
-    expect(favoriteButton).toHaveAttribute('type', 'checkbox');
-    userEvent.click(favoriteButton);
-    expect(favoriteButton).toBeChecked();
-    userEvent.click(favoriteLink);
-    const favorites = screen.getAllByTestId(testId);
-    expect(favorites.length).toBe(1);
-    userEvent.click(moreDetails);
-    expect(favoriteButton).toBeChecked();
-    fireEvent.click(favoriteButton);
-    expect(favoriteButton).not.toBeChecked();
+    const detailsLink = screen.getByRole('link', { name: /more details/i });
+    userEvent.click(detailsLink);
+
+    userEvent.click(screen.getByLabelText(/pokémon favoritado?/i));
+
+    const favoriteIcon = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoriteIcon).toBeInTheDocument();
+
+    userEvent.click(screen.getByLabelText(/pokémon favoritado?/i));
+    expect(favoriteIcon).not.toBeInTheDocument();
   });
 });
