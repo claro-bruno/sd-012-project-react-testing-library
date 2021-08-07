@@ -35,11 +35,11 @@ describe('Testa componente Pokemon', () => {
   });
 
   test('Testa componente pokemon com pokemon favoritado', () => {
-    const { name } = pokemons[0];
     renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
       isFavorite="true"
     />);
+    const { name } = pokemons[0];
     const starImage = screen.getByAltText(`${name} is marked as favorite`);
     expect(starImage).toBeInTheDocument();
     expect(starImage.src).toBe('/star-icon.svg');
