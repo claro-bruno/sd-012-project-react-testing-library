@@ -19,13 +19,3 @@ describe('Requisito 4 -  Testando o componente <NotFound.js />', () => {
     expect(src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
-
-// describe('', () => {
-//   it('', () => {
-
-//   });
-
-//   it('', () => {
-
-//   });
-// });
