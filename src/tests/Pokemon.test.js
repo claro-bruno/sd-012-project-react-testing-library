@@ -42,6 +42,6 @@ describe('Testa componente Pokemon', () => {
     const { name } = pokemons[0];
     const starImage = screen.getByAltText(`${name} is marked as favorite`);
     expect(starImage).toBeInTheDocument();
-    expect(starImage.src).toBe('/star-icon.svg');
+    expect(starImage.src).toBe('http://localhost/star-icon.svg');
   });
 });
