@@ -1,6 +1,8 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
+import App from '../App';
+import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('Testa o componente FavoritePokemons.js', () => {
   beforeEach(() => {
@@ -11,5 +13,20 @@ describe('Testa o componente FavoritePokemons.js', () => {
   + ' se a pessoa não tiver pokémons favoritos.', () => {
     const noFavoritePokemon = screen.getByText('No favorite pokemon found');
     expect(noFavoritePokemon).toBeInTheDocument();
+  });
+
+  it('Teste se são exibidos os Pokémons Favoritados', () => {
+    const { history } = renderWithRouter(<App />);
+    const btnPokemonDetails = screen.getByRole('link', { name: 'More details' });
+    fireEvent.click(btnPokemonDetails);
+    expect(history.location.pathname).toBe('/pokemons/25');
+    const favoritePokemonCheck = screen.getByLabelText('Pokémon favoritado?',
+      { selector: 'input' });
+    fireEvent.click(favoritePokemonCheck);
+    const favoritePokemonsLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    fireEvent.click(favoritePokemonsLink);
+    expect(history.location.pathname).toBe('/favorites');
+    const favoritePokemonName = screen.getByTestId('pokemon-name');
+    expect(favoritePokemonName).toHaveTextContent('Pikachu');
   });
 });
