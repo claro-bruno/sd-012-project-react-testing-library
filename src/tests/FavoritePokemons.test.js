@@ -11,7 +11,7 @@ describe('', () => {
     const message = screen.getByText('No favorite pokemon found');
     expect(message).toBeInTheDocument();
   });
-  it('Teste se página mostra a imagem do Pikachu', () => {
+  it('Testa se é exibido os cards de pokémons favoritados', () => {
     renderWithRouter(<App />);
     const detUrl = screen.getByText('More details');
     userEvent.click(detUrl);
