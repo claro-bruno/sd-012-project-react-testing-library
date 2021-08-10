@@ -56,4 +56,11 @@ describe('Testa o componente Pokedex', () => {
       (button, index) => expect(button.textContent).toBe(types[index]),
     );
   });
+
+  it('Testa se, selecionando um tipo, somente pokemons desse tipo são exibidos', () => {
+    const electricButtonType = screen.getByRole('button', { name: 'Electric' });
+    fireEvent.click(electricButtonType);
+    const pokemonType = screen.getByTestId('pokemon-type');
+    expect(pokemonType.textContent).toBe('Electric');
+  });
 });
