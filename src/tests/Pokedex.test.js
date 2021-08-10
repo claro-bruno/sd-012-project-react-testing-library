@@ -55,6 +55,7 @@ describe('Testa o componente Pokedex', () => {
     buttonsOnScreen.forEach(
       (button, index) => expect(button.textContent).toBe(types[index]),
     );
+    expect(buttonsOnScreen).toHaveLength(types.length);
   });
 
   it('Testa se, selecionando um tipo, somente pokemons desse tipo são exibidos', () => {
@@ -62,5 +63,12 @@ describe('Testa o componente Pokedex', () => {
     fireEvent.click(electricButtonType);
     const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType.textContent).toBe('Electric');
+  });
+
+  it('Testa se o texto do botão corresponde ao texto do tipo', () => {
+    const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
+    buttonsOnScreen.forEach(
+      (button, index) => expect(button.textContent).toBe(types[index]),
+    );
   });
 });
