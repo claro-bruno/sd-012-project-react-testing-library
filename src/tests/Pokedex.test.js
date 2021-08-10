@@ -2,6 +2,7 @@ import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
+import pokemons from '../data';
 
 describe('Testa o componente Pokedex', () => {
   beforeEach(() => {
@@ -31,18 +32,7 @@ describe('Testa o componente Pokedex', () => {
     expect(nextPokemon).not.toHaveTextContent('Pikachu');
   });
 
-  // it('Testa se ele retorna para o primeiro pokemon caso seja o ultimo', () => {
-  //   const pokemonName = 'pokemon-name';
-  //   const firstPokemon = screen.getByTestId(pokemonName);
-  //   expect(firstPokemon).toHaveTextContent('Pikachu');
-  //   const nextPokemonBtn = screen.getByRole('button', { name: btnName });
-  //   fireEvent.click(nextPokemonBtn);
-  //   const nextPokemon = screen.getByTestId(pokemonName);
-  //   expect(nextPokemon).toHaveTextContent('Charmander');
-  //   console.log(firstPokemon, nextPokemon);
-  //   console.log(firstPokemon !== nextPokemon);
-  //   while (firstPokemon !== nextPokemon) {
-  //   fireEvent.click(nextPokemonBtn);
-  //   }
-  // });
+  it('Testa se ele retorna para o primeiro pokemon caso seja o ultimo', () => {
+    
+  });
 });
