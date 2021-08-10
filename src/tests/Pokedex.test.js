@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 
@@ -17,5 +17,11 @@ describe('Testa o componente Pokedex', () => {
   it('Testa se o botão para ir para o próximo pokemon contém o texto', () => {
     const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     expect(nextPokemonBtn).toBeInTheDocument();
+  });
+
+  it('Testa se os próximos pokemons da lista são mostrados ao clicar no botão', () => {
+    const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+    fireEvent.click(nextPokemonBtn);
+    console.log(nextPokemonBtn);
   });
 });
