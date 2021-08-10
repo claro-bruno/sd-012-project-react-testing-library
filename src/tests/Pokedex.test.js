@@ -86,15 +86,18 @@ describe('Testa o componente Pokedex', () => {
     const buttonAll = screen.getByRole('button', { name: 'All' });
     expect(buttonAll).toHaveTextContent('All');
   });
+});
 
-  it('Quando clicar no botão All, a pokedex exibe todos os pokemons', () => {
-    const buttonAll = screen.getByRole('button', { name: 'All' });
-    fireEvent.click(buttonAll);
-    const nextPokemonBtn = screen.getByRole('button', { name: btnName });
-    pokemons.forEach((pokemon) => {
-      const actualPokemon = screen.getByTestId(pokemonName);
-      expect(actualPokemon).toHaveTextContent(pokemon.name);
-      fireEvent.click(nextPokemonBtn);
-    });
+// Separei dos demais testes pois estava quebrando ao renderizar com o Router dentro do contexto do próprio teste.
+it('Quando clicar no botão All, a pokedex exibe todos os pokemons', () => {
+  const { history } = renderWithRouter(<App />);
+  expect(history.location.pathname).toBe('/');
+  const buttonAll = screen.getByRole('button', { name: 'All' });
+  fireEvent.click(buttonAll);
+  const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+  pokemons.forEach((pokemon) => {
+    const actualPokemon = screen.getByTestId('pokemon-name');
+    expect(actualPokemon).toHaveTextContent(pokemon.name);
+    fireEvent.click(nextPokemonBtn);
   });
 });
