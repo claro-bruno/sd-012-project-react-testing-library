@@ -1,13 +1,21 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
+import renderWithRouter from './renderWithRouter';
+import data from '../data';
 
-describe('Teste o componente FavoritePokemons', () => {
-  test('Testando se nao houver Pokemon Favorito', () => {
+describe('Testando o componente FavoritePokemons', () => {
+  test('Testa se nao houver Pokemon Favorito', () => {
     render(<FavoritePokemons />);
     const messageDisplayed = screen.getByText('No favorite pokemon found');
     expect(messageDisplayed).toBeInTheDocument();
   });
-  // test('Testando se é exibido exibido todos os cards de pokémons favoritados', () => {
-  //  });
+  test('Testando se é exibido dois pokémons favoritos', () => {
+    renderWithRouter(<FavoritePokemons pokemons={ data } />);
+    // ideia do forEach vi no repositorio do Thales
+    data.forEach(({ name }) => {
+      const pokemon = screen.getByText(name);
+      expect(pokemon).toBeInTheDocument();
+    });
+  });
 });
