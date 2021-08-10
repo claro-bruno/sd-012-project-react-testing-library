@@ -48,8 +48,8 @@ describe('Analise do componente app.js', () => {
   it('Verifica se é redirecionado para a página Not Found', () => {
     const { history } = renderWithRouter(<App />);
 
-    history.push('/pagina/que-nao-existe/');
-    const noMatch = screen.getByText('Not Found');
+    history.push('/not-found');
+    const noMatch = screen.getByText('Page requested not found');
     expect(noMatch).toBeInTheDocument();
   });
 });
