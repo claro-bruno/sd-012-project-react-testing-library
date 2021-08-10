@@ -81,4 +81,9 @@ describe('Testa o componente Pokedex', () => {
       expect(buttonAll).toBeInTheDocument();
     });
   });
+
+  it('Testa se o botão All tem o texto', () => {
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    expect(buttonAll).toHaveTextContent('All');
+  });
 });
