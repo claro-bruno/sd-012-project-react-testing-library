@@ -10,7 +10,7 @@ describe('Testando o componente FavoritePokemons', () => {
     const messageDisplayed = screen.getByText('No favorite pokemon found');
     expect(messageDisplayed).toBeInTheDocument();
   });
-  test('Testando se é exibido dois pokémons favoritos', () => {
+  test('Testa se é exibido os pokémons favoritos', () => {
     renderWithRouter(<FavoritePokemons pokemons={ data } />);
     // ideia do forEach vi no repositorio do Thales
     data.forEach(({ name }) => {
