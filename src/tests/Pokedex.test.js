@@ -24,6 +24,7 @@ describe('Testa o componente Pokedex', () => {
     expect(firstPokemon).toHaveTextContent('Pikachu');
     const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     fireEvent.click(nextPokemonBtn);
-    console.log(nextPokemonBtn);
+    const nextPokemon = screen.getByTestId('pokemon-name');
+    expect(nextPokemon).not.toHaveTextContent('Pikachu');
   });
 });
