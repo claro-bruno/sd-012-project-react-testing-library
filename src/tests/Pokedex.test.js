@@ -8,6 +8,8 @@ describe('Testa o componente Pokedex', () => {
     renderWithRouter(<App />);
   });
 
+  const btnName = 'Próximo pokémon';
+
   it('Testa se a página renderiza um h2 com o texto', () => {
     const headingPokedex = screen.getByRole('heading',
       { level: 2, name: 'Encountered pokémons' });
@@ -15,7 +17,7 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se o botão para ir para o próximo pokemon contém o texto', () => {
-    const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+    const nextPokemonBtn = screen.getByRole('button', { name: btnName });
     expect(nextPokemonBtn).toBeInTheDocument();
   });
 
@@ -23,15 +25,24 @@ describe('Testa o componente Pokedex', () => {
     const pokemonName = 'pokemon-name';
     const firstPokemon = screen.getByTestId(pokemonName);
     expect(firstPokemon).toHaveTextContent('Pikachu');
-    const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+    const nextPokemonBtn = screen.getByRole('button', { name: btnName });
     fireEvent.click(nextPokemonBtn);
     const nextPokemon = screen.getByTestId(pokemonName);
     expect(nextPokemon).not.toHaveTextContent('Pikachu');
   });
 
-  it('Testa se ele retorna para o primeiro pokemon caso seja o ultimo', () => {
-    const pokemonName = 'pokemon-name';
-    const firstPokemon = screen.getByTestId(pokemonName);
-    expect(firstPokemon).toHaveTextContent('Pikachu');
-  });
+  // it('Testa se ele retorna para o primeiro pokemon caso seja o ultimo', () => {
+  //   const pokemonName = 'pokemon-name';
+  //   const firstPokemon = screen.getByTestId(pokemonName);
+  //   expect(firstPokemon).toHaveTextContent('Pikachu');
+  //   const nextPokemonBtn = screen.getByRole('button', { name: btnName });
+  //   fireEvent.click(nextPokemonBtn);
+  //   const nextPokemon = screen.getByTestId(pokemonName);
+  //   expect(nextPokemon).toHaveTextContent('Charmander');
+  //   console.log(firstPokemon, nextPokemon);
+  //   console.log(firstPokemon !== nextPokemon);
+  //   while (firstPokemon !== nextPokemon) {
+  //   fireEvent.click(nextPokemonBtn);
+  //   }
+  // });
 });
