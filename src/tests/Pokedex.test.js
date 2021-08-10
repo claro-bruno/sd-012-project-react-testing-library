@@ -86,4 +86,15 @@ describe('Testa o componente Pokedex', () => {
     const buttonAll = screen.getByRole('button', { name: 'All' });
     expect(buttonAll).toHaveTextContent('All');
   });
+
+  it('Quando clicar no botão All, a pokedex exibe todos os pokemons', () => {
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    fireEvent.click(buttonAll);
+    const nextPokemonBtn = screen.getByRole('button', { name: btnName });
+    pokemons.forEach((pokemon) => {
+      const actualPokemon = screen.getByTestId(pokemonName);
+      expect(actualPokemon).toHaveTextContent(pokemon.name);
+      fireEvent.click(nextPokemonBtn);
+    });
+  });
 });
