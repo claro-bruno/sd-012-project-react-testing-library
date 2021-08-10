@@ -57,4 +57,5 @@ describe('Testes do componente App.js', () => {
 
     expect(notFound).toBeInTheDocument();
   });
+  // TestePush
 });
