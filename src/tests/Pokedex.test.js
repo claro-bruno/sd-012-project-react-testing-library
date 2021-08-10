@@ -10,6 +10,7 @@ describe('Testa o componente Pokedex', () => {
   });
 
   const btnName = 'Próximo pokémon';
+  const pokemonName = 'pokemon-name';
 
   it('Testa se a página renderiza um h2 com o texto', () => {
     const headingPokedex = screen.getByRole('heading',
@@ -22,17 +23,27 @@ describe('Testa o componente Pokedex', () => {
     expect(nextPokemonBtn).toBeInTheDocument();
   });
 
-  it('Testa se os próximos pokemons da lista são mostrados ao clicar no botão', () => {
-    const pokemonName = 'pokemon-name';
+  // it('Testa se os próximos pokemons da lista são mostrados ao clicar no botão', () => {
+  //   const firstPokemon = screen.getByTestId(pokemonName);
+  //   expect(firstPokemon).toHaveTextContent('Pikachu');
+  //   const nextPokemonBtn = screen.getByRole('button', { name: btnName });
+  //   fireEvent.click(nextPokemonBtn);
+  //   const nextPokemon = screen.getByTestId(pokemonName);
+  //   expect(nextPokemon).not.toHaveTextContent('Pikachu');
+  // });
+  // Testa se ao clicar no botão ele exibe o próximo pokemon da lista e se o próximo for o último, ao clicar novamente ele retorna para o primeiro.
+  it('Testa função do botão de próximo pokemon', () => {
     const firstPokemon = screen.getByTestId(pokemonName);
-    expect(firstPokemon).toHaveTextContent('Pikachu');
     const nextPokemonBtn = screen.getByRole('button', { name: btnName });
-    fireEvent.click(nextPokemonBtn);
-    const nextPokemon = screen.getByTestId(pokemonName);
-    expect(nextPokemon).not.toHaveTextContent('Pikachu');
-  });
-
-  it('Testa se ele retorna para o primeiro pokemon caso seja o ultimo', () => {
-    
+    pokemons.forEach((_pokemon, index) => {
+      if (index < pokemons.length - 1) {
+        fireEvent.click(nextPokemonBtn);
+        const thisPokemon = screen.getByTestId(pokemonName);
+        expect(thisPokemon).toHaveTextContent(pokemons[index + 1].name);
+      } else {
+        fireEvent.click(nextPokemonBtn);
+        expect(firstPokemon).toHaveTextContent(pokemons[0].name);
+      }
+    });
   });
 });
