@@ -31,7 +31,7 @@ describe('Testando o componente Pokemon.js.', () => {
     expect(pathname).toBe('/pokemons/25');
   });
 
-  it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+  it('Teste se existe um ícone de estrela nos Pokémons favoritados ', () => {
     renderWithRouter(<App />);
     userEvent.click(screen.getByText(/More details/));
     userEvent.click(screen.getByRole('checkbox'));
