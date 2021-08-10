@@ -20,16 +20,18 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se os próximos pokemons da lista são mostrados ao clicar no botão', () => {
-    const firstPokemon = screen.getByTestId('pokemon-name');
+    const pokemonName = 'pokemon-name';
+    const firstPokemon = screen.getByTestId(pokemonName);
     expect(firstPokemon).toHaveTextContent('Pikachu');
     const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     fireEvent.click(nextPokemonBtn);
-    const nextPokemon = screen.getByTestId('pokemon-name');
+    const nextPokemon = screen.getByTestId(pokemonName);
     expect(nextPokemon).not.toHaveTextContent('Pikachu');
   });
 
   it('Testa se ele retorna para o primeiro pokemon caso seja o ultimo', () => {
-    const firstPokemon = screen.getByTestId('pokemon-name');
+    const pokemonName = 'pokemon-name';
+    const firstPokemon = screen.getByTestId(pokemonName);
     expect(firstPokemon).toHaveTextContent('Pikachu');
   });
 });
