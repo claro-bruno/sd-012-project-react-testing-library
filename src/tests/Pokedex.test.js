@@ -11,6 +11,7 @@ describe('Testa o componente Pokedex', () => {
 
   const btnName = 'Próximo pokémon';
   const pokemonName = 'pokemon-name';
+  const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
 
   it('Testa se a página renderiza um h2 com o texto', () => {
     const headingPokedex = screen.getByRole('heading',
@@ -42,5 +43,10 @@ describe('Testa o componente Pokedex', () => {
   it('Testa se é mostrado somente um pokémon por vez', () => {
     const pokemonOnScreen = screen.getAllByTestId(pokemonName);
     expect(pokemonOnScreen).toHaveLength(1);
+  });
+
+  it('Testa se a pokédex tem os botões de filtro', () => {
+    const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
+    expect(buttonsOnScreen).toHaveLength(types.length);
   });
 });
