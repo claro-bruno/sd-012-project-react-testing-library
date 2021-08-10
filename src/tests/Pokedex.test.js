@@ -16,7 +16,7 @@ describe('Testando o componente Pokedex', () => {
     expect(checkH2Pokedex).toBeInTheDocument();
   });
 
-  test('Testa se é exibido o próximo Pokémon quando o botão "próximo Pokémon" é clicado', () => {
+  test('Testa se é exibido o próximo Pokémon quando o botão "próximo" é clicado', () => {
     const checkBtPokedex = screen.getByRole('button', { name: /Próximo pokémon/i });
     expect(checkBtPokedex).toBeInTheDocument();
     const pokemon = 'pokemon-name';
@@ -34,24 +34,24 @@ describe('Testando o componente Pokedex', () => {
     expect(onePokemon.length).toBe(1);
     expect(onePokemon[0]).toBeInTheDocument();
   });
-mudar variavel filter
+
   test('Testa se existe um botao para cada tipo de Pokemon', () => {
-    const filter = screen.getAllByTestId('pokemon-type-button');
-    expect(filter[0]).toHaveTextContent('Electric');
-    expect(filter[1]).toHaveTextContent('Fire');
-    expect(filter[2]).toHaveTextContent('Bug');
-    expect(filter[3]).toHaveTextContent('Poison');
-    expect(filter[4]).toHaveTextContent('Psychic');
-    expect(filter[5]).toHaveTextContent('Normal');
-    expect(filter[6]).toHaveTextContent('Dragon');
+    const pokemonButton = screen.getAllByTestId('pokemon-type-button');
+    expect(pokemonButton[0]).toHaveTextContent('Electric');
+    expect(pokemonButton[1]).toHaveTextContent('Fire');
+    expect(pokemonButton[2]).toHaveTextContent('Bug');
+    expect(pokemonButton[3]).toHaveTextContent('Poison');
+    expect(pokemonButton[4]).toHaveTextContent('Psychic');
+    expect(pokemonButton[5]).toHaveTextContent('Normal');
+    expect(pokemonButton[6]).toHaveTextContent('Dragon');
   });
 
   test('Testa se existe um botão para resetar o filtro', () => {
-    const buttonFilter = screen.getByRole('button', {
+    const buttonpokemonButton = screen.getByRole('button', {
       name: /all/i,
     });
-    userEvent.click(buttonFilter);
-    const resetFilter = screen.getByTestId('pokemon-type');
-    expect(resetFilter).toHaveTextContent('Electric');
+    userEvent.click(buttonpokemonButton);
+    const resetpokemonButton = screen.getByTestId('pokemon-type');
+    expect(resetpokemonButton).toHaveTextContent('Electric');
   });
 });
