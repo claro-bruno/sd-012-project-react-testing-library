@@ -2,11 +2,9 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import event from '@testing-library/user-event';
 import App from '../App';
-// import renderWithRouter from './renderWithRouter';
 import renderRouter from '../utils';
 
 describe('Testes do componente App.js', () => {
-// console.log(renderRouter(App));
   it('Checa os links de navegação com os textos "Home, About, Favorite Pokémons"', () => {
     renderRouter(<App />);
 
