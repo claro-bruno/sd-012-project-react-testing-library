@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 
-describe('', () => {
+describe('Testa o componente Pokedex', () => {
   beforeEach(() => {
     renderWithRouter(<App />);
   });
@@ -12,5 +12,10 @@ describe('', () => {
     const headingPokedex = screen.getByRole('heading',
       { level: 2, name: 'Encountered pokémons' });
     expect(headingPokedex).toBeInTheDocument();
+  });
+
+  it('Testa se o botão para ir para o próximo pokemon contém o texto', () => {
+    const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
+    expect(nextPokemonBtn).toBeInTheDocument();
   });
 });
