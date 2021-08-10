@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import render from './renderWithRouter';
 
@@ -29,7 +29,7 @@ describe('Verifica os elementos do card do Pokemon.', () => {
   it('O card contém o link para detalhes.', () => {
     const { history } = render(<Pokemon pokemon={ pokemon } isFavorite />);
     const detail = screen.getByText('More details');
-    userEvent.click(detail);
+    fireEvent.click(detail);
     const { location: { pathname } } = history;
     expect(pathname).toBe('/pokemons/25');
   });
