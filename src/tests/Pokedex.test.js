@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent, getAllByTestId } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 import pokemons from '../data';
@@ -37,5 +37,10 @@ describe('Testa o componente Pokedex', () => {
         expect(firstPokemon).toHaveTextContent(pokemons[0].name);
       }
     });
+  });
+
+  it('Testa se é mostrado somente um pokémon por vez', () => {
+    const pokemonOnScreen = screen.getAllByTestId(pokemonName);
+    expect(pokemonOnScreen).toHaveLength(1);
   });
 });
