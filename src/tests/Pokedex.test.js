@@ -32,6 +32,30 @@ describe('Requisito 5 - Testa o componenete <Pokedex />', () => {
     expect(takeBtn).toBeInTheDocument();
   });
 
+  it('Testa a funcionalidade do botão "Próximo pokémon"', () => {
+    const takeBtn = screen.getByRole('button', { name: /próximo pokémon/i });
+
+    const namePok = [...new Set(pokemons
+      .reduce((types, { type }) => [...types, type], []))];
+
+    namePok.forEach((element, index) => {
+      const pokemonTypeBtn = screen.getAllByTestId('pokemon-type-button')[index];
+
+      expect(pokemonTypeBtn.textContent).toBe(element);
+      userEvent.click(pokemonTypeBtn);
+
+      const takeBtnNext = screen.getByRole('button', { name: /próximo pokémon/i });
+
+      const typePokemon = screen.getByTestId('pokemon-type');
+
+      userEvent.click(takeBtnNext);
+      expect(typePokemon).toBeInTheDocument();
+      expect(typePokemon.textContent).toBe(element);
+    });
+
+    userEvent.click(takeBtn);
+  });
+
   it('Testa a funcionalidade do botão "All', () => {
     const takeBtn = screen.getByRole('button', { name: /all/i });
     const takeBtnPikachu = screen.getByText('Pikachu');
