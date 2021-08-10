@@ -20,6 +20,8 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se os próximos pokemons da lista são mostrados ao clicar no botão', () => {
+    const firstPokemon = screen.getByTestId('pokemon-name');
+    expect(firstPokemon).toHaveTextContent('Pikachu');
     const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     fireEvent.click(nextPokemonBtn);
     console.log(nextPokemonBtn);
