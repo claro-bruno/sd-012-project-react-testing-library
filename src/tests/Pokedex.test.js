@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, fireEvent, getAllByTestId } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 import pokemons from '../data';
@@ -48,5 +48,12 @@ describe('Testa o componente Pokedex', () => {
   it('Testa se a pokédex tem os botões de filtro', () => {
     const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
     expect(buttonsOnScreen).toHaveLength(types.length);
+  });
+
+  it('Testa se existe um botão de filtragem para cada tipo', () => {
+    const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
+    buttonsOnScreen.forEach(
+      (button, index) => expect(button.textContent).toBe(types[index]),
+    );
   });
 });
