@@ -12,6 +12,7 @@ describe('Testa o componente Pokedex', () => {
   const btnName = 'Próximo pokémon';
   const pokemonName = 'pokemon-name';
   const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon'];
+  const typeButtonTestId = 'pokemon-type-button';
 
   it('Testa se a página renderiza um h2 com o texto', () => {
     const headingPokedex = screen.getByRole('heading',
@@ -46,12 +47,12 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se a pokédex tem os botões de filtro', () => {
-    const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
+    const buttonsOnScreen = screen.getAllByTestId(typeButtonTestId);
     expect(buttonsOnScreen).toHaveLength(types.length);
   });
 
   it('Testa se existe um botão de filtragem para cada tipo', () => {
-    const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
+    const buttonsOnScreen = screen.getAllByTestId(typeButtonTestId);
     buttonsOnScreen.forEach(
       (button, index) => expect(button.textContent).toBe(types[index]),
     );
@@ -66,9 +67,18 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se o texto do botão corresponde ao texto do tipo', () => {
-    const buttonsOnScreen = screen.getAllByTestId('pokemon-type-button');
+    const buttonsOnScreen = screen.getAllByTestId(typeButtonTestId);
     buttonsOnScreen.forEach(
       (button, index) => expect(button.textContent).toBe(types[index]),
     );
+  });
+
+  it('Testa se o botão All está sempre visível', () => {
+    const buttonsOnScreen = screen.getAllByTestId(typeButtonTestId);
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    buttonsOnScreen.forEach((button) => {
+      fireEvent.click(button);
+      expect(buttonAll).toBeInTheDocument();
+    });
   });
 });
