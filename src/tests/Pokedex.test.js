@@ -2,6 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
+import data from '../data';
 import App from '../App';
 
 describe('Verifica o componente "Pokedex.js"', () => {
@@ -33,8 +34,16 @@ describe('Verifica o componente "Pokedex.js"', () => {
     expect(buttons).toBeInTheDocument();
     userEvent.click(buttons);
 
-    const typeButton = screen.getByTestId('pokemon-type-button');
-    expect(typeButton).toHaveTextContent(/Fire/i);
+    const typePokemons = [];
+    data.forEach((pokemon) => {
+      const findPokemon = typePokemons.find((pok) => pok === pokemon.type);
+      if (!findPokemon) {
+        typePokemons.push(pokemon.type);
+      }
+    });
+    console.log(typePokemons);
+    const typeButton = screen.getAllByTestId('pokemon-type-button');
+    expect(typeButton.length).toBe(typePokemons.length);
   });
 
   test('Verifica se o botao "All" reseta o filtro', () => {
