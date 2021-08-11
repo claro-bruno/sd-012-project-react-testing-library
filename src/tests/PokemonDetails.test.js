@@ -12,16 +12,23 @@ describe('Testa a página de detalhes do Pokemon', () => {
   });
 
   it('testa se as inforamções detalhadas são exibidas na tela', () => {
+    const { name, summary } = pokemons[0];
     const pageTitle = screen.getByRole('heading',
-      { level: 2, name: (content) => content.includes('Details') });
+      { level: 2, name: `${name} Details` });
     const linksOnThisPage = screen.getAllByRole('link');
     const numberOfLinks = 3;
     const summaryHeading = screen.getByRole('heading', { name: 'Summary' });
-    const { name, summary } = pokemons[0];
     const pokemonSummary = screen.getByText(summary);
-    expect(pageTitle).toHaveTextContent(`${name} Details`);
+    expect(pageTitle).toBeInTheDocument();
     expect(linksOnThisPage).toHaveLength(numberOfLinks);
     expect(summaryHeading).toBeInTheDocument();
     expect(pokemonSummary).toBeInTheDocument();
+  });
+
+  it('testa se a página contém uma seção com as areas onde acha-se o pokemon', () => {
+    const { name } = pokemons[0];
+    const sectionTitle = screen.getByRole('heading',
+      { name: `Game Locations of ${name}` });
+    expect(sectionTitle).toBeInTheDocument();
   });
 });
