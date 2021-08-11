@@ -5,7 +5,6 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('Teste o componente Pokemon', () => {
-
   test('Teste se é renderizado um card com as informações de determinado pokémon', () => {
     renderWithRouter(<App />);
     const name = screen.getByTestId('pokemon-name');
@@ -45,5 +44,4 @@ describe('Teste o componente Pokemon', () => {
     const verifyFavorite = screen.getByAltText('Pikachu is marked as favorite');
     expect(verifyFavorite).toHaveAttribute('src', '/star-icon.svg');
   });
-
 });
