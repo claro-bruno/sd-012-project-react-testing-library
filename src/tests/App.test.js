@@ -1,37 +1,35 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-import event from '@testing-library/user-event';
+import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
-import renderRouter from '../utils';
+import renderWithRouter from './RenderWithRouter';
 
-describe('Testes do componente App.js', () => {
-  it('Checa os links de navegação com os textos "Home, About, Favorite Pokémons"', () => {
-    renderRouter(<App />);
+describe('Testes do App.js', () => {
+  it('Checa um conjunto de links de navegação', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByText('Home');
+    const about = screen.getByText('About');
+    const fPokemons = screen.getByText('Favorite Pokémons');
 
-    const links = screen.getAllByRole('link');
-    const [home, about, favoritePokemon] = links;
-
-    expect(home).toHaveTextContent('Home');
-    expect(about).toHaveTextContent('About');
-    expect(favoritePokemon).toHaveTextContent('Favorite Pokémons');
+    expect(home).toBeInTheDocument();
+    expect(about).toBeInTheDocument();
+    expect(fPokemons).toBeInTheDocument();
   });
 
-  it('Ao clicar em "Home", red. a app para "/"', () => {
-    const { history } = renderRouter(<App />);
-    const home = screen.getByRole('link', { name: 'Home' });
+  it('Checa o red. do "Home"', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByText('Home');
 
-    event.click(home);
+    fireEvent.click(home);
 
     const { location: { pathname } } = history;
-
     expect(pathname).toBe('/');
   });
 
   it('Ao clicar em "About", red. a app para "/about"', () => {
-    const { history } = renderRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     const about = screen.getByRole('link', { name: 'About' });
 
-    event.click(about);
+    fireEvent.click(about);
 
     const { location: { pathname } } = history;
 
@@ -39,10 +37,10 @@ describe('Testes do componente App.js', () => {
   });
 
   it('Ao clicar em "Favorite Pokémons", red. a app para "/favorites"', () => {
-    const { history } = renderRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     const fpoke = screen.getByRole('link', { name: 'Favorite Pokémons' });
 
-    event.click(fpoke);
+    fireEvent.click(fpoke);
 
     const { location: { pathname } } = history;
 
@@ -50,7 +48,7 @@ describe('Testes do componente App.js', () => {
   });
 
   it('Ao entrar em uma URL desconhecida, red. a app para "Not Found"', () => {
-    const { history } = renderRouter(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/test');
 
     const notFound = screen.getByText(/page requested not found/i);
