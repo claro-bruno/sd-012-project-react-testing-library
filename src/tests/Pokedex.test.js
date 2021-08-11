@@ -129,7 +129,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
     );
-    const filtros = ['All',
+    const filtros = [
       'Electric',
       'Fire',
       'Bug',
@@ -142,6 +142,16 @@ describe('Teste o componente <Pokedex.js />', () => {
       const button = screen.getByRole('button', { name: filtro });
       expect(button.innerHTML).toBe(filtro);
       expect(button).toBeInTheDocument();
+      expect(button).toHaveAttribute('data-testid', 'pokemon-type-button');
     });
+
+    const AllButton = screen.getByRole('button', { name: filtro });
+    expect(AllButton.innerHTML).toBe('All');
+    expect(AllButton).not.toHaveAttribute('disabled');
+    fireEvent.click(AllButton);
+    const pokemon = screen.getByTestId('pokemon-name');
+    expect(pokemon.textContent).toBe('Pikachu');
   });
 });
+
+// partially done with classmate Gabriel
