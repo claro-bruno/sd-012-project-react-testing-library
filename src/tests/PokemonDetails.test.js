@@ -17,9 +17,11 @@ describe('Testa a página de detalhes do Pokemon', () => {
     const linksOnThisPage = screen.getAllByRole('link');
     const numberOfLinks = 3;
     const summaryHeading = screen.getByRole('heading', { name: 'Summary' });
-    const { name } = pokemons[0];
+    const { name, summary } = pokemons[0];
+    const pokemonSummary = screen.getByText(summary);
     expect(pageTitle).toHaveTextContent(`${name} Details`);
     expect(linksOnThisPage).toHaveLength(numberOfLinks);
     expect(summaryHeading).toBeInTheDocument();
+    expect(pokemonSummary).toBeInTheDocument();
   });
 });
