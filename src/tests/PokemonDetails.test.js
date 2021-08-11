@@ -26,9 +26,13 @@ describe('Testa a página de detalhes do Pokemon', () => {
   });
 
   it('testa se a página contém uma seção com as areas onde acha-se o pokemon', () => {
-    const { name } = pokemons[0];
+    const { name, foundAt } = pokemons[0];
     const sectionTitle = screen.getByRole('heading',
       { name: `Game Locations of ${name}` });
     expect(sectionTitle).toBeInTheDocument();
+    foundAt.forEach(({ location }) => {
+      const localTitle = screen.getByText(location);
+      expect(localTitle).toBeInTheDocument();
+    });
   });
 });
