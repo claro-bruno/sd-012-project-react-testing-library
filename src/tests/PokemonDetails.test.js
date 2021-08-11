@@ -2,6 +2,7 @@ import React from 'react';
 import { screen, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 describe('Testa a página de detalhes do Pokemon', () => {
   beforeEach(() => {
@@ -11,9 +12,12 @@ describe('Testa a página de detalhes do Pokemon', () => {
   });
 
   it('testa se as inforamções detalhadas são exibidas na tela', () => {
-    const { history } = renderWithRouter(<App />);
-    const moreDetailsLink = screen.getByRole('link', { name: 'More details' });
-    fireEvent.click(moreDetailsLink);
-    expect(history.location.pathname).toBe('/pokemons/25');
+    const pageTitle = screen.getByRole('heading',
+      { level: 2, name: (content) => content.includes('Details') });
+    const linksOnThisPage = screen.getAllByRole('link');
+    const numberOfLinks = 3;
+    const { name } = pokemons[0];
+    expect(pageTitle).toHaveTextContent(`${name} Details`);
+    expect(linksOnThisPage).toHaveLength(numberOfLinks);
   });
 });
