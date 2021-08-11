@@ -6,7 +6,7 @@ import App from '../App';
 
 describe('Favorites Pokémons page test', () => {
   beforeEach(() => renderWithRouter(<App />));
-  test('If theres not any favorite pokémon: '
+  it('If theres not any favorite pokémon: '
   + 'render the message "No favorite pokemon found"', () => {
     const link = screen.getByRole('link', { name: 'Favorite Pokémons' });
     userEvent.click(link);
@@ -14,7 +14,7 @@ describe('Favorites Pokémons page test', () => {
     expect(message).toBeDefined();
   });
 
-  test('Checks if the favorite pokemons are rendered', () => {
+  it('Checks if the favorite pokemons are rendered', () => {
     const details = screen.getByRole('link', { name: 'More details' });
     userEvent.click(details);
     const input = screen.getByRole('checkbox');

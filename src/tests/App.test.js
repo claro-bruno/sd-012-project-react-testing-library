@@ -5,7 +5,7 @@ import renderWithRouter from './helper/renderWithRouter';
 import App from '../App';
 
 describe('Requirement 1', () => {
-  test('`Home` link test', () => {
+  it('`Home` link test', () => {
     const { history } = renderWithRouter(<App />);
     const home = screen.getByRole('link', { name: 'Home' });
     expect(home).toBeDefined();
@@ -14,7 +14,7 @@ describe('Requirement 1', () => {
     expect(pathname).toBe('/');
   });
 
-  test('`About` link test', () => {
+  it('`About` link test', () => {
     const { history } = renderWithRouter(<App />);
     const about = screen.getByRole('link', { name: 'About' });
     expect(about).toBeDefined();
@@ -23,7 +23,7 @@ describe('Requirement 1', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('`Favorite Pokémons` link test', () => {
+  it('`Favorite Pokémons` link test', () => {
     const { history } = renderWithRouter(<App />);
     const favorite = screen.getByRole('link', { name: 'Favorite Pokémons' });
     expect(favorite).toBeDefined();
@@ -32,7 +32,7 @@ describe('Requirement 1', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('`Not Found` link test', () => {
+  it('`Not Found` link test', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/doesntexist');
     const notFound = screen.getByText('Page requested not found');

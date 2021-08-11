@@ -6,18 +6,18 @@ import App from '../App';
 
 describe('Pokedex tests', () => {
   beforeEach(() => renderWithRouter(<App />));
-  test('Test title', () => {
+  it('Test title', () => {
     const title = screen.getByRole('heading', { level: 2 });
     expect(title).toHaveTextContent('Encountered pokémons');
   });
 
-  test('Tests the `Próximo pokémon` button', () => {
+  it('Tests the `Próximo pokémon` button', () => {
     const button = screen.getByTestId('next-pokemon');
     expect(button).toHaveTextContent('Próximo pokémon');
     userEvent.click(button);
   });
 
-  test('Check if there is filter buttons', () => {
+  it('Check if there is filter buttons', () => {
     const allButton = screen.getByRole('button', { name: 'All' });
     expect(allButton).toBeDefined();
     userEvent.click(allButton);

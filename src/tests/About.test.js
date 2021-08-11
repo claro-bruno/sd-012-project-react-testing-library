@@ -5,7 +5,7 @@ import renderWithRouter from './helper/renderWithRouter';
 import App from '../App';
 
 describe('About component tests', () => {
-  test('Check rendered components on the About page', () => {
+  it('Check rendered components on the About page', () => {
     renderWithRouter(<App />);
     const link = screen.getByRole('link', { name: 'About' });
     userEvent.click(link);

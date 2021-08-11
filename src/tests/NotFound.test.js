@@ -4,7 +4,7 @@ import renderWithRouter from './helper/renderWithRouter';
 import App from '../App';
 
 describe('`Not found` page tests', () => {
-  test('Check if the title is the one expect', () => {
+  it('Check if the title is the one expect', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/wrongurl');
     const title = screen.getByRole('heading', { level: 2 });
