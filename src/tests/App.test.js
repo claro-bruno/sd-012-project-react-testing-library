@@ -1,91 +1,33 @@
-
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { render } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Teste de links de navegação', () => {
+  it('Teste do texto da Home', () => {
+    const { history } = renderWithRouter(<App />);
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+    const $linkHome = screen.getByText(/Home/i);
+    expect($linkHome).toBeInTheDocument('');
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
+    const $linkAbout = screen.getByText(/About/i);
+    expect($linkAbout).toBeInTheDocument('');
 
-test('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
-  const { getByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
+    const $linkFavoritePokemons = screen.getByText(/Favorite Pokémons/i);
+    expect($linkFavoritePokemons).toBeInTheDocument('');
 
-  const navLinks = getByRole('navigation');
-  expect(navLinks).toBeInTheDocument();
+    userEvent.click($linkHome);
+    expect(history.location.pathname).toBe('/');
 
-  const linkHome = getByRole('link', { name: 'Home' });
-  expect(linkHome).toBeInTheDocument();
+    userEvent.click($linkAbout);
+    expect(history.location.pathname).toBe('/about');
 
-  const linkAbout = getByRole('link', { name: 'About' });
-  expect(linkAbout).toBeInTheDocument();
+    userEvent.click($linkFavoritePokemons);
+    expect(history.location.pathname).toBe('/favorites');
 
-  const linkFavoritePokemons = getByRole('link', { name: 'Favorite Pokémons' });
-  expect(linkFavoritePokemons).toBeInTheDocument();
-});
-
-test('Teste se a aplicação é redirecionada para a página inicial,'
-  + 'na URL / ao clicar no link Home da barra de navegação', () => {
-  const { getByRole, history } = renderWithRouter(<App />);
-
-  userEvent.click(getByRole('link', { name: /home/i }));
-
-  const { pathname } = history.location;
-
-  expect(pathname).toBe('/');
-});
-
-test('Teste se a aplicação é redirecionada para a página de About, na URL /about,'
-  + 'ao clicar no link About da barra de navegação', () => {
-  const { getByRole, history } = renderWithRouter(<App />);
-
-  userEvent.click(getByRole('link', { name: /about/i }));
-
-  const { pathname } = history.location;
-
-  expect(pathname).toBe('/about');
-});
-
-test('Teste se a aplicação é redirecionada para a página de Pokémons Favoritados,'
- + 'na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação', () => {
-  const { getByRole, history } = renderWithRouter(<App />);
-
-  userEvent.click(getByRole('link', { name: /Favorite Pokémons/i }));
-
-  const { pathname } = history.location;
-
-  expect(pathname).toBe('/favorites');
-});
-
-test('Teste se a aplicação é redirecionada para a página Not Found,'
- + 'ao entrar em uma URL desconhecida', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-
-  history.push('/teste');
-
-  const pageNotFound = getByText('Page requested not found');
-
-  expect(pageNotFound).toBeInTheDocument();
+    history.push('/notIsAPage');
+    const notFoundTxt = screen.getByText(/Page requested not found/i);
+    expect(notFoundTxt).toBeInTheDocument();
+  });
 });
