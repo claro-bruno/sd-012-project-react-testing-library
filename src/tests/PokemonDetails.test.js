@@ -39,8 +39,15 @@ describe('Testa a página de detalhes do Pokemon', () => {
   });
 
   it('testa se o usuário consegue favoritar um pokémon pela página de detalhes', () => {
+    const { name } = pokemons[0];
     const favoriteCheckbox = screen.getByRole('checkbox',
       { name: 'Pokémon favoritado?' });
     expect(favoriteCheckbox).toBeInTheDocument();
+    fireEvent.click(favoriteCheckbox);
+    const favoritedPokemonImage = screen.getByAltText(`${name} is marked as favorite`);
+    expect(favoritedPokemonImage).toBeInTheDocument();
+    fireEvent.click(favoriteCheckbox);
+    expect(favoritedPokemonImage).not.toBeInTheDocument();
+
   });
 });
