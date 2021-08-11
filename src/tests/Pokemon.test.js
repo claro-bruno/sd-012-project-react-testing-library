@@ -8,9 +8,10 @@ describe(' é renderizado um card com as informações de determinado pokémon.'
   test('testa se o card tem todas as informaçoes solicitadas', () => {
     renderWithRouter(<App />);
     userEvent.click(screen.getByText('More details'));
-    expect(screen.getByTestId('pokemon-name')).toBeInTheDocument();
-    expect(screen.getByTestId('pokemon-type')).toBeInTheDocument();
-    expect(screen.getByText(/Average weight/i)).toBeInTheDocument();
+    expect(screen.getByTestId('pokemon-name')).toHaveTextContent(/pikachu/i);
+    expect(screen.getByTestId('pokemon-type')).toHaveTextContent(/Electric/i);
+    expect(screen.getByText(/Average weight/i))
+      .toHaveTextContent('Average weight: 6.0 kg');
     const link = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
     const img = screen.getByAltText(/Pikachu sprite/i);
     expect(img.src).toBe(link);
