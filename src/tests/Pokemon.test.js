@@ -16,6 +16,9 @@ describe('6. Teste o componente <Pokemon.js />', () => {
     expect(type).toHaveTextContent('Electric');
     expect(screen.getByText('Average weight: 6.0 kg')).toBeInTheDocument();
     expect(imgTest).toHaveAttribute('src', srcImage);
+
+    const imagePokemon = screen.getByRole('img', { name: 'Pikachu sprite' });
+    expect(imagePokemon).toBeInTheDocument();
   });
   it('Pokédex contém um link de navegação', () => {
     const { history } = renderWithRouter(<App />);
