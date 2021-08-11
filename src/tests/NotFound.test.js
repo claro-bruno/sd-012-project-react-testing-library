@@ -1,6 +1,5 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
-import App from '../App';
+
 import renderWithRouter from './renderWithRouter';
 import { NotFound } from '../components';
 
