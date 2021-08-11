@@ -25,4 +25,11 @@ describe('Testa o componente Pokemon.js', () => {
       fireEvent.click(nextPokemonBtn);
     });
   });
+
+  it('testa se ao clicar no link de detalhes do pokemon a página é redirecionada', () => {
+    const { history } = renderWithRouter(<App />);
+    const detailedInfoLink = screen.getByRole('link', { name: 'More details' });
+    fireEvent.click(detailedInfoLink);
+    expect(history.location.pathname).toBe('/pokemons/25');
+  });
 });
