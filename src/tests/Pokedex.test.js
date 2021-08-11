@@ -145,7 +145,7 @@ describe('Teste o componente <Pokedex.js />', () => {
       expect(button).toHaveAttribute('data-testid', 'pokemon-type-button');
     });
 
-    const AllButton = screen.getByRole('button', { name: filtro });
+    const AllButton = screen.getByRole('button', { name: 'All' });
     expect(AllButton.innerHTML).toBe('All');
     expect(AllButton).not.toHaveAttribute('disabled');
     fireEvent.click(AllButton);
