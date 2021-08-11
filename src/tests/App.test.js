@@ -6,6 +6,7 @@ import renderWithRouter from './RenderWithRouter';
 describe('Testes do App.js', () => {
   it('Checa um conjunto de links de navegação', () => {
     renderWithRouter(<App />);
+
     const home = screen.getByText('Home');
     const about = screen.getByText('About');
     const fPokemons = screen.getByText('Favorite Pokémons');
@@ -22,6 +23,7 @@ describe('Testes do App.js', () => {
     fireEvent.click(home);
 
     const { location: { pathname } } = history;
+
     expect(pathname).toBe('/');
   });
 
@@ -49,11 +51,11 @@ describe('Testes do App.js', () => {
 
   it('Ao entrar em uma URL desconhecida, red. a app para "Not Found"', () => {
     const { history } = renderWithRouter(<App />);
+
     history.push('/test');
 
     const notFound = screen.getByText(/page requested not found/i);
 
     expect(notFound).toBeInTheDocument();
   });
-  // Teste Push, problemas com o GitHub
 });

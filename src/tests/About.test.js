@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import About from '../components/About';
+import renderWithRouter from './RenderWithRouter';
 
 describe('Teste do componente About.js', () => {
-  beforeEach(() => render(<About />));
+  beforeEach(() => renderWithRouter(<About />));
 
   it('Checa informações do Pokédex', () => {
     const head = screen.getByRole('heading', { name: 'About Pokédex' });
