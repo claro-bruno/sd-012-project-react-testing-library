@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from './RenderWithRouter';
+import renderWithRouter from './renderWithRouter';
 
 describe('Testes do App.js', () => {
   it('Checa um conjunto de links de navegação', () => {
