@@ -37,4 +37,10 @@ describe('Testa a página de detalhes do Pokemon', () => {
       expect(mapImage[index].src).toBe(map);
     });
   });
+
+  it('testa se o usuário consegue favoritar um pokémon pela página de detalhes', () => {
+    const favoriteCheckbox = screen.getByRole('checkbox',
+      { name: 'Pokémon favoritado?' });
+    expect(favoriteCheckbox).toBeInTheDocument();
+  });
 });
