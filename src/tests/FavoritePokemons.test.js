@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import historyRender from './GenericHistory';
 
