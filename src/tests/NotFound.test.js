@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import NotFound from '../components/NotFound';
 
@@ -13,7 +13,7 @@ describe('Testando o componente NotFound', () => {
   });
 
   test('Testa se mostra uma determinada imagem', () => {
-    render(<NotFound />);
+    renderWithRouter(<NotFound />);
     const image = screen.getAllByRole('img');
     const src = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(image[1].src).toBe(src);
