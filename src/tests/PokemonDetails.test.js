@@ -48,6 +48,5 @@ describe('Testa a página de detalhes do Pokemon', () => {
     expect(favoritedPokemonImage).toBeInTheDocument();
     fireEvent.click(favoriteCheckbox);
     expect(favoritedPokemonImage).not.toBeInTheDocument();
-
   });
 });
