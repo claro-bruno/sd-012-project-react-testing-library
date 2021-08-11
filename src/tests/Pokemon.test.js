@@ -13,13 +13,16 @@ describe('Testa o componente Pokemon.js', () => {
     const nextPokemonBtn = screen.getByRole('button', { name: 'Próximo pokémon' });
     const detailedInfoLink = screen.getByRole('link', { name: 'More details' });
     pokemons.forEach((pokemon) => {
-      const { id, name, type, averageWeight } = pokemon;
+      const { id, name, type, averageWeight, image } = pokemon;
+      const pokemonImage = screen.getByAltText(`${name} sprite`);
       expect(pokemonName).toHaveTextContent(name);
       expect(pokemonType).toHaveTextContent(type);
       expect(pokemonWeight)
         .toHaveTextContent(
           `Average weight: ${averageWeight.value} ${averageWeight.measurementUnit}`,
         );
+      expect(pokemonImage).toBeInTheDocument();
+      expect(pokemonImage.src).toBe(image);
       // Aqui resolvi centralizar o teste, aqui testa se o link leva para a página de detalhes desse pokemon.
       expect(detailedInfoLink.href).toBe(`http://localhost/pokemons/${id}`);
       fireEvent.click(nextPokemonBtn);
@@ -44,5 +47,5 @@ describe('Testa o componente Pokemon.js', () => {
     const favoritedPokemonImage = screen.getByAltText('Pikachu is marked as favorite');
     expect(favoritedPokemonImage).toBeInTheDocument();
     expect(favoritedPokemonImage.src).toBe('http://localhost/star-icon.svg');
-  })
+  });
 });
