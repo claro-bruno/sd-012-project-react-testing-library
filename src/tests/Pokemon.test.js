@@ -37,7 +37,7 @@ describe('Testes do componente Pokemon.js', () => {
     userEvent.click(details);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
-    const favorite = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i});
+    const favorite = screen.getByRole('checkbox', { name: /Pokémon favoritado?/i });
     expect(favorite).toBeInTheDocument();
 
     userEvent.click(favorite);
