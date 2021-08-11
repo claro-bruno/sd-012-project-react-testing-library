@@ -30,9 +30,11 @@ describe('Testa a página de detalhes do Pokemon', () => {
     const sectionTitle = screen.getByRole('heading',
       { name: `Game Locations of ${name}` });
     expect(sectionTitle).toBeInTheDocument();
-    foundAt.forEach(({ location }) => {
+    foundAt.forEach(({ location, map }, index) => {
       const localTitle = screen.getByText(location);
+      const mapImage = screen.getAllByAltText(`${name} location`);
       expect(localTitle).toBeInTheDocument();
+      expect(mapImage[index].src).toBe(map);
     });
   });
 });
