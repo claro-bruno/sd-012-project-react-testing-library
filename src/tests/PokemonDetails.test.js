@@ -7,7 +7,7 @@ import App from '../App';
 const oneResume = 'This intelligent Pokémon roasts hard berries with electricity to make';
 const URL1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
 const URL2 = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
-const thisDetails = 'More details'; 
+const thisDetails = 'More details';
 const testId = 'pokemon-name';
 
 describe('Testa componente PokemonDetails', () => {
