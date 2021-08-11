@@ -32,4 +32,17 @@ describe('Testa o componente Pokemon.js', () => {
     fireEvent.click(detailedInfoLink);
     expect(history.location.pathname).toBe('/pokemons/25');
   });
+
+  it('testa se existe um ícone de estrela nos pokémons favoritados', () => {
+    const { history } = renderWithRouter(<App />);
+    const detailedInfoLink = screen.getByRole('link', { name: 'More details' });
+    fireEvent.click(detailedInfoLink);
+    expect(history.location.pathname).toBe('/pokemons/25');
+    const toFavoritePokemon = screen.getByLabelText('Pokémon favoritado?',
+      { selector: 'input' });
+    fireEvent.click(toFavoritePokemon);
+    const favoritedPokemonImage = screen.getByAltText('Pikachu is marked as favorite');
+    expect(favoritedPokemonImage).toBeInTheDocument();
+    expect(favoritedPokemonImage.src).toBe('http://localhost/star-icon.svg');
+  })
 });
