@@ -136,6 +136,10 @@ describe('5. Teste o componente <Pokedex.js /> parte 2', () => {
     expect(buttonsList[0]).toBeInTheDocument();
     expect(pokemon[0]).toHaveTextContent(pokemons[1].type);
     expect(history.location.pathname).toBe('/');
+
+    const buttonsTypeList = screen.getAllByTestId('pokemon-type-button');
+    const SEVEN = 2;
+    expect(buttonsTypeList).toHaveLength(SEVEN);
   });
 
   it('Teste se o Botão All sempre aparece', () => {
