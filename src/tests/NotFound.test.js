@@ -1,23 +1,19 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
-import { NotFound } from '../components';
+import App from '../App';
 
-describe('Tests the home page', () => {
-  test('Testa se a página NotFound contém um h2 e seu texto correspondente', () => {
-    const { getByRole } = renderWithRouter(<NotFound />);
-
-    const noMatchPath = getByRole('heading', {
-      level: 2,
-      name: /^Page requested not found/i,
-    });
-    expect(noMatchPath).toBeInTheDocument();
-  });
-
-  test('deve renderizar uma imagem com URL específica', () => {
-    const srcImg = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const { getByRole } = renderWithRouter(<NotFound />);
-    expect(getByRole('img', {
-      name: /^Pikachu/i,
-    })).toHaveAttribute('src', srcImg);
+describe('Testa tela de página não encontrada', () => {
+  test('Testa elementos renderizados em page Not Found', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/paturso');
+    const notFound = screen
+      .getByRole('heading', { name: 'Page requested not found Crying emoji' });
+    const notFoundImg = screen
+      .getByRole('img', {
+        name: 'Pikachu crying because the page requested was not found',
+      });
+    expect(notFound).toBeInTheDocument();
+    expect(notFoundImg.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });

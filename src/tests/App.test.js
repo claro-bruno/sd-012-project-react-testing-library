@@ -1,67 +1,59 @@
-
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import App from '../App';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 
-describe('Tests the home page', () => {
-  test('shows the Pokédex when the route is `/`', () => {
-    render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
-
-    expect(screen.getByText('Encountered pokémons')).toBeInTheDocument();
+describe('Testes do componente App.js', () => {
+  test('Verifica se existe um link "Home"', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /Home/i });
+    expect(home).toBeDefined();
   });
 
-  test('renders a heading with the text `Pokédex`', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const heading = screen.getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
-  });
-
-  test('Verifica se há 3 links de navegação', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    expect(screen.getByText(/^home$/i)).toBeInTheDocument();
-    expect(screen.getByText(/^about$/i)).toBeInTheDocument();
-    expect(screen.getByText(/^favorite pokémons$/i)).toBeInTheDocument();
-  });
-
-  test('deve renderizar o componente Home', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/^home$/i));
-    const { pathname } = history.location;
+  test('Testa se "Home" redireciona para a URL "/"', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /Home/i });
+    expect(home).toBeDefined();
+    userEvent.click(home);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/');
   });
 
-  test('deve renderizar o componente About', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/^about$/i));
-    const { pathname } = history.location;
+  test('Verifica se existe um link "About"', () => {
+    renderWithRouter(<App />);
+    const about = screen.getByRole('link', { name: /About/i });
+    expect(about).toBeDefined();
+  });
+
+  test('Testa se "About" redireciona para a URL "/about"', () => {
+    const { history } = renderWithRouter(<App />);
+    const about = screen.getByRole('link', { name: /About/i });
+    expect(about).toBeDefined();
+    userEvent.click(about);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
   });
 
-  test('deve renderizar o componente Favorite Pokémons', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/^favorite pokémons$/i));
-    const { pathname } = history.location;
+  test('Verifica se existe um link "Favorite Pokémons"', () => {
+    renderWithRouter(<App />);
+    const favoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(favoritePokemons).toBeDefined();
+  });
+
+  test('Testa se "Favorite Pokémons" redireciona para a URL "/favorites"', () => {
+    const { history } = renderWithRouter(<App />);
+    const favorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(favorite).toBeDefined();
+    userEvent.click(favorite);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
   });
 
-  test('deve testar um caminho não existente e a renderização do Not Found', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('/pagina/que-nao-existe/');
-    const noMatch = getByText(/^Page requested not found$/i);
-    expect(noMatch).toBeInTheDocument();
+  test('Testa se "/page-not-found" redireciona para pagina "Not Found"', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/page-not-found');
+    const pageNotFound = screen.getByText('Page requested not found');
+    expect(pageNotFound).toBeDefined();
   });
 });
