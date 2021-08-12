@@ -32,7 +32,7 @@ describe('Requisito 7 - Testando o componente <PokemonDetails />', () => {
     const takeLocation = screen
       .getByRole('heading', { name: /game locations of Pikachu/i });
     const takeImgLocation = screen.getAllByAltText('Pikachu location');
-    const src1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+    const src1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
     expect(takeLocation).toBeInTheDocument();
     expect(takeImgLocation[0]).toBeInTheDocument();
     expect(takeImgLocation[0].src).toBe(src1);
