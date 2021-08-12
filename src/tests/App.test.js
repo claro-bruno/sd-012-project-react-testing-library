@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from 'react-router-dom'
+import renderWithRouter from '../renderWithRouter';
 
 describe('Tests the home page', () => {
   test('shows the Pokédex when the route is `/`', () => {
