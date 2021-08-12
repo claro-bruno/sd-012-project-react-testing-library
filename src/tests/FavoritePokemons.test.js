@@ -9,7 +9,7 @@ describe('Requisito 3', () => {
     render(<FavoritePokemons />);
   });
 
-  it('Teste se é exibido na tela a mensagem No favorite pokemon found, se a pessoa não tiver pokémons favoritos.', () => {
+  it('Se a pessoa não tiver pokémons favoritos, teste se a mensagem é exibida', () => {
     const noFavoritePokemon = screen.getByText('No favorite pokemon found');
     expect(noFavoritePokemon).toBeInTheDocument();
   });

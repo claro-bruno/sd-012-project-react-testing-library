@@ -11,7 +11,7 @@ describe('Requisito 7', () => {
     fireEvent.click(moreDetailsLink);
   });
 
-  it('Teste se as informações detalhadas do Pokémon selecionado são mostradas na tela.', () => {
+  it('As informações detalhadas do Pokémon selecionado devem ser exibidas', () => {
     const { name, summary } = pokemons[0];
     const pageTitle = screen.getByRole('heading',
       { level: 2, name: `${name} Details` });
@@ -25,7 +25,7 @@ describe('Requisito 7', () => {
     expect(pokemonSummary).toBeInTheDocument();
   });
 
-  it('Teste se existe na página uma seção com os mapas contendo as localizações do pokémon', () => {
+  it('Deve existir na página uma seção contendo as localizações do pokémon', () => {
     const { name, foundAt } = pokemons[0];
     const sectionTitle = screen.getByRole('heading',
       { name: `Game Locations of ${name}` });
@@ -38,7 +38,7 @@ describe('Requisito 7', () => {
     });
   });
 
-  it('Teste se o usuário pode favoritar um pokémon através da página de detalhes.', () => {
+  it('Teste se o usuário pode favoritar um pokémon através da página de detalhes', () => {
     const { name } = pokemons[0];
     const favoriteCheckbox = screen.getByRole('checkbox',
       { name: 'Pokémon favoritado?' });

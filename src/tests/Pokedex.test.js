@@ -50,7 +50,7 @@ describe('Requisito 5', () => {
     expect(buttonsOnScreen).toHaveLength(types.length);
   });
 
-  it('Deve existir um botão de filtragem para cada tipo de Pokémon, sem repetição.', () => {
+  it('Deve existir um botão de filtragem para cada tipo de Pokémon', () => {
     const buttonsOnScreen = screen.getAllByTestId(typeButtonTestId);
     buttonsOnScreen.forEach(
       (button, index) => expect(button.textContent).toBe(types[index]),
@@ -58,7 +58,7 @@ describe('Requisito 5', () => {
     expect(buttonsOnScreen).toHaveLength(types.length);
   });
 
-  it('A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo;', () => {
+  it('A Pokédex deve circular somente pelos pokémons do tipo selecionado', () => {
     const electricButtonType = screen.getByRole('button', { name: 'Electric' });
     fireEvent.click(electricButtonType);
     const pokemonType = screen.getByTestId('pokemon-type');
@@ -87,7 +87,7 @@ describe('Requisito 5', () => {
   });
 });
 
-it('A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado', () => {
+it('A Pokedéx deverá mostrar todos os pokemons, quando o botão All for clicado', () => {
   const { history } = renderWithRouter(<App />);
   expect(history.location.pathname).toBe('/');
   const buttonAll = screen.getByRole('button', { name: 'All' });

@@ -31,7 +31,7 @@ describe('Requisito 6', () => {
     });
   });
 
-  it('Teste se ao clicar no link de navegação do Pokémon, é feito o redirecionamento da aplicação para a página de detalhes de Pokémon.', () => {
+  it('Redirecionar aos detalhes, ao clicar no link de navegação do Pokemon', () => {
     const { history } = renderWithRouter(<App />);
     const detailedInfoLink = screen.getByRole('link', { name: moreDetails });
     fireEvent.click(detailedInfoLink);

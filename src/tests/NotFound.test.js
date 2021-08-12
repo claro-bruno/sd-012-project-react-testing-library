@@ -7,7 +7,7 @@ describe('Requisito 4', () => {
     render(<NotFound />);
   });
 
-  it('Teste se página contém um heading h2 com o texto Page requested not found 😭;', () => {
+  it('Teste se página contém um heading h2 com o texto Page requested not found', () => {
     const componentHeader = screen.getByRole('heading',
       { level: 2, name: (content) => content.includes('Page requested not found') });
     expect(componentHeader).toBeInTheDocument();
