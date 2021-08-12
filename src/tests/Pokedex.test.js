@@ -58,7 +58,7 @@ describe('test the component Pokedex', () => {
     expect(buttons[6]).toHaveTextContent('Dragon');
   });
 
-  it('testa se a Pokédex contém um botão para resetar o filtro', () => {
+  it('Test whether a Pokédex has a reset filter button.', () => {
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ {} }

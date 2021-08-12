@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('Teste de links de navegação', () => {
-  it('Teste do texto da Home', () => {
+describe('Test the router links in the App page', () => {
+  it('Test link names', () => {
     const { history } = renderWithRouter(<App />);
 
     const $linkHome = screen.getByText(/Home/i);
