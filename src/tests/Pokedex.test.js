@@ -36,4 +36,14 @@ describe('Verifica Pokedex.test.js', () => {
     userEvent.click(screen.getByRole('button', { name: 'Electric' }));
     userEvent.click(screen.getByRole('button', { name: 'All' }));
   });
+  // Parte que não aparece no projeto
+  test('contém os botões de fitlros', () => {
+    renderWithRouter(<App />);
+    const pokemonTypes = Array.from(new Set(pokemons.map(({ type }) => type)));
+    const typeButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(typeButtons).toHaveLength(pokemonTypes.length);
+    expect(typeButtons[0]).toHaveTextContent(pokemonTypes[0]);
+    expect(typeButtons[4]).toHaveTextContent(pokemonTypes[4]);
+    expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
+  });
 });
