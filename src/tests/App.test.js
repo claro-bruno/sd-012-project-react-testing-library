@@ -1,63 +1,59 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Testa os componente de App.js', () => {
+  test('Verifica se o primeiro link possui o texto "Home"', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /Home/i });
+    expect(home).toBeDefined();
+  });
 
-test('testing whether the route is "/"', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByText('Encountered pokémons').toBeInTheDocument);
-});
+  test('Verifica se o segundo link possui o texto "About"', () => {
+    renderWithRouter(<App />);
+    const about = screen.getByRole('link', { name: /About/i });
+    expect(about).toBeDefined();
+  });
 
-test('Testing fixed set of navigation links.', () => {
-  const { getAllByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const link = getAllByRole('link');
-  expect(link[0].textContent).toBe('Home');
-  expect(link[1].textContent).toBe('About');
-  expect(link[2].textContent).toBe('Favorite Pokémons');
-});
+  test('Verifica se o terceiro link possui o texto Favorite Pokémons', () => {
+    renderWithRouter(<App />);
+    const favoritePokemons = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(favoritePokemons).toBeDefined();
+  });
 
-describe('Testing route', () => {
-  test('Testing Home', () => {
-    const { history, getByText } = renderWithRouter(<App />);
-    userEvent.click(getByText(/Home/i));
-    const { pathname } = history.location;
+  test('Testa se a aplicação é redirecionada à página inicial ao clicar em Home', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /Home/i });
+    expect(home).toBeDefined();
+    userEvent.click(home);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/');
   });
 
-  test('Testing About', () => {
-    const { history, getByText } = renderWithRouter(<App />);
-    userEvent.click(getByText(/About/i));
-    const { pathname } = history.location;
+  test('Testa se a aplicação é redirecionada à página about ao clicar em About', () => {
+    const { history } = renderWithRouter(<App />);
+    const about = screen.getByRole('link', { name: /About/i });
+    expect(about).toBeDefined();
+    userEvent.click(about);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/about');
   });
 
-  test('Testing Favorites', () => {
-    const { history, getByText } = renderWithRouter(<App />);
-    userEvent.click(getByText(/Favorite Pokémons/i));
-    const { pathname } = history.location;
+  test('Testa se Favorite Pokémons redireciona à página de Pokémons Favoritados', () => {
+    const { history } = renderWithRouter(<App />);
+    const favorite = screen.getByRole('link', { name: /Favorite Pokémons/i });
+    expect(favorite).toBeDefined();
+    userEvent.click(favorite);
+    const { location: { pathname } } = history;
     expect(pathname).toBe('/favorites');
   });
 
-  test('Testing 404', () => {
-    const { history, getByText } = renderWithRouter(<App />);
-    history.push('/qualquer coisa');
-    const erro = getByText(/not found/);
-    expect(erro).toBeInTheDocument();
+  test('Testa se "/page-not-found" redireciona para pagina "Not Found"', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/page-not-found');
+    const pageNotFound = screen.getByText('Page requested not found');
+    expect(pageNotFound).toBeDefined();
   });
 });

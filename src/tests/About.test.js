@@ -1,42 +1,30 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import About from '../components/About';
 
-describe('Testing the <About.js / component.', () => {
-  test('information about Pokédex.', () => {
-    const { getByRole } = render(
-      <MemoryRouter>
-        <About />
-      </MemoryRouter>,
-    );
-    const aboutMeText = getByRole('heading', {
-      level: 2,
-      name: 'About Pokédex',
-    });
-    expect(aboutMeText).toBeInTheDocument();
+describe('Testa o component About', () => {
+  beforeEach(() => render(<About />));
+
+  test('Testa se a página contém as informações sobre a Pokédex', () => {
+    const about = screen.getByText(/About Pokédex/i);
+    expect(about).toBeDefined();
   });
 
-  test('Testing two paragraphs with text on Pokédex.', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <About />
-      </MemoryRouter>,
-    );
-    const p1 = getByText(/This application simulates/i);
-    expect(p1).toBeInTheDocument();
-    const p2 = getByText(/One can filter/i);
-    expect(p2).toBeInTheDocument();
+  test('Testa se a página contém um heading h2 com o texto About Pokédex', () => {
+    const h2 = screen.getByRole('heading', { name: /About Pokédex/i });
+    expect(h2).toBeDefined();
   });
 
-  test('Test if the page contains the following image of a Pokédex', () => {
-    const { getByRole } = render(
-      <MemoryRouter>
-        <About />
-      </MemoryRouter>,
-    );
-    const image = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    const img = getByRole('img');
-    expect(img.src).toBe(image);
+  test('Testa se a página contém dois parágrafos com texto sobre a Pokédex', () => {
+    const twoParagraphs = screen.getAllByText(/Pokémons/i);
+    const size = 2;
+    expect(twoParagraphs.length).toBe(size);
+  });
+
+  test('Testa se a página contém a seguinte imagem de uma Pokédex', () => {
+    const imgage = screen.getByRole('img', { name: /Pokédex/i });
+    expect(imgage).toBeDefined();
+    const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    expect(imgage.src).toBe(src);
   });
 });
