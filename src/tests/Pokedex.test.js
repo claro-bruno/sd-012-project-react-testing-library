@@ -36,7 +36,7 @@ describe('Verifica Pokedex.test.js', () => {
     userEvent.click(screen.getByRole('button', { name: 'Electric' }));
     userEvent.click(screen.getByRole('button', { name: 'All' }));
   });
-  // Parte que não aparece no projeto
+  // Parte que não aparece no projeto, PEGUEI DO REPOSITORIO DO ALuno"Roberval Filho".
   test('contém os botões de fitlros', () => {
     renderWithRouter(<App />);
     const pokemonTypes = Array.from(new Set(pokemons.map(({ type }) => type)));
@@ -46,4 +46,5 @@ describe('Verifica Pokedex.test.js', () => {
     expect(typeButtons[4]).toHaveTextContent(pokemonTypes[4]);
     expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
   });
+  // https://github.com/tryber/sd-012-project-react-testing-library/pull/79/commits/f8e94060d7f9c5ff7516bddb6a62c4b962491373
 });
