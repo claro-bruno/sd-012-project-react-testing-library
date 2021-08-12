@@ -31,6 +31,8 @@ describe('Verifica Pokedex.test.js', () => {
     userEvent.click(bttn);
     expect(screen.getByText(pokemons[8].name)).toBeDefined();
     userEvent.click(bttn);
+    const type = screen.getByRole('button', { name: 'Poison' });
+    expect(type).toBeDefined();
     userEvent.click(screen.getByRole('button', { name: 'Electric' }));
     userEvent.click(screen.getByRole('button', { name: 'All' }));
   });
