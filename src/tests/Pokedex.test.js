@@ -85,3 +85,5 @@ describe('Teste do Pokedex.js', () => {
 });
 
 // Utilizar a negação do toBeInTheDocument ao checar a existência de um elemento capturado, por exemplo, pelo queryByText.
+
+// Use o Req. 5 como referência para os próximos Req. 6 e 7.
